@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<title>Quiz</title>
+		<meta charset="utf-8">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" href="css/style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	</head>
+	<body>
+		<div class="wrapper">
+			<main class="page">
+				 <div class="page__wrapper"> 	
+					<div class="page__container container">
+						<div class="page__main">
+							<div class="page__title-block">
+								<h1 class="page__title">Подберём вуз мечты</h1>
+								<p class="page__text">Ответьте на 8 простых вопросов, и мы составим список наболее подходящих для вас вузов</p>
+							</div>
+							<div class="page__image">
+								<img src="./img/logo.png" alt="logo">
+							</div>
+						</div>
+						<section class="page__step step-1">
+							<div id="body" class="step-1__body">
+								<div class="step-1__top top">
+									<h2 class="step-1__title title">Для кого вы ищете учебное заведение?</h2>
+									<div class="step-1__counter counter">
+										<h3 class="counter__title">Шаг</h3>
+										<span id="indexStep"></span>
+										<span id="indexAllStep"></span>
+									</div>
+								</div>
+								<div class="step-1__quiz-body quiz-body">
+									<div class="quiz-body__items">
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="q_0" type="radio" name="radio_q" data-error="Ошибка" value="q_0" class="checkbox__input">
+												<label for="q_0" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Себе</span></label>
+											</div>
+										</div>
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="q_1" type="radio" name="radio_q" data-error="Ошибка" value="q_1" class="checkbox__input">
+												<label for="q_1" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Родственнику</span></label>
+											</div>
+										</div>
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="q_2" type="radio" name="radio_q" data-error="Ошибка" value="q_2" class="checkbox__input">
+												<label for="q_2" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Ребенку</span></label>
+											</div>
+										</div>
+									</div>
+									<div class="quiz-body__items">
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="q_3" type="radio" name="form[]" data-error="Ошибка" value="q_3" class="checkbox__input">
+												<label for="q_3" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Супругу/супруге</span></label>
+											</div>
+										</div>
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="q_4" type="radio" name="radio_q" data-error="Ошибка" value="q_4" class="checkbox__input">
+												<label for="q_4" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Коллеге</span></label>
+											</div>
+										</div>
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="q_5" type="radio" name="radio_q" data-error="Ошибка" value="q_5" class="checkbox__input">
+												<label for="q_5" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Другое</span></label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="step-1__buttons buttons">
+									<button disabled id="next" class="step-1__button button button-next">Далее</button>
+								</div>
+							</div>	
+						</section>
+						<section class="page__step step-2 hidden">
+							<div id="body" class="step-2__body">
+								<div class="step-2__top top">
+									<h2 class="step-2__title title">В каком городе планируете поступать?</h2>
+									<div class="step-2__counter counter">
+										<h3 class="counter__title">Шаг</h3>
+										<span id="indexStep"></span>
+										<span id="indexAllStep"></span>
+									</div>
+								</div>
+								<div class="step-2__quiz-body quiz-body">
+									<div class="select-wrapper">
+										<label for="town">Город</label>
+										<select id="town" class="quiz-body__select" name="sorting[]">
+										    <option selected value="piter">Санкт-Петербург</option>
+										    <option value="moscow">Москва</option>
+										    <option value="novosib">Новосибирск</option>
+										    <option value="niwnov">Нижний новгород</option>
+										    <option value="rostov">Ростов-на-Дону</option>
+										</select>
+									</div>
+								</div>
+								<div class="step-2__buttons buttons">
+									<button class="step-2__button button button-prev">Назад</button>
+									<button disabled id="next" class="step-2__button button button-next">Далее</button>
+								</div>
+							</div>	
+						</section>
+						<section class="page__step step-3 hidden">
+							<div id="body" class="step-3__body">
+								<div class="step-3__top top">
+									<h2 class="step-3__title title">Какое образование уже есть?</h2>
+									<div class="step-3__counter counter">
+										<h3 class="counter__title">Шаг</h3>
+										<span id="indexStep"></span>
+										<span id="indexAllStep"></span>
+									</div>
+								</div>
+								<div class="step-3__quiz-body quiz-body">
+									<div class="quiz-body__items">
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="w_0" type="radio" name="radio_w" data-error="Ошибка" value="w_0" class="checkbox__input">
+												<label for="w_0" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">9 классов</span></label>
+											</div>
+										</div>
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="w_1" type="radio" name="radio_w" data-error="Ошибка" value="w_1" class="checkbox__input">
+												<label for="w_1" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">11 классов</span></label>
+											</div>
+										</div>
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="w_2" type="radio" name="radio_w" data-error="Ошибка" value="w_2" class="checkbox__input">
+												<label for="w_2" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Училище</span></label>
+											</div>
+										</div>
+									</div>
+									<div class="quiz-body__items">
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="w_3" type="radio" name="radio_w" data-error="Ошибка" value="w_3" class="checkbox__input">
+												<label for="w_3" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Колледж/техникум</span></label>
+											</div>
+										</div>
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="w_4" type="radio" name="radio_w" data-error="Ошибка" value="w_4" class="checkbox__input">
+												<label for="w_4" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">11 классов</span></label>
+											</div>
+										</div>
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="w_5" type="radio" name="radio_w" data-error="Ошибка" value="w_5" class="checkbox__input">
+												<label for="w_5" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Неоконченное высшее</span></label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="step-3__buttons buttons">
+									<button class="step-3__button button button-prev">Назад</button>
+									<button disabled id="next" class="step-3__button button button-next">Далее</button>
+								</div>
+							</div>	
+						</section>
+						<section class="page__step step-4 hidden">
+							<div id="body" class="step-4__body">
+								<div class="step-4__top top">
+									<h2 class="step-4__title title">Куда планируете поступать?</h2>
+									<div class="step-4__counter counter">
+										<h3 class="counter__title">Шаг</h3>
+										<span id="indexStep"></span>
+										<span id="indexAllStep"></span>
+									</div>
+								</div>
+								<div class="step-4__quiz-body quiz-body">
+									<div class="quiz-body__items">
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="e_0" type="radio" name="radio_e" data-error="Ошибка" value="e_0" class="checkbox__input">
+												<label for="e_0" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Вуз</span></label>
+											</div>
+										</div>
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="e_1" type="radio" name="radio_e" data-error="Ошибка" value="e_1" class="checkbox__input">
+												<label for="e_1" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Колледж/техникум</span></label>
+											</div>
+										</div>
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="e_2" type="radio" name="radio_e" data-error="Ошибка" value="e_2" class="checkbox__input">
+												<label for="e_2" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Училище</span></label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="step-4__buttons buttons">
+									<button class="step-4__button button button-prev">Назад</button>
+									<button disabled id="next" class="step-4__button button button-next">Далее</button>
+								</div>
+							</div>	
+						</section>
+						<section class="page__step step-5 hidden">
+							<div id="body" class="step-5__body">
+								<div class="step-5__top top">
+									<h2 class="step-5__title title">Какую форму обучения предпочитаете?</h2>
+									<div class="step-5__counter counter">
+										<h3 class="counter__title">Шаг</h3>
+										<span id="indexStep"></span>
+										<span id="indexAllStep"></span>
+									</div>
+								</div>
+								<div class="step-5__quiz-body quiz-body">
+									<div class="quiz-body__items">
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="r_0" type="radio" name="radio_r" data-error="Ошибка" value="r_0" class="checkbox__input">
+												<label for="r_0" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Очную</span></label>
+											</div>
+										</div>
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="r_1" type="radio" name="radio_r" data-error="Ошибка" value="r_1" class="checkbox__input">
+												<label for="r_1" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Заочную</span></label>
+											</div>
+										</div>
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="r_2" type="radio" name="radio_r" data-error="Ошибка" value="r_2" class="checkbox__input">
+												<label for="r_2" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Дистанционную</span></label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="step-5__buttons buttons">
+									<button class="step-5__button button button-prev">Назад</button>
+									<button disabled id="next" class="step-5__button button button-next">Далее</button>
+								</div>
+							</div>	
+						</section>
+						<section class="page__step step-6 hidden">
+							<div id="body" class="step-6__body">
+								<div class="step-6__top top">
+									<h2 class="step-6__title title">Рассматриваете платное обучение?</h2>
+									<div class="step-6__counter counter">
+										<h3 class="counter__title">Шаг</h3>
+										<span id="indexStep"></span>
+										<span id="indexAllStep"></span>
+									</div>
+								</div>
+								<div class="step-6__quiz-body quiz-body">
+									<div class="quiz-body__items">
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="t_0" type="radio" name="radio_t" data-error="Ошибка" value="t_0" class="checkbox__input">
+												<label for="t_0" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Нет, только бюджет</span></label>
+											</div>
+										</div>
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="t_1" type="radio" name="radio_t" data-error="Ошибка" value="t_1" class="checkbox__input">
+												<label for="t_1" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Да, планирую учиться платно</span></label>
+											</div>
+										</div>
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="t_2" type="radio" name="radio_t" data-error="Ошибка" value="t_2" class="checkbox__input">
+												<label for="t_2" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Возможны оба варианта</span></label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="step-6__buttons buttons">
+									<button class="step-6__button button button-prev">Назад</button>
+									<button disabled id="next" class="step-6__button button button-next">Далее</button>
+								</div>
+							</div>	
+						</section>
+						<section class="page__step step-7 hidden"> 
+							<div id="body" class="step-7__body">
+								<div class="step-7__top top">
+									<h2 class="step-7__title title">Какая специальность интересует?</h2>
+									<div class="step-7__counter counter">
+										<h3 class="counter__title">Шаг</h3>
+										<span id="indexStep"></span>
+										<span id="indexAllStep"></span>
+									</div>
+								</div>
+								<div class="step-7__quiz-body quiz-body">
+									<div class="select-wrapper">
+										<label for="major">Специальность</label>
+										<select id="major" class="quiz-body__select select" name="sorting[]">
+										    <option selected value="all">Любая</option>
+										    <option value="economy">Экономика</option>
+										    <option value="philosophy">Философия</option>
+										    <option value="social">Социология</option>
+										    <option value="jury">Юриспруденция</option>
+										    <option value="manage">Менеджмент</option>
+										</select>
+									</div>
+								</div>
+								<div class="step-7__buttons buttons">
+									<button class="step-7__button button button-prev">Назад</button>
+									<button disabled id="next" class="step-7__button button button-next">Далее</button>
+								</div>
+							</div>	
+						</section>
+						<section class="page__step step-8 hidden">
+							<div id="body" class="step-8__body">
+								<div class="step-8__top top">
+									<h2 class="step-8__title title">Как скоро планируете поступать?</h2>
+									<div class="step-8__counter counter">
+										<h3 class="counter__title">Шаг</h3>
+										<span id="indexStep"></span>
+										<span id="indexAllStep"></span>
+									</div>
+								</div>
+								<div class="step-8__quiz-body quiz-body">
+									<div class="quiz-body__items">
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="y_0" type="radio" name="radio_y" data-error="Ошибка" value="y_0" class="checkbox__input">
+												<label for="y_0" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Как можно быстрее</span></label>
+											</div>
+										</div>
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="y_1" type="radio" name="radio_y" data-error="Ошибка" value="y_1" class="checkbox__input">
+												<label for="y_1" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Квартал</span></label>
+											</div>
+										</div>
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="y_2" type="radio" name="radio_y" data-error="Ошибка" value="y_2" class="checkbox__input">
+												<label for="y_2" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Год</span></label>
+											</div>
+										</div>
+									</div>
+									<div class="quiz-body__items">
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="y_3" type="radio" name="radio_y" data-error="Ошибка" value="y_3" class="checkbox__input">
+												<label for="y_3" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Месяц</span></label>
+											</div>
+										</div>
+										<div class="quiz-body__item item-quiz">
+											<div class="item-quiz__checkbox checkbox">
+												<input id="y_4" type="radio" name="radio_y" data-error="Ошибка" value="y_4" class="checkbox__input">
+												<label for="y_4" class="checkbox__label checkbox__label_round"><span class="checkbox__text checkbox__text_round">Полгода</span></label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="step-8__buttons buttons">
+									<button class="step-8__button button button-prev">Назад</button>
+									<button disabled id="next" class="step-8__button button button-next">Далее</button>
+								</div>
+							</div>	
+						</section>
+						<section class="page__step step-9 hidden">
+							<div id="body" class="step-9__body">
+								<div class="step-9__top top">
+									<div class="step-9__title-box">
+										<h2 class="step-9__title title">Ваша подборка готова! 🥳 Куда нам отправить её?</h2>
+										<p class="step-9__text">Оставьте свои контакты, чтобы мы могли вам ее отправить</p>
+									</div>
+									<div class="step-9__counter counter">
+										<h3 class="counter__title">Шаг</h3>
+										<span id="indexStep"></span>
+										<span id="indexAllStep"></span>
+									</div>
+								</div>
+								<form action="#" id="form" class="page__form">
+									<div class="step-9__quiz-body quiz-body">
+										<input id="subscribe-input" autocomplite="off" type="text" placeholder="Как вас зовут?" name="name" inputmode="text" class="quiz-body__input input req">
+										<input id="subscribe-input" autocomplite="off" type="text" placeholder="Номер телефона" name="phone" inputmode="tel" class="quiz-body__input input req">
+										<input id="subscribe-input" autocomplite="off" type="text" placeholder="E-mail" name="email" inputmode="email" class="quiz-body__input input req email">
+									</div>
+									<div class="step-9__buttons">
+										<button id="submit" class="step-9__button button button-send">Получить подборку</button>
+										<div class="step-9__agree-block">
+											<span class="step-9__agree">Нажимая на кнопку, вы даете согласие на обработку своих</span>
+											<a href="" class="step-9__link">Персональных данных</a>
+										</div>
+									</div>
+								</form>
+							</div>	
+						</section>
+						<section class="page__step step-10 hidden">
+							<div id="body" class="step-10__quiz-body quiz-body">
+								<div class="step-10__icon">
+									<img src="./img/icons/arrow.svg" alt="">
+								</div>
+								<h2 class="step-10__title">Отлично, спасибо!</h2>
+								<p class="step-10__text">Мы отправили подборку вам на почту.</p>
+								<p class="step-10__text">Если подборка не приходит — проверьте спам, возможно, она попала туда.</p>
+							</div>	
+						</section>
+					</div>	
+				</div>
+			</main>
+		</div>
+<script src="js/main.js"></script>	</body>
+</html>
