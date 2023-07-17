@@ -2478,6 +2478,10 @@ textarea.input {
   width: 0;
 }
 
+.simplebar-wrapper {
+  width: 105%;
+}
+
 .simplebar-mask {
   border-radius: 20px;
   overflow: hidden;
@@ -2488,16 +2492,27 @@ textarea.input {
   border-radius: 2px;
 }
 
-.simplebar-scrollbar.simplebar-visible:before {
+.simplebar-scrollbar:before {
   background: #B9D043;
   opacity: 1;
   width: 35px;
+}
+
+.simplebar-vertical::before {
+  content: "";
+  background: #B9D043;
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  left: calc(50% - 1px);
 }
 
 .simplebar-track.simplebar-vertical {
   right: -50px;
   width: 35px;
   background: transparent;
+  cursor: pointer;
 }
 @media (max-width: 1764px) {
   .simplebar-track.simplebar-vertical {
@@ -2508,13 +2523,4 @@ textarea.input {
   .simplebar-track.simplebar-vertical {
     width: calc(5px + 30 * ((100vw - 320px) / (1444)));
   }
-}
-.simplebar-track.simplebar-vertical::before {
-  content: "";
-  background: #B9D043;
-  position: absolute;
-  width: 1px;
-  height: 100%;
-  top: 0;
-  left: calc(50% - 1px);
 }
