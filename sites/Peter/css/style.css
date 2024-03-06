@@ -1283,6 +1283,7 @@ textarea.input {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  gap: 10px;
 }
 @media (max-width: 767.98px) {
   .item-etalon {
@@ -1293,6 +1294,12 @@ textarea.input {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+  }
+  .item-etalon:nth-child(2) {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
   }
 }
 .item-etalon__image {
@@ -1317,6 +1324,8 @@ textarea.input {
   }
 }
 .item-etalon__image img {
+  position: relative;
+  z-index: 2;
   border-radius: 160px;
   width: 100%;
   height: 100%;
@@ -1330,9 +1339,52 @@ textarea.input {
   height: 100%;
   top: 0;
   left: 0;
+  border: 1px solid rgb(151, 144, 78);
+}
+.item-etalon__image_1::before {
+  width: 400px;
+  height: 506px;
+  top: -10%;
+  border-radius: 200px 200px 0px 0px;
+}
+@media (max-width: 1322px) {
+  .item-etalon__image_1::before {
+    width: calc(310px + 90 * ((100vw - 320px) / (1002)));
+  }
+}
+@media (max-width: 1322px) {
+  .item-etalon__image_1::before {
+    height: calc(350px + 156 * ((100vw - 320px) / (1002)));
+  }
+}
+.item-etalon__image_2 {
+  height: 715px;
+}
+@media (max-width: 1322px) {
+  .item-etalon__image_2 {
+    height: calc(400px + 315 * ((100vw - 320px) / (1002)));
+  }
 }
 .item-etalon__image_2 img {
   border-radius: 160px 160px 0px 0px;
+}
+.item-etalon__image_2::before {
+  width: 332px;
+  height: 600px;
+  top: 20%;
+  left: 15%;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 200px 200px 0px 0px;
+}
+@media (max-width: 1322px) {
+  .item-etalon__image_2::before {
+    width: calc(260px + 72 * ((100vw - 320px) / (1002)));
+  }
+}
+@media (max-width: 1322px) {
+  .item-etalon__image_2::before {
+    height: calc(350px + 250 * ((100vw - 320px) / (1002)));
+  }
 }
 .item-etalon__image_3 {
   margin-top: 0;
@@ -1357,6 +1409,23 @@ textarea.input {
 }
 .item-etalon__image_3 img {
   border-radius: 108px 108px 0px 0px;
+}
+.item-etalon__image_3::before {
+  width: 250px;
+  height: 360px;
+  top: 10%;
+  left: 10%;
+  border-radius: 123px;
+}
+@media (max-width: 1322px) {
+  .item-etalon__image_3::before {
+    width: calc(170px + 80 * ((100vw - 320px) / (1002)));
+  }
+}
+@media (max-width: 1322px) {
+  .item-etalon__image_3::before {
+    height: calc(220px + 140 * ((100vw - 320px) / (1002)));
+  }
 }
 .item-etalon__text-block {
   width: 100%;
