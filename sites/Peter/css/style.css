@@ -587,8 +587,22 @@ textarea.input {
   }
 }
 
+.page__club {
+  margin-top: 165px;
+}
+@media (max-width: 1322px) {
+  .page__club {
+    margin-top: calc(30px + 135 * (100vw - 320px) / (1002));
+  }
+}
 .page__form {
+  margin-top: 165px;
   padding-bottom: 120px;
+}
+@media (max-width: 1322px) {
+  .page__form {
+    margin-top: calc(30px + 135 * (100vw - 320px) / (1002));
+  }
 }
 @media (max-width: 1322px) {
   .page__form {
@@ -609,7 +623,6 @@ textarea.input {
     padding-bottom: calc(15px + 51 * (100vw - 320px) / (1002));
   }
 }
-
 .fullscreen-page {
   position: relative;
   background-color: #F1EFEB;
@@ -914,6 +927,262 @@ textarea.input {
   }
   100% {
     bottom: 2.5%;
+  }
+}
+.club-page__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 56px;
+}
+@media (max-width: 1322px) {
+  .club-page__container {
+    gap: calc(10px + 46 * (100vw - 320px) / (1002));
+  }
+}
+.content-club__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 86px;
+}
+@media (max-width: 1322px) {
+  .content-club__row {
+    gap: calc(10px + 76 * (100vw - 320px) / (1002));
+  }
+}
+.content-club__row:last-child {
+  margin-top: 139px;
+}
+@media (max-width: 1322px) {
+  .content-club__row:last-child {
+    margin-top: calc(20px + 119 * (100vw - 320px) / (1002));
+  }
+}
+.content-club__text-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-width: 545px;
+}
+.content-club__title {
+  color: rgb(19, 20, 17);
+  font-family: "Cormorant Unicase";
+  font-size: 64px;
+  line-height: 110%;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+@media (max-width: 1322px) {
+  .content-club__title {
+    font-size: calc(20px + 44 * (100vw - 320px) / (1002));
+  }
+}
+.content-club__text {
+  margin-top: 48px;
+  color: rgb(19, 20, 17);
+  font-family: "TT Norms";
+  font-size: 18px;
+  line-height: 120%;
+}
+@media (max-width: 1322px) {
+  .content-club__text {
+    margin-top: calc(10px + 38 * (100vw - 320px) / (1002));
+  }
+}
+@media (max-width: 1322px) {
+  .content-club__text {
+    font-size: calc(12px + 6 * (100vw - 320px) / (1002));
+  }
+}
+.content-club__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 32px;
+}
+@media (max-width: 1322px) {
+  .content-club__list {
+    gap: calc(10px + 22 * (100vw - 320px) / (1002));
+  }
+}
+.content-club__link {
+  position: relative;
+  color: rgb(19, 20, 17);
+  font-family: "TT Norms";
+  font-size: 20px;
+  line-height: 120%;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+@media (max-width: 1322px) {
+  .content-club__link {
+    font-size: calc(14px + 6 * (100vw - 320px) / (1002));
+  }
+}
+.content-club__link::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  top: 20%;
+  right: -50px;
+  background-color: rgb(151, 144, 78);
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+.content-club__link.active {
+  color: rgb(151, 144, 78);
+  font-weight: 500;
+}
+.content-club__link.active::before {
+  width: 30px;
+}
+@media (any-hover: hover) {
+  .content-club__link:hover {
+    color: rgb(151, 144, 78);
+  }
+  .content-club__link:hover::before {
+    width: 30px;
+  }
+}
+.item-content-club {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 10px;
+}
+.item-content-club__column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.item-content-club__title {
+  color: rgb(19, 20, 17);
+  font-family: "Cormorant Unicase";
+  font-size: 94px;
+  line-height: 80%;
+  letter-spacing: 1px;
+}
+@media (max-width: 1322px) {
+  .item-content-club__title {
+    font-size: calc(24px + 70 * (100vw - 320px) / (1002));
+  }
+}
+.item-content-club__text {
+  color: rgb(19, 20, 17);
+  font-family: "TT Norms";
+  font-size: 22px;
+  line-height: 120%;
+}
+@media (max-width: 1322px) {
+  .item-content-club__text {
+    font-size: calc(14px + 8 * (100vw - 320px) / (1002));
+  }
+}
+
+.image-block-club__image {
+  position: relative;
+  width: 480px;
+  height: 660px;
+}
+@media (max-width: 1322px) {
+  .image-block-club__image {
+    width: calc(290px + 190 * (100vw - 320px) / (1002));
+  }
+}
+@media (max-width: 1322px) {
+  .image-block-club__image {
+    height: calc(320px + 340 * (100vw - 320px) / (1002));
+  }
+}
+.image-block-club__image img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  border-radius: 240px 240px 0px 0px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.image-block-club__image::before {
+  content: "";
+  position: absolute;
+  width: 332px;
+  height: 670px;
+  top: -10%;
+  left: 40%;
+  border-radius: 200px 200px 0px 0px;
+  border: 1px solid rgb(151, 144, 78);
+}
+@media (max-width: 1322px) {
+  .image-block-club__image::before {
+    width: calc(160px + 172 * (100vw - 320px) / (1002));
+  }
+}
+@media (max-width: 1322px) {
+  .image-block-club__image::before {
+    height: calc(350px + 320 * (100vw - 320px) / (1002));
   }
 }
 .slider-page {
