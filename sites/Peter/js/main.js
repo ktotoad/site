@@ -1,3 +1,4 @@
+/*Animation================================================================================*/
 const animItems = document.querySelectorAll('.anim-items');
 
 if (animItems.length > 0) {
@@ -33,4 +34,30 @@ if (animItems.length > 0) {
 	setTimeout(() => {
 		animOnScroll();
 	}, 300);
+}
+
+/*Loading================================================================================*/
+window.addEventListener('load', function () {
+    const loader = document.querySelector('.loader');
+    loader.classList.add('hidden');
+});
+
+/*Content_download================================================================================*/
+let wrapper = document.querySelector('.wrapper');
+window.addEventListener('load', (event) => {
+	wrapper.classList.add('loaded');
+});
+
+//burger=====================================================================================================================================================
+const iconMenu = document.querySelector('.icon-menu');
+const menuBody = document.querySelector('.menu__body');
+const body = document.querySelector('body');
+
+if (iconMenu) {
+	iconMenu.addEventListener('click', 
+		function clickButtonBurger(event) {
+			iconMenu.classList.toggle('active');
+			menuBody.classList.toggle('active');
+			body.classList.toggle('lock');
+		});
 }
