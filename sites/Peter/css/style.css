@@ -108,6 +108,7 @@ body.lock {
 
 .loader {
   position: fixed;
+  z-index: 100;
   top: 0;
   left: 0;
   width: 100%;
@@ -293,23 +294,13 @@ body.lock {
   padding-top: 48px;
   top: 0;
   left: 50%;
-  -webkit-transform: translate(-50%, -100%);
-          transform: translate(-50%, -100%);
-  opacity: 0;
-  -webkit-transition: all 0.8s ease 0s;
-  transition: all 0.8s ease 0s;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 @media (max-width: 1322px) {
   .header {
     padding-top: calc(10px + 38 * ((100vw - 320px) / (1002)));
   }
-}
-.header.active {
-  -webkit-transform: translate(-50%, 0);
-          transform: translate(-50%, 0);
-  opacity: 1;
-  -webkit-transition: all 0.8s ease 0.4s;
-  transition: all 0.8s ease 0.4s;
 }
 .header__container {
   display: -webkit-box;
@@ -326,6 +317,18 @@ body.lock {
       -ms-flex-direction: row;
           flex-direction: row;
   gap: 10px;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+  opacity: 0;
+  -webkit-transition: all 0.8s ease 0s;
+  transition: all 0.8s ease 0s;
+}
+.header__container.active {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  opacity: 1;
+  -webkit-transition: all 0.8s ease 0.4s;
+  transition: all 0.8s ease 0.4s;
 }
 .header__logo {
   position: relative;
