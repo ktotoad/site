@@ -71,3 +71,10 @@ function inputElements() {
 	});
 }
 inputElements();
+
+//Scroll=====================================================================================================================================================
+const goto = document.querySelector('.goto');
+goto.addEventListener('click', function() {
+	const content = document.getElementById('content');
+	content.scrollIntoView({behavior: "smooth"});
+});
