@@ -199,6 +199,20 @@ body.lock {
   }
 }
 
+.title {
+  color: rgb(19, 20, 17);
+  font-family: "Cormorant Unicase";
+  font-size: 64px;
+  line-height: 110%;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+@media (max-width: 1322px) {
+  .title {
+    font-size: calc(20px + 44 * (100vw - 320px) / (1002));
+  }
+}
+
 .button-link {
   position: relative;
   display: inline-block;
@@ -786,19 +800,7 @@ textarea.input {
           flex-direction: column;
   position: relative;
   z-index: 2;
-  color: rgb(19, 20, 17);
-  font-family: "Cormorant Unicase";
-  font-size: 64px;
-  line-height: 110%;
-  letter-spacing: 1px;
-  text-align: left;
-  text-transform: uppercase;
   margin: 0px 0px 24px 0px;
-}
-@media (max-width: 1322px) {
-  .fullscreen-page__title {
-    font-size: calc(20px + 44 * (100vw - 320px) / (1002));
-  }
 }
 .fullscreen-page__title span {
   -webkit-transform: translate(-100%, -50%) scale(3);
@@ -954,9 +956,9 @@ textarea.input {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -973,10 +975,16 @@ textarea.input {
 }
 .content-club__row:last-child {
   margin-top: 139px;
+  margin-left: 109px;
 }
 @media (max-width: 1322px) {
   .content-club__row:last-child {
     margin-top: calc(20px + 119 * (100vw - 320px) / (1002));
+  }
+}
+@media (max-width: 1322px) {
+  .content-club__row:last-child {
+    margin-left: calc(10px + 99 * (100vw - 320px) / (1002));
   }
 }
 .content-club__text-block {
@@ -996,17 +1004,16 @@ textarea.input {
   max-width: 545px;
 }
 .content-club__title {
-  color: rgb(19, 20, 17);
-  font-family: "Cormorant Unicase";
-  font-size: 64px;
-  line-height: 110%;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  opacity: 0;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: all 2.8s ease-out 0s;
+  transition: all 2.8s ease-out 0s;
 }
-@media (max-width: 1322px) {
-  .content-club__title {
-    font-size: calc(20px + 44 * (100vw - 320px) / (1002));
-  }
+.content-club__title.active {
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 .content-club__text {
   margin-top: 48px;
@@ -1087,6 +1094,7 @@ textarea.input {
   }
 }
 .item-content-club {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1102,7 +1110,62 @@ textarea.input {
           flex-direction: row;
   gap: 10px;
 }
+.item-content-club::before {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 364px;
+  background: rgb(241, 239, 235);
+}
+@media (max-width: 1322px) {
+  .item-content-club::before {
+    width: calc(100px + 80 * (100vw - 320px) / (1002));
+  }
+}
+@media (max-width: 1322px) {
+  .item-content-club::before {
+    height: calc(200px + 164 * (100vw - 320px) / (1002));
+  }
+}
+.item-content-club:first-child::before {
+  border-radius: 90px;
+  left: -10%;
+  top: -10%;
+}
+.item-content-club:first-child::after {
+  content: "";
+  position: absolute;
+  width: 148px;
+  height: 212px;
+  left: -30%;
+  top: -10%;
+  border: 1px solid rgb(151, 144, 78);
+  border-radius: 200px 200px 0px 0px;
+}
+@media (max-width: 1322px) {
+  .item-content-club:first-child::after {
+    width: calc(90px + 58 * (100vw - 320px) / (1002));
+  }
+}
+@media (max-width: 1322px) {
+  .item-content-club:first-child::after {
+    height: calc(140px + 72 * (100vw - 320px) / (1002));
+  }
+}
+.item-content-club:last-child::before {
+  left: 10%;
+  bottom: -18%;
+  border-radius: 90px 90px 0px 0px;
+  height: 312px;
+}
+@media (max-width: 1322px) {
+  .item-content-club:last-child::before {
+    height: calc(170px + 142 * (100vw - 320px) / (1002));
+  }
+}
 .item-content-club__column {
+  position: relative;
+  z-index: 2;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1116,6 +1179,7 @@ textarea.input {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  height: 100%;
 }
 .item-content-club__title {
   color: rgb(19, 20, 17);
@@ -1278,18 +1342,6 @@ textarea.input {
 .form-page__container {
   position: relative;
   z-index: 2;
-}
-.form-page__content {
-  opacity: 0;
-  -webkit-transform: scale(0);
-          transform: scale(0);
-  -webkit-transition: all 2.5s cubic-bezier(0.2, -2, 0.8, 2) 0s;
-  transition: all 2.5s cubic-bezier(0.2, -2, 0.8, 2) 0s;
-}
-.form-page__content.active {
-  opacity: 1;
-  -webkit-transform: scale(1);
-          transform: scale(1);
 }
 .form-page__image {
   overflow: hidden;
@@ -1505,11 +1557,11 @@ textarea.input {
   letter-spacing: 1px;
   text-align: center;
   text-transform: uppercase;
-  -webkit-transform: translate(-120%, 0px);
-          transform: translate(-120%, 0px);
   opacity: 0;
-  -webkit-transition: all 1.8s ease-out 0s;
-  transition: all 1.8s ease-out 0s;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: all 2.8s ease-out 0s;
+  transition: all 2.8s ease-out 0s;
 }
 @media (max-width: 1322px) {
   .etalon-page__title {
@@ -1517,9 +1569,9 @@ textarea.input {
   }
 }
 .etalon-page__title.active {
-  -webkit-transform: translate(0px, 0px);
-          transform: translate(0px, 0px);
   opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 .etalon-page__items {
   margin-top: 91px;
@@ -1551,16 +1603,16 @@ textarea.input {
           transform: translate(0px, 0px);
 }
 .etalon-page__items.active .etalon-page__item:nth-child(1) {
-  -webkit-transition: all 0.8s ease 0s;
-  transition: all 0.8s ease 0s;
+  -webkit-transition: all 1.8s ease 0s;
+  transition: all 1.8s ease 0s;
 }
 .etalon-page__items.active .etalon-page__item:nth-child(2) {
-  -webkit-transition: all 1.2s ease 0.2s;
-  transition: all 1.2s ease 0.2s;
+  -webkit-transition: all 2.8s ease 0.2s;
+  transition: all 2.8s ease 0.2s;
 }
 .etalon-page__items.active .etalon-page__item:nth-child(3) {
-  -webkit-transition: all 1.6s ease 0.4s;
-  transition: all 1.6s ease 0.4s;
+  -webkit-transition: all 2s ease 0.4s;
+  transition: all 2s ease 0.4s;
 }
 .etalon-page__item {
   opacity: 0;
