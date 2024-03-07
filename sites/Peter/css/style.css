@@ -1645,6 +1645,59 @@ a.header__button::before {
             transform: scale(1.1);
   }
 }
+.image-block-club__zoom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: absolute;
+  z-index: 5;
+  width: 81px;
+  height: 37px;
+  bottom: 5%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  border-radius: 18.5px;
+  -webkit-backdrop-filter: blur(3.85px);
+          backdrop-filter: blur(3.85px);
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  background: rgba(255, 255, 255, 0.63);
+}
+@media (max-width: 1322px) {
+  .image-block-club__zoom {
+    width: calc(60px + 21 * ((100vw - 320px) / (1002)));
+  }
+}
+@media (max-width: 1322px) {
+  .image-block-club__zoom {
+    height: calc(30px + 7 * ((100vw - 320px) / (1002)));
+  }
+}
+.image-block-club__zoom svg {
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+@media (any-hover: hover) {
+  .image-block-club__zoom:hover {
+    background: rgba(255, 255, 255, 0.83);
+  }
+  .image-block-club__zoom:hover svg {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+}
+
 .form-page {
   position: relative;
 }
