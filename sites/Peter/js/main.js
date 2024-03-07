@@ -82,6 +82,61 @@ inputElements();
 //	content.scrollIntoView({behavior: "smooth"});
 //});
 
+//Mouse_plus==================================================================================================================================================
+var block_mouse_move = document.querySelector("#block_mouse_move");
+var itemZoom = block_mouse_move.querySelector(".image-block-club__zoom");
+
+window.addEventListener("load", moveBlocksInit, false);
+
+function moveBlocksInit(event) {
+	block_mouse_move.addEventListener("mouseover", moveBlockAction, false);
+}
+
+function moveBlockAction(event) {
+	itemZoom.classList.add("draggable");
+
+	// используем координаты мыши относительно блока
+	var coords = getCoords(itemZoom);
+	var shiftX = event.clientX - coords.left;
+	var shiftY = event.clientY - coords.top;
+
+	// разместить на том же месте, но в абсолютных координатах
+	moveAt(event);
+
+	// передвинуть мяч под координаты курсора
+	// и сдвинуть на половину ширины/высоты для центрирования
+	function moveAt(event) {
+		itemZoom.style.left = event.clientX + -20 + 'px';
+		itemZoom.style.top = event.clientY + -20 + 'px';
+	}
+
+	// перемещать по экрану
+	block_mouse_move.onmousemove = function(e) {
+		moveAt(e);
+	}
+
+	// отследить окончание переноса
+	block_mouse_move.onmouseout = function() {
+		itemZoom.classList.remove("draggable");
+		itemZoom.style.removeProperty('left');
+		itemZoom.style.removeProperty('top');
+	}
+
+	function getCoords(elem) {   // кроме IE8-
+		var box = elem.getBoundingClientRect();
+		return {
+			top: box.top + pageYOffset,
+			left: box.left + pageXOffset
+		};
+	}
+}
+//ZOOM=====================================================================================================================================================
+baguetteBox.run('.gallery', {
+    animation: 'fadeIn',
+    noScrollbars: true,
+    bodyClassbuttons: false,
+});	
+
 //TABS==================================================================================================================================================
 // Получение хеша в адресе сайта
 function getHash() {
@@ -206,4 +261,4 @@ function tabs() {
 		}
 	}
 }
-tabs();
+tabs(); 
