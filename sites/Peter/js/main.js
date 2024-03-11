@@ -50,7 +50,6 @@ window.addEventListener('load', (event) => {
 		}
 	}
 });
-
 //burger=====================================================================================================================================================
 const iconMenu = document.querySelector('.icon-menu');
 const menuBody = document.querySelector('.menu__body');
@@ -74,13 +73,6 @@ function inputElements() {
 	});
 }
 inputElements();
-
-//Scroll=====================================================================================================================================================
-//const goto = document.querySelector('.goto');
-//goto.addEventListener('click', function() {
-//	const content = document.getElementById('content');
-//	content.scrollIntoView({behavior: "smooth"});
-//});
 
 //Mouse_plus==================================================================================================================================================
 var block_mouse_move = document.querySelector("#block_mouse_move");
@@ -106,8 +98,8 @@ function moveBlockAction(event) {
 	// передвинуть мяч под координаты курсора
 	// и сдвинуть на половину ширины/высоты для центрирования
 	function moveAt(event) {
-		itemZoom.style.left = event.clientX + -20 + 'px';
-		itemZoom.style.top = event.clientY + -20 + 'px';
+		itemZoom.style.left = event.clientX + -30 + 'px';
+		itemZoom.style.top = event.clientY + -30 + 'px';
 	}
 
 	// перемещать по экрану
@@ -131,12 +123,53 @@ function moveBlockAction(event) {
 	}
 }
 //ZOOM=====================================================================================================================================================
-baguetteBox.run('.gallery', {
-    animation: 'fadeIn',
-    noScrollbars: true,
-    bodyClassbuttons: false,
-});	
+$('.parent-container').magnificPopup({
+	delegate: 'a',
+	type: 'image'
+});
+//BuildSlider======================================================================================================================================================
+function buildSliders() {
+	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
+	if (sliders) {
+		sliders.forEach(slider => {
+			slider.parentElement.classList.add('swiper');
+			slider.classList.add('swiper-wrapper');
+			for(const slide of slider.children) {
+				slide.classList.add('swiper-slide');
+			}
+		});
+	}
+}
 
+//Инициализация_Swiper===============================================================================================================================================
+function initSliders() {
+	buildSliders();
+
+	if (document.querySelector('.full-slider-page__slider')) {
+		new Swiper('.full-slider-page__slider', {
+      		direction: "vertical",
+      		effect: "fade",
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 0,
+			parallax: true,
+			//loop: true,
+			autoHeight: true,
+			//autoplay: {
+			//	delay: 3000,
+			//	disableOnInteraction: false,
+			//},
+			speed: 800,
+			pagination: {
+				el: '.slider-full__pagination',
+				clickable: true,
+				//dynamicBullets: true,
+			},
+		});
+	}
+}
+initSliders();
 //TABS==================================================================================================================================================
 // Получение хеша в адресе сайта
 function getHash() {
