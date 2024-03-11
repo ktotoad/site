@@ -2487,6 +2487,9 @@ a.header__button::before {
     height: calc(230px + 346 * ((100vw - 320px) / (1002)));
   }
 }
+.lobby-page__item_first .text-lobby {
+  margin-left: 30px;
+}
 .lobby-page__item_second .body-lobby__container {
   padding-bottom: 120px;
 }
@@ -2555,6 +2558,9 @@ a.header__button::before {
 .lobby-page__item_second .content-lobby__text-block {
   -webkit-transform: translateX(-15%);
           transform: translateX(-15%);
+}
+.lobby-page__item_second .content-lobby__text::before {
+  left: -25%;
 }
 
 .body-lobby {
@@ -2630,6 +2636,7 @@ a.header__button::before {
   font-family: "TT Norms";
   font-size: 20px;
   line-height: 120%;
+  position: relative;
 }
 @media (max-width: 1322px) {
   .content-lobby__text {
@@ -2640,6 +2647,15 @@ a.header__button::before {
   .content-lobby__text {
     font-size: calc(12px + 8 * ((100vw - 320px) / (1002)));
   }
+}
+.content-lobby__text::before {
+  content: "";
+  position: absolute;
+  width: 282px;
+  height: 1px;
+  top: -10%;
+  left: 25%;
+  background: rgb(151, 144, 78);
 }
 
 .image-lobby {
@@ -2690,11 +2706,21 @@ a.header__button::before {
 
 .text-lobby {
   width: 460px;
+  position: relative;
 }
 @media (max-width: 1322px) {
   .text-lobby {
     width: calc(150px + 310 * ((100vw - 320px) / (1002)));
   }
+}
+.text-lobby::before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 216px;
+  top: 40%;
+  left: -5%;
+  background: rgb(151, 144, 78);
 }
 .text-lobby__text {
   width: 280px;
@@ -2731,8 +2757,8 @@ a.header__button::before {
 .text-lobby__image img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .building-page .item-etalon__text-block {
