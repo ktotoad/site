@@ -168,8 +168,23 @@ function initSliders() {
 			},
 		});
 	}
+	if (document.querySelector('.slider-page__slider')) {
+		new Swiper('.slider-page__slider', {
+      		spaceBetween: 30,
+			effect: 'fade',
+			mousewheel: {
+				invert: false,
+			},
+			// autoHeight: true,
+			pagination: {
+				el: '.blog-slider__pagination',
+				clickable: true,
+			}
+		});
+	}
 }
 initSliders();
+
 //TABS==================================================================================================================================================
 // Получение хеша в адресе сайта
 function getHash() {
