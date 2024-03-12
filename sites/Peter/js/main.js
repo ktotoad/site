@@ -172,9 +172,9 @@ function initSliders() {
 		new Swiper('.slider-page__slider', {
       		spaceBetween: 30,
 			effect: 'fade',
-			mousewheel: {
-				invert: false,
-			},
+			//mousewheel: {
+			//	invert: false,
+			//},
 			// autoHeight: true,
 			pagination: {
 				el: '.blog-slider__pagination',
