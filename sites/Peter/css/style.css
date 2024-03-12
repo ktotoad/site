@@ -187,6 +187,12 @@ body.lock {
      object-fit: cover;
 }
 
+.gsap-marker-end, .gsap-marker-start,
+.gsap-marker-scroller-end, .gsap-marker-scroller-start {
+  visibility: hidden;
+  opacity: 0;
+}
+
 .link {
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
@@ -2196,7 +2202,7 @@ html {
 }
 .item-etalon__image_2::before {
   top: 20%;
-  left: 15%;
+  left: 20%;
   border: 1px solid rgb(219, 219, 219);
   border-radius: 200px 200px 0px 0px;
 }
@@ -2296,7 +2302,7 @@ html {
 #one {
   position: absolute;
   width: 100%;
-  top: 35%;
+  bottom: 0;
   left: 0;
   height: 835px;
   z-index: 100;
@@ -2308,6 +2314,7 @@ html {
 }
 
 .resize {
+  border-radius: 160px 160px 0px 0px;
   display: block;
   position: absolute;
   width: 330px;
@@ -2316,6 +2323,7 @@ html {
   left: 0;
   right: 0;
   margin: auto;
+  overflow: hidden;
 }
 @media (max-width: 1322px) {
   .resize {
@@ -2345,15 +2353,15 @@ html {
   margin-left: auto;
   margin-right: auto;
   opacity: 0;
-  -webkit-transform: translate(0px, 520%);
-          transform: translate(0px, 520%);
+  -webkit-transform: translate(0px, 50vh);
+          transform: translate(0px, 50vh);
   -webkit-transition: all 2.8s ease 0.2s;
   transition: all 2.8s ease 0.2s;
 }
 .full-slider-page__container.active {
   opacity: 1;
-  -webkit-transform: translate(0px, 0px);
-          transform: translate(0px, 0px);
+  -webkit-transform: translate(0);
+          transform: translate(0);
 }
 .full-slider-page__slider {
   height: 835px;
