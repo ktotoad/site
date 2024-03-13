@@ -82,21 +82,22 @@ blocks_mouse_move.forEach(block_mouse_move => {
 
 	block_mouse_move.onmouseover = function(event) {
 		itemZoom.classList.add("zoom");
+		moveAt(event);
 	}
 	
 	block_mouse_move.onmousemove = function(event) {
-		itemZoom.style.left = event.clientX + -30 + 'px';
-		itemZoom.style.top = event.clientY + -30 + 'px';
-
-		console.log("style.left = " + itemZoom.style.left + " style.top = " + itemZoom.style.top);
-		var c = itemZoom.getBoundingClientRect();
-		console.log('left: ' + c.left + ' top: ' + c.top);
+		moveAt(event);
 	}
 
 	block_mouse_move.onmouseout = function() {
 		itemZoom.classList.remove("zoom");
 		itemZoom.style.removeProperty('left');
 		itemZoom.style.removeProperty('top');
+	}
+
+	function moveAt(event) {
+		itemZoom.style.left = event.clientX + -30 + 'px';
+		itemZoom.style.top = event.clientY + -30 + 'px';
 	}
 });
 //ZOOM=====================================================================================================================================================
@@ -154,7 +155,7 @@ function initSliders() {
 			//},
 			// autoHeight: true,
 			pagination: {
-				el: '.blog-slider__pagination',
+				el: '.slider-page__pagination',
 				clickable: true,
 			}
 		});
