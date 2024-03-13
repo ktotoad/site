@@ -78,36 +78,25 @@ inputElements();
 var blocks_mouse_move = document.querySelectorAll("#block_mouse_move");
 
 blocks_mouse_move.forEach(block_mouse_move => {
-	const itemZoom = block_mouse_move.querySelector(".image-block-club__zoom");
-	block_mouse_move.addEventListener("mouseover", moveBlockAction, false);
+	const itemZoom = block_mouse_move.querySelector("#zoom");
 
-	function moveBlockAction(event) {
-		console.log('========================');
-		itemZoom.classList.add("draggable");
+	block_mouse_move.onmouseover = function(event) {
+		itemZoom.classList.add("zoom");
+	}
+	
+	block_mouse_move.onmousemove = function(event) {
+		itemZoom.style.left = event.clientX + -30 + 'px';
+		itemZoom.style.top = event.clientY + -30 + 'px';
 
-		// разместить на том же месте, но в абсолютных координатах
-		moveAt(event);
+		console.log("style.left = " + itemZoom.style.left + " style.top = " + itemZoom.style.top);
+		var c = itemZoom.getBoundingClientRect();
+		console.log('left: ' + c.left + ' top: ' + c.top);
+	}
 
-		// передвинуть под координаты курсора
-		// и сдвинуть на половину ширины/высоты для центрирования
-		function moveAt(event) {
-			itemZoom.style.left = event.clientX + -30 + 'px';
-			itemZoom.style.top = event.clientY + -30 + 'px';
-			console.log("left = " + event.clientX);
-			console.log("style.left = " + itemZoom.style.left);
-		}
-
-		// перемещать по экрану
-		block_mouse_move.onmousemove = function(event) {
-			moveAt(event);
-		}
-
-		// отследить окончание переноса
-		block_mouse_move.onmouseout = function() {
-			itemZoom.classList.remove("draggable");
-			itemZoom.style.removeProperty('left');
-			itemZoom.style.removeProperty('top');
-		}
+	block_mouse_move.onmouseout = function() {
+		itemZoom.classList.remove("zoom");
+		itemZoom.style.removeProperty('left');
+		itemZoom.style.removeProperty('top');
 	}
 });
 //ZOOM=====================================================================================================================================================
