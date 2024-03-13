@@ -75,53 +75,56 @@ function inputElements() {
 inputElements();
 
 //Mouse_plus==================================================================================================================================================
-var block_mouse_move = document.querySelector("#block_mouse_move");
-var itemZoom = block_mouse_move.querySelector(".image-block-club__zoom");
+var blocks_mouse_move = document.querySelectorAll("#block_mouse_move");
 
-window.addEventListener("load", moveBlocksInit, false);
+blocks_mouse_move.forEach(block_mouse_move => {
+	var itemZoom = block_mouse_move.querySelector(".image-block-club__zoom");
 
-function moveBlocksInit(event) {
-	block_mouse_move.addEventListener("mouseover", moveBlockAction, false);
-}
+	window.addEventListener("load", moveBlocksInit, false);
 
-function moveBlockAction(event) {
-	itemZoom.classList.add("draggable");
-
-	// используем координаты мыши относительно блока
-	var coords = getCoords(itemZoom);
-	var shiftX = event.clientX - coords.left;
-	var shiftY = event.clientY - coords.top;
-
-	// разместить на том же месте, но в абсолютных координатах
-	moveAt(event);
-
-	// передвинуть мяч под координаты курсора
-	// и сдвинуть на половину ширины/высоты для центрирования
-	function moveAt(event) {
-		itemZoom.style.left = event.clientX + -30 + 'px';
-		itemZoom.style.top = event.clientY + -30 + 'px';
+	function moveBlocksInit(event) {
+		block_mouse_move.addEventListener("mouseover", moveBlockAction, false);
 	}
 
-	// перемещать по экрану
-	block_mouse_move.onmousemove = function(e) {
-		moveAt(e);
-	}
+	function moveBlockAction(event) {
+		itemZoom.classList.add("draggable");
 
-	// отследить окончание переноса
-	block_mouse_move.onmouseout = function() {
-		itemZoom.classList.remove("draggable");
-		itemZoom.style.removeProperty('left');
-		itemZoom.style.removeProperty('top');
-	}
+		// используем координаты мыши относительно блока
+		var coords = getCoords(itemZoom);
+		var shiftX = event.clientX - coords.left;
+		var shiftY = event.clientY - coords.top;
 
-	function getCoords(elem) {   // кроме IE8-
-		var box = elem.getBoundingClientRect();
-		return {
-			top: box.top + pageYOffset,
-			left: box.left + pageXOffset
-		};
+		// разместить на том же месте, но в абсолютных координатах
+		moveAt(event);
+
+		// передвинуть мяч под координаты курсора
+		// и сдвинуть на половину ширины/высоты для центрирования
+		function moveAt(event) {
+			itemZoom.style.left = event.clientX + -30 + 'px';
+			itemZoom.style.top = event.clientY + -30 + 'px';
+		}
+
+		// перемещать по экрану
+		block_mouse_move.onmousemove = function(e) {
+			moveAt(e);
+		}
+
+		// отследить окончание переноса
+		block_mouse_move.onmouseout = function() {
+			itemZoom.classList.remove("draggable");
+			itemZoom.style.removeProperty('left');
+			itemZoom.style.removeProperty('top');
+		}
+
+		function getCoords(elem) {   // кроме IE8-
+			var box = elem.getBoundingClientRect();
+			return {
+				top: box.top + pageYOffset,
+				left: box.left + pageXOffset
+			};
+		}
 	}
-}
+});
 //ZOOM=====================================================================================================================================================
 $('.parent-container').magnificPopup({
 	delegate: 'a',
