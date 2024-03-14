@@ -125,8 +125,8 @@ function initSliders() {
 
 	if (document.querySelector('.full-slider-page__slider')) {
 		new Swiper('.full-slider-page__slider', {
-      		direction: "vertical",
-      		effect: "fade",
+  		direction: "vertical",
+  		effect: "fade",
 			observer: true,
 			observeParents: true,
 			slidesPerView: 1,
@@ -166,6 +166,26 @@ var tl = gsap.timeline({
 })
 .to('#one', {'z-index': 100})
 .to('.resize', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
+//Change_Image==================================================================================================================================================
+const sectionChange = document.querySelector("#changeBody");
+const changeImage = sectionChange.querySelector("#change");
+
+document.body.onscroll = (e) => {
+	var bounds = changeImage.getBoundingClientRect();
+	const centerTop = sectionChange.offsetTop - (window.innerHeight/2 - sectionChange.clientHeight/2);
+	const centerBottom = sectionChange.offsetTop - (window.innerHeight/2 - sectionChange.clientHeight/2) + bounds.height;
+
+	console.log("windowY: " + window.scrollY);
+	console.log("centerTop: " + centerTop);
+	console.log("centerBottom: " + centerBottom);
+
+	if(window.scrollY >= centerTop) {
+		changeImage.classList.add("change");
+  }
+  if(window.scrollY <= centerTop) {
+		changeImage.classList.remove("change");
+  }
+}
 //TABS==================================================================================================================================================
 // Получение хеша в адресе сайта
 function getHash() {
