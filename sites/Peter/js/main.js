@@ -132,17 +132,11 @@ function initSliders() {
 			slidesPerView: 1,
 			spaceBetween: 0,
 			parallax: true,
-			//loop: true,
 			autoHeight: true,
-			//autoplay: {
-			//	delay: 3000,
-			//	disableOnInteraction: false,
-			//},
 			speed: 800,
 			pagination: {
 				el: '.slider-full__pagination',
 				clickable: true,
-				//dynamicBullets: true,
 			},
 		});
 	}
@@ -150,10 +144,6 @@ function initSliders() {
 		new Swiper('.slider-page__slider', {
       		spaceBetween: 30,
 			effect: 'fade',
-			//mousewheel: {
-			//	invert: false,
-			//},
-			// autoHeight: true,
 			pagination: {
 				el: '.slider-page__pagination',
 				clickable: true,
@@ -174,8 +164,8 @@ var tl = gsap.timeline({
     pin: true
   }
 })
+.to('#one', {'z-index': 100})
 .to('.resize', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
-
 //TABS==================================================================================================================================================
 // Получение хеша в адресе сайта
 function getHash() {
