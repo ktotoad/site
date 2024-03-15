@@ -142,7 +142,8 @@ function initSliders() {
 	}
 	if (document.querySelector('.slider-page__slider')) {
 		new Swiper('.slider-page__slider', {
-      		spaceBetween: 30,
+      spaceBetween: 30,
+			slidesPerView: 1,
 			effect: 'fade',
 			pagination: {
 				el: '.slider-page__pagination',
@@ -150,6 +151,26 @@ function initSliders() {
 			}
 		});
 	}
+	if (document.querySelector('.resident-sliders__slider')) {
+		new Swiper('.resident-sliders__slider', {
+      spaceBetween: 30,
+			slidesPerView: 1,
+			effect: "creative",
+      creativeEffect: {
+        prev: {
+          shadow: true,
+          translate: ["-20%", 0, -1],
+        },
+        next: {
+          translate: ["100%", 0, 0],
+        },
+      },
+			pagination: {
+				el: '.resident-sliders__pagination',
+				clickable: true,
+			}
+		});
+	}	
 }
 initSliders();
 //Resize==================================================================================================================================================
