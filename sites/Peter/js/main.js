@@ -165,7 +165,21 @@ var tl = gsap.timeline({
   }
 })
 .to('#one', {'z-index': 100})
-.to('.resize', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
+.to('.resizeOne', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
+
+var tl = gsap.timeline({
+  paused: true,
+  scrollTrigger: {
+    trigger: '#two',
+    start: 'top top',
+    end: 'bottom top',
+    markers: true,
+    scrub: true,
+    pin: true
+  }
+})
+.to('#two', {'z-index': 100, bottom: '0'})
+.to('.resizeTwo', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
 //Change_Image==================================================================================================================================================
 const sectionChange = document.querySelector("#changeBody");
 const changeImage = sectionChange.querySelector("#change");
