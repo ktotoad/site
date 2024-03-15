@@ -1055,6 +1055,14 @@ html {
     margin-top: calc(40px + 190 * ((100vw - 320px) / (1002)));
   }
 }
+.page__elegant {
+  padding-top: 150px;
+}
+@media (max-width: 1322px) {
+  .page__elegant {
+    padding-top: calc(30px + 120 * ((100vw - 320px) / (1002)));
+  }
+}
 .page__building {
   padding-top: 81px;
   padding-bottom: 90px;
@@ -2256,7 +2264,97 @@ html {
   }
 }
 
-#one {
+.elegant-page {
+  background: #565656;
+}
+.elegant-page .item-etalon__text-block, .elegant-page .item-etalon__text {
+  color: #FFFFFF;
+}
+.elegant-page .etalon-page__title {
+  color: #B7B7B7;
+}
+.elegant-page .item-etalon__body-image {
+  border-radius: 200px 200px 0px 0px;
+}
+.elegant-page .item-etalon_left::before {
+  display: none;
+}
+.elegant-page .item-etalon__text {
+  margin-top: 140px;
+}
+@media (max-width: 1322px) {
+  .elegant-page .item-etalon__text {
+    margin-top: calc(30px + 110 * ((100vw - 320px) / (1002)));
+  }
+}
+.elegant-page .item-etalon_right {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+}
+.elegant-page .item-etalon_right .item-etalon__body-image {
+  width: 270px;
+  height: 420px;
+}
+@media (max-width: 1322px) {
+  .elegant-page .item-etalon_right .item-etalon__body-image {
+    width: calc(180px + 90 * ((100vw - 320px) / (1002)));
+  }
+}
+@media (max-width: 1322px) {
+  .elegant-page .item-etalon_right .item-etalon__body-image {
+    height: calc(220px + 200 * ((100vw - 320px) / (1002)));
+  }
+}
+.elegant-page .item-etalon::before {
+  top: -1%;
+  left: 0;
+  border-radius: 163px 163px 0px 0px;
+}
+.elegant-page .item-etalon::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  top: 3%;
+  left: 10%;
+  border: 0.71px solid rgb(139, 139, 139);
+  border-radius: 142.33px 142.33px 0px 0px;
+  -webkit-transition: all 5s ease 0.4s;
+  transition: all 5s ease 0.4s;
+}
+.elegant-page .etalon-page__items.active .item-etalon_right::before {
+  width: 270px;
+  height: 470px;
+}
+@media (max-width: 1322px) {
+  .elegant-page .etalon-page__items.active .item-etalon_right::before {
+    width: calc(180px + 90 * ((100vw - 320px) / (1002)));
+  }
+}
+@media (max-width: 1322px) {
+  .elegant-page .etalon-page__items.active .item-etalon_right::before {
+    height: calc(250px + 220 * ((100vw - 320px) / (1002)));
+  }
+}
+.elegant-page .etalon-page__items.active .item-etalon_right::after {
+  opacity: 1;
+  width: 200px;
+  height: 420px;
+}
+@media (max-width: 1322px) {
+  .elegant-page .etalon-page__items.active .item-etalon_right::after {
+    width: calc(150px + 50 * ((100vw - 320px) / (1002)));
+  }
+}
+@media (max-width: 1322px) {
+  .elegant-page .etalon-page__items.active .item-etalon_right::after {
+    height: calc(220px + 200 * ((100vw - 320px) / (1002)));
+  }
+}
+
+#one, #two {
   position: absolute;
   z-index: 4;
   width: 100%;
@@ -2265,12 +2363,16 @@ html {
   height: 835px;
 }
 @media (max-width: 1322px) {
-  #one {
+  #one, #two {
     height: calc(300px + 535 * ((100vw - 320px) / (1002)));
   }
 }
 
-.resize {
+#two {
+  bottom: -30%;
+}
+
+.resizeOne, .resizeTwo {
   border-radius: 160px 160px 0px 0px;
   display: block;
   position: absolute;
@@ -2283,13 +2385,29 @@ html {
   overflow: hidden;
 }
 @media (max-width: 1322px) {
-  .resize {
+  .resizeOne, .resizeTwo {
     width: calc(290px + 40 * ((100vw - 320px) / (1002)));
   }
 }
 @media (max-width: 1322px) {
-  .resize {
+  .resizeOne, .resizeTwo {
     height: calc(400px + 285 * ((100vw - 320px) / (1002)));
+  }
+}
+
+.resizeTwo {
+  border-radius: 300px 300px 0px 0px;
+  width: 580px;
+  height: 830px;
+}
+@media (max-width: 1322px) {
+  .resizeTwo {
+    width: calc(290px + 290 * ((100vw - 320px) / (1002)));
+  }
+}
+@media (max-width: 1322px) {
+  .resizeTwo {
+    height: calc(400px + 430 * ((100vw - 320px) / (1002)));
   }
 }
 
@@ -2299,6 +2417,15 @@ html {
 @media (max-width: 1322px) {
   .full-slider-page {
     height: calc(300px + 535 * ((100vw - 320px) / (1002)));
+  }
+}
+.full-slider-page__dark {
+  background: #565656;
+  margin-bottom: 235px;
+}
+@media (max-width: 1322px) {
+  .full-slider-page__dark {
+    margin-bottom: calc(50px + 185 * ((100vw - 320px) / (1002)));
   }
 }
 .full-slider-page__container {
@@ -2960,8 +3087,8 @@ html {
 
 .image-lobby {
   position: relative;
-  -webkit-transition: all 2.8s ease-out 0s;
-  transition: all 2.8s ease-out 0s;
+  -webkit-transition: all 1.5s ease-out 0s;
+  transition: all 1.5s ease-out 0s;
 }
 .image-lobby.change {
   border-radius: 300px;
