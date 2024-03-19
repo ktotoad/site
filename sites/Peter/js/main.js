@@ -171,6 +171,45 @@ function initSliders() {
 			}
 		});
 	}	
+	if (document.querySelector('.team-page__slider')) {
+		new Swiper('.team-page__slider', {
+  		observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 20,
+			parallax: true,
+			//loop: true,
+			autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 0,
+					autoHeight: true,
+				},
+				768: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
+				992: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+				1268: {
+					slidesPerView: 4,
+					spaceBetween: 30,
+				}
+			},
+			pagination: {
+				el: '.slider-team__pagination',
+				clickable: true,
+			},
+		});
+	}
 }
 initSliders();
 //Resize==================================================================================================================================================
