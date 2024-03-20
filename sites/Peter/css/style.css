@@ -174,8 +174,8 @@ body.lock {
 /* overlay at start */
 .mfp-fade.mfp-bg {
   opacity: 0;
-  -webkit-transition: opacity 1.5s ease-out;
-  transition: opacity 1.5s ease-out;
+  -webkit-transition: opacity 0.8s ease-out;
+  transition: opacity 0.8s ease-out;
 }
 
 /* overlay animate in */
@@ -191,8 +191,8 @@ body.lock {
 /* content at start */
 .mfp-fade.mfp-wrap .mfp-content {
   opacity: 0;
-  -webkit-transition: opacity 1.5s ease-out;
-  transition: opacity 1.5s ease-out;
+  -webkit-transition: opacity 0.8s ease-out;
+  transition: opacity 0.8s ease-out;
 }
 
 /* content animate it */
@@ -268,7 +268,6 @@ body.lock {
   font-size: 12px;
   font-weight: 500;
   line-height: 120%;
-  letter-spacing: 10%;
   text-align: center;
   text-transform: uppercase;
   border-radius: 34px;
@@ -542,8 +541,10 @@ textarea.input {
   -webkit-transform: translateY(-100%);
           transform: translateY(-100%);
   opacity: 0;
-  -webkit-transition: all 0.8s ease 0s;
-  transition: all 0.8s ease 0s;
+  -webkit-transition: opacity 0.8s, -webkit-transform 0.8s ease 0s;
+  transition: opacity 0.8s, -webkit-transform 0.8s ease 0s;
+  transition: opacity 0.8s, transform 0.8s ease 0s;
+  transition: opacity 0.8s, transform 0.8s ease 0s, -webkit-transform 0.8s ease 0s;
 }
 @media (max-width: 1322px) {
   .header__container {
@@ -554,8 +555,10 @@ textarea.input {
   -webkit-transform: translateY(0);
           transform: translateY(0);
   opacity: 1;
-  -webkit-transition: all 0.8s ease 0.4s;
-  transition: all 0.8s ease 0.4s;
+  -webkit-transition: opacity 0.8s, -webkit-transform 0.8s ease 0.4s;
+  transition: opacity 0.8s, -webkit-transform 0.8s ease 0.4s;
+  transition: opacity 0.8s, transform 0.8s ease 0.4s;
+  transition: opacity 0.8s, transform 0.8s ease 0.4s, -webkit-transform 0.8s ease 0.4s;
 }
 .header__logo {
   position: relative;
@@ -571,7 +574,7 @@ textarea.input {
   }
 }
 .header__button {
-  background-color: #F1EFEB;
+  background-color: #F6F6F6;
 }
 @media (max-width: 991.98px) {
   .header__button {
@@ -1195,7 +1198,7 @@ html {
 
 .fullscreen-page {
   position: relative;
-  background-color: #F1EFEB;
+  background-color: #F6F6F6;
   min-height: 100vh;
 }
 .fullscreen-page__decore::before, .fullscreen-page__decore::after {
@@ -1378,22 +1381,22 @@ html {
           transform: translate(0px, 0px);
 }
 .fullscreen-page__title.active span:nth-child(1) {
+  -webkit-transition: opacity 1s ease-in 0s, -webkit-transform 1s;
+  transition: opacity 1s ease-in 0s, -webkit-transform 1s;
+  transition: transform 1s, opacity 1s ease-in 0s;
+  transition: transform 1s, opacity 1s ease-in 0s, -webkit-transform 1s;
+}
+.fullscreen-page__title.active span:nth-child(2) {
   -webkit-transition: opacity 2s ease-in 0s, -webkit-transform 2s;
   transition: opacity 2s ease-in 0s, -webkit-transform 2s;
   transition: transform 2s, opacity 2s ease-in 0s;
   transition: transform 2s, opacity 2s ease-in 0s, -webkit-transform 2s;
 }
-.fullscreen-page__title.active span:nth-child(2) {
+.fullscreen-page__title.active span:nth-child(3) {
   -webkit-transition: opacity 3s ease-in 0s, -webkit-transform 3s;
   transition: opacity 3s ease-in 0s, -webkit-transform 3s;
   transition: transform 3s, opacity 3s ease-in 0s;
   transition: transform 3s, opacity 3s ease-in 0s, -webkit-transform 3s;
-}
-.fullscreen-page__title.active span:nth-child(3) {
-  -webkit-transition: opacity 4s ease-in 0s, -webkit-transform 4s;
-  transition: opacity 4s ease-in 0s, -webkit-transform 4s;
-  transition: transform 4s, opacity 4s ease-in 0s;
-  transition: transform 4s, opacity 4s ease-in 0s, -webkit-transform 4s;
 }
 .fullscreen-page__image {
   position: absolute;
