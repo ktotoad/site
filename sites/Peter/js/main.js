@@ -125,8 +125,8 @@ function buildSliders() {
 function initSliders() {
 	buildSliders();
 
-	if (document.querySelector('.full-slider-page__slider')) {
-		new Swiper('.full-slider-page__slider', {
+	if (document.querySelector('.slider-full')) {
+		new Swiper('.slider-full', {
   		direction: "vertical",
   		effect: "fade",
 			observer: true,
