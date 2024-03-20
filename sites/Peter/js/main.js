@@ -215,7 +215,7 @@ function initSliders() {
 }
 initSliders();
 //Resize==================================================================================================================================================
-var tl = gsap.timeline({
+var tl_one = gsap.timeline({
   paused: true,
   scrollTrigger: {
     trigger: '#one',
@@ -226,10 +226,10 @@ var tl = gsap.timeline({
     pin: true
   }
 })
-.to('#one', {'z-index': 100})
-.to('.resizeOne', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
+tl_one.to('#one', {'z-index': 100})
+	.to('.resizeOne', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
 
-var tl = gsap.timeline({
+var tl_two = gsap.timeline({
   paused: true,
   scrollTrigger: {
     trigger: '#two',
@@ -240,8 +240,21 @@ var tl = gsap.timeline({
     pin: true
   }
 })
-.to('#two', {'z-index': 100, bottom: '0'})
+tl_two.to('#two', {'z-index': 100, bottom: '0'})
 .to('.resizeTwo', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
+
+var tl_three = gsap.timeline({
+  paused: true,
+  scrollTrigger: {
+    trigger: '#three',
+    start: 'top top',
+    end: 'bottom top',
+    markers: true,
+    scrub: true,
+    pin: true
+  }
+})
+tl_three.to('.resizeThree', {left: 0, top: 0, width: '100%', height: '100%'})
 //Change_Image==================================================================================================================================================
 const sectionChange = document.querySelector("#changeBody");
 const changeImage = sectionChange.querySelector("#change");
