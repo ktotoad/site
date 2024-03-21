@@ -2775,7 +2775,7 @@ html {
   z-index: 3;
   background: url("../img/map.png") no-repeat center/cover;
 }
-.location-page.active .location-page__title, .location-page.active .address-location {
+.location-page.active .location-page__title, .location-page.active .address-location, .location-page.active .markers-location {
   opacity: 1;
 }
 .location-page.active .address-location::before {
@@ -2792,6 +2792,14 @@ html {
 @media (max-width: 1485px) {
   .location-page.active .column-location::before {
     height: calc(300px + 250 * ((100vw - 320px) / (1165)));
+  }
+}
+.location-page.active .markers-location__marker::before {
+  width: 118px;
+}
+@media (max-width: 1485px) {
+  .location-page.active .markers-location__marker::before {
+    width: calc(70px + 48 * ((100vw - 320px) / (1165)));
   }
 }
 .location-page::before, .location-page::after {
@@ -2885,6 +2893,93 @@ html {
     text-align: center;
   }
 }
+.markers-location {
+  opacity: 0;
+  -webkit-transition: opacity 2.3s ease 0s;
+  transition: opacity 2.3s ease 0s;
+  position: absolute;
+  z-index: 4;
+  top: 40%;
+  left: 35%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 90px;
+}
+@media (max-width: 1485px) {
+  .markers-location {
+    gap: calc(10px + 80 * ((100vw - 320px) / (1165)));
+  }
+}
+.markers-location__marker {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 50%;
+  background: #fff;
+  width: 120px;
+  height: 120px;
+}
+@media (max-width: 1485px) {
+  .markers-location__marker {
+    width: calc(80px + 40 * ((100vw - 320px) / (1165)));
+  }
+}
+@media (max-width: 1485px) {
+  .markers-location__marker {
+    height: calc(80px + 40 * ((100vw - 320px) / (1165)));
+  }
+}
+.markers-location__marker::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  background: rgb(19, 20, 17);
+  -webkit-transition: width 3.3s ease 0s;
+  transition: width 3.3s ease 0s;
+}
+.markers-location__marker:first-child {
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.markers-location__marker:first-child::before {
+  bottom: 20%;
+  left: 30%;
+}
+.markers-location__marker:last-child::before {
+  top: 20%;
+  right: 30%;
+}
+.markers-location__text {
+  color: rgb(19, 20, 17);
+  font-family: "Cormorant";
+  font-size: 64px;
+  line-height: 110%;
+}
+@media (max-width: 1485px) {
+  .markers-location__text {
+    font-size: calc(20px + 44 * ((100vw - 320px) / (1165)));
+  }
+}
+
 .address-location {
   position: relative;
   margin-top: 20px;
