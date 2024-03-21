@@ -273,26 +273,22 @@ gsap.to('.resizeFour', {
   width: '100%',
   height: '840px',
 })
-//Change_Image==================================================================================================================================================
-//const sectionChange = document.querySelector("#changeBody");
-//const changeImage = sectionChange.querySelector("#change");
+//Buttons_Form==================================================================================================================================================
+const buttonsFormBody = document.querySelector("#buttonsFormBody");
+const buttonsForm = buttonsFormBody.querySelector("#buttonsForm");
 
-//document.body.onscroll = (e) => {
-//	var bounds = changeImage.getBoundingClientRect();
-//	const centerTop = sectionChange.offsetTop - (window.innerHeight/2 - sectionChange.clientHeight/2);
-//	const centerBottom = sectionChange.offsetTop - (window.innerHeight/2 - sectionChange.clientHeight/2) + bounds.height;
+document.body.onscroll = (e) => {
+	var bounds = buttonsForm.getBoundingClientRect();
+	const centerTop = buttonsFormBody.offsetTop - (window.innerHeight/2 - buttonsFormBody.clientHeight/2);
+  const centerBottom = buttonsFormBody.offsetTop - (window.innerHeight/2 - buttonsFormBody.clientHeight/2) + bounds.height;
 
-//	console.log("windowY: " + window.scrollY);
-//	console.log("centerTop: " + centerTop);
-//	console.log("centerBottom: " + centerBottom);
-
-//	if(window.scrollY >= centerTop) {
-//		changeImage.classList.add("change");
-//  }
-//  if(window.scrollY <= centerTop) {
-//		changeImage.classList.remove("change");
-//  }
-//}
+  if(window.scrollY >= centerTop) {
+		buttonsForm.classList.add("change");
+  }
+  if(window.scrollY <= centerTop) {
+		buttonsForm.classList.remove("change");
+  }
+}
 //TABS==================================================================================================================================================
 // Получение хеша в адресе сайта
 function getHash() {
