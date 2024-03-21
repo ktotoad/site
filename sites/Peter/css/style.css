@@ -1921,8 +1921,10 @@ html {
 .buttons-form {
   position: absolute;
   z-index: 10;
-  right: 5%;
-  top: 0;
+  right: 3%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1943,6 +1945,9 @@ html {
   .buttons-form {
     gap: calc(10px + 50 * ((100vw - 320px) / (1165)));
   }
+}
+.buttons-form.change {
+  position: fixed;
 }
 .buttons-form__link {
   display: block;
@@ -3227,7 +3232,8 @@ html {
 }
 .slider-page__decore::before {
   width: 16vw;
-  background-color: #F5F5F5;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(10%, rgba(255, 255, 255, 0)), to(rgb(245, 245, 245)));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 10%, rgb(245, 245, 245) 100%);
   -webkit-transition: all 1.8s ease 0s;
   transition: all 1.8s ease 0s;
 }
@@ -3296,7 +3302,7 @@ html {
 .slider-page .swiper-pagination-horizontal.swiper-pagination-bullets, .slider-page .swiper-vertical > .swiper-pagination-bullets {
   top: 80%;
   left: auto;
-  right: 33%;
+  right: 40%;
   width: 12px;
 }
 
@@ -3304,9 +3310,9 @@ html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
