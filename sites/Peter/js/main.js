@@ -250,15 +250,6 @@ gsap.to('.image-lobby', {
 	'border-radius': '300px',
 })
 
-gsap.to('.move-page__body', {
-	scrollTrigger: {
-    trigger: '#three',
-    start: '-35vh center',
-    end: 'bottom center',
-    scrub: true,
-  },
-	height: '840px',
-})
 gsap.to('.resizeThree', {
 	scrollTrigger: {
     trigger: '#three',
@@ -267,7 +258,20 @@ gsap.to('.resizeThree', {
     scrub: true,
   },
   width: '100%',
-  height: '100%',
+  height: '840px',
+})
+
+gsap.to('.resizeFour', {
+	scrollTrigger: {
+    trigger: '#four',
+    start: 'top top',
+    end: 'bottom top',
+    scrub: true,
+  }, 
+  overflow: 'visible',
+  'margin-top': '10%',
+  width: '100%',
+  height: '840px',
 })
 //Change_Image==================================================================================================================================================
 //const sectionChange = document.querySelector("#changeBody");
