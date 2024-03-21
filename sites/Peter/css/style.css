@@ -517,6 +517,7 @@ textarea.input {
           transform: translateX(-50%);
 }
 .header__container {
+  position: relative;
   padding-top: 48px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -589,6 +590,46 @@ a.header__button::before {
   border-radius: 0 24px 24px 0;
 }
 
+.submenu {
+  position: relative;
+}
+@media (any-hover: hover) {
+  .submenu__button:hover + .submenu__nav {
+    height: 100%;
+    opacity: 1;
+    visibility: visible;
+  }
+  .submenu__button:hover svg {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+}
+.submenu__button svg {
+  -webkit-transform: rotate(0);
+          transform: rotate(0);
+  -webkit-transition: -webkit-transform 0.8s ease 0s;
+  transition: -webkit-transform 0.8s ease 0s;
+  transition: transform 0.8s ease 0s;
+  transition: transform 0.8s ease 0s, -webkit-transform 0.8s ease 0s;
+}
+.submenu__nav {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  width: 100%;
+  height: 0;
+  top: 100%;
+  left: 0;
+  -webkit-transition: all 0.8s ease 0s;
+  transition: all 0.8s ease 0s;
+}
+@media (any-hover: hover) {
+  .submenu__nav:hover {
+    height: 100%;
+    opacity: 1;
+    visibility: visible;
+  }
+}
 @media (max-width: 991.98px) {
   .menu__body {
     -webkit-transform: translate(0px, -200%);
@@ -1962,6 +2003,7 @@ html {
   line-height: 120%;
   border-radius: 25px;
   background: rgb(246, 246, 246);
+  border: 1px solid rgb(109, 104, 94);
   -webkit-transition: background 0.3s ease 0s;
   transition: background 0.3s ease 0s;
 }
