@@ -214,20 +214,18 @@ function initSliders() {
 	}
 }
 initSliders();
-//Resize==================================================================================================================================================
+//Resize_scroll==================================================================================================================================================
 var tl_one = gsap.timeline({
   paused: true,
   scrollTrigger: {
     trigger: '#one',
     start: 'top top',
     end: 'bottom top',
-    markers: true,
     scrub: true,
     pin: true
   }
 })
-tl_one.to('#one', {'z-index': 100})
-	.to('.resizeOne', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
+tl_one.to('#one', {'z-index': 100}).to('.resizeOne', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
 
 var tl_two = gsap.timeline({
   paused: true,
@@ -235,7 +233,6 @@ var tl_two = gsap.timeline({
     trigger: '#two',
     start: 'top top',
     end: 'bottom top',
-    markers: true,
     scrub: true,
     pin: true
   }
@@ -243,38 +240,55 @@ var tl_two = gsap.timeline({
 tl_two.to('#two', {'z-index': 100, bottom: '0'})
 .to('.resizeTwo', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
 
-var tl_three = gsap.timeline({
-  paused: true,
-  scrollTrigger: {
-    trigger: '#three',
-    start: 'top top',
-    end: 'bottom top',
-    markers: true,
+gsap.to('.image-lobby', {
+	scrollTrigger: {
+    trigger: '#changeBody',
+    start: 'top center',
+    end: 'center top',
     scrub: true,
-    pin: true
-  }
+  },
+	'border-radius': '300px',
 })
-tl_three.to('.resizeThree', {left: 0, top: 0, width: '100%', height: '100%'})
+
+gsap.to('.move-page__body', {
+	scrollTrigger: {
+    trigger: '#three',
+    start: '-35vh center',
+    end: 'bottom center',
+    scrub: true,
+  },
+	height: '840px',
+})
+gsap.to('.resizeThree', {
+	scrollTrigger: {
+    trigger: '#three',
+    start: '-35vh center',
+    end: 'bottom center',
+    scrub: true,
+  },
+  width: '100%',
+  height: '100%',
+})
 //Change_Image==================================================================================================================================================
-const sectionChange = document.querySelector("#changeBody");
-const changeImage = sectionChange.querySelector("#change");
+//const sectionChange = document.querySelector("#changeBody");
+//const changeImage = sectionChange.querySelector("#change");
 
-document.body.onscroll = (e) => {
-	var bounds = changeImage.getBoundingClientRect();
-	const centerTop = sectionChange.offsetTop - (window.innerHeight/2 - sectionChange.clientHeight/2);
-	const centerBottom = sectionChange.offsetTop - (window.innerHeight/2 - sectionChange.clientHeight/2) + bounds.height;
+//document.body.onscroll = (e) => {
+//	var bounds = changeImage.getBoundingClientRect();
+//	const centerTop = sectionChange.offsetTop - (window.innerHeight/2 - sectionChange.clientHeight/2);
+//	const centerBottom = sectionChange.offsetTop - (window.innerHeight/2 - sectionChange.clientHeight/2) + bounds.height;
 
-	console.log("windowY: " + window.scrollY);
-	console.log("centerTop: " + centerTop);
-	console.log("centerBottom: " + centerBottom);
+//	console.log("windowY: " + window.scrollY);
+//	console.log("centerTop: " + centerTop);
+//	console.log("centerBottom: " + centerBottom);
 
-	if(window.scrollY >= centerTop) {
-		changeImage.classList.add("change");
-  }
-  if(window.scrollY <= centerTop) {
-		changeImage.classList.remove("change");
-  }
-}
+//	if(window.scrollY >= centerTop) {
+//		changeImage.classList.add("change");
+//  }
+//  if(window.scrollY <= centerTop) {
+//		changeImage.classList.remove("change");
+//  }
+//}
 //TABS==================================================================================================================================================
 // Получение хеша в адресе сайта
 function getHash() {
