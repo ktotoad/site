@@ -63,6 +63,30 @@ if (iconMenu) {
 			body.classList.toggle('lock');
 		});
 }
+
+const iconSubmenu = document.querySelector('.icon-submenu');
+const submenuBody = document.querySelector('.submenu__body');
+
+if (iconSubmenu) {
+	iconSubmenu.addEventListener('click', 
+		function clickButtonBurger(event) {
+			iconSubmenu.classList.toggle('active');
+			submenuBody.classList.toggle('active');
+			body.classList.toggle('lock');
+		});
+}
+
+$('.submenu__list li').on('mouseenter',function(){
+	$(this).siblings().addClass('notactive');
+	$('.submenu__image[data-link="'+$(this).data('link')+'"]').addClass('active');
+});
+$('.submenu__list li').on('mouseleave',function(){
+	$(this).siblings().removeClass('notactive');
+	$('.submenu__image[data-link="'+$(this).data('link')+'"]').removeClass('active');
+	if(!$('.submenu__image.active').length){
+		$('.submenu__image:first').addClass('active');
+	}
+});
 //InputMask===============================================================================================================================================
 function inputElements() {
 	let inputPhones = document.querySelectorAll("input[data-format]");
