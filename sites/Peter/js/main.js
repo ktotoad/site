@@ -508,6 +508,18 @@ gsap.to('.resizeFour', {
   width: '100%',
   height: '840px',
 })
+
+gsap.to('.resizeFive', {
+	scrollTrigger: {
+    trigger: '#five',
+    start: 'top bottom',
+    end: 'bottom top',
+    scrub: true,
+  }, 
+  width: '219px',
+  height: '325px',
+	"border-radius": "110px 110px 0px 0px",
+})
 //Buttons_Form==================================================================================================================================================
 const buttonsFormBody = document.querySelector("#buttonsFormBody");
 const buttonsForm = buttonsFormBody.querySelector("#buttonsForm");
