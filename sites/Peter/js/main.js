@@ -447,6 +447,41 @@ function initSliders() {
 			},
 		});
 	}
+	if (document.querySelector('.alike-page__slider')) {
+		new Swiper('.alike-page__slider', {
+  		observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 20,
+			parallax: true,
+			//loop: true,
+			autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 0,
+					autoHeight: true,
+				},
+				480: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
+				768: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+				1268: {
+					slidesPerView: 4,
+					spaceBetween: 20,
+				}
+			},
+		});
+	}
 }
 initSliders();
 //Resize_scroll==================================================================================================================================================
