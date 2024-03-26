@@ -11,51 +11,52 @@ window.addEventListener('load', (event) => {
 });
 
 /*Animation================================================================================*/
-const animItems = document.querySelectorAll('.anim-items');
-window.addEventListener('load', (event) => {
-	if (wrapper.classList.contains('loaded')) {
-		if (animItems.length > 0) {
-			window.addEventListener('scroll', animOnScroll);
-			function animOnScroll(params) {
-				for (let index = 0; index < animItems.length; index++) {
-					const animItem = animItems[index];
-					const animItemHeight = animItem.offsetHeight;
-					const animItemOffset = offset(animItem).top;
-					const animStart = 4;
+if(document.querySelector('.anim-items')) {
+	const animItems = document.querySelectorAll('.anim-items');
+	window.addEventListener('load', (event) => {
+		if (wrapper.classList.contains('loaded')) {
+			if (animItems.length > 0) {
+				window.addEventListener('scroll', animOnScroll);
+				function animOnScroll(params) {
+					for (let index = 0; index < animItems.length; index++) {
+						const animItem = animItems[index];
+						const animItemHeight = animItem.offsetHeight;
+						const animItemOffset = offset(animItem).top;
+						const animStart = 4;
 
-					let animItemPoint = window.innerHeight - animItemHeight /animStart;
-					if (animItemHeight > window.innerHeight) {
-						animItemPoint = window.innerHeight - window.innerHeight / animStart;
-					}
+						let animItemPoint = window.innerHeight - animItemHeight /animStart;
+						if (animItemHeight > window.innerHeight) {
+							animItemPoint = window.innerHeight - window.innerHeight / animStart;
+						}
 
-					if ((pageYOffset > animItemOffset - animItemPoint) && pageYOffset < (animItemOffset + animItemHeight)){
-						animItem.classList.add('active');
-					} else {
-						if (!animItem.classList.contains('anim-no-hide')) {
-							animItem.classList.remove('active');
+						if ((pageYOffset > animItemOffset - animItemPoint) && pageYOffset < (animItemOffset + animItemHeight)){
+							animItem.classList.add('active');
+						} else {
+							if (!animItem.classList.contains('anim-no-hide')) {
+								animItem.classList.remove('active');
+							}
 						}
 					}
 				}
-			}
-			function offset(el) {
-				const rect = el.getBoundingClientRect(),
-					scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-					scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-				return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
-			}
+				function offset(el) {
+					const rect = el.getBoundingClientRect(),
+						scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+						scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+					return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+				}
 
-			setTimeout(() => {
-				animOnScroll();
-			}, 300);
+				setTimeout(() => {
+					animOnScroll();
+				}, 300);
+			}
 		}
-	}
-});
+	});
+}
 //burger=====================================================================================================================================================
-const iconMenu = document.querySelector('.icon-menu');
-const menuBody = document.querySelector('.menu__body');
-const body = document.querySelector('body');
-
-if (iconMenu) {
+if (document.querySelector('.icon-menu')) {
+	const iconMenu = document.querySelector('.icon-menu');
+	const menuBody = document.querySelector('.menu__body');
+	const body = document.querySelector('body');
 	iconMenu.addEventListener('click', 
 		function clickButtonBurger(event) {
 			iconMenu.classList.toggle('active');
@@ -64,29 +65,27 @@ if (iconMenu) {
 		});
 }
 
-const iconSubmenu = document.querySelector('.icon-submenu');
-const submenuBody = document.querySelector('.submenu__body');
-
-if (iconSubmenu) {
+if (document.querySelector('.icon-submenu')) {
+	const iconSubmenu = document.querySelector('.icon-submenu');
+	const submenuBody = document.querySelector('.submenu__body');
 	iconSubmenu.addEventListener('click', 
 		function clickButtonBurger(event) {
 			iconSubmenu.classList.toggle('active');
 			submenuBody.classList.toggle('active');
 			body.classList.toggle('lock');
 		});
+	$('.submenu__list li').on('mouseenter',function(){
+		$(this).siblings().addClass('notactive');
+		$('.submenu__image[data-link="'+$(this).data('link')+'"]').addClass('active');
+	});
+	$('.submenu__list li').on('mouseleave',function(){
+		$(this).siblings().removeClass('notactive');
+		$('.submenu__image[data-link="'+$(this).data('link')+'"]').removeClass('active');
+		if(!$('.submenu__image.active').length){
+			$('.submenu__image:first').addClass('active');
+		}
+	});
 }
-
-$('.submenu__list li').on('mouseenter',function(){
-	$(this).siblings().addClass('notactive');
-	$('.submenu__image[data-link="'+$(this).data('link')+'"]').addClass('active');
-});
-$('.submenu__list li').on('mouseleave',function(){
-	$(this).siblings().removeClass('notactive');
-	$('.submenu__image[data-link="'+$(this).data('link')+'"]').removeClass('active');
-	if(!$('.submenu__image.active').length){
-		$('.submenu__image:first').addClass('active');
-	}
-});
 //InputMask===============================================================================================================================================
 function inputElements() {
 	let inputPhones = document.querySelectorAll("input[data-format]");
@@ -310,38 +309,42 @@ let _slideToggle = (target, duration = 500) => {
 	}
 }
 //Mouse_plus==================================================================================================================================================
-var blocks_mouse_move = document.querySelectorAll("#block_mouse_move");
+if(document.querySelector("#block_mouse_move")) {
+	var blocks_mouse_move = document.querySelectorAll("#block_mouse_move");
 
-blocks_mouse_move.forEach(block_mouse_move => {
-	const itemZoom = block_mouse_move.querySelector("#zoom");
+	blocks_mouse_move.forEach(block_mouse_move => {
+		const itemZoom = block_mouse_move.querySelector("#zoom");
 
-	block_mouse_move.onmouseover = function(event) {
-		itemZoom.classList.add("zoom");
-		moveAt(event);
-	}
-	
-	block_mouse_move.onmousemove = function(event) {
-		moveAt(event);
-	}
+		block_mouse_move.onmouseover = function(event) {
+			itemZoom.classList.add("zoom");
+			moveAt(event);
+		}
+		
+		block_mouse_move.onmousemove = function(event) {
+			moveAt(event);
+		}
 
-	block_mouse_move.onmouseout = function() {
-		itemZoom.classList.remove("zoom");
-		itemZoom.style.removeProperty('left');
-		itemZoom.style.removeProperty('top');
-	}
+		block_mouse_move.onmouseout = function() {
+			itemZoom.classList.remove("zoom");
+			itemZoom.style.removeProperty('left');
+			itemZoom.style.removeProperty('top');
+		}
 
-	function moveAt(event) {
-		itemZoom.style.left = event.clientX + -30 + 'px';
-		itemZoom.style.top = event.clientY + -30 + 'px';
-	}
-});
+		function moveAt(event) {
+			itemZoom.style.left = event.clientX + -30 + 'px';
+			itemZoom.style.top = event.clientY + -30 + 'px';
+		}
+	});
+}
 //ZOOM=====================================================================================================================================================
-$('.parent-container').magnificPopup({
-	delegate: 'a',
-	type: 'image',
-	removalDelay: 300,
-	mainClass: 'mfp-fade'
-});
+if(document.querySelector(".parent-container")) {
+	$('.parent-container').magnificPopup({
+		delegate: 'a',
+		type: 'image',
+		removalDelay: 300,
+		mainClass: 'mfp-fade'
+	});
+}
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
@@ -485,76 +488,88 @@ function initSliders() {
 }
 initSliders();
 //Resize_scroll==================================================================================================================================================
-var tl_one = gsap.timeline({
-  paused: true,
-  scrollTrigger: {
-    trigger: '#one',
-    start: 'top top',
-    end: 'bottom top',
-    scrub: true,
-    pin: true
-  }
-})
-tl_one.to('#one', {'z-index': 100}).to('.resizeOne', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
+if(document.querySelector("#one")) {
+	var tl_one = gsap.timeline({
+	  paused: true,
+	  scrollTrigger: {
+	    trigger: '#one',
+	    start: 'top top',
+	    end: 'bottom top',
+	    scrub: true,
+	    pin: true
+	  }
+	})
+	tl_one.to('#one', {'z-index': 100}).to('.resizeOne', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
+}
 
-var tl_two = gsap.timeline({
-  paused: true,
-  scrollTrigger: {
-    trigger: '#two',
-    start: 'top top',
-    end: 'bottom top',
-    scrub: true,
-    pin: true
-  }
-})
-tl_two.to('#two', {'z-index': 100, bottom: '0'})
-.to('.resizeTwo', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
+if(document.querySelector("#two")) {
+	var tl_two = gsap.timeline({
+	  paused: true,
+	  scrollTrigger: {
+	    trigger: '#two',
+	    start: 'top top',
+	    end: 'bottom top',
+	    scrub: true,
+	    pin: true
+	  }
+	})
+	tl_two.to('#two', {'z-index': 100, bottom: '0'})
+	.to('.resizeTwo', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
+}
 
-gsap.to('.image-lobby', {
-	scrollTrigger: {
-    trigger: '#changeBody',
-    start: 'top center',
-    end: 'center top',
-    scrub: true,
-  },
-	'border-radius': '300px',
-})
+if(document.querySelector("#changeBody")) {
+	gsap.to('.image-lobby', {
+		scrollTrigger: {
+	    trigger: '#changeBody',
+	    start: 'top center',
+	    end: 'center top',
+	    scrub: true,
+	  },
+		'border-radius': '300px',
+	})
+}
 
-gsap.to('.resizeThree', {
-	scrollTrigger: {
-    trigger: '#three',
-    start: '-35vh center',
-    end: 'bottom center',
-    scrub: true,
-  },
-  width: '100%',
-  height: '840px',
-})
+if(document.querySelector("#three")) {
+	gsap.to('.resizeThree', {
+		scrollTrigger: {
+	    trigger: '#three',
+	    start: '-35vh center',
+	    end: 'bottom center',
+	    scrub: true,
+	  },
+	  width: '100%',
+	  height: '840px',
+	})
+}
 
-gsap.to('.resizeFour', {
-	scrollTrigger: {
-    trigger: '#four',
-    start: 'top top',
-    end: 'bottom top',
-    scrub: true,
-  }, 
-  overflow: 'visible',
-  'margin-top': '10%',
-  width: '100%',
-  height: '840px',
-})
+if(document.querySelector("#four")) {
+	gsap.to('.resizeFour', {
+		scrollTrigger: {
+	    trigger: '#four',
+	    start: 'top top',
+	    end: 'bottom top',
+	    scrub: true,
+	  }, 
+	  overflow: 'visible',
+	  'margin-top': '10%',
+	  width: '100%',
+	  height: '840px',
+	})
+}
 
-gsap.to('.resizeFive', {
-	scrollTrigger: {
-    trigger: '#five',
-    start: 'top bottom',
-    end: 'bottom top',
-    scrub: true,
-  }, 
-  width: '219px',
-  height: '325px',
-	"border-radius": "110px 110px 0px 0px",
-})
+if(document.querySelector("#five")) {
+	gsap.to('.resizeFive', {
+		scrollTrigger: {
+	    trigger: '#five',
+	    start: 'top bottom',
+	    end: 'bottom top',
+	    scrub: true,
+	  }, 
+	  width: '219px',
+	  height: '325px',
+		"border-radius": "110px 110px 0px 0px",
+	})
+}
 //Buttons_Form==================================================================================================================================================
 if(document.querySelector("#buttonsFormBody")) {
 	const buttonsFormBody = document.querySelector("#buttonsFormBody");
