@@ -97,7 +97,7 @@ function inputElements() {
 	});
 }
 inputElements();
-// RANGE========================================================================================================================================
+//RANGE========================================================================================================================================
 window.addEventListener("load", RangeSlider, false);
 
 function RangeSlider() {
@@ -122,7 +122,7 @@ function RangeSlider() {
         });
     });
 }
-// SPOLLERS========================================================================================================================================
+//SPOLLERS========================================================================================================================================
 
 //Проверка на наличие атрибута
 const spollersArray = document.querySelectorAll('[data-spollers]');
@@ -556,20 +556,22 @@ gsap.to('.resizeFive', {
 	"border-radius": "110px 110px 0px 0px",
 })
 //Buttons_Form==================================================================================================================================================
-const buttonsFormBody = document.querySelector("#buttonsFormBody");
-const buttonsForm = buttonsFormBody.querySelector("#buttonsForm");
+if(document.querySelector("#buttonsFormBody")) {
+	const buttonsFormBody = document.querySelector("#buttonsFormBody");
+	const buttonsForm = buttonsFormBody.querySelector("#buttonsForm");
 
-document.body.onscroll = (e) => {
-	var bounds = buttonsForm.getBoundingClientRect();
-	const centerTop = buttonsFormBody.offsetTop - (window.innerHeight/2 - buttonsFormBody.clientHeight/2);
-  const centerBottom = buttonsFormBody.offsetTop - (window.innerHeight/2 - buttonsFormBody.clientHeight/2) + bounds.height;
+	document.body.onscroll = (e) => {
+		var bounds = buttonsForm.getBoundingClientRect();
+		const centerTop = buttonsFormBody.offsetTop - (window.innerHeight/2 - buttonsFormBody.clientHeight/2);
+	  const centerBottom = buttonsFormBody.offsetTop - (window.innerHeight/2 - buttonsFormBody.clientHeight/2) + bounds.height;
 
-  if(window.scrollY >= centerTop) {
-		buttonsForm.classList.add("change");
-  }
-  if(window.scrollY <= centerTop) {
-		buttonsForm.classList.remove("change");
-  }
+	  if(window.scrollY >= centerTop) {
+			buttonsForm.classList.add("change");
+	  }
+	  if(window.scrollY <= centerTop) {
+			buttonsForm.classList.remove("change");
+	  }
+	}
 }
 //TABS==================================================================================================================================================
 // Получение хеша в адресе сайта
