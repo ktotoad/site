@@ -73,3 +73,33 @@ function initSliders() {
 
 
 initSliders();
+// animation in hero
+if(document.querySelector("[data-h1-words]")) {
+    let words = $("[data-h1-words]").children();
+    let wordWidth;
+    let currentIndex = 1;
+
+    setInterval(function() {
+        let lettersCurrent = words.eq(currentIndex).find("em");
+        let lettersPrev = words.eq(currentIndex - 1).find("em");
+        let delay = 100;
+
+        lettersCurrent.each(function(index) {
+            let element = $(this);
+            setTimeout(function() {
+                element.addClass("active");
+            }, index * delay);
+        });
+
+        lettersPrev.each(function(index) {
+            let element = $(this);
+            setTimeout(function() {
+                element.addClass("active done");
+            }, index * delay);
+        });
+        words.find("em").not(lettersCurrent).not(lettersPrev).removeClass("active done");
+        wordWidth = words.eq(currentIndex).width();
+        $("[data-h1-words]").width(wordWidth + 'px');
+        currentIndex = (currentIndex + 1) % words.length;
+    }, 3000);
+}
