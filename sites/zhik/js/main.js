@@ -82,7 +82,7 @@ if(document.querySelector("[data-h1-words]")) {
     setInterval(function() {
         let lettersCurrent = words.eq(currentIndex).find("em");
         let lettersPrev = words.eq(currentIndex - 1).find("em");
-        let delay = 100;
+        let delay = 50;
 
         lettersCurrent.each(function(index) {
             let element = $(this);
