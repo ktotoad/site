@@ -212,6 +212,61 @@ section.scrolled {
   padding: 0 15px;
 }
 
+.text-animation {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin-left: -20px;
+  padding: 10px 20px;
+  border-radius: 35px;
+  background: rgb(238, 246, 255);
+  -webkit-transition: all 0.8s;
+  transition: all 0.8s;
+}
+.text-animation__words {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  height: 1.1em;
+  -webkit-transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+.text-animation__word {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  top: 0;
+  bottom: auto;
+  left: 0;
+  right: auto;
+}
+.text-animation__letter {
+  opacity: 0;
+  font-style: inherit;
+  display: inline-block;
+  position: relative;
+  -webkit-transition: all 0.8s;
+  transition: all 0.8s;
+  -webkit-transform: translateY(120%);
+          transform: translateY(120%);
+}
+
+.text-animation__letter.active {
+  opacity: 1;
+  -webkit-transform: translate(0);
+          transform: translate(0);
+}
+
+.text-animation__letter.active.done {
+  opacity: 0;
+  -webkit-transform: translateY(-120%);
+          transform: translateY(-120%);
+}
+
 .ibg {
   background-position: center;
   background-size: cover;
@@ -652,7 +707,7 @@ section.scrolled {
 }
 @media (min-width: 767.98px) {
   .main-page__column {
-    width: 30%;
+    width: 33%;
   }
 }
 .main-page__text {
@@ -694,7 +749,7 @@ section.scrolled {
 
 .slider-main-page {
   border-radius: 60px 60px 0 60px;
-  border: 1rem solid #fff;
+  border: 2rem solid #fff;
   position: relative;
 }
 .slider-main-page__slide {
@@ -831,25 +886,25 @@ section.scrolled {
   position: relative;
   padding-top: 1rem;
   padding-left: 1rem;
-  border-radius: 1rem 0 0 0;
+  border-radius: 2rem 0 0 0;
   background-color: #fff;
 }
 .thumbs-main-page::before, .thumbs-main-page::after {
   content: "";
   position: absolute;
   z-index: 2;
-  width: 1rem;
-  height: 1rem;
+  width: 2rem;
+  height: 2rem;
   aspect-ratio: 1;
-  background-image: radial-gradient(circle at 100% 100%, transparent 1rem, #fff 1rem);
+  background-image: radial-gradient(circle at 100% 100%, transparent 2rem, #fff 2rem);
   rotate: 180deg;
 }
 .thumbs-main-page::before {
   bottom: 0;
-  left: -1rem;
+  left: -2rem;
 }
 .thumbs-main-page::after {
-  top: -1rem;
+  top: -2rem;
   right: 0;
 }
 .thumbs-main-page__image {
