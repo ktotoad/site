@@ -141,7 +141,7 @@ body.lock {
   z-index: 15;
   width: 50px;
   height: 50px;
-  border: 5px solid #f6f6f6;
+  border: 5px solid var(--white);
   border-top-color: transparent;
   border-radius: 50%;
   -webkit-animation: spin 1s linear infinite;
@@ -153,26 +153,25 @@ body.lock {
   content: "";
   position: fixed;
   z-index: 5;
-  top: 0;
+  top: -50vh;
   width: 100vw;
-  height: 100vh;
-  border-top: 25vh solid #565656;
-  -webkit-transition: left 2.8s, right 2.8s, top 2.8s ease-out;
-  transition: left 2.8s, right 2.8s, top 2.8s ease-out;
+  height: 150vh;
+  -webkit-transition: -webkit-box-shadow 2s ease-out;
+  transition: -webkit-box-shadow 2s ease-out;
+  transition: box-shadow 2s ease-out;
+  transition: box-shadow 2s ease-out, -webkit-box-shadow 2s ease-out;
 }
 .loader::before {
-  left: 25vw;
+  left: -50vw;
   border-radius: 50vw 0px 0px 0px;
-  border-left: 25vw solid #565656;
-  -webkit-box-shadow: -50vw -50vw 0px 50vw #565656;
-          box-shadow: -50vw -50vw 0px 50vw #565656;
+  -webkit-box-shadow: inset 50vw 50vh 0px 50vw var(--primary);
+          box-shadow: inset 50vw 50vh 0px 50vw var(--primary);
 }
 .loader::after {
-  right: 25vw;
+  right: -50vw;
   border-radius: 0px 50vw 0px 0px;
-  border-right: 25vw solid #565656;
-  -webkit-box-shadow: 50vw -50vw 0px 50vw #565656;
-          box-shadow: 50vw -50vw 0px 50vw #565656;
+  -webkit-box-shadow: inset -50vw 50vh 0px 50vw var(--primary);
+          box-shadow: inset -50vw 50vh 0px 50vw var(--primary);
 }
 .loader.hidden {
   opacity: 0;
@@ -180,15 +179,13 @@ body.lock {
   -ms-touch-action: none;
       touch-action: none;
 }
-.loader.hidden::after, .loader.hidden::before {
-  top: -50vh;
-  height: 150vh;
-}
 .loader.hidden::before {
-  left: -50vw;
+  -webkit-box-shadow: inset 50vw 50vh 0px -50vw var(--primary);
+          box-shadow: inset 50vw 50vh 0px -50vw var(--primary);
 }
 .loader.hidden::after {
-  right: -50vw;
+  -webkit-box-shadow: inset -50vw 50vh 0px -50vw var(--primary);
+          box-shadow: inset -50vw 50vh 0px -50vw var(--primary);
 }
 .loader.hidden span {
   opacity: 0;
