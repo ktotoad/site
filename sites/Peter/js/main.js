@@ -632,7 +632,7 @@ if(document.querySelector("#one")) {
 	    pin: true
 	  }
 	})
-	tl_one.to('#one', {'z-index': 100}).to('.resizeOne', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
+	tl_one.to('#one', {'z-index': 100,  top: '0'}).to('.resizeOne', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
 }
 
 if(document.querySelector("#two")) {
@@ -646,7 +646,7 @@ if(document.querySelector("#two")) {
 	    pin: true
 	  }
 	})
-	tl_two.to('#two', {'z-index': 100, bottom: '0'})
+	tl_two.to('#two', {'z-index': 100, top: '0'})
 	.to('.resizeTwo', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
 }
 
