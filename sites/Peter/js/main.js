@@ -632,7 +632,9 @@ if(document.querySelector("#one")) {
 	    pin: true
 	  }
 	})
-	tl_one.to('#one', {'z-index': 100,  top: '0'}).to('.resizeOne', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
+	tl_one.to('#one', {'z-index': 100,  top: '0', height: '95vh'})
+	.to('.etalon-page__video', {height: '95vh', 'border-radius': '0 0 0 0'})
+	.to('.resizeOne', {left: 0, width: '100%', height: '100%'})
 }
 
 if(document.querySelector("#two")) {
