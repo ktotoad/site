@@ -632,9 +632,9 @@ if(document.querySelector("#one")) {
 	    pin: true
 	  }
 	})
-	tl_one.to('#one', {'z-index': 100,  top: '0', height: '95vh'})
-	.to('.etalon-page__video', {height: '95vh', 'border-radius': '0 0 0 0'})
-	.to('.resizeOne', {left: 0, width: '100%', height: '100%'})
+	tl_one.to('#one', {'z-index': 100,  top: '0', width: '100vw', height: '95vh'})
+	.to('.slider-full', {height: '100vh'})
+	.to('.resizeOne', {left: 0, width: '100%', height: '100%', 'border-radius': '0 0 0 0'})
 }
 
 if(document.querySelector("#two")) {
@@ -648,8 +648,9 @@ if(document.querySelector("#two")) {
 	    pin: true
 	  }
 	})
-	tl_two.to('#two', {'z-index': 100, top: '0'})
-	.to('.resizeTwo', {left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'})
+	tl_two.to('#two', {'z-index': 100,  top: '0', width: '100vw', height: '95vh'})
+	.to('.slider-full', {height: '100vh'})
+	.to('.resizeTwo', {left: 0, width: '100%', height: '100%', 'border-radius': '0 0 0 0'})
 }
 
 if(document.querySelector("#changeBody")) {
