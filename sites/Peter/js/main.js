@@ -1,3 +1,4 @@
+
 /*Loading================================================================================*/
 window.addEventListener('load', function () {
     const loader = document.querySelector('.loader');
@@ -521,7 +522,11 @@ function initSliders() {
 			pagination: {
 				el: '.slider-page__pagination',
 				clickable: true,
-			}
+			},
+			navigation: {
+        nextEl: ".slider-page__next",
+        prevEl: ".slider-page__prev",
+      },
 		});
 	}
 	if (document.querySelector('.resident-sliders__slider')) {
@@ -632,9 +637,10 @@ if(document.querySelector("#one")) {
 	    pin: true
 	  }
 	})
-	tl_one.to('#one', {'z-index': 100,  top: '0', width: '100vw', height: '95vh'})
-	.to('.slider-full', {height: '100vh'})
-	.to('.resizeOne', {left: 0, width: '100%', height: '100%', 'border-radius': '0 0 0 0'})
+	tl_one
+	.to('#one', {'z-index': 100,  top: '0', width: '100vw', height: '100vh'})
+	.to('.resizeOne .slider-full__image', {'border-top-left-radius': '0', 'border-top-right-radius': '0'})
+	.to('.resizeOne', {left: 0, width: '100%', height: '100%'})
 }
 
 if(document.querySelector("#two")) {
@@ -648,49 +654,42 @@ if(document.querySelector("#two")) {
 	    pin: true
 	  }
 	})
-	tl_two.to('#two', {'z-index': 100,  top: '0', width: '100vw', height: '95vh'})
-	.to('.slider-full', {height: '100vh'})
-	.to('.resizeTwo', {left: 0, width: '100%', height: '100%', 'border-radius': '0 0 0 0'})
-}
-
-if(document.querySelector("#changeBody")) {
-	gsap.to('.image-lobby', {
-		scrollTrigger: {
-	    trigger: '#changeBody',
-	    start: 'top center',
-	    end: 'center top',
-	    scrub: true,
-	  },
-		'border-radius': '300px',
-	})
+	tl_two
+	.to('#two', {'z-index': 100,  top: '0', width: '100vw', height: '100vh'})
+	.to('.resizeTwo .slider-full__image', {'border-top-left-radius': '0', 'border-top-right-radius': '0'})
+	.to('.resizeTwo', {left: 0, width: '100%', height: '100%'})
 }
 
 if(document.querySelector("#three")) {
-	gsap.to('.resizeThree', {
-		scrollTrigger: {
+	var tl_three = gsap.timeline({
+	  paused: true,
+	  scrollTrigger: {
 	    trigger: '#three',
-	    start: '-35vh center',
-	    end: 'bottom center',
+	    start: 'top center',
+	    end: 'top top',
 	    scrub: true,
-	  },
-	  width: '100%',
-	  height: '840px',
+	  }
 	})
+	tl_three
+	.to('#three', {width: '100vw', height: '100vh'})
+	.to('.resizeThree .slider-full__image', {'border-top-left-radius': '0', 'border-top-right-radius': '0'})
+	.to('.resizeThree', {left: 0, width: '100%', height: '100%'})
 }
 
 if(document.querySelector("#four")) {
-	gsap.to('.resizeFour', {
-		scrollTrigger: {
+	var tl_three = gsap.timeline({
+	  paused: true,
+	  scrollTrigger: {
 	    trigger: '#four',
-	    start: 'top top',
-	    end: 'bottom top',
+	    start: 'top center',
+	    end: 'top top',
 	    scrub: true,
-	  }, 
-	  overflow: 'visible',
-	  'margin-top': '10%',
-	  width: '100%',
-	  height: '840px',
+	  }
 	})
+	tl_three
+	.to('#four', {width: '100vw', height: '100vh'})
+	.to('.resizeFour .slider-full__image', {'border-top-left-radius': '0', 'border-top-right-radius': '0'})
+	.to('.resizeFour', {left: 0, width: '100%', height: '100%'})
 }
 
 if(document.querySelector("#five")) {
@@ -704,6 +703,18 @@ if(document.querySelector("#five")) {
 	  width: '219px',
 	  height: '325px',
 		"border-radius": "110px 110px 0px 0px",
+	})
+}
+
+if(document.querySelector("#changeBody")) {
+	gsap.to('.image-lobby', {
+		scrollTrigger: {
+	    trigger: '#changeBody',
+	    start: 'top center',
+	    end: 'center top',
+	    scrub: true,
+	  },
+		'border-radius': '300px',
 	})
 }
 //Buttons_Form==================================================================================================================================================
@@ -724,6 +735,13 @@ if(document.querySelector("#buttonsFormBody")) {
 	  }
 	}
 }
+$('.masonry-grid').masonry({
+  itemSelector: '.masonry-item',
+  columnWidth: '.masonry-sizer',
+  percentPosition: true,
+  gutter: 30
+});
+
 //TABS==================================================================================================================================================
 // Получение хеша в адресе сайта
 function getHash() {
