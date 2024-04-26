@@ -638,9 +638,9 @@ if(document.querySelector("#one")) {
 	  }
 	})
 	tl_one
-	.to('#one', {'z-index': 100,  top: '0', width: '100vw', height: '100vh'})
+	.to('#one', {top: 0, height: '100vh'})
 	.to('.resizeOne .slider-full__image', {'border-top-left-radius': '0', 'border-top-right-radius': '0'})
-	.to('.resizeOne', {left: 0, width: '100%', height: '100%'})
+	.to('.resizeOne', {width: '100%', height: '100vh'})
 }
 
 if(document.querySelector("#two")) {
@@ -655,9 +655,9 @@ if(document.querySelector("#two")) {
 	  }
 	})
 	tl_two
-	.to('#two', {'z-index': 100,  top: '0', width: '100vw', height: '100vh'})
+	.to('#two', {top: 0, height: '100vh'})
 	.to('.resizeTwo .slider-full__image', {'border-top-left-radius': '0', 'border-top-right-radius': '0'})
-	.to('.resizeTwo', {left: 0, width: '100%', height: '100%'})
+	.to('.resizeTwo', {width: '100%', height: '100vh'})
 }
 
 if(document.querySelector("#three")) {
@@ -665,9 +665,10 @@ if(document.querySelector("#three")) {
 	  paused: true,
 	  scrollTrigger: {
 	    trigger: '#three',
-	    start: 'top center',
+	    start: 'top top',
 	    end: 'bottom top',
 	    scrub: true,
+	    pin: true
 	  }
 	})
 	tl_three
