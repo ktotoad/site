@@ -666,12 +666,11 @@ if(document.querySelector("#three")) {
 	  scrollTrigger: {
 	    trigger: '#three',
 	    start: 'top center',
-	    end: 'top top',
+	    end: 'bottom top',
 	    scrub: true,
 	  }
 	})
 	tl_three
-	.to('#three', {width: '100vw', height: '100vh'})
 	.to('.resizeThree .slider-full__image', {'border-top-left-radius': '0', 'border-top-right-radius': '0'})
 	.to('.resizeThree', {left: 0, width: '100%', height: '100%'})
 }
@@ -681,13 +680,12 @@ if(document.querySelector("#four")) {
 	  paused: true,
 	  scrollTrigger: {
 	    trigger: '#four',
-	    start: 'top center',
-	    end: 'top top',
+	    start: 'top top',
+	    end: 'bottom top',
 	    scrub: true,
 	  }
 	})
 	tl_three
-	.to('#four', {width: '100vw', height: '100vh'})
 	.to('.resizeFour .slider-full__image', {'border-top-left-radius': '0', 'border-top-right-radius': '0'})
 	.to('.resizeFour', {left: 0, width: '100%', height: '100%'})
 }
