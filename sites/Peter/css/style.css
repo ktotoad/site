@@ -4818,7 +4818,7 @@ body.lock {
   opacity: 0;
 }
 .checkbox__input:checked + .checkbox__label:before {
-  background: rgb(109, 104, 94);
+  background: var(--primary);
 }
 @media (any-hover: hover) {
   .checkbox__input:hover + .checkbox__label:before {
@@ -4847,7 +4847,7 @@ body.lock {
   border-radius: 50%;
   width: 17px;
   height: 17px;
-  border: 1px solid rgb(109, 104, 94);
+  border: 1px solid var(--primary);
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
 }
@@ -5688,16 +5688,16 @@ a.header__button::before {
   }
 }
 
-#one, #two, #three, #four {
+#one, #two, #three, #four, #five {
   position: absolute;
   z-index: 4;
   width: 100%;
+  height: 100vh;
   top: 25%;
   left: 0;
-  height: 100vh;
 }
 @media (max-width: 767.98px) {
-  #one, #two, #three, #four {
+  #one, #two, #three, #four, #five {
     top: 0;
     position: relative;
   }
@@ -5709,6 +5709,24 @@ a.header__button::before {
 
 #four {
   top: 10%;
+}
+
+#five {
+  top: 0;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .resizeOne, .resizeTwo, .resizeThree, .resizeFour {
@@ -5820,6 +5838,29 @@ a.header__button::before {
 }
 .resizeThree::before, .resizeFour::before {
   display: none;
+}
+
+.resizeFive {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow: hidden;
+}
+.resizeFive video {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 html {
@@ -10589,7 +10630,7 @@ html {
 }
 @media (any-hover: hover) {
   .main-page a.main-page__title:hover {
-    color: rgb(19, 20, 17);
+    color: var(--dark);
   }
 }
 .main-page__image {
@@ -10623,7 +10664,7 @@ html {
 .main-page__text {
   margin-top: 120px;
   width: 712px;
-  color: rgb(19, 20, 17);
+  color: var(--dark);
   font-family: "Inter";
   font-size: 20px;
   line-height: 120%;
@@ -10814,7 +10855,7 @@ html {
   width: max-content;
 }
 .filter-catalog__button {
-  color: rgb(19, 20, 17);
+  color: var(--dark);
   font-family: "Inter";
   font-size: 17px;
   line-height: 120%;
@@ -10842,12 +10883,12 @@ html {
 @media (any-hover: hover) {
   .filter-catalog__button:hover {
     color: rgb(255, 255, 255);
-    background: rgb(109, 104, 94);
+    background: var(--primary);
   }
 }
 .filter-catalog__button.active {
   color: rgb(255, 255, 255);
-  background: rgb(109, 104, 94);
+  background: var(--primary);
 }
 .filter-catalog__input-body {
   padding-left: 20px;
@@ -10877,7 +10918,7 @@ html {
   margin-left: 5px;
 }
 .filter-catalog__input-body, .filter-catalog__input {
-  color: rgb(19, 20, 17);
+  color: var(--dark);
   font-family: "Inter";
   font-size: 17px;
   line-height: 120%;
@@ -10960,7 +11001,7 @@ html {
   width: 100%;
 }
 .spoller-filter-catalog__title {
-  color: rgb(19, 20, 17);
+  color: var(--dark);
   font-family: "Inter";
   font-size: 14px;
   line-height: 120%;
@@ -11017,7 +11058,7 @@ html {
   color: rgb(255, 255, 255);
   font-size: 10px;
   border-radius: 10px;
-  background: rgb(19, 20, 17);
+  background: var(--dark);
 }
 @media (max-width: 1485px) {
   .spoller-filter-catalog__title span {
@@ -11038,7 +11079,7 @@ html {
   }
 }
 .spoller-filter-catalog__list {
-  color: rgb(19, 20, 17);
+  color: var(--dark);
   font-family: "Inter";
   font-size: 16px;
   line-height: 120%;
@@ -11236,7 +11277,7 @@ html {
 }
 .content-catalog__title {
   margin-top: 10px;
-  color: rgb(19, 20, 17);
+  color: var(--dark);
   font-family: "Inter";
   font-size: 19px;
   line-height: 120%;
@@ -11250,11 +11291,11 @@ html {
 }
 @media (any-hover: hover) {
   .content-catalog__title:hover {
-    color: rgb(109, 104, 94);
+    color: var(--primary);
   }
 }
 .content-catalog__text {
-  color: rgb(19, 20, 17);
+  color: var(--dark);
   font-family: "Inter";
   font-size: 12px;
   line-height: 120%;
@@ -11288,7 +11329,7 @@ html {
   font-family: "Inter";
   font-size: 10px;
   line-height: 120%;
-  background: rgb(19, 20, 17);
+  background: var(--dark);
   -webkit-box-shadow: -20px 0px 20px 0px rgb(255, 255, 255);
           box-shadow: -20px 0px 20px 0px rgb(255, 255, 255);
   -webkit-transition: background 0.3s ease 0s;
@@ -11301,7 +11342,7 @@ html {
 }
 @media (any-hover: hover) {
   .content-catalog__more:hover {
-    background: rgb(109, 104, 94);
+    background: var(--primary);
   }
 }
 .content-catalog__button {
@@ -11316,25 +11357,22 @@ html {
   }
 }
 
-.move-resident-page.active .move-resident-page__resizeFive {
+.move-resident-page {
+  overflow: hidden;
+  position: relative;
+  height: 180vh;
+}
+@media (max-width: 767.98px) {
+  .move-resident-page {
+    height: 90vh;
+  }
+}
+.move-resident-page.active .resizeFive {
   opacity: 1;
   -webkit-transform: translateY(0);
           transform: translateY(0);
 }
-.move-resident-page__container {
-  position: relative;
-  z-index: 3;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-.move-resident-page__resizeFive {
+.move-resident-page .resizeFive {
   opacity: 0;
   -webkit-transform: translateY(200%);
           transform: translateY(200%);
@@ -11342,29 +11380,6 @@ html {
   transition: opacity 1s, -webkit-transform 1s ease-out 0s;
   transition: opacity 1s, transform 1s ease-out 0s;
   transition: opacity 1s, transform 1s ease-out 0s, -webkit-transform 1s ease-out 0s;
-  margin-top: 15px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  height: 840px;
-  width: 100%;
-  overflow: hidden;
-}
-.move-resident-page__resizeFive img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 
 .form-resident-page {
@@ -11378,7 +11393,7 @@ html {
   height: 100%;
   top: 0;
   left: -10%;
-  background: rgb(86, 86, 86);
+  background: var(--primary);
   border-radius: 100vh 100vh 0 0/30vh 30vh 0 0;
 }
 .form-resident-page__container {
@@ -11457,7 +11472,7 @@ html {
   }
 }
 .resident-header-page__text {
-  color: rgb(166, 132, 99);
+  color: var(--primary);
   font-family: "Inter";
   font-size: 8px;
   line-height: 120%;
@@ -11587,7 +11602,7 @@ html {
   width: 100%;
 }
 .column-flat__item {
-  color: rgb(1, 41, 34);
+  color: var(--dark);
   font-family: "Inter";
   font-size: 16px;
   line-height: 120%;
@@ -11626,7 +11641,7 @@ html {
 }
 .column-flat__price {
   margin-top: 53px;
-  color: rgb(1, 41, 34);
+  color: var(--dark);
   font-family: "Inter";
   font-size: 40px;
   line-height: 120%;
@@ -11679,7 +11694,7 @@ html {
           flex: 0 1 auto;
 }
 .bar-flat__title {
-  color: rgb(1, 41, 34);
+  color: var(--dark);
   font-family: "Inter";
   font-size: 12px;
   line-height: 120%;
@@ -11721,7 +11736,7 @@ html {
   }
 }
 .bar-flat__text {
-  color: rgb(0, 0, 0);
+  color: var(--dark);
   font-family: "Inter";
   font-size: 12px;
   line-height: 120%;
@@ -11771,7 +11786,7 @@ html {
 }
 .tabs-flat__title {
   padding: 10px;
-  color: rgb(1, 41, 34);
+  color: var(--dark);
   background: transparent;
   border: 1px solid #fff;
   font-family: "Inter";
@@ -11788,14 +11803,14 @@ html {
   }
 }
 .tabs-flat__title._tab-active {
-  color: rgb(166, 132, 99);
-  border: 1px solid rgb(166, 132, 99);
+  color: var(--primary);
+  border: 1px solid var(--primary);
 }
 @media (any-hover: hover) {
   .tabs-flat__title:hover {
     color: #fff;
-    background: rgb(166, 132, 99);
-    border: 1px solid rgb(166, 132, 99);
+    background: var(--primary);
+    border: 1px solid var(--primary);
   }
 }
 .tabs-flat__content {
