@@ -684,6 +684,7 @@ if(document.querySelector("#four")) {
 	    start: 'top top',
 	    end: 'bottom top',
 	    scrub: true,
+	    pin: true
 	  }
 	})
 	tl_three
@@ -713,7 +714,8 @@ if(document.querySelector("#changeBody")) {
 	    end: 'center top',
 	    scrub: true,
 	  },
-		'border-radius': '300px',
+		'border-top-left-radius': '300px',
+		'border-top-right-radius': '300px',
 	})
 }
 //Buttons_Form==================================================================================================================================================
