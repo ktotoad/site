@@ -696,13 +696,15 @@ if(document.querySelector("#five")) {
 	gsap.to('.resizeFive', {
 		scrollTrigger: {
 	    trigger: '#five',
-	    start: 'top bottom',
+	    start: 'top top',
 	    end: 'bottom top',
 	    scrub: true,
+	    pin: true
 	  }, 
 	  width: '219px',
 	  height: '325px',
-		"border-radius": "110px 110px 0px 0px",
+		'border-top-left-radius': '110px',
+		'border-top-right-radius': '110px'
 	})
 }
 
