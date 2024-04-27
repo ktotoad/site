@@ -1,9 +1,9 @@
 
 /*Loading================================================================================*/
-window.addEventListener('load', function () {
-    const loader = document.querySelector('.loader');
-    loader.classList.add('hidden');
-});
+//window.addEventListener('load', function () {
+  //  const loader = document.querySelector('.loader');
+  //  loader.classList.add('hidden');
+//});
 
 /*Content_download================================================================================*/
 let wrapper = document.querySelector('.wrapper');
@@ -158,8 +158,8 @@ da.init();
 /*Animation================================================================================*/
 if(document.querySelector('.anim-items')) {
 	const animItems = document.querySelectorAll('.anim-items');
-	window.addEventListener('load', (event) => {
-		if (wrapper.classList.contains('loaded')) {
+	//window.addEventListener('load', (event) => {
+		//if (wrapper.classList.contains('loaded')) {
 			if (animItems.length > 0) {
 				window.addEventListener('scroll', animOnScroll);
 				function animOnScroll(params) {
@@ -194,8 +194,8 @@ if(document.querySelector('.anim-items')) {
 					animOnScroll();
 				}, 300);
 			}
-		}
-	});
+		//}
+	//});
 }
 //burger=====================================================================================================================================================
 if (document.querySelector('.icon-submenu')) {
