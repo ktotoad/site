@@ -167,17 +167,19 @@ body.lock {
 }
 .preloader-body__percents {
   position: absolute;
-  bottom: 100px;
+  bottom: 15%;
   left: 50%;
   -webkit-transform: translate(-50%, 0);
           transform: translate(-50%, 0);
-  font-family: "Jeko";
-  font-style: normal;
-  font-weight: 400;
   font-size: 40px;
-  line-height: 48px;
+  line-height: 110%;
   text-align: center;
   color: #d9d9d9;
+}
+@media (max-width: 1370px) {
+  .preloader-body__percents {
+    font-size: calc(20px + 20 * (100vw - 320px) / (1050));
+  }
 }
 
 .container {
