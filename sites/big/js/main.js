@@ -1,16 +1,7 @@
 
 /*Loading================================================================================*/
 if (document.querySelector(".preloader")) {
-    var tl = gsap.timeline({
-      paused: true,
-      scrollTrigger: {
-        trigger: '#one',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
-        pin: true
-      }
-    })
+    var tl = gsap.timeline();
     const loader = document.querySelector('.preloader'),
         body = document.querySelector("body");
     body.classList.add("lock"),
