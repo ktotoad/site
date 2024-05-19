@@ -2262,7 +2262,14 @@ textarea.input {
   }
 }
 .slider-catalog__slide {
+  display: none;
   min-height: 100%;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease 0s;
+  transition: opacity 0.3s ease 0s;
+}
+.slider-catalog__slide.show {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2276,6 +2283,8 @@ textarea.input {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  visibility: visible;
+  opacity: 1;
 }
 .slider-catalog__pagination {
   display: -webkit-box;
