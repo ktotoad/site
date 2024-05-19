@@ -67,7 +67,17 @@ function buildSliders() {
 //Инициализация_Swiper===============================================================================================================================================
 function initSliders() {
 	buildSliders();
-
+	if (document.querySelector('.slider-about')) {
+		new Swiper('.slider-about', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			spaceBetween: 5,
+			parallax: true,
+			autoHeight: true,
+			speed: 800,
+		});
+	}
 	if (document.querySelector('.main-slider')) {
 		new Swiper('.main-slider', {
 			observer: true,
@@ -99,6 +109,4 @@ function initSliders() {
 		});
 	}
 }
-
-
 initSliders();
