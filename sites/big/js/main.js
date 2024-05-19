@@ -50,18 +50,6 @@ window.addEventListener('DOMContentLoaded', function() {
 		});
 	}
 });
-//Filter=====================================================================================================================================================
-$('#filterButton').click(function(event) {
-	var i=$(this).data('filter');
-	
-	$('#filterItem').removeClass('show');
-	$('#filterItem.f_'+i).addClass('show');
-
-	$('#filterButton').removeClass('_tab-active');
-	$(this).addClass('_tab-active');
-
-	return false;
-});
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
@@ -84,14 +72,10 @@ function initSliders() {
 		new Swiper('.main-slider', {
 			observer: true,
 			observeParents: true,
-			slidesPerView: 1,
-			spaceBetween: 50,
+			slidesPerView: "auto",
+			spaceBetween: 0,
 			parallax: true,
 			autoHeight: true,
-			autoplay: {
-				delay: 3000,
-				disableOnInteraction: false,
-			},
 			speed: 800,
 		});
 	}
