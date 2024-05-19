@@ -71,18 +71,21 @@ window.addEventListener('DOMContentLoaded', function() {
 	}
 });
 //Filter=====================================================================================================================================================
-$('.sliders-page__link').click(function(event) {
+$('.slider-catalog__item').click(function(event) {
 	var i=$(this).data('filter');
 	
-	$('.main-slider__slide').removeClass('show');
-	$('.main-slider__slide.f_'+i).addClass('show');
+	$('.slider-catalog__slide').removeClass('show');
+	$('.slider-catalog__slide.f_'+i).addClass('show');
 
-	$('.sliders-page__link').removeClass('_tab-active');
-	$(this).addClass('_tab-active');
+	$('.slider-catalog__item').removeClass('active');
+	$(this).addClass('active');
 
 	console.log("click " + i);
 
 	return false;
+
+	var mySwiper = document.querySelector('.slider-catalog__slider').swiper;
+	mySwiper.update();
 });
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
