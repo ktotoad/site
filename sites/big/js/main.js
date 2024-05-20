@@ -8,7 +8,7 @@ if (document.querySelector(".preloader")) {
         document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 body.classList.remove("lock");
-            }, 2e3),
+            }, 2000),
                 setTimeout(() => {
                     loader.classList.add("hidden");
                 }, 3300),
@@ -260,6 +260,10 @@ function initSliders() {
 			parallax: true,
 			autoHeight: true,
 			speed: 800,
+			navigation: {
+				nextEl: ".slider-about__next",
+				prevEl: ".slider-about__prev",
+			},
 		});
 	}
 	if (document.querySelector('.main-slider')) {
@@ -277,7 +281,7 @@ function initSliders() {
 				observer: true,
 				observeParents: true,
 				slidesPerView: "auto",
-				spaceBetween: 0,
+				spaceBetween: 10,
 				parallax: true,
 				autoHeight: true,
 				speed: 800,
