@@ -263,14 +263,28 @@ function initSliders() {
 		});
 	}
 	if (document.querySelector('.main-slider')) {
-		new Swiper('.main-slider', {
-			observer: true,
-			observeParents: true,
-			slidesPerView: "auto",
-			spaceBetween: 0,
-			parallax: true,
-			autoHeight: true,
-			speed: 800,
+		let mainSliders = document.querySelectorAll('.main-slider');
+		mainSliders.forEach(function (mainSlider) {
+        	let section = mainSlider.closest("section");
+        	let swipernav = section.querySelector(".nav-slider");
+			new Swiper(swipernav, {
+				spaceBetween: 10,
+				slidesPerView: "auto",
+				freeMode: true,
+				watchSlidesProgress: true,
+			});
+			new Swiper(mainSlider, {
+				observer: true,
+				observeParents: true,
+				slidesPerView: "auto",
+				spaceBetween: 0,
+				parallax: true,
+				autoHeight: true,
+				speed: 800,
+				thumbs: {
+					swiper: swipernav,
+				},
+			});
 		});
 	}
 	if (document.querySelector('.picture-slider')) {
