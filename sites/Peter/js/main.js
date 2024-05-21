@@ -443,7 +443,7 @@ let _slideToggle = (target, duration = 500) => {
 	}
 }
 //Mouse_plus==================================================================================================================================================
-if(document.querySelector("#block_mouse_move")) {
+/*if(document.querySelector("#block_mouse_move")) {
 	var blocks_mouse_move = document.querySelectorAll("#block_mouse_move");
 
 	blocks_mouse_move.forEach(block_mouse_move => {
@@ -469,7 +469,7 @@ if(document.querySelector("#block_mouse_move")) {
 			itemZoom.style.top = event.clientY + -30 + 'px';
 		}
 	});
-}
+}*/
 //ZOOM=====================================================================================================================================================
 if(document.querySelector(".parent-container")) {
 	$('.parent-container').magnificPopup({
