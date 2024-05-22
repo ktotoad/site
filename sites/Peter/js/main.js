@@ -6,40 +6,57 @@
 });
 */
 if (document.querySelector(".preloader")) {
+    let imagesCount = document.querySelectorAll("img").length,
+        percent = 100 / imagesCount,
+        progress = 0,
+        loadedImg = 0;
+
     var tl = gsap.timeline();
     const loader = document.querySelector('.preloader'),
         body = document.querySelector("body");
-    body.classList.add("lock"),
-        document.addEventListener("DOMContentLoaded", () => {
-            setTimeout(() => {
-                body.classList.remove("lock");
-            }, 2000),
-            setTimeout(() => {
-                loader.classList.add("hidden");
-            }, 3300),
-            (function (loader, body) {
-                let n = 0,
-                    i = setInterval(() => {
-                        (document.querySelector(".preloader-body__percents").innerHTML = ++n + " %"), 100 === n && clearInterval(i);
-                    }, 10);
-            })(),
-            tl.to(".preloader-body__percents", { color: "#fff", duration: 2 }),
-            tl.to(".preloader-body__logo-light", { width: "100%", opacity: 1, duration: 2, delay: -1.5 }),
+    
+    body.classList.add("lock");
+
+    for (let i = 0; i < imagesCount; i++) {
+        let img_copy = new Image();
+        img_copy.src = document.images[i].src;
+        img_copy.onload = img_load;
+    }
+
+    function img_load() {
+        progress += percent;
+        loadedImg++;
+
+        loading = Math.round(progress)
+        document.querySelector(".preloader-body__percents").innerHTML = ++loading + "%";
+        document.querySelector(".preloader-body__logo-light").style.width = ++loading + "%";
+
+        if(progress >= 100 || loadedImg == imagesCount) {
+            body.classList.remove("lock");
+
+            tl.to(".preloader-body__percents", { color: "#fff", duration: 0 }),
+           // tl.to(".preloader-body__logo-light", { width: "100%", opacity: 1, duration: 0, delay: 0 }),
             tl.to(".preloader-body__logo-light", { clipPath: "polygon(0 0, 100% 0%, 100% 100%, 0% 100%)", duration: 0.1, delay: 0.35 }),
             tl.to(".preloader", { scale: 6, duration: 1, delay: 0.3 }),
             tl.to(".preloader", { opacity: 0, duration: 0, delay: 0 });
-    });
+
+            loader.classList.add("hidden");
+
+            animateall();
+        }
+    }
 }
 /*Content_download================================================================================*/
 let wrapper = document.querySelector('.wrapper');
 window.addEventListener('load', (event) => {
 	wrapper.classList.add('loaded');
+    animateall();
 });
 
 /*Animation================================================================================*/
-if(document.querySelector('.anim-items')) {
-	const animItems = document.querySelectorAll('.anim-items');
-	window.addEventListener('load', (event) => {
+function animateall() {
+	if(document.querySelector('.anim-items')) {
+		const animItems = document.querySelectorAll('.anim-items');
 		if (wrapper.classList.contains('loaded')) {
 			if (animItems.length > 0) {
 				window.addEventListener('scroll', animOnScroll);
@@ -76,7 +93,7 @@ if(document.querySelector('.anim-items')) {
 				}, 300);
 			}
 		}
-	});
+	}
 }
 /*Adaptive================================================================================*/
 "use strict";
@@ -702,7 +719,7 @@ if(document.querySelector("#three")) {
 }
 
 if(document.querySelector("#four")) {
-	var tl_three = gsap.timeline({
+	var tl_four = gsap.timeline({
 	  paused: true,
 	  scrollTrigger: {
 	    trigger: '#four',
@@ -712,25 +729,24 @@ if(document.querySelector("#four")) {
 	    pin: true
 	  }
 	})
-	tl_three
+	tl_four
 	.to('.resizeFour .slider-full__image', {'border-top-left-radius': '0', 'border-top-right-radius': '0'})
 	.to('.resizeFour', {left: 0, width: '100%', height: '100%'})
 }
 
 if(document.querySelector("#five")) {
-	gsap.to('.resizeFive', {
-		scrollTrigger: {
+	var tl_five = gsap.timeline({
+	  paused: true,
+	  scrollTrigger: {
 	    trigger: '#five',
 	    start: 'top top',
 	    end: 'bottom top',
 	    scrub: true,
 	    pin: true
-	  }, 
-	  width: '219px',
-	  height: '325px',
-		'border-top-left-radius': '110px',
-		'border-top-right-radius': '110px'
+	  }
 	})
+	tl_five
+	.to('.resizeFive', {width: '219px', height: '325px', 'border-top-left-radius': '110px', 'border-top-right-radius': '110px'})
 }
 
 if(document.querySelector("#changeBody")) {
