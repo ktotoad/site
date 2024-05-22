@@ -5,6 +5,8 @@
     loader.classList.add('hidden');
 });
 */
+let wrapper = document.querySelector('.wrapper');
+
 if (document.querySelector(".preloader")) {
     let imagesCount = document.querySelectorAll("img").length,
         percent = 100 / imagesCount,
@@ -41,22 +43,21 @@ if (document.querySelector(".preloader")) {
             tl.to(".preloader", { opacity: 0, duration: 0, delay: 0 });
 
             loader.classList.add("hidden");
+            wrapper.classList.add('loaded');
 
             animateall();
         }
     }
 }
 /*Content_download================================================================================*/
-let wrapper = document.querySelector('.wrapper');
-window.addEventListener('load', (event) => {
-	wrapper.classList.add('loaded');
-});
 
 /*Animation================================================================================*/
 function animateall() {
+	console.log("animate");
 	if(document.querySelector('.anim-items')) {
 		const animItems = document.querySelectorAll('.anim-items');
 		if (wrapper.classList.contains('loaded')) {
+	console.log("animate loaded");
 			if (animItems.length > 0) {
 				window.addEventListener('scroll', animOnScroll);
 				function animOnScroll(params) {
@@ -93,7 +94,7 @@ function animateall() {
 			}
 		}
 	}
-}
+};
 /*Adaptive================================================================================*/
 "use strict";
 function DynamicAdapt(type) {
