@@ -34,7 +34,7 @@ if (document.querySelector(".preloader")) {
         if(progress >= 100 || loadedImg == imagesCount) {
             body.classList.remove("lock");
 
-            tl.to(".preloader-body__percents", { color: "#fff", duration: 0 }),
+            //tl.to(".preloader-body__percents", { color: "#fff", duration: 0 }),
            // tl.to(".preloader-body__logo-light", { width: "100%", opacity: 1, duration: 0, delay: 0 }),
             tl.to(".preloader-body__logo-light", { clipPath: "polygon(0 0, 100% 0%, 100% 100%, 0% 100%)", duration: 0.1, delay: 0.35 }),
             tl.to(".preloader", { scale: 6, duration: 1, delay: 0.3 }),
