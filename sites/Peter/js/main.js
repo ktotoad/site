@@ -14,21 +14,21 @@ if (document.querySelector(".preloader")) {
             setTimeout(() => {
                 body.classList.remove("lock");
             }, 2000),
-                setTimeout(() => {
-                    loader.classList.add("hidden");
-                }, 3300),
-                (function (loader, body) {
-                    let n = 0,
-                        i = setInterval(() => {
-                            (document.querySelector(".preloader-body__percents").innerHTML = ++n + " %"), 100 === n && clearInterval(i);
-                        }, 10);
-                })(),
-                tl.to(".preloader-body__percents", { color: "#fff", duration: 2 }),
-                tl.to(".preloader-body__logo-light", { width: "100%", opacity: 1, duration: 2, delay: -1.5 }),
-                tl.to(".preloader-body__logo-light", { clipPath: "polygon(0 0, 100% 0%, 100% 100%, 0% 100%)", duration: 0.1, delay: 0.35 }),
-                tl.to(".preloader", { scale: 6, duration: 1, delay: 0.3 }),
-                tl.to(".preloader", { opacity: 0, duration: 0, delay: 0 });
-        });
+            setTimeout(() => {
+                loader.classList.add("hidden");
+            }, 3300),
+            (function (loader, body) {
+                let n = 0,
+                    i = setInterval(() => {
+                        (document.querySelector(".preloader-body__percents").innerHTML = ++n + " %"), 100 === n && clearInterval(i);
+                    }, 10);
+            })(),
+            tl.to(".preloader-body__percents", { color: "#fff", duration: 2 }),
+            tl.to(".preloader-body__logo-light", { width: "100%", opacity: 1, duration: 2, delay: -1.5 }),
+            tl.to(".preloader-body__logo-light", { clipPath: "polygon(0 0, 100% 0%, 100% 100%, 0% 100%)", duration: 0.1, delay: 0.35 }),
+            tl.to(".preloader", { scale: 6, duration: 1, delay: 0.3 }),
+            tl.to(".preloader", { opacity: 0, duration: 0, delay: 0 });
+    });
 }
 /*Content_download================================================================================*/
 let wrapper = document.querySelector('.wrapper');
