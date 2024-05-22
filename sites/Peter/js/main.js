@@ -50,7 +50,6 @@ if (document.querySelector(".preloader")) {
 let wrapper = document.querySelector('.wrapper');
 window.addEventListener('load', (event) => {
 	wrapper.classList.add('loaded');
-    animateall();
 });
 
 /*Animation================================================================================*/
