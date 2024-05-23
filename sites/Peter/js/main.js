@@ -38,9 +38,9 @@ if (document.querySelector(".preloader")) {
 
             //tl.to(".preloader-body__percents", { color: "#fff", duration: 0 }),
            // tl.to(".preloader-body__logo-light", { width: "100%", opacity: 1, duration: 0, delay: 0 }),
-            tl.to(".preloader-body__logo-light", { clipPath: "polygon(0 0, 100% 0%, 100% 100%, 0% 100%)", duration: 0.1, delay: 0.35 }),
-            tl.to(".preloader", { scale: 6, duration: 0.3, delay: 0.3 }),
-            tl.to(".preloader", { opacity: 0, duration: 0, delay: 0 });
+            tl.to(".preloader-body__logo-light", { clipPath: "polygon(0 0, 100% 0%, 100% 100%, 0% 100%)", duration: 0.1, delay: 0.35 });
+            //tl.to(".preloader", { scale: 6, duration: 0.3, delay: 0.3 }),
+            //tl.to(".preloader", { opacity: 0, duration: 0, delay: 0 });
 
             loader.classList.add("hidden");
             wrapper.classList.add('loaded');
@@ -53,11 +53,9 @@ if (document.querySelector(".preloader")) {
 
 /*Animation================================================================================*/
 function animateall() {
-	console.log("animate");
 	if(document.querySelector('.anim-items')) {
 		const animItems = document.querySelectorAll('.anim-items');
 		if (wrapper.classList.contains('loaded')) {
-	console.log("animate loaded");
 			if (animItems.length > 0) {
 				window.addEventListener('scroll', animOnScroll);
 				function animOnScroll(params) {
