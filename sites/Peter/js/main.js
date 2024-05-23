@@ -51,6 +51,12 @@ if (document.querySelector(".preloader")) {
 }
 /*Content_download================================================================================*/
 
+function lazyload() {
+    const hasSupport = 'loading' in HTMLImageElement.prototype;
+    document.documentElement.className = hasSupport ? 'pass' : 'fail';
+}
+lazyload();
+
 /*Animation================================================================================*/
 function animateall() {
 	if(document.querySelector('.anim-items')) {
@@ -660,6 +666,21 @@ function initSliders() {
 					slidesPerView: 4,
 					spaceBetween: 20,
 				}
+			},
+		});
+	}
+if (document.querySelector('.save-page__slider')) {
+		new Swiper('.save-page__slider', {
+      spaceBetween: 30,
+			slidesPerView: 1,
+  		observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 20,
+			parallax: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
 			},
 		});
 	}
