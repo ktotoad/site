@@ -6242,9 +6242,20 @@ html {
     border-bottom-left-radius: calc(200px + 300 * (100vw - 320px) / (1165));
   }
 }
+@media (max-width: 767.98px) {
+  .fullscreen-page__content {
+    padding-top: 15vh;
+  }
+}
 .fullscreen-page__content.active::before {
   height: 115vh;
   opacity: 1;
+}
+@media (max-width: 767.98px) {
+  .fullscreen-page__content.active::before {
+    height: 65vh;
+    opacity: 1;
+  }
 }
 @media (max-width: 1500px) {
   .fullscreen-page__content.active::before {
@@ -7458,6 +7469,8 @@ html {
   }
 }
 .item-etalon__image {
+  position: relative;
+  z-index: 3;
   cursor: none;
   display: block;
   height: inherit;
