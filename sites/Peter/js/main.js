@@ -1,10 +1,5 @@
 
 /*Loading================================================================================*/
-/*window.addEventListener('load', function () {
-    const loader = document.querySelector('.loader');
-    loader.classList.add('hidden');
-});
-*/
 let wrapper = document.querySelector('.wrapper');
 
 if (document.querySelector(".preloader")) {
@@ -48,6 +43,11 @@ if (document.querySelector(".preloader")) {
             animateall();
         }
     }
+}
+else {
+    window.addEventListener('load', function () {
+        const loader = document.querySelector('.loader');
+    });
 }
 /*Content_download================================================================================*/
 
