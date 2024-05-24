@@ -259,11 +259,11 @@ if (document.querySelector('.icon-submenu')) {
 			submenuBody.classList.toggle('active');
 			body.classList.toggle('lock');
 		});
-	$('.submenu__list li').on('mouseenter',function(){
+	$('.submenu__nav li').on('mouseenter',function(){
 		$(this).siblings().addClass('notactive');
 		$('.submenu__image[data-link="'+$(this).data('link')+'"]').addClass('active');
 	});
-	$('.submenu__list li').on('mouseleave',function(){
+	$('.submenu__nav li').on('mouseleave',function(){
 		$(this).siblings().removeClass('notactive');
 		$('.submenu__image[data-link="'+$(this).data('link')+'"]').removeClass('active');
 		if(!$('.submenu__image.active').length){
