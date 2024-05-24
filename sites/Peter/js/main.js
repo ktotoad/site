@@ -680,12 +680,16 @@ if (document.querySelector('.save-page__slider')) {
 			slidesPerView: 1,
   		observer: true,
 			observeParents: true,
-			slidesPerView: 1,
+			slidesPerView: 2,
 			spaceBetween: 20,
 			parallax: true,
 			autoplay: {
 				delay: 3000,
 				disableOnInteraction: false,
+			},
+			pagination: {
+				el: '.save-page__pagination',
+				clickable: true,
 			},
 		});
 	}
