@@ -3,18 +3,26 @@
 let wrapper = document.querySelector('.wrapper');
 
 if (document.querySelector(".preloader")) {
-    let imagesCount = document.querySelectorAll("img").length,
-        percent = 100 / imagesCount,
-        progress = 0,
-        loadedImg = 0;
-
-    var tl = gsap.timeline();
+    let length = 0,
+        imagesall = document.querySelectorAll("img"),
+        tl = gsap.timeline();
     const loader = document.querySelector('.preloader'),
         body = document.querySelector("body");
     
     body.classList.add("lock");
 
-    for (let i = 0; i < imagesCount; i++) {
+    imagesall.forEach(image => {
+        if (!image.hasAttribute('loading')) {
+            length++;
+        }
+    });
+
+    let percent = 100 / length,
+        progress = 0,
+        loadedImg = 0;
+
+
+    for (let i = 0; i < length; i++) {
         let img_copy = new Image();
         img_copy.src = document.images[i].src;
         img_copy.onload = img_load;
@@ -28,14 +36,9 @@ if (document.querySelector(".preloader")) {
         document.querySelector(".preloader-body__percents").innerHTML = ++loading + "%";
         document.querySelector(".preloader-body__logo-light").style.width = ++loading + "%";
 
-        if(progress == 100 || loadedImg == imagesCount) {
+        if(progress >= 100 || loadedImg == length) {
             body.classList.remove("lock");
-
-            //tl.to(".preloader-body__percents", { color: "#fff", duration: 0 }),
-           // tl.to(".preloader-body__logo-light", { width: "100%", opacity: 1, duration: 0, delay: 0 }),
             tl.to(".preloader-body__logo-light", { clipPath: "polygon(0 0, 100% 0%, 100% 100%, 0% 100%)", duration: 0.1, delay: 0.35 });
-            //tl.to(".preloader", { scale: 6, duration: 0.3, delay: 0.3 }),
-            //tl.to(".preloader", { opacity: 0, duration: 0, delay: 0 });
 
             loader.classList.add("hidden");
             wrapper.classList.add('loaded');
@@ -43,8 +46,7 @@ if (document.querySelector(".preloader")) {
             animateall();
         }
     }
-}
-else {
+} else {
     window.addEventListener('load', function () {
         wrapper.classList.add('loaded');
         animateall();
