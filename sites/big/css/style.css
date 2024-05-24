@@ -132,16 +132,34 @@ body.lock {
   z-index: 99999;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: #f6f6f6;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+  -webkit-transition: opacity 2.5s ease-out;
+  transition: opacity 2.5s ease-out;
   pointer-events: none;
-}
-.preloader.hidden {
-  display: none;
+  background: #f6f6f6;
 }
 .preloader .container {
+  position: relative;
+  z-index: 10;
   height: 100%;
+  -webkit-transition: opacity 3.5s, -webkit-transform 1.5s ease-out;
+  transition: opacity 3.5s, -webkit-transform 1.5s ease-out;
+  transition: opacity 3.5s, transform 1.5s ease-out;
+  transition: opacity 3.5s, transform 1.5s ease-out, -webkit-transform 1.5s ease-out;
+}
+.preloader.hidden {
+  opacity: 0;
 }
 
 .preloader-body {
@@ -161,36 +179,29 @@ body.lock {
     width: calc(290px + 150 * ((100vw - 320px) / (1050)));
   }
 }
-@media (max-width: 991.98px) {
-  .preloader-body__logo {
-    width: 332px;
-    height: 76px;
-  }
+.preloader-body__logo img {
+  width: 440px;
+  height: 120px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+@media (max-width: 1370px) {
   .preloader-body__logo img {
-    width: 332px;
-    height: 76px;
-    -o-object-fit: contain;
-       object-fit: contain;
+    width: calc(290px + 150 * ((100vw - 320px) / (1050)));
+  }
+}
+@media (max-width: 1370px) {
+  .preloader-body__logo img {
+    height: calc(76px + 44 * ((100vw - 320px) / (1050)));
   }
 }
 .preloader-body__logo-light {
   position: absolute;
   top: 0;
   left: 0;
-  -webkit-transition: all 1.5s ease;
-  transition: all 1.5s ease;
   width: 0;
-  opacity: 0;
   -webkit-clip-path: polygon(0 0, 100% 0%, 80% 100%, 0% 100%);
           clip-path: polygon(0 0, 100% 0%, 80% 100%, 0% 100%);
-}
-@media (max-width: 991.98px) {
-  .preloader-body__logo-light img {
-    width: 332px;
-    height: 76px;
-    -o-object-fit: contain;
-       object-fit: contain;
-  }
 }
 .preloader-body__percents {
   position: absolute;
@@ -201,7 +212,7 @@ body.lock {
   font-size: 40px;
   line-height: 110%;
   text-align: center;
-  color: #d9d9d9;
+  color: var(--black);
 }
 @media (max-width: 1370px) {
   .preloader-body__percents {
@@ -1267,23 +1278,11 @@ textarea.input {
           flex-direction: row;
   margin: 40px;
   gap: 10px;
-  position: relative;
 }
 @media (max-width: 1370px) {
   .main-section__columns {
     margin: calc(10px + 30 * ((100vw - 320px) / (1050)));
   }
-}
-.main-section__columns::after {
-  content: "";
-  position: absolute;
-  width: 2px;
-  height: 100%;
-  top: 0;
-  left: 50%;
-  background: var(--light-gray);
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
 }
 @media (max-width: 767.98px) {
   .main-section__columns {
@@ -1300,9 +1299,6 @@ textarea.input {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-  }
-  .main-section__columns::after {
-    display: none;
   }
 }
 .main-section__logo {
@@ -1414,6 +1410,31 @@ textarea.input {
     width: 100%;
   }
 }
+.columns-main__content_left {
+  text-align: left;
+}
+.columns-main__content_left .content-main__number::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background: var(--black);
+}
+@media (max-width: 1370px) {
+  .columns-main__content_left .content-main__number::after {
+    width: calc(12px + 6 * ((100vw - 320px) / (1050)));
+  }
+}
+.columns-main__content_right {
+  text-align: right;
+}
+.columns-main__content_right .content-main__row {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+}
 
 .content-main__column {
   display: -webkit-box;
@@ -1477,22 +1498,8 @@ textarea.input {
   }
 }
 .content-main__number {
-  display: block;
-  text-align: center;
-  min-width: 82px;
-  border: 1px solid var(--light-gray);
-  padding: 10px;
-  border-radius: 46px;
-}
-@media (max-width: 1370px) {
-  .content-main__number {
-    min-width: calc(30px + 52 * ((100vw - 320px) / (1050)));
-  }
-}
-@media (max-width: 1370px) {
-  .content-main__number {
-    padding: calc(5px + 5 * ((100vw - 320px) / (1050)));
-  }
+  position: relative;
+  font-weight: 500;
 }
 
 .video-page {
