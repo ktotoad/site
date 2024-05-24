@@ -28,7 +28,7 @@ if (document.querySelector(".preloader")) {
         document.querySelector(".preloader-body__percents").innerHTML = ++loading + "%";
         document.querySelector(".preloader-body__logo-light").style.width = ++loading + "%";
 
-        if(progress >= 100 || loadedImg == imagesCount) {
+        if(progress == 100 || loadedImg == imagesCount) {
             body.classList.remove("lock");
 
             //tl.to(".preloader-body__percents", { color: "#fff", duration: 0 }),
