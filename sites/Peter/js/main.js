@@ -17,6 +17,8 @@ if (document.querySelector(".preloader")) {
         }
     });
 
+    console.log("Всего изображений для предзагрузки: " + length);
+
     let percent = 100 / length,
         progress = 0,
         loadedImg = 0;
