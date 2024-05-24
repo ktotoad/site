@@ -47,6 +47,7 @@ if (document.querySelector(".preloader")) {
 else {
     window.addEventListener('load', function () {
         const loader = document.querySelector('.loader');
+        animateall();
     });
 }
 /*Content_download================================================================================*/
