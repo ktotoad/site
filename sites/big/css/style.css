@@ -398,10 +398,6 @@ body.lock {
   opacity: 1;
   visibility: visible;
 }
-.popup__content {
-  position: relative;
-  background-color: #fff;
-}
 .popup__close span::before, .popup__close span::after {
   -webkit-transition: -webkit-transform 0.9s ease 0s;
   transition: -webkit-transform 0.9s ease 0s;
@@ -431,22 +427,30 @@ body.lock {
             transform: rotate(135deg);
   }
 }
-.popup__container {
+.popup__body {
+  margin: 15px;
+  padding: 50px;
+  background: #fff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 0px 40px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
+@media (max-width: 1200px) {
+  .popup__body {
+    padding: calc(10px + 40 * (100vw - 320px) / (880));
+  }
+}
+
 /*input*/
 input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-appearance: none;
