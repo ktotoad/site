@@ -565,21 +565,6 @@ function initSliders() {
 			},
 		});
 	}
-	if (document.querySelector('.slider-page__slider')) {
-		new Swiper('.slider-page__slider', {
-      spaceBetween: 30,
-			slidesPerView: 1,
-			effect: 'fade',
-			pagination: {
-				el: '.slider-page__pagination',
-				clickable: true,
-			},
-			navigation: {
-        nextEl: ".slider-page__next",
-        prevEl: ".slider-page__prev",
-      },
-		});
-	}
 	if (document.querySelector('.resident-sliders__slider')) {
 		new Swiper('.resident-sliders__slider', {
       spaceBetween: 30,
