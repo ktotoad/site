@@ -268,6 +268,15 @@ function inputElements() {
 	});
 }
 inputElements();
+//ZOOM=====================================================================================================================================================
+if(document.querySelector(".parent-container")) {
+	$('.parent-container').magnificPopup({
+		delegate: 'a',
+		type: 'image',
+		removalDelay: 300,
+		mainClass: 'mfp-fade'
+	});
+}
 //Вывод видео==================================================================================================================================================
 window.addEventListener('DOMContentLoaded', function() {
 	let broadcast = document.querySelectorAll('#broadcast');
