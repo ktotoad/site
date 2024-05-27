@@ -440,10 +440,27 @@ function initSliders() {
         	let section = mainSlider.closest("section");
         	let swipernav = section.querySelector(".nav-slider");
 			new Swiper(swipernav, {
-				spaceBetween: 20,
+				spaceBetween: 60,
 				slidesPerView: "auto",
 				freeMode: true,
 				watchSlidesProgress: true,
+				breakpoints: {
+					320: {
+						spaceBetween: 10,
+					},
+					479: {
+						spaceBetween: 20,
+					},
+					767: {
+						spaceBetween: 30,
+					},
+					991: {
+						spaceBetween: 40,
+					},
+					1023: {
+						spaceBetween: 60,
+					}
+				},
 			});
 			new Swiper(mainSlider, {
 				observer: true,
