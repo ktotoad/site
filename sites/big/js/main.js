@@ -360,6 +360,34 @@ function bodyUnLock() {
 	}, timeout);
 }
 
+//video=================================================================================================================================
+let mainBody = document.querySelector('body');
+
+window.document.onkeydown = function(e) {
+  if (!e) {
+    e = event;
+  }
+  if (e.keyCode == 27) {
+    lightbox_close();
+  }
+}
+
+function lightbox_open() {
+  var lightBoxVideo = document.getElementById("VisaChipCardVideo");
+  window.scrollTo(0, 0);
+  document.getElementById('light').style.display = 'block';
+  document.getElementById('fade').style.display = 'block';
+  mainBody.classList.add('lock');
+  lightBoxVideo.play();
+}
+
+function lightbox_close() {
+  var lightBoxVideo = document.getElementById("VisaChipCardVideo");
+  document.getElementById('light').style.display = 'none';
+  document.getElementById('fade').style.display = 'none';
+  mainBody.classList.remove('lock');
+  lightBoxVideo.pause();
+}
 //ZOOM=====================================================================================================================================================
 if(document.querySelector(".parent-container")) {
 	$('.parent-container').magnificPopup({
@@ -369,22 +397,6 @@ if(document.querySelector(".parent-container")) {
 		mainClass: 'mfp-fade'
 	});
 }
-//Вывод видео==================================================================================================================================================
-window.addEventListener('DOMContentLoaded', function() {
-	let broadcast = document.querySelectorAll('#broadcast');
-
-	for (let i=0; i < broadcast.length; i++) {
-		broadcast[i].addEventListener('click', function() {
-			let src = broadcast[i].dataset.src;
-
-			if (broadcast[i].classList.contains('ready')) {
-				return;
-			}
-			broadcast[i].classList.add('ready');
-			broadcast[i].insertAdjacentHTML('afterbegin', '<iframe src="' + src + '" title="video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
-		});
-	}
-});
 //Filter=====================================================================================================================================================
 $('.slider-catalog__item').click(function(event) {
 	var i=$(this).data('filter');
