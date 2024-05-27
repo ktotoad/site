@@ -465,6 +465,7 @@ function initSliders() {
 			new Swiper(mainSlider, {
 				observer: true,
 				observeParents: true,
+				allowTouchMove: false,
 				slidesPerView: "auto",
 				spaceBetween: 10,
 				parallax: true,
@@ -484,10 +485,6 @@ function initSliders() {
 			spaceBetween: 0,
 			parallax: true,
 			autoHeight: true,
-			autoplay: {
-				delay: 3000,
-				disableOnInteraction: false,
-			},
 			speed: 800,
 			navigation: {
 				nextEl: ".picture-slider__next",
