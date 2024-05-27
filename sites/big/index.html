@@ -34,7 +34,7 @@
 				<li class="header__item"><a href="#video" class="header__link link">О проекте</a></li>
 				<li class="header__item"><a href="#about" class="header__link link">О застройщике</a></li>
 				<li class="header__item"><a href="#catalog" class="header__link link">Планировки</a></li>
-				<li class="header__item"><a href="#sales" class="header__link link">Акции</a></li>
+				<li class="header__item"><a href="#options" class="header__link link">Акции</a></li>
 				<li class="header__item"><a href="tel:88432448654" class="header__link link-invert">+7 (843) 244-86-54</a></li>
 			</ul>
 		</nav>
@@ -135,7 +135,7 @@
 						</div>
 						<div class="video-page__column">
 							<div class="video-page__video-block">
-								<div id="broadcast" data-src="./video/video-block.mp4" class="video-page__video">
+								<button type="button" onclick="lightbox_open();" class="video-page__video">
 									<div class="video-page__image">
 										<img src="./img/video.jpg" alt="" loading="lazy">
 										<div class="video-page__play">
@@ -144,7 +144,7 @@
 											</svg>
 										</div>		
 									</div>
-								</div>
+								</button>
 							</div>	
 						</div>
 					</div>
@@ -894,7 +894,7 @@
 						</div>
 					</div>
 				</section>
-				<section class="page__options options-page anim-items anim-no-hide">
+				<section id="options" class="page__options options-page anim-items anim-no-hide">
 					<div class="options-page__container container">
 						<h2 class="options-page__title title">ВАРИАНТЫ ПРИОБРЕТЕНИЯ РЕЗЕДЕНЦИЙ</h2>
 						<p class="options-page__text text">Менеджеры офиса продаж ответят на все возникшие вопросы, пояснив каждый этап покупки подробно</p>
@@ -928,7 +928,7 @@
 						</div>
 					</div>
 				</section>
-				<section id="sales" class="page__sales sales-page anim-items anim-no-hide">
+				<section class="page__sales sales-page anim-items anim-no-hide">
 					<div class="sales-page__container container">
 						<h2 class="sales-page__title title">АКТУАЛЬНЫЕ АКЦИИ</h2>
 						<div class="sales-page__row">
@@ -1127,6 +1127,13 @@
 		</div>
 	</div>
 </footer>		</div>
+<div id="light">
+	<a class="boxclose" id="boxclose" onclick="lightbox_close();"></a>
+ 	<video id="VisaChipCardVideo" width="600" controls>
+    	<source src="./video/video-block.mp4" type="video/mp4">
+    </video>
+</div>
+<div id="fade" onClick="lightbox_close();"></div>
 <div id="popup" class="popup">
 	<form class="popup__body">
 		<h2 class="content-form__title title">Обратная связь</h2>
