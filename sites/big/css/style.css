@@ -1369,6 +1369,14 @@ textarea.input {
      object-fit: contain;
 }
 .new-main__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  flex-warp: wrap;
   margin-top: 40px;
   padding-left: 15px;
   padding-right: 15px;
@@ -1401,24 +1409,36 @@ textarea.input {
 .new-main__text {
   color: var(--gray);
 }
+.new-main__label-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
 .new-main__labels {
   margin-top: 30px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-orient: horizontal;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+      -ms-flex-direction: column;
+          flex-direction: column;
   gap: 30px;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
 }
 @media (max-width: 1200px) {
   .new-main__labels {
@@ -1428,6 +1448,11 @@ textarea.input {
 @media (max-width: 1200px) {
   .new-main__labels {
     gap: calc(10px + 20 * ((100vw - 320px) / (880)));
+  }
+}
+@media (min-width: 767.98px) {
+  .new-main__labels {
+    max-width: 45%;
   }
 }
 .new-main__label {
@@ -1445,11 +1470,6 @@ textarea.input {
       -ms-flex-direction: row;
           flex-direction: row;
   gap: 10px;
-}
-@media (min-width: 767.98px) {
-  .new-main__label {
-    max-width: 40%;
-  }
 }
 .new-main__number {
   display: -webkit-box;
