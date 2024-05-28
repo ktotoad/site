@@ -281,6 +281,88 @@ function inputElements() {
 	});
 }
 inputElements();
+//Resize_scroll==================================================================================================================================================
+gsap.registerPlugin(ScrollTrigger);
+
+const sections = gsap.utils.toArray("section");
+
+if(document.querySelector("#one")) {
+	var tl_one = gsap.timeline({
+	  paused: true,
+	  scrollTrigger: {
+	    trigger: '#one',
+	    start: 'top top',
+	    end: 'bottom top',
+	    scrub: true,
+	    pin: true
+	  }
+	})
+	tl_one
+	.to('#one', {top: 0, height: '100vh'})
+	.to('.resizeOne .slider-full__image', {'border-top-left-radius': '0', 'border-top-right-radius': '0'})
+	.to('.resizeOne', {width: '100%', height: '100vh'})
+}
+
+if(document.querySelector("#two")) {
+	var tl_two = gsap.timeline({
+	  paused: true,
+	  scrollTrigger: {
+	    trigger: '#two',
+	    start: 'top top',
+	    end: 'bottom top',
+	    scrub: true,
+	    pin: true
+	  }
+	})
+	tl_two
+	.to('#two', {top: 0, height: '100vh'})
+	.to('.resizeTwo .slider-full__image', {'border-top-left-radius': '0', 'border-top-right-radius': '0'})
+	.to('.resizeTwo', {width: '100%', height: '100vh'})
+}
+
+if(document.querySelector("#three")) {
+	var tl_three = gsap.timeline({
+	  paused: true,
+	  scrollTrigger: {
+	    trigger: '#three',
+	    start: 'top top',
+	    end: 'bottom top',
+	    scrub: true,
+	    pin: true
+	  }
+	})
+	tl_three
+	.to('.resizeThree .slider-full__image', {'border-top-left-radius': '0', 'border-top-right-radius': '0'})
+	.to('.resizeThree', {left: 0, width: '100%', height: '100%'})
+}
+
+if(document.querySelector("#five")) {
+	var tl_five = gsap.timeline({
+	  paused: true,
+	  scrollTrigger: {
+	    trigger: '#five',
+	    start: 'top top',
+	    end: 'bottom top',
+	    scrub: true,
+	    pin: true
+	  }
+	})
+	tl_five
+	.to('.resizeFive', {width: '219px', height: '325px', 'border-top-left-radius': '110px', 'border-top-right-radius': '110px'})
+}
+
+if(document.querySelector("#changeBody")) {
+	gsap.to('.image-lobby', {
+		scrollTrigger: {
+	    trigger: '#changeBody',
+	    start: 'top center',
+	    end: 'center top',
+	    scrub: true,
+	  },
+		'border-top-left-radius': '300px',
+		'border-top-right-radius': '300px',
+	})
+}
 //RANGE========================================================================================================================================
 window.addEventListener("load", RangeSlider, false);
 
@@ -680,100 +762,6 @@ if (document.querySelector('.save-page__slider')) {
 	}
 }
 initSliders();
-//Resize_scroll==================================================================================================================================================
-if(document.querySelector("#one")) {
-	var tl_one = gsap.timeline({
-	  paused: true,
-	  scrollTrigger: {
-	    trigger: '#one',
-	    start: 'top top',
-	    end: 'bottom top',
-	    scrub: true,
-	    pin: true
-	  }
-	})
-	tl_one
-	.to('#one', {top: 0, height: '100vh'})
-	.to('.resizeOne .slider-full__image', {'border-top-left-radius': '0', 'border-top-right-radius': '0'})
-	.to('.resizeOne', {width: '100%', height: '100vh'})
-}
-
-if(document.querySelector("#two")) {
-	var tl_two = gsap.timeline({
-	  paused: true,
-	  scrollTrigger: {
-	    trigger: '#two',
-	    start: 'top top',
-	    end: 'bottom top',
-	    scrub: true,
-	    pin: true
-	  }
-	})
-	tl_two
-	.to('#two', {top: 0, height: '100vh'})
-	.to('.resizeTwo .slider-full__image', {'border-top-left-radius': '0', 'border-top-right-radius': '0'})
-	.to('.resizeTwo', {width: '100%', height: '100vh'})
-}
-
-if(document.querySelector("#three")) {
-	var tl_three = gsap.timeline({
-	  paused: true,
-	  scrollTrigger: {
-	    trigger: '#three',
-	    start: 'top top',
-	    end: 'bottom top',
-	    scrub: true,
-	    pin: true
-	  }
-	})
-	tl_three
-	.to('.resizeThree .slider-full__image', {'border-top-left-radius': '0', 'border-top-right-radius': '0'})
-	.to('.resizeThree', {left: 0, width: '100%', height: '100%'})
-}
-
-if(document.querySelector("#four")) {
-	var tl_four = gsap.timeline({
-	  paused: true,
-	  scrollTrigger: {
-	    trigger: '#four',
-	    start: 'top top',
-	    end: 'bottom top',
-	    scrub: true,
-	    pin: true
-	  }
-	})
-	tl_four
-	.to('.resizeFour .slider-full__image', {'border-top-left-radius': '0', 'border-top-right-radius': '0'})
-	.to('.resizeFour', {left: 0, width: '100%', height: '100%'})
-}
-
-if(document.querySelector("#five")) {
-	var tl_five = gsap.timeline({
-	  paused: true,
-	  scrollTrigger: {
-	    trigger: '#five',
-	    start: 'top top',
-	    end: 'bottom top',
-	    scrub: true,
-	    pin: true
-	  }
-	})
-	tl_five
-	.to('.resizeFive', {width: '219px', height: '325px', 'border-top-left-radius': '110px', 'border-top-right-radius': '110px'})
-}
-
-if(document.querySelector("#changeBody")) {
-	gsap.to('.image-lobby', {
-		scrollTrigger: {
-	    trigger: '#changeBody',
-	    start: 'top center',
-	    end: 'center top',
-	    scrub: true,
-	  },
-		'border-top-left-radius': '300px',
-		'border-top-right-radius': '300px',
-	})
-}
 //Buttons_Form==================================================================================================================================================
 if(document.querySelector("#buttonsFormBody")) {
 	const buttonsFormBody = document.querySelector("#buttonsFormBody");
