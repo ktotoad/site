@@ -10279,6 +10279,10 @@ html {
 .aroma-page {
   overflow: hidden;
 }
+.aroma-page.active .aroma-page__body {
+  opacity: 1;
+  visibility: visible;
+}
 .aroma-page__container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -10301,6 +10305,8 @@ html {
   }
 }
 .aroma-page__body {
+  opacity: 0;
+  visibility: hidden;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -10335,6 +10341,14 @@ html {
         -ms-flex-direction: column;
             flex-direction: column;
   }
+}
+.aroma-page__body-first {
+  -webkit-transition: opacity 1.3s ease 0s;
+  transition: opacity 1.3s ease 0s;
+}
+.aroma-page__body-second {
+  -webkit-transition: opacity 3.3s ease 0s;
+  transition: opacity 3.3s ease 0s;
 }
 .aroma-page__column {
   min-height: 100%;
