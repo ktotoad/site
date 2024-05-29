@@ -754,6 +754,17 @@ if (document.querySelector('.save-page__slider')) {
 				delay: 3000,
 				disableOnInteraction: false,
 			},
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 0,
+					autoHeight: true,
+				},
+				768: {
+					slidesPerView: 2,
+					spaceBetween: 10,
+				},
+			},
 			pagination: {
 				el: '.save-page__pagination',
 				clickable: true,
