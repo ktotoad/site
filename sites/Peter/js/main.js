@@ -791,13 +791,6 @@ if(document.querySelector("#buttonsFormBody")) {
 	  }
 	}
 }
-$('.masonry-grid').masonry({
-  itemSelector: '.masonry-item',
-  columnWidth: '.masonry-sizer',
-  percentPosition: true,
-  gutter: 30
-});
-
 //Filter=====================================================================================================================================================
 $('.content-club__link').click(function(event) {
 	var i=$(this).data('filter');
@@ -810,6 +803,22 @@ $('.content-club__link').click(function(event) {
 
 	return false;
 });
+//burger=====================================================================================================================================================
+if (document.querySelector('.map-button')) {
+	const mapButton = document.querySelector('.map-button');
+	const mapPopup = document.querySelector('.map-point__boby');
+	const map = document.querySelector('#map');
+	mapButton.addEventListener('click', 
+		function clickButtonMap(event) {
+			mapButton.classList.toggle('active');
+			mapPopup.classList.toggle('active');
+		});
+	mapPopup.addEventListener('click', 
+		function clickButtonMap(event) {
+			mapButton.classList.toggle('active');
+			mapPopup.classList.toggle('active');
+		});
+}
 //TABS==================================================================================================================================================
 // Получение хеша в адресе сайта
 function getHash() {
