@@ -309,3 +309,49 @@ let _slideToggle = (target, duration = 500) => {
 	}
 }
 spollers();
+//BuildSlider======================================================================================================================================================
+function buildSliders() {
+	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
+	if (sliders) {
+		sliders.forEach(slider => {
+			slider.parentElement.classList.add('swiper');
+			slider.classList.add('swiper-wrapper');
+			for(const slide of slider.children) {
+				slide.classList.add('swiper-slide');
+			}
+		});
+	}
+}
+
+//Инициализация_Swiper===============================================================================================================================================
+function initSliders() {
+	buildSliders();
+
+	if (document.querySelector('.why-slider')) {
+		new Swiper('.why-slider', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 20,
+			parallax: true,
+			//loop: true,
+			autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			navigation: {
+				nextEl: ".why-slider__next",
+				prevEl: ".why-slider__prev",
+			},
+			pagination: {
+				el: '.why-slider__pagination',
+				clickable: true,
+			},
+		});
+	}
+}
+
+
+initSliders();
