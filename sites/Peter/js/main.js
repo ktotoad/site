@@ -614,16 +614,18 @@ if(document.querySelector(".parent-container")) {
 }
 
 if(document.querySelector(".parent-container-gallery")) {
-	$('.parent-container-gallery').magnificPopup({
-		delegate: 'a',
-		type: 'image',
-		removalDelay: 300,
-		mainClass: 'mfp-fade',
-		gallery: {
-            enabled: true,
-            navigateByImgClick: true,
-            preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-        },
+	$('.parent-container-gallery').each(function() {
+		$(this).magnificPopup({
+			delegate: 'a',
+			type: 'image',
+			removalDelay: 300,
+			mainClass: 'mfp-fade',
+			gallery: {
+	            enabled: true,
+	            navigateByImgClick: true,
+	            preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+	        },
+		});
 	});
 }
 //BuildSlider======================================================================================================================================================
