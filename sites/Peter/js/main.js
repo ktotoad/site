@@ -612,6 +612,20 @@ if(document.querySelector(".parent-container")) {
 		mainClass: 'mfp-fade'
 	});
 }
+
+if(document.querySelector(".parent-container-gallery")) {
+	$('.parent-container-gallery').magnificPopup({
+		delegate: 'a',
+		type: 'image',
+		removalDelay: 300,
+		mainClass: 'mfp-fade',
+		gallery: {
+            enabled: true,
+            navigateByImgClick: true,
+            preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+        },
+	});
+}
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
