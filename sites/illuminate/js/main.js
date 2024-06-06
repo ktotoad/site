@@ -351,7 +351,68 @@ function initSliders() {
 			},
 		});
 	}
+	if (document.querySelector('.slider-stoke')) {
+		new Swiper(".slider-stoke",{
+			observer: true,
+			observeParents: true,
+	        spaceBetween: 50,
+	        centeredSlides: false,
+	        parallax: true,
+			loop: true,
+	        speed: 6000,
+	        autoplay: {
+				delay: 0,
+				disableOnInteraction: false,
+			},
+			breakpoints: {
+				320: {
+					spaceBetween: 10,
+				},
+				768: {
+					spaceBetween: 20,
+				},
+				768: {
+					spaceBetween: 30,
+				},
+				992: {
+					spaceBetween: 40,
+				},
+			},
+	        slidesPerView: "auto",
+	        allowTouchMove: false,
+	    });
+	}
+	if (document.querySelector('.slider-stoke-inv')) {
+		new Swiper(".slider-stoke-inv",{
+			observer: true,
+			observeParents: true,
+	        spaceBetween: 50,
+	        centeredSlides: false,
+	        parallax: true,
+			loop: true,
+	        speed: 6000,
+	        autoplay: {
+				delay: 0,
+				disableOnInteraction: false,
+				reverseDirection: true,
+			},
+			breakpoints: {
+				320: {
+					spaceBetween: 10,
+				},
+				768: {
+					spaceBetween: 20,
+				},
+				768: {
+					spaceBetween: 30,
+				},
+				992: {
+					spaceBetween: 40,
+				},
+			},
+	        slidesPerView: "auto",
+	        allowTouchMove: false,
+	    });
+	}  
 }
-
-
 initSliders();
