@@ -558,7 +558,10 @@ initSliders();
 $('.slider-catalog__item').click(function(event) {
 	var i=$(this).data('filter');
 	
+	$('.catalog-page__span').removeClass('show');
 	$('.slider-catalog__slide').removeClass('show');
+
+	$('.catalog-page__span.f_'+i).addClass('show');
 	$('.slider-catalog__slide.f_'+i).addClass('show');
 
 	$('.slider-catalog__item').removeClass('active');
