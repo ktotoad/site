@@ -567,12 +567,20 @@ $('.slider-catalog__item').click(function(event) {
 	$('.slider-catalog__item').removeClass('active');
 	$(this).addClass('active');
 
-	console.log("click " + i);
-
 	return false;
 
 	let mySwiper = document.querySelector('.slider-catalog__slider').swiper;
 	mySwiper.update();
+});
+
+$('.location-page__point').click(function(event) {
+	var i=$(this).data('filter');
+	
+	$('.location-page__text-block').removeClass('show');
+	$('.location-page__text-block.'+i).addClass('show');
+
+	$('.location-page__point').removeClass('active');
+	$(this).addClass('active');
 });
 //TABS==================================================================================================================================================
 // Получение хеша в адресе сайта
