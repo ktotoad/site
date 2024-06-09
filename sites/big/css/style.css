@@ -2205,27 +2205,88 @@ textarea.input {
             box-shadow: 0px 20px 30px 0px rgb(245, 245, 245);
   }
 }
-.location-page__text {
-  margin-top: 100px;
+@media (min-width: 991.98px) {
+  .location-page__column {
+    width: 50%;
+  }
+}
+.location-page__block {
+  margin-top: 50px;
 }
 @media (max-width: 1200px) {
-  .location-page__text {
-    margin-top: calc(20px + 80 * (100vw - 320px) / (880));
+  .location-page__block {
+    margin-top: calc(20px + 30 * (100vw - 320px) / (880));
   }
 }
 @media (max-width: 991.98px) {
-  .location-page__text {
+  .location-page__block {
     margin-top: 20px;
   }
 }
+@media (min-width: 991.98px) {
+  .location-page__block {
+    width: 320px;
+  }
+}
+@media (min-width: 991.98px) and (max-width: 1200px) {
+  .location-page__block {
+    width: calc(290px + 30 * (100vw - 320px) / (880));
+  }
+}
+.location-page__text-block {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease 0s;
+  transition: opacity 0.3s ease 0s;
+}
+.location-page__text-block.show {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 10px;
+  visibility: visible;
+  opacity: 1;
+}
+.location-page__logo {
+  overflow: hidden;
+  width: 90px;
+  height: 140px;
+}
+@media (max-width: 1200px) {
+  .location-page__logo {
+    width: calc(50px + 40 * (100vw - 320px) / (880));
+  }
+}
+@media (max-width: 1200px) {
+  .location-page__logo {
+    height: calc(90px + 50 * (100vw - 320px) / (880));
+  }
+}
+.location-page__logo img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 .location-page__image {
-  margin-top: 200px;
+  margin-top: 120px;
   width: 420px;
   height: auto;
 }
 @media (max-width: 1200px) {
   .location-page__image {
-    margin-top: calc(30px + 170 * (100vw - 320px) / (880));
+    margin-top: calc(30px + 90 * (100vw - 320px) / (880));
   }
 }
 @media (max-width: 1200px) {
@@ -2244,12 +2305,23 @@ textarea.input {
     margin-top: 30px;
   }
 }
-.location-page__bg {
+.location-page__map {
   position: absolute;
-  width: 100%;
+  width: auto;
   height: 100%;
   top: 0;
-  left: 0;
+  right: 0;
+}
+@media (max-width: 991.98px) {
+  .location-page__map {
+    position: relative;
+    width: 100%;
+  }
+}
+.location-page__bg {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 .location-page__bg img {
   width: 100%;
@@ -2260,13 +2332,64 @@ textarea.input {
      object-position: right;
 }
 @media (max-width: 991.98px) {
-  .location-page__bg {
-    position: relative;
-  }
   .location-page__bg img {
     -o-object-fit: cover;
        object-fit: cover;
   }
+}
+.location-page__info {
+  padding: 15px;
+  border-radius: 32px;
+  background: var(--white);
+  position: absolute;
+  bottom: 5%;
+  right: 25%;
+}
+@media (max-width: 1200px) {
+  .location-page__info {
+    padding: calc(5px + 10 * (100vw - 320px) / (880));
+  }
+}
+@media (max-width: 1200px) {
+  .location-page__info {
+    border-radius: calc(15px + 17 * (100vw - 320px) / (880));
+  }
+}
+.location-page__point-sob, .location-page__point-krem {
+  cursor: pointer;
+  position: absolute;
+  z-index: 10;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  opacity: 0.01;
+  -webkit-transition: opacity 0.3s ease 0s;
+  transition: opacity 0.3s ease 0s;
+}
+@media (max-width: 1200px) {
+  .location-page__point-sob, .location-page__point-krem {
+    width: calc(30px + 60 * (100vw - 320px) / (880));
+  }
+}
+@media (max-width: 1200px) {
+  .location-page__point-sob, .location-page__point-krem {
+    height: calc(30px + 60 * (100vw - 320px) / (880));
+  }
+}
+@media (any-hover: hover) {
+  .location-page__point-sob:hover, .location-page__point-krem:hover {
+    opacity: 0.1;
+  }
+}
+.location-page__point-sob {
+  background: var(--primary);
+  right: 59%;
+  top: 49%;
+}
+.location-page__point-krem {
+  background: var(--primary);
+  right: 12%;
+  top: 38%;
 }
 
 .about-page {
@@ -3980,6 +4103,10 @@ textarea.input {
 .form-page {
   position: relative;
 }
+.form-page__container {
+  position: relative;
+  z-index: 5;
+}
 .form-page__image {
   overflow: hidden;
   width: 100%;
@@ -3987,6 +4114,7 @@ textarea.input {
 }
 .form-page__image svg {
   position: absolute;
+  z-index: 1;
   width: 470px;
   height: 580px;
   bottom: 0;
