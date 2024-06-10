@@ -3,59 +3,36 @@
 let wrapper = document.querySelector('.wrapper');
 
 if (document.querySelector(".preloader")) {
-    let length = 0,
-        imagesall = document.querySelectorAll("img"),
-        tl = gsap.timeline();
-    const loader = document.querySelector('.preloader'),
+    let tl = gsap.timeline(),
+        loader = document.querySelector('.preloader'),
         body = document.querySelector("body");
     
     body.classList.add("lock");
 
-    imagesall.forEach(image => {
-        if (!image.hasAttribute('loading')) {
-            length++;
-        }
-    });
-
-    console.log("Всего изображений для предзагрузки: " + length);
-
-    let percent = 100 / length,
-        progress = 0,
-        loadedImg = 0;
-
-
-    for (let i = 0; i < length; i++) {
-        let img_copy = new Image();
-        img_copy.src = document.images[i].src;
-        img_copy.onload = img_load;
-    }
-
-    function img_load() {
-        progress += percent;
-        loadedImg++;
-
-        loading = Math.round(progress)
-        document.querySelector(".preloader-body__percents").innerHTML = ++loading + "%";
-        document.querySelector(".preloader-body__logo-light").style.width = ++loading + "%";
-
-        if(progress >= 100 || loadedImg == length) {
-            body.classList.remove("lock");
-            tl.to(".preloader-body__logo-light", { clipPath: "polygon(0 0, 100% 0%, 100% 100%, 0% 100%)", duration: 0.1, delay: 0.35 });
-
+    setTimeout(() => {
+        body.classList.remove("lock");
+    }, 2e3),
+        setTimeout(() => {
             loader.classList.add("hidden");
-            wrapper.classList.add('loaded');
+        }, 3300),
+        (function (body, loader) {
+            let loading = 0,
+                i = setInterval(() => {
+                    (document.querySelector(".preloader-body__percents").innerHTML = ++loading + "%"), 
+                    (document.querySelector(".preloader-body__logo-light").style.width = ++loading + "%"), 100 === loading && clearInterval(i);
+                }, 10);
+            })(),
+        tl.to(".preloader-body__logo-light", { clipPath: "polygon(0 0, 100% 0%, 100% 100%, 0% 100%)", duration: 0.1, delay: 0.35 });
 
-            animateall();
-        }
-    }
+    wrapper.classList.add('loaded');
+
+    animateall();
 } else {
     window.addEventListener('load', function () {
         wrapper.classList.add('loaded');
         animateall();
     });
 }
-/*Content_download================================================================================*/
-
 /*Animation================================================================================*/
 function animateall() {
 	if(document.querySelector('.anim-items')) {
@@ -560,3 +537,80 @@ function tabs() {
 	}
 }
 tabs(); 
+
+/*Panorama=======================================================================================================================================================*/
+function parseParams(paramsString, params) {
+	paramsString = paramsString.substring(1);
+	var firstSeparatorPos = paramsString.indexOf(",");
+	if (firstSeparatorPos != -1) {
+		params.startNode = paramsString.slice(0, firstSeparatorPos);
+		var viewingParamsString = paramsString.slice(firstSeparatorPos + 1);
+		var viewingParams = viewingParamsString.split(",");
+		if (viewingParams.length >= 3) {
+			var startView = {};
+			startView["pan"] = viewingParams[0];
+			startView["tilt"] = viewingParams[1];
+			startView["fov"] = viewingParams[2];
+			if (viewingParams.length >= 4) {
+				startView["projection"] = viewingParams[3];
+			}
+			params.startView = startView;
+		}
+	} else {
+		params.startNode = paramsString;
+		params.startView = "";
+	}
+}
+var params = {};
+parseParams(document.location.hash, params);
+var startNode = params.startNode;
+var startView = params.startView;
+if (("onhashchange" in window) && (!(/MSIE (\d+\.\d+);/.test(navigator.userAgent)))) {
+	window.onhashchange = function () {
+		parseParams(window.location.hash, params);
+		pano.openNext('{' + params.startNode + '}', params.startView);
+	}
+} else {
+	var lastHash = window.location.hash;
+	window.setInterval(function () {
+		if (window.location.hash != lastHash) {
+			lastHash = window.location.hash;
+			parseParams(window.location.hash, params);
+			pano.openNext('{' + params.startNode + '}', params.startView);
+		}
+	}, 100);
+}
+	// create the panorama player with the container
+	pano=new pano2vrPlayer("panorama");
+	pano.startNode = startNode;
+	pano.startView = startView;
+	pano.setQueryParameter("ts=13280453")
+	// load the configuration
+	window.addEventListener("load", function() {
+		pano.readConfigUrlAsync("pano.xml?ts=13280453");
+	});
+	if (window.navigator.userAgent.match(/Safari/i)) {
+		// fix for white borders, rotation on iPhone
+		function iosHfix(e) {
+			window.scrollTo(0, 1);
+			var container=document.getElementById("panorama");
+			var oh=container.offsetHeight;
+			document.documentElement.style.setProperty('height', '100vh');
+			if (oh!=container.offsetHeight) {
+				container.style.setProperty('height',"100%");
+			} else {
+				container.style.setProperty('height',window.innerHeight+"px");
+			}
+			window.scrollTo(0, 0);
+			pano.setViewerSize(container.offsetWidth, container.offsetHeight);
+		};
+		setTimeout(iosHfix,0);
+		setTimeout(iosHfix,100);
+		window.addEventListener("resize", function() {
+			setTimeout(iosHfix,0);
+			// hide toolbar on iPad happens with a delay
+			setTimeout(iosHfix,500);
+			setTimeout(iosHfix,1000);
+			setTimeout(iosHfix,2000);
+		});
+	}
