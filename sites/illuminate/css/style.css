@@ -2982,13 +2982,26 @@ input[type=text], input[type=email], input[type=tel], textarea {
   }
 }
 .grid-item__title-block {
-  padding: 30px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  padding: 20px;
   background: var(--primary);
   width: 100%;
 }
 @media (max-width: 1820px) {
   .grid-item__title-block {
-    padding: calc(10px + 20 * ((100vw - 320px) / (1500)));
+    padding: calc(10px + 10 * ((100vw - 320px) / (1500)));
+  }
+}
+@media (min-width: 991.98px) {
+  .grid-item__title-block {
+    height: 170px;
+  }
+}
+@media (min-width: 991.98px) and (max-width: 1820px) {
+  .grid-item__title-block {
+    height: calc(110px + 60 * ((100vw - 320px) / (1500)));
   }
 }
 .grid-item__label {
