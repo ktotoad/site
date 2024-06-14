@@ -1088,12 +1088,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
     -webkit-box-direction: reverse;
         -ms-flex-direction: column-reverse;
             flex-direction: column-reverse;
-    margin-top: 70px;
+    margin-top: 110px;
   }
 }
 @media (max-width: 991.98px) and (max-width: 1820px) {
   .copy-block {
-    margin-top: calc(40px + 30 * ((100vw - 320px) / (1500)));
+    margin-top: calc(60px + 50 * ((100vw - 320px) / (1500)));
   }
 }
 .copy-block__text, .copy-block__link {
@@ -1106,16 +1106,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
 @media (max-width: 1820px) {
   .copy-block__text {
     font-size: calc(10px + 6 * ((100vw - 320px) / (1500)));
-  }
-}
-@media (max-width: 991.98px) {
-  .copy-block__text {
-    margin-top: 40px;
-  }
-}
-@media (max-width: 991.98px) and (max-width: 1820px) {
-  .copy-block__text {
-    margin-top: calc(20px + 20 * ((100vw - 320px) / (1500)));
   }
 }
 .copy-block__link {
@@ -1973,9 +1963,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .column-article__body .column-article__text, .column-article__body_all .column-article__text {
   left: 0;
 }
-.column-article__body_right .column-article__text, .column-article__body_all_right .column-article__text {
-  right: 0;
-  text-align: right;
+@media (min-width: 767.98px) {
+  .column-article__body_right .column-article__text, .column-article__body_all_right .column-article__text {
+    right: 0;
+    text-align: right;
+  }
 }
 .column-article__image {
   overflow: hidden;
@@ -2032,7 +2024,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .column-article__title {
   font-size: 120px;
-  line-height: 115%;
+  line-height: 90%;
 }
 @media (max-width: 1820px) {
   .column-article__title {
@@ -2218,6 +2210,22 @@ input[type=text], input[type=email], input[type=tel], textarea {
   }
 }
 
+.column-contacts_info {
+  gap: 15px;
+}
+.column-contacts_info .column-contacts__text {
+  font-size: 28px;
+}
+@media (max-width: 1820px) {
+  .column-contacts_info .column-contacts__text {
+    font-size: calc(16px + 12 * ((100vw - 320px) / (1500)));
+  }
+}
+@media (max-width: 1820px) {
+  .column-contacts_info {
+    gap: calc(10px + 5 * ((100vw - 320px) / (1500)));
+  }
+}
 .column-contacts__text {
   font-family: "Inter";
   color: var(--medium-gray);
@@ -2396,6 +2404,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .partners-page__item {
   width: auto;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
   height: 90px;
 }
 @media (max-width: 1820px) {
@@ -2454,11 +2465,17 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .digits-page__content {
   color: var(--white);
   padding: 50px;
+  padding-top: 50px;
   width: 650px;
 }
 @media (max-width: 1820px) {
   .digits-page__content {
     padding: calc(10px + 40 * ((100vw - 320px) / (1500)));
+  }
+}
+@media (max-width: 1820px) {
+  .digits-page__content {
+    padding-top: calc(30px + 20 * ((100vw - 320px) / (1500)));
   }
 }
 @media (max-width: 1820px) {
@@ -2583,6 +2600,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 767.98px) {
   .services-page__header {
+    gap: 40px;
     width: 100%;
     -webkit-box-align: start;
         -ms-flex-align: start;
@@ -2591,6 +2609,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+  }
+}
+@media (max-width: 767.98px) and (max-width: 1820px) {
+  .services-page__header {
+    gap: calc(30px + 10 * ((100vw - 320px) / (1500)));
   }
 }
 @media (max-width: 991.98px) {
@@ -3906,6 +3929,16 @@ input[type=text], input[type=email], input[type=tel], textarea {
 @media (min-width: 767.98px) {
   .content-question__controls {
     display: none;
+  }
+}
+@media (max-width: 767.98px) {
+  .content-question__controls {
+    margin-top: 60px;
+  }
+}
+@media (max-width: 767.98px) and (max-width: 1820px) {
+  .content-question__controls {
+    margin-top: calc(10px + 50 * ((100vw - 320px) / (1500)));
   }
 }
 .content-question__pagination {
