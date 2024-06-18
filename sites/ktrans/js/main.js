@@ -552,3 +552,15 @@ function initSliders() {
 	}
 }
 initSliders();
+//change=====================================================================================================================================================
+function changeInputs() {
+	let countBlock = document.querySelector(".count-block");
+	var getFrom = countBlock.querySelector('#from').value;
+	var getWhere = countBlock.querySelector('#where').value;
+
+  	countBlock.querySelector('#from').value = getWhere;
+  	countBlock.querySelector('#from_h').value = getWhere;
+
+  	countBlock.querySelector('#where').value = getFrom;
+  	countBlock.querySelector('#where_h').value = getFrom;
+}
