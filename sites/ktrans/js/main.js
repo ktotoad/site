@@ -390,7 +390,7 @@ function initSliders() {
 		new Swiper('.slider-brands', {
 			observer: true,
 			observeParents: true,
-			slidesPerView: 4,
+			slidesPerView: 5,
 			spaceBetween: 20,
 			parallax: true,
 			loop: true,
@@ -415,6 +415,10 @@ function initSliders() {
 				},
 				992: {
 					slidesPerView: 4,
+					spaceBetween: 20,
+				},
+				1024: {
+					slidesPerView: 5,
 					spaceBetween: 20,
 				},
 			},
@@ -428,7 +432,7 @@ function initSliders() {
 		new Swiper('.slider-press', {
 			observer: true,
 			observeParents: true,
-			slidesPerView: 4,
+			slidesPerView: 5,
 			spaceBetween: 20,
 			parallax: true,
 			loop: true,
@@ -453,6 +457,10 @@ function initSliders() {
 				},
 				992: {
 					slidesPerView: 4,
+					spaceBetween: 20,
+				},
+				1024: {
+					slidesPerView: 5,
 					spaceBetween: 20,
 				},
 			},
@@ -466,7 +474,7 @@ function initSliders() {
 		new Swiper('.slider-review', {
 			observer: true,
 			observeParents: true,
-			slidesPerView: 3,
+			slidesPerView: 4,
 			spaceBetween: 20,
 			parallax: true,
 			loop: true,
@@ -489,6 +497,10 @@ function initSliders() {
 					slidesPerView: 3,
 					spaceBetween: 20,
 				},
+				992: {
+					slidesPerView: 4,
+					spaceBetween: 20,
+				},
 			},
 			navigation: {
 				nextEl: ".slider-review__next",
@@ -500,7 +512,7 @@ function initSliders() {
 		new Swiper('.slider-team', {
 			observer: true,
 			observeParents: true,
-			slidesPerView: 4,
+			slidesPerView: 5,
 			spaceBetween: 20,
 			parallax: true,
 			loop: true,
@@ -525,6 +537,10 @@ function initSliders() {
 				},
 				992: {
 					slidesPerView: 4,
+					spaceBetween: 20,
+				},
+				1024: {
+					slidesPerView: 5,
 					spaceBetween: 20,
 				},
 			},
