@@ -393,7 +393,7 @@ function initSliders() {
 			slidesPerView: 4,
 			spaceBetween: 20,
 			parallax: true,
-			//loop: true,
+			loop: true,
 			//autoHeight: true,
 			autoplay: {
 				delay: 3000,
@@ -431,7 +431,7 @@ function initSliders() {
 			slidesPerView: 4,
 			spaceBetween: 20,
 			parallax: true,
-			//loop: true,
+			loop: true,
 			//autoHeight: true,
 			autoplay: {
 				delay: 3000,
@@ -469,7 +469,7 @@ function initSliders() {
 			slidesPerView: 3,
 			spaceBetween: 20,
 			parallax: true,
-			//loop: true,
+			loop: true,
 			//autoHeight: true,
 			autoplay: {
 				delay: 3000,
@@ -503,7 +503,7 @@ function initSliders() {
 			slidesPerView: 4,
 			spaceBetween: 20,
 			parallax: true,
-			//loop: true,
+			loop: true,
 			//autoHeight: true,
 			autoplay: {
 				delay: 3000,
