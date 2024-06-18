@@ -419,7 +419,8 @@ function initSliders() {
 			slidesPerView: 5,
 			spaceBetween: 20,
 			parallax: true,
-			freeMode: true,
+			autoHeight: true,
+			//freeMode: true,
 			watchSlidesProgress: true,
 			speed: 800,
 			breakpoints: {
