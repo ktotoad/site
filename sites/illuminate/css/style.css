@@ -1017,11 +1017,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   }
 }
 .footer__logo-body {
-  position: absolute;
   background: var(--white);
-  width: 50%;
-  bottom: 0;
-  right: 0;
   padding: 50px;
   border-top-left-radius: 17px;
 }
@@ -1033,6 +1029,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
 @media (max-width: 1820px) {
   .footer__logo-body {
     border-top-left-radius: calc(10px + 7 * ((100vw - 320px) / (1500)));
+  }
+}
+@media (min-width: 991.98px) {
+  .footer__logo-body {
+    width: 50%;
   }
 }
 .footer__logo {
@@ -1055,8 +1056,62 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -o-object-fit: contain;
      object-fit: contain;
 }
+.footer__bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+@media (max-width: 991.98px) {
+  .footer__bottom {
+    position: relative;
+    height: auto;
+    width: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+@media (max-width: 767.98px) {
+  .footer__bottom {
+    width: 50%;
+  }
+}
 
 .copy-block {
+  color: var(--gray);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.copy-block__body {
   padding: 10px;
   width: 50%;
   display: -webkit-box;
@@ -1073,32 +1128,22 @@ input[type=text], input[type=email], input[type=tel], textarea {
       -ms-flex-direction: row;
           flex-direction: row;
   gap: 16px;
-  color: var(--gray);
 }
 @media (max-width: 1820px) {
-  .copy-block {
+  .copy-block__body {
     gap: calc(10px + 6 * ((100vw - 320px) / (1500)));
   }
 }
 @media (max-width: 991.98px) {
-  .copy-block {
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: start;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: reverse;
-        -ms-flex-direction: column-reverse;
-            flex-direction: column-reverse;
-    margin-top: 110px;
-    gap: 0;
+  .copy-block__body {
+    width: auto;
+    -ms-flex-wrap: wrap-reverse;
+        flex-wrap: wrap-reverse;
   }
 }
-@media (max-width: 991.98px) and (max-width: 1820px) {
-  .copy-block {
-    margin-top: calc(60px + 50 * ((100vw - 320px) / (1500)));
+@media (max-width: 767.98px) {
+  .copy-block__body {
+    gap: 0;
   }
 }
 .copy-block__text, .copy-block__link {
@@ -1113,12 +1158,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
     font-size: calc(10px + 6 * ((100vw - 320px) / (1500)));
   }
 }
-@media (max-width: 991.98px) {
+@media (max-width: 767.98px) {
   .copy-block__text {
     margin-top: 20px;
   }
 }
-@media (max-width: 991.98px) and (max-width: 1820px) {
+@media (max-width: 767.98px) and (max-width: 1820px) {
   .copy-block__text {
     margin-top: calc(10px + 10 * ((100vw - 320px) / (1500)));
   }
@@ -1134,7 +1179,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
     font-size: calc(8px + 8 * ((100vw - 320px) / (1500)));
   }
 }
-@media (min-width: 991.98px) {
+@media (min-width: 767.98px) {
   .copy-block__link::before {
     content: "";
     position: absolute;
@@ -1157,9 +1202,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 
 .social-block {
-  position: absolute;
-  bottom: 50px;
-  left: 30px;
+  margin: 10px;
+  margin-bottom: 3%;
+  margin-top: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1175,8 +1220,19 @@ input[type=text], input[type=email], input[type=tel], textarea {
           flex-direction: column;
   gap: 10px;
 }
+@media (max-width: 1820px) {
+  .social-block {
+    margin-top: calc(10px + 40 * ((100vw - 320px) / (1500)));
+  }
+}
+@media (max-width: 1835px) {
+  .social-block {
+    margin-bottom: 5%;
+  }
+}
 @media (max-width: 991.98px) {
   .social-block {
+    margin-bottom: 50px;
     left: auto;
     right: 20px;
     bottom: 23%;
@@ -1184,6 +1240,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
+  }
+}
+@media (max-width: 991.98px) and (max-width: 1820px) {
+  .social-block {
+    margin-bottom: calc(10px + 40 * ((100vw - 320px) / (1500)));
   }
 }
 .social-block__item {
@@ -1200,12 +1261,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1820px) {
   .social-block__item {
-    width: calc(35px + 20 * ((100vw - 320px) / (1500)));
+    width: calc(25px + 30 * ((100vw - 320px) / (1500)));
   }
 }
 @media (max-width: 1820px) {
   .social-block__item {
-    height: calc(35px + 20 * ((100vw - 320px) / (1500)));
+    height: calc(25px + 30 * ((100vw - 320px) / (1500)));
   }
 }
 .social-block__item img {
@@ -1442,7 +1503,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1820px) {
   .main-page__image, .main-page__image_gif {
-    margin-top: calc(30px + 60 * ((100vw - 320px) / (1500)));
+    margin-top: calc(20px + 70 * ((100vw - 320px) / (1500)));
   }
 }
 @media (max-width: 1820px) {
@@ -1734,11 +1795,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
     font-size: calc(16px + 20 * ((100vw - 320px) / (1500)));
   }
 }
-@media (min-width: 767.98px) {
-  .form-page__button img {
-    display: none;
-  }
-}
 @media (max-width: 767.98px) {
   .form-page__button {
     -webkit-box-pack: justify;
@@ -1771,6 +1827,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+@media (min-width: 767.98px) {
+  .form-page__image {
+    display: none;
+  }
 }
 
 .articles-page__items {
