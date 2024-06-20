@@ -416,10 +416,10 @@ function initSliders() {
 	}  
 	if (document.querySelector('.content-question__slider')) {
 		var swiper = new Swiper('.question-page__slider-thumb', {
-			slidesPerView: 5,
+			slidesPerView: 6,
 			spaceBetween: 20,
 			parallax: true,
-			autoHeight: true,
+			//autoHeight: true,
 			//freeMode: true,
 			watchSlidesProgress: true,
 			speed: 800,
@@ -427,8 +427,10 @@ function initSliders() {
 				320: {
 					spaceBetween: 10,
 					slidesPerView: 1,
+					autoHeight: true,
 				},
 				768: {
+					slidesPerView: 6,
     				direction: "vertical",
 				},
 			},
