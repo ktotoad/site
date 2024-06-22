@@ -386,6 +386,30 @@ function initSliders() {
 			},
 		});
 	}
+	if (document.querySelector('.slider-review-small')) {
+		new Swiper('.slider-review-small', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 20,
+			parallax: true,
+			loop: true,
+			//autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			pagination: {
+				el: ".slider-review-small__pagination",
+				clickable: true,
+			},
+			navigation: {
+				nextEl: ".slider-review-small__next",
+				prevEl: ".slider-review-small__prev"
+			},
+		});
+	}
 	if (document.querySelector('.slider-brands')) {
 		new Swiper('.slider-brands', {
 			observer: true,
