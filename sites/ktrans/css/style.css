@@ -2025,9 +2025,19 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -o-object-fit: contain;
      object-fit: contain;
 }
+@media (max-width: 479.98px) {
+  .block-content__image {
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+}
 
 .slider-review-small {
   position: relative;
+}
+.slider-review-small .slider-review__slide .slider-review__text {
+  margin-bottom: 10%;
 }
 .slider-review-small__controls {
   position: absolute;
@@ -2050,6 +2060,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
       -ms-flex-direction: row;
           flex-direction: row;
   gap: 5px;
+}
+@media (max-width: 479.98px) {
+  .slider-review-small__controls {
+    bottom: 5%;
+  }
 }
 .slider-review-small__prev, .slider-review-small__next {
   cursor: pointer;
@@ -2079,6 +2094,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
 @media (any-hover: hover) {
   .slider-review-small__pagination .swiper-pagination-bullet:hover {
     border: 1px solid var(--gold);
+  }
+}
+@media (max-width: 767.98px) {
+  .slider-review-small__pagination .swiper-pagination-bullet {
+    margin: 0 1px !important;
   }
 }
 .slider-review-small__pagination .swiper-pagination-bullet-active {
