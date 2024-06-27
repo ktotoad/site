@@ -246,6 +246,16 @@ body.lock {
     font-size: calc(22px + 42 * ((100vw - 320px) / (894)));
   }
 }
+.title a {
+  color: var(--gold);
+  -webkit-transition: color 0.3s ease 0s;
+  transition: color 0.3s ease 0s;
+}
+@media (any-hover: hover) {
+  .title a:hover {
+    color: var(--white);
+  }
+}
 
 .text {
   color: var(--white);
@@ -637,6 +647,233 @@ input[type=text], input[type=email], input[type=tel], textarea {
   border: 1px solid red;
 }
 
+textarea {
+  resize: none;
+}
+
+/*popup*/
+.popup {
+  z-index: 20;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  visibility: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-transition: all 0.8s ease 0s;
+  transition: all 0.8s ease 0s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.popup.open {
+  opacity: 1;
+  visibility: visible;
+}
+.popup__content {
+  position: relative;
+  color: var(--gray);
+  background: var(--white) 95% 0%/contain repeat-y url("../img/decor.png");
+  border-radius: 32px;
+  padding: 50px;
+  padding-right: 110px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 70px;
+}
+@media (max-width: 1214px) {
+  .popup__content {
+    border-radius: calc(12px + 20 * ((100vw - 320px) / (894)));
+  }
+}
+@media (max-width: 1214px) {
+  .popup__content {
+    padding: calc(10px + 40 * ((100vw - 320px) / (894)));
+  }
+}
+@media (max-width: 1214px) {
+  .popup__content {
+    padding-right: calc(30px + 80 * ((100vw - 320px) / (894)));
+  }
+}
+@media (max-width: 1214px) {
+  .popup__content {
+    gap: calc(20px + 50 * ((100vw - 320px) / (894)));
+  }
+}
+.popup__content input, .popup__content textarea {
+  text-align: left;
+  width: 100%;
+  margin-top: 10px;
+}
+.popup__content .form-body__input-block:not(:first-child) {
+  margin-top: 20px;
+}
+@media (max-width: 1214px) {
+  .popup__content .form-body__input-block:not(:first-child) {
+    margin-top: calc(10px + 10 * ((100vw - 320px) / (894)));
+  }
+}
+.popup__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+}
+.popup__title {
+  width: 404px;
+  color: var(--black);
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 120%;
+}
+@media (max-width: 1214px) {
+  .popup__title {
+    width: calc(230px + 174 * ((100vw - 320px) / (894)));
+  }
+}
+@media (max-width: 1214px) {
+  .popup__title {
+    font-size: calc(18px + 18 * ((100vw - 320px) / (894)));
+  }
+}
+.popup__form {
+  width: 100%;
+}
+.popup__buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 30px;
+}
+@media (max-width: 1214px) {
+  .popup__buttons {
+    gap: calc(10px + 20 * ((100vw - 320px) / (894)));
+  }
+}
+.popup__logo {
+  display: block;
+  position: relative;
+  z-index: 10;
+  width: 171px;
+  height: 32px;
+}
+@media (max-width: 1214px) {
+  .popup__logo {
+    width: calc(80px + 91 * ((100vw - 320px) / (894)));
+  }
+}
+@media (max-width: 1214px) {
+  .popup__logo {
+    height: calc(20px + 12 * ((100vw - 320px) / (894)));
+  }
+}
+.popup__logo img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.close-popup {
+  margin-left: auto;
+}
+.close-popup span {
+  display: block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+@media (max-width: 1214px) {
+  .close-popup span {
+    width: calc(14px + 6 * ((100vw - 320px) / (894)));
+  }
+}
+@media (max-width: 1214px) {
+  .close-popup span {
+    height: calc(14px + 6 * ((100vw - 320px) / (894)));
+  }
+}
+.close-popup span::before, .close-popup span::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: var(--black);
+  left: 0;
+  -webkit-transition: -webkit-transform 0.9s ease 0s;
+  transition: -webkit-transform 0.9s ease 0s;
+  transition: transform 0.9s ease 0s;
+  transition: transform 0.9s ease 0s, -webkit-transform 0.9s ease 0s;
+}
+@media (max-width: 1214px) {
+  .close-popup span::before, .close-popup span::after {
+    width: calc(18px + 2 * ((100vw - 320px) / (894)));
+  }
+}
+.close-popup span::before {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  top: calc(50% - 1px);
+}
+.close-popup span::after {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  bottom: calc(50% - 1px);
+}
+@media (any-hover: hover) {
+  .close-popup span:hover::before {
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+  }
+  .close-popup span:hover::after {
+    -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+  }
+}
+
 /*header*/
 .header {
   position: relative;
@@ -769,6 +1006,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
   position: relative;
 }
 .header__link {
+  position: relative;
+  z-index: 15;
   color: var(--white);
   font-size: 16px;
   line-height: 120%;
@@ -1539,8 +1778,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
   }
 }
 .social__item svg path {
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  fill: #2E2E2E;
+  -webkit-transition: fill 0.3s ease 0s;
+  transition: fill 0.3s ease 0s;
 }
 @media (any-hover: hover) {
   .social__item:hover svg path {
@@ -1809,6 +2049,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-transition: background 0.3s ease 0s;
   transition: background 0.3s ease 0s;
 }
+.about-page__social .social__item svg path {
+  fill: var(--gold);
+}
 @media (any-hover: hover) {
   .about-page__social .social__item:hover {
     background: var(--white);
@@ -1946,6 +2189,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
           flex-direction: column;
   min-height: 100%;
   background: var(--white);
+  color: var(--black);
   border-radius: 22px;
 }
 @media (max-width: 1214px) {
@@ -1992,9 +2236,19 @@ input[type=text], input[type=email], input[type=tel], textarea {
     height: calc(20px + 32 * ((100vw - 320px) / (894)));
   }
 }
+.block-content__number {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 120%;
+}
+@media (max-width: 1214px) {
+  .block-content__number {
+    font-size: calc(22px + 42 * ((100vw - 320px) / (894)));
+  }
+}
 .block-content__text {
   font-weight: 500;
-  color: var(--black);
   font-size: 15px;
   line-height: 120%;
 }
@@ -2844,9 +3098,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -2882,6 +3136,15 @@ input[type=text], input[type=email], input[type=tel], textarea {
           align-items: start;
   border: none;
 }
+.map-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
 @media (max-width: 991.98px) {
   .map-body {
     width: 100%;
@@ -2891,7 +3154,10 @@ input[type=text], input[type=email], input[type=tel], textarea {
   overflow: hidden;
   border-radius: 36px;
   width: 635px;
-  height: 185px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  min-height: 185px;
 }
 @media (max-width: 1214px) {
   .map-body__content {
