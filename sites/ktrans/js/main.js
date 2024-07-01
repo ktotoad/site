@@ -817,3 +817,12 @@ function inputElements() {
 	});
 }
 inputElements();
+//ZOOM=====================================================================================================================================================
+if(document.querySelector(".parent-container")) {
+	$('.parent-container').magnificPopup({
+		delegate: 'a',
+		type: 'image',
+		removalDelay: 300,
+		mainClass: 'mfp-fade'
+	});
+}
