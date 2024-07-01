@@ -335,7 +335,7 @@ function initSliders() {
 			spaceBetween: 20,
 			parallax: true,
 			//loop: true,
-			autoHeight: true,
+			//autoHeight: true,
 			autoplay: {
 				delay: 3000,
 				disableOnInteraction: false,
