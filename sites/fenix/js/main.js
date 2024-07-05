@@ -171,3 +171,13 @@ DynamicAdapt.prototype.arraySort = function (arr) {
 };
 const da = new DynamicAdapt("max");
 da.init();
+//InputMask===============================================================================================================================================
+function inputElements() {
+	let inputPhones = document.querySelectorAll("input[data-format]");
+	inputPhones.forEach(inputPhone => {
+		let phoneMask = new IMask(inputPhone, {
+			mask: inputPhone.getAttribute("data-format")
+		});
+	});
+}
+inputElements();
