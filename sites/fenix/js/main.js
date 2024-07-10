@@ -181,3 +181,36 @@ function inputElements() {
 	});
 }
 inputElements();
+//Filter=====================================================================================================================================================
+const tabsItems = document.querySelectorAll('.tab-item');
+const tabButtons = document.querySelectorAll('.tab-button');
+
+if(document.querySelector('.tab-list')) {
+
+	tabButtons.forEach(elem => { if(elem.classList.contains('active')){
+			let filter = elem.dataset['filter'];
+			tabsItems.forEach( elem => {
+				elem.classList.remove('hide');
+				if(!elem.classList.contains(filter) && filter != "all") {
+					elem.classList.add('hide');
+				}
+			});
+		}
+	});
+
+	document.querySelector('.tab-list').addEventListener('click', e => {
+
+		if(e.target.classList.contains('tab-button') || e.target.closest('.tab-button')) {
+			let filterClass = e.target.closest('.tab-button').dataset['filter'];
+			tabButtons.forEach(elem => elem.classList.remove('active'));
+			e.target.classList.add('active');
+
+			tabsItems.forEach( elem => {
+				elem.classList.remove('hide');
+				if(!elem.classList.contains(filterClass) && filterClass != "all") {
+					elem.classList.add('hide');
+				}
+			});
+		}
+	});
+}
