@@ -1,11 +1,13 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap&subset=cyrillic-ext");
 :root {
+  --dark: #222222;
   --primary: #151515;
   --white: #fff;
   --light-gray: #D9D9D9;
   --light-gray2: #B0B0B0;
   --gray: #8F9394;
+  --gray2: #484F51;
   --medium-gray: #767676;
   --lila: #A09CCC;
 }
@@ -154,13 +156,13 @@ body.lock {
 }
 
 /*title text*/
-.title-main, .title {
+.title-main, .title, .title-700 {
   font-weight: 700;
   font-size: 64px;
   line-height: 100%;
 }
 @media (max-width: 1820px) {
-  .title-main, .title {
+  .title-main, .title, .title-700 {
     font-size: calc(20px + 44 * ((100vw - 320px) / (1500)));
   }
 }
@@ -184,7 +186,7 @@ body.lock {
   }
 }
 
-.text-700 {
+.text-700, .title-700 {
   font-weight: 700;
 }
 
@@ -201,6 +203,11 @@ body.lock {
 @media (max-width: 991.98px) {
   .title-big {
     letter-spacing: -3px;
+  }
+}
+@media (max-width: 767.98px) {
+  .title-big {
+    font-weight: 700;
   }
 }
 
@@ -221,6 +228,7 @@ body.lock {
     padding: 10px;
     padding-left: 30px;
     padding-right: 30px;
+    padding-top: 10px;
     background: transparent;
     border: 1px solid var(--primary);
     border-radius: 6px;
@@ -278,9 +286,10 @@ body.lock {
   padding: 20px;
   padding-left: 30px;
   padding-right: 30px;
+  width: 400px;
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 100%;
   color: var(--white);
   background: var(--primary);
@@ -306,7 +315,12 @@ body.lock {
 }
 @media (max-width: 1820px) {
   .button-top, .button-white, .button-main {
-    font-size: calc(14px + 2 * ((100vw - 320px) / (1500)));
+    width: calc(290px + 110 * ((100vw - 320px) / (1500)));
+  }
+}
+@media (max-width: 1820px) {
+  .button-top, .button-white, .button-main {
+    font-size: calc(16px + 4 * ((100vw - 320px) / (1500)));
   }
 }
 .button-top svg, .button-white svg, .button-main svg {
@@ -371,6 +385,7 @@ body.lock {
   padding: 10px;
   padding-left: 30px;
   padding-right: 30px;
+  width: 180px;
   color: var(--primary);
   background: var(--white);
   border: 1px solid var(--primary);
@@ -975,13 +990,13 @@ input[type=text], input[type=email], input[type=tel], textarea {
   }
 }
 .footer__item {
-  padding: 50px;
+  padding: 40px;
   padding-left: 100px;
   position: relative;
 }
 @media (max-width: 1820px) {
   .footer__item {
-    padding: calc(10px + 40 * ((100vw - 320px) / (1500)));
+    padding: calc(10px + 30 * ((100vw - 320px) / (1500)));
   }
 }
 @media (max-width: 1820px) {
@@ -996,13 +1011,14 @@ input[type=text], input[type=email], input[type=tel], textarea {
   height: 1px;
   bottom: 0;
   left: 0;
-  background: var(--gray);
+  background: var(--gray2);
 }
 .footer__link {
+  font-family: "Inter";
   text-transform: uppercase;
-  color: var(--gray);
+  color: var(--gray2);
   font-size: 50px;
-  line-height: 120%;
+  line-height: 105%;
   -webkit-transition: color 0.3s ease 0s;
   transition: color 0.3s ease 0s;
 }
@@ -1463,20 +1479,14 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .main-page__label {
   display: inline-block;
-  padding: 10px;
   padding-left: 30px;
   padding-right: 30px;
   font-size: 32px;
-  line-height: 100%;
+  line-height: 200%;
   color: var(--white);
   background: transparent;
   border: 1px solid var(--white);
   border-radius: 6px;
-}
-@media (max-width: 1820px) {
-  .main-page__label {
-    padding: calc(5px + 5 * ((100vw - 320px) / (1500)));
-  }
 }
 @media (max-width: 1820px) {
   .main-page__label {
@@ -1797,6 +1807,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 @media (max-width: 479.98px) {
   .form-page__button {
     width: 100%;
+    text-transform: uppercase;
   }
 }
 .form-page__image {
@@ -1826,6 +1837,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
   }
 }
 
+.articles-page__subtitle {
+  margin-top: 10px;
+}
 @media (min-width: 991.98px) {
   .articles-page__subtitle {
     margin-left: 20px;
@@ -2009,7 +2023,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   font-weight: 700;
   color: var(--white);
   font-size: 20px;
-  line-height: 100%;
+  line-height: 95%;
 }
 @media (max-width: 1820px) {
   .item-article__text {
@@ -2018,7 +2032,13 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1820px) {
   .item-article__text {
-    font-size: calc(14px + 6 * ((100vw - 320px) / (1500)));
+    font-size: calc(13px + 7 * ((100vw - 320px) / (1500)));
+  }
+}
+@media (max-width: 767.98px) {
+  .item-article__text {
+    padding-bottom: 15px;
+    font-weight: 400;
   }
 }
 .item-article .main-page__label {
@@ -2463,7 +2483,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   overflow: hidden;
   border-radius: 26px;
   padding: 50px;
-  margin-top: 90px;
+  margin-top: 50px;
 }
 @media (max-width: 1820px) {
   .partners-page__body {
@@ -2477,7 +2497,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1820px) {
   .partners-page__body {
-    margin-top: calc(30px + 60 * ((100vw - 320px) / (1500)));
+    margin-top: calc(20px + 30 * ((100vw - 320px) / (1500)));
   }
 }
 .partners-page__image {
@@ -3124,13 +3144,13 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
-  padding: 15px;
-  background: var(--primary);
+  padding: 25px;
+  background: var(--dark);
   width: 100%;
 }
 @media (max-width: 1820px) {
   .grid-item__title-block {
-    padding: calc(10px + 5 * ((100vw - 320px) / (1500)));
+    padding: calc(10px + 15 * ((100vw - 320px) / (1500)));
   }
 }
 @media (min-width: 991.98px) {
@@ -3148,7 +3168,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   font-weight: 500;
   color: var(--white);
   font-size: 32px;
-  line-height: 100%;
+  line-height: 90%;
 }
 @media (max-width: 1820px) {
   .grid-item__label {
@@ -3157,8 +3177,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .grid-item__text {
   margin-top: 20px;
-  font-family: "Inter";
-  color: var(--light-gray);
+  color: var(--gray);
   font-size: 18px;
   line-height: 100%;
 }
@@ -3226,6 +3245,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
           flex-direction: row;
   text-transform: uppercase;
   font-family: "Inter";
+  font-weight: 700;
   color: var(--white);
   font-size: 40px;
   line-height: 100%;
@@ -3239,8 +3259,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
-  width: 24px;
-  height: auto;
+  width: 40px;
+  height: 24px;
   -webkit-transition: -webkit-transform 0.3s ease 0s;
   transition: -webkit-transform 0.3s ease 0s;
   transition: transform 0.3s ease 0s;
@@ -3248,7 +3268,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1820px) {
   .spollers-services__title svg {
-    width: calc(11px + 13 * ((100vw - 320px) / (1500)));
+    width: calc(15px + 25 * ((100vw - 320px) / (1500)));
+  }
+}
+@media (max-width: 1820px) {
+  .spollers-services__title svg {
+    height: calc(11px + 13 * ((100vw - 320px) / (1500)));
   }
 }
 .spollers-services__title.spoller-active svg {
@@ -3789,7 +3814,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
           flex-direction: row;
   gap: 60px;
   height: 960px;
-  background: var(--primary);
+  background: var(--dark);
   color: var(--white);
 }
 @media (max-width: 1820px) {
@@ -4056,7 +4081,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .content-question__slide {
   position: relative;
-  background: var(--primary);
+  background: var(--dark);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
