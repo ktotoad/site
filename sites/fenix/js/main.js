@@ -232,8 +232,8 @@ function buildSliders() {
 function initSliders() {
 	buildSliders();
 
-	if (document.querySelector('.article-slider')) {
-		new Swiper('.article-slider', {
+	if (document.querySelector('.detail-slider')) {
+		new Swiper('.detail-slider', {
 			observer: true,
 			observeParents: true,
 			slidesPerView: 1,
@@ -246,8 +246,8 @@ function initSliders() {
 			//},
 			speed: 800,
 			navigation: {
-				nextEl: ".article-slider__next",
-				prevEl: ".article-slider__prev",
+				nextEl: ".detail-slider__next",
+				prevEl: ".detail-slider__prev",
 			},
 		});
 	}
