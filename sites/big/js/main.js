@@ -12,17 +12,17 @@ if (document.querySelector(".preloader")) {
     setTimeout(() => {
         body.classList.remove("lock");
     }, 2e3),
-        setTimeout(() => {
-            loader.classList.add("hidden");
-        }, 3300),
-        (function (body, loader) {
-            let loading = 0,
-                i = setInterval(() => {
-                    (document.querySelector(".preloader-body__percents").innerHTML = ++loading + "%"), 
-                    (document.querySelector(".preloader-body__logo-light").style.width = ++loading + "%"), 100 === loading && clearInterval(i);
-                }, 10);
-            })(),
-        tl.to(".preloader-body__logo-light", { clipPath: "polygon(0 0, 100% 0%, 100% 100%, 0% 100%)", duration: 0.1, delay: 0.35 });
+    setTimeout(() => {
+        loader.classList.add("hidden");
+        tl.to(".preloader-body__logo-light", { clipPath: "polygon(0 0, 100% 0%, 100% 100%, 0% 100%)", duration: 0.1, delay: 0 });
+    }, 1e3),
+    (function (body, loader) {
+        let loading = 0,
+        i = setInterval(() => {
+            (document.querySelector(".preloader-body__logo-light").style.width = ++loading + "%"),
+            (document.querySelector(".preloader-body__percents").innerHTML = ++loading + "%"), 100 === loading && clearInterval(i);
+        }, 20);
+    })();
 
     wrapper.classList.add('loaded');
 
@@ -32,6 +32,29 @@ if (document.querySelector(".preloader")) {
         wrapper.classList.add('loaded');
         animateall();
     });
+}
+//burger=====================================================================================================================================================
+if(document.querySelector('.icon-menu')) {
+	const iconMenu = document.querySelector('.icon-menu');
+	const menuBody = document.querySelector('.header__body');
+	const body = document.querySelector('body');
+	const menuItems = document.querySelectorAll('.header__link');
+
+	iconMenu.addEventListener('click', 
+		function clickButtonBurger(event) {
+			iconMenu.classList.toggle('active');
+			menuBody.classList.toggle('active');
+			body.classList.toggle('lock');
+		});
+
+	menuItems.forEach(menuItem => {
+		menuItem.addEventListener('click', 
+			function clickButtonBurger(event) {
+				iconMenu.classList.remove('active');
+				menuBody.classList.remove('active');
+				body.classList.remove('lock');
+			});
+	});
 }
 /*Animation================================================================================*/
 function animateall() {
@@ -75,19 +98,166 @@ function animateall() {
 		}
 	}
 };
-//burger=====================================================================================================================================================
-const iconMenu = document.querySelector('.icon-menu');
-const menuBody = document.querySelector('.header__body');
-const body = document.querySelector('body');
-
-if (iconMenu) {
-	iconMenu.addEventListener('click', 
-		function clickButtonBurger(event) {
-			iconMenu.classList.toggle('active');
-			menuBody.classList.toggle('active');
-			body.classList.toggle('lock');
+//BuildSlider======================================================================================================================================================
+function buildSliders() {
+	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
+	if (sliders) {
+		sliders.forEach(slider => {
+			slider.parentElement.classList.add('swiper');
+			slider.classList.add('swiper-wrapper');
+			for(const slide of slider.children) {
+				slide.classList.add('swiper-slide');
+			}
 		});
+	}
 }
+
+//Инициализация_Swiper===============================================================================================================================================
+function initSliders() {
+	buildSliders();
+	if (document.querySelector('.slider-about')) {
+		new Swiper('.slider-about', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			spaceBetween: 5,
+			parallax: true,
+			autoHeight: true,
+			speed: 800,
+			navigation: {
+				nextEl: ".slider-about__next",
+				prevEl: ".slider-about__prev",
+			},
+		});
+	}
+	if (document.querySelector('.main-slider')) {
+		let mainSliders = document.querySelectorAll('.main-slider');
+		mainSliders.forEach(function (mainSlider) {
+        	let section = mainSlider.closest("section");
+        	let swipernav = section.querySelector(".nav-slider");
+			new Swiper(swipernav, {
+				spaceBetween: 60,
+				slidesPerView: "auto",
+				freeMode: true,
+				watchSlidesProgress: true,
+				breakpoints: {
+					320: {
+						spaceBetween: 10,
+					},
+					479: {
+						spaceBetween: 20,
+					},
+					767: {
+						spaceBetween: 30,
+					},
+					991: {
+						spaceBetween: 40,
+					},
+					1023: {
+						spaceBetween: 60,
+					}
+				},
+			});
+			new Swiper(mainSlider, {
+				observer: true,
+				observeParents: true,
+				allowTouchMove: false,
+				slidesPerView: "auto",
+				spaceBetween: 10,
+				parallax: true,
+				autoHeight: true,
+				speed: 800,
+				thumbs: {
+					swiper: swipernav,
+				},
+				navigation: {
+					nextEl: ".main-slider__next",
+					prevEl: ".main-slider__prev",
+				},
+			});
+		});
+	}
+	if (document.querySelector('.picture-slider')) {
+		new Swiper('.picture-slider', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 0,
+			parallax: true,
+			autoHeight: true,
+			speed: 800,
+			navigation: {
+				nextEl: ".picture-slider__next",
+				prevEl: ".picture-slider__prev",
+			},
+		});
+	}
+	if (document.querySelector('.slider-catalog__slider')) {
+		new Swiper('.slider-catalog__slider', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 4,
+			spaceBetween: 30,
+			parallax: true,
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 10,
+				},
+				479: {
+					slidesPerView: 2,
+					spaceBetween: 10,
+				},
+				767: {
+					slidesPerView: 3,
+					spaceBetween: 10,
+				},
+				991: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+				1023: {
+					slidesPerView: 4,
+					spaceBetween: 20,
+				}
+			},
+			pagination: {
+				el: ".slider-catalog__pagination",
+				clickable: true,
+				renderBullet: function (index, className) {
+					return '<span class="' + className + '">' + (index + 1) + "</span>";
+				},
+			},
+		});
+	}
+	if (document.querySelector('.builder-page__slider')) {
+		new Swiper('.builder-page__slider', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 2,
+			spaceBetween: 40,
+			parallax: true,
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 0,
+					autoHeight: true,
+				},
+				767: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
+			},
+			navigation: {
+				nextEl: ".builder-page__next",
+				prevEl: ".builder-page__prev",
+			},
+		});
+	}
+}
+initSliders();
 //InputMask===============================================================================================================================================
 function inputElements() {
 	let inputPhones = document.querySelectorAll("input[data-format]");
@@ -219,171 +389,21 @@ function lightbox_close() {
   lightBoxVideo.pause();
 }
 //ZOOM=====================================================================================================================================================
-if(document.querySelector(".parent-container")) {
-	$('.parent-container').magnificPopup({
-		delegate: 'a',
-		type: 'image',
-		removalDelay: 300,
-		mainClass: 'mfp-fade'
+if(document.querySelector("#picture-wrap")) {
+	document.querySelectorAll("#picture-wrap").forEach(pictureWrap => {
+		Fancybox.bind(pictureWrap, {
+		  // Your custom options
+		});
 	});
 }
-//BuildSlider======================================================================================================================================================
-function buildSliders() {
-	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
-	if (sliders) {
-		sliders.forEach(slider => {
-			slider.parentElement.classList.add('swiper');
-			slider.classList.add('swiper-wrapper');
-			for(const slide of slider.children) {
-				slide.classList.add('swiper-slide');
-			}
-		});
-	}
-}
 
-//Инициализация_Swiper===============================================================================================================================================
-function initSliders() {
-	buildSliders();
-	if (document.querySelector('.slider-about')) {
-		new Swiper('.slider-about', {
-			observer: true,
-			observeParents: true,
-			slidesPerView: "auto",
-			spaceBetween: 5,
-			parallax: true,
-			autoHeight: true,
-			speed: 800,
-			navigation: {
-				nextEl: ".slider-about__next",
-				prevEl: ".slider-about__prev",
-			},
+if(document.querySelector("#gallery-wrap")) {
+	document.querySelectorAll("#gallery-wrap").forEach(galleryWrap => {
+		Fancybox.bind(galleryWrap, {
+		  // Your custom options
 		});
-	}
-	if (document.querySelector('.main-slider')) {
-		let mainSliders = document.querySelectorAll('.main-slider');
-		mainSliders.forEach(function (mainSlider) {
-        	let section = mainSlider.closest("section");
-        	let swipernav = section.querySelector(".nav-slider");
-			new Swiper(swipernav, {
-				spaceBetween: 60,
-				slidesPerView: "auto",
-				freeMode: true,
-				watchSlidesProgress: true,
-				breakpoints: {
-					320: {
-						spaceBetween: 10,
-					},
-					479: {
-						spaceBetween: 20,
-					},
-					767: {
-						spaceBetween: 30,
-					},
-					991: {
-						spaceBetween: 40,
-					},
-					1023: {
-						spaceBetween: 60,
-					}
-				},
-			});
-			new Swiper(mainSlider, {
-				observer: true,
-				observeParents: true,
-				allowTouchMove: false,
-				slidesPerView: "auto",
-				spaceBetween: 10,
-				parallax: true,
-				autoHeight: true,
-				speed: 800,
-				thumbs: {
-					swiper: swipernav,
-				},
-			});
-		});
-	}
-	if (document.querySelector('.picture-slider')) {
-		new Swiper('.picture-slider', {
-			observer: true,
-			observeParents: true,
-			slidesPerView: 1,
-			spaceBetween: 0,
-			parallax: true,
-			autoHeight: true,
-			speed: 800,
-			navigation: {
-				nextEl: ".picture-slider__next",
-				prevEl: ".picture-slider__prev",
-			},
-		});
-	}
-	if (document.querySelector('.slider-catalog__slider')) {
-		new Swiper('.slider-catalog__slider', {
-			observer: true,
-			observeParents: true,
-			slidesPerView: 4,
-			spaceBetween: 30,
-			parallax: true,
-			speed: 800,
-			breakpoints: {
-				320: {
-					slidesPerView: 1,
-					spaceBetween: 0,
-					autoHeight: true,
-				},
-				479: {
-					slidesPerView: 2,
-					spaceBetween: 10,
-				},
-				767: {
-					slidesPerView: 3,
-					spaceBetween: 10,
-				},
-				991: {
-					slidesPerView: 3,
-					spaceBetween: 20,
-				},
-				1023: {
-					slidesPerView: 4,
-					spaceBetween: 20,
-				}
-			},
-			pagination: {
-				el: ".slider-catalog__pagination",
-				clickable: true,
-				renderBullet: function (index, className) {
-					return '<span class="' + className + '">' + (index + 1) + "</span>";
-				},
-			},
-		});
-	}
-	if (document.querySelector('.builder-page__slider')) {
-		new Swiper('.builder-page__slider', {
-			observer: true,
-			observeParents: true,
-			slidesPerView: 2,
-			spaceBetween: 40,
-			parallax: true,
-			speed: 800,
-			breakpoints: {
-				320: {
-					slidesPerView: 1,
-					spaceBetween: 0,
-					autoHeight: true,
-				},
-				767: {
-					slidesPerView: 2,
-					spaceBetween: 20,
-				},
-			},
-			navigation: {
-				nextEl: ".builder-page__next",
-				prevEl: ".builder-page__prev",
-			},
-		});
-	}
+	});
 }
-initSliders();
 //Filter=====================================================================================================================================================
 $('.slider-catalog__item').click(function(event) {
 	var i=$(this).data('filter');
@@ -594,13 +614,8 @@ if (("onhashchange" in window) && (!(/MSIE (\d+\.\d+);/.test(navigator.userAgent
 		function iosHfix(e) {
 			window.scrollTo(0, 1);
 			var container=document.getElementById("panorama");
-			var oh=container.offsetHeight;
-			document.documentElement.style.setProperty('height', '100vh');
-			if (oh!=container.offsetHeight) {
-				container.style.setProperty('height',"100%");
-			} else {
-				container.style.setProperty('height',window.innerHeight+"px");
-			}
+			container.style.setProperty('height',"60vh");
+
 			window.scrollTo(0, 0);
 			pano.setViewerSize(container.offsetWidth, container.offsetHeight);
 		};
