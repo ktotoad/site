@@ -242,7 +242,7 @@ function initSliders() {
 			breakpoints: {
 				320: {
 					slidesPerView: 1,
-					spaceBetween: 0,
+					spaceBetween: 10,
 					autoHeight: true,
 				},
 				767: {
@@ -613,9 +613,14 @@ if (("onhashchange" in window) && (!(/MSIE (\d+\.\d+);/.test(navigator.userAgent
 		// fix for white borders, rotation on iPhone
 		function iosHfix(e) {
 			window.scrollTo(0, 1);
-			var container=document.getElementById("panorama");
-			container.style.setProperty('height',"60vh");
-
+			var container=document.getElementById("container");
+			var oh=container.offsetHeight;
+			document.documentElement.style.setProperty('height', '60vh');
+			if (oh!=container.offsetHeight) {
+				container.style.setProperty('height',"100%");
+			} else {
+				container.style.setProperty('height',window.innerHeight+"px");
+			}
 			window.scrollTo(0, 0);
 			pano.setViewerSize(container.offsetWidth, container.offsetHeight);
 		};
