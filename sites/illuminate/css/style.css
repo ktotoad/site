@@ -290,7 +290,7 @@ body.lock {
   font-weight: 700;
   text-transform: uppercase;
   font-size: 20px;
-  line-height: 100%;
+  line-height: 90%;
   color: var(--white);
   background: var(--primary);
   border: 1px solid var(--primary);
@@ -385,7 +385,7 @@ body.lock {
   padding: 10px;
   padding-left: 30px;
   padding-right: 30px;
-  width: 180px;
+  max-width: 160px;
   color: var(--primary);
   background: var(--white);
   border: 1px solid var(--primary);
@@ -1543,6 +1543,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
      object-fit: contain;
 }
 .main-page__body {
+  position: relative;
   margin-top: 40px;
 }
 @media (max-width: 1820px) {
@@ -1585,6 +1586,18 @@ input[type=text], input[type=email], input[type=tel], textarea {
   .main-page__text {
     display: none;
   }
+}
+.main-page__text-decor {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: auto;
+  bottom: 1%;
+  left: 0;
+  background-image: -webkit-gradient(linear, left top, right top, from(#999999), color-stop(#ffffff), to(#999999));
+  background-image: linear-gradient(90deg, #999999, #ffffff, #999999);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .text-page__body {
@@ -3085,6 +3098,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (min-width: 991.98px) {
   .grid-item_3 .grid-item__title-block {
+    background: rgba(34, 34, 34, 0.2);
     position: absolute;
     z-index: 3;
     bottom: 0;
