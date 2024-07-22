@@ -581,6 +581,7 @@ function parseParams(paramsString, params) {
 		params.startView = "";
 	}
 }
+
 var params = {};
 parseParams(document.location.hash, params);
 var startNode = params.startNode;
@@ -604,18 +605,25 @@ if (("onhashchange" in window) && (!(/MSIE (\d+\.\d+);/.test(navigator.userAgent
 	pano=new pano2vrPlayer("panorama");
 	pano.startNode = startNode;
 	pano.startView = startView;
-	pano.setQueryParameter("ts=13280453")
+	pano.setQueryParameter("ts=80996051")
+	// add the skin object
+	skin=new pano2vrSkin(pano);
 	// load the configuration
 	window.addEventListener("load", function() {
-		pano.readConfigUrlAsync("pano.xml?ts=13280453");
+		pano.readConfigUrlAsync("pano.xml?ts=80996051");
 	});
 	if (window.navigator.userAgent.match(/Safari/i)) {
 		// fix for white borders, rotation on iPhone
 		function iosHfix(e) {
 			window.scrollTo(0, 1);
 			var container=document.getElementById("panorama");
-			container.style.setProperty('height',"60vh");
-
+			var oh=container.offsetHeight;
+			document.documentElement.style.setProperty('height', '60vh');
+			if (oh!=container.offsetHeight) {
+				container.style.setProperty('height',"60vh");
+			} else {
+				container.style.setProperty('height',window.innerHeight/2+"px");
+			}
 			window.scrollTo(0, 0);
 			pano.setViewerSize(container.offsetWidth, container.offsetHeight);
 		};
