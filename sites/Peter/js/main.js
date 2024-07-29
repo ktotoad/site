@@ -362,6 +362,36 @@ if(document.querySelector("#changeBody")) {
 		'border-top-right-radius': '300px',
 	})
 }
+//Cards_Filter=====================================================================================================================================================
+const optionsBlock = document.querySelector('#optionsblock');
+const closeButton = optionsBlock.querySelector('.button-close');
+const cards = document.querySelectorAll('.item-options');
+const cardsInfo = document.querySelectorAll('.info-options__body');
+
+optionsBlock.addEventListener("click", (e) => {
+    if(e.target != closeButton) {
+        optionsBlock.classList.add('active');
+        let index;
+        let currentCard = e.target.closest('.item-options');
+
+        currentCard.classList.add('active');
+        index = currentCard.getAttribute('data-circle-index');
+
+        cardsInfo.forEach(function (cardInfo) {
+            if(cardInfo.getAttribute('data-circle-content-index') == index) {
+                cardInfo.classList.add('active');
+            }
+        });
+    } else {
+        optionsBlock.classList.remove('active');
+        cards.forEach(function (card) {
+            card.classList.remove('active');
+        });
+        cardsInfo.forEach(function (cardInfo) {
+            cardInfo.classList.remove('active');
+        });
+    }
+});
 //SPOLLERS========================================================================================================================================
 
 //Проверка на наличие атрибута
@@ -933,28 +963,6 @@ if(document.querySelector("#buttonsFormBody")) {
 		}
 	}
 }
-//Filter=====================================================================================================================================================
-$('.content-club__link').click(function(event) {
-	var i=$(this).data('filter');
-	
-	$('.image-block-club__body').removeClass('show');
-	$('.image-block-club__body.f_'+i).addClass('show');
-
-	$('.content-club__link').removeClass('_tab-active');
-	$(this).addClass('_tab-active');
-
-	return false;
-});
-
-$('.location-page__point').click(function(event) {
-	var i=$(this).data('filter');
-	
-	$('.content-location__text-block').removeClass('show');
-	$('.content-location__text-block.'+i).addClass('show');
-
-	$('.location-page__point').removeClass('active');
-	$(this).addClass('active');
-});
 //CheckBox_RadioButton====================================================================================================================================================================================
 $(document).ready(function () {
 
