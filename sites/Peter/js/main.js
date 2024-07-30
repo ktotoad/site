@@ -28,10 +28,14 @@ if (document.querySelector(".preloader")) {
 
     animateall();
 } else {
-    window.addEventListener('load', function () {
+    //window.addEventListener('load', function () {
+    //    wrapper.classList.add('loaded');
+    //    animateall();
+    //});
+    setTimeout(function(){
         wrapper.classList.add('loaded');
         animateall();
-    });
+    }, 2000);
 }
 function lazyload() {
     const hasSupport = 'loading' in HTMLImageElement.prototype;
@@ -876,6 +880,10 @@ function initSliders() {
 				el: '.slider-team__pagination',
 				clickable: true,
 			},
+			navigation: {
+        nextEl: ".slider-team__next",
+        prevEl: ".slider-team__prev",
+      },
 		});
 	}
 	if (document.querySelector('.alike-page__slider')) {
@@ -1215,3 +1223,13 @@ function tabs() {
 	}
 }
 tabs(); 
+
+//Video_delay=================================================================================================================================
+if(document.querySelector('#background-video')) {
+	let videos = document.querySelectorAll('#background-video');
+	videos.forEach( video => {
+		setTimeout(function(){
+		    video.play();
+		}, 3000);
+	});
+}
