@@ -653,6 +653,7 @@ function initSliders() {
 			parallax: true,
 			//autoHeight: true,
 			//freeMode: true,
+			autoplay: false,
 			watchSlidesProgress: true,
 			speed: 800,
 			breakpoints: {
@@ -663,7 +664,7 @@ function initSliders() {
 				},
 				480: {
 					slidesPerView: 6,
-    				direction: "vertical",
+    			direction: "vertical",
 				},
 			},
 		});
@@ -676,14 +677,21 @@ function initSliders() {
 			slidesPerView: 1,
 			spaceBetween: 0,
 			parallax: true,
-			allowTouchMove:false,
       thumbs: {
         swiper: swiper,
       },
 			pagination: {
 				el: '.slider-club__pagination',
 				clickable: true,
-			}
+			},
+			breakpoints: {
+				320: {
+					allowTouchMove:true,
+				},
+				768: {
+					allowTouchMove:false,
+				},
+			},
 		});
 	}
 
@@ -704,7 +712,7 @@ function initSliders() {
 				},
 				992: {
 					slidesPerView: 6,
-    				direction: "vertical",
+    			direction: "vertical",
 				},
 			},
 		});
@@ -738,7 +746,7 @@ function initSliders() {
 			},
 			speed: 800,
       thumbs: {
-        swiper: swiper,
+        swiper: swiperh,
       },
 			pagination: {
 				el: '.slider-etalon__pagination',
@@ -1227,6 +1235,14 @@ tabs();
 //Video_delay=================================================================================================================================
 if(document.querySelector('#background-video')) {
 	let videos = document.querySelectorAll('#background-video');
+	let bgs = document.querySelectorAll("#fullscreenimage");
+
+	bgs.forEach( image => {
+		setTimeout(function(){
+		    image.classList.add('hide');
+		}, 2500);
+	});
+
 	videos.forEach( video => {
 		setTimeout(function(){
 		    video.play();
