@@ -222,12 +222,16 @@ function initSliders() {
 					spaceBetween: 20,
 				}
 			},
-			pagination: {
-				el: ".slider-catalog__pagination",
-				clickable: true,
-				renderBullet: function (index, className) {
-					return '<span class="' + className + '">' + (index + 1) + "</span>";
-				},
+			//pagination: {
+			//	el: ".slider-catalog__pagination",
+			//	clickable: true,
+			//	renderBullet: function (index, className) {
+			//		return '<span class="' + className + '">' + (index + 1) + "</span>";
+			//	},
+			//},
+			navigation: {
+				nextEl: ".slider-catalog__next",
+				prevEl: ".slider-catalog__prev",
 			},
 		});
 	}
@@ -404,25 +408,7 @@ if(document.querySelector("#gallery-wrap")) {
 		});
 	});
 }
-//Filter=====================================================================================================================================================
-$('.slider-catalog__item').click(function(event) {
-	var i=$(this).data('filter');
-	
-	$('.catalog-page__span').removeClass('show');
-	$('.slider-catalog__slide').removeClass('show');
-
-	$('.catalog-page__span.f_'+i).addClass('show');
-	$('.slider-catalog__slide.f_'+i).addClass('show');
-
-	$('.slider-catalog__item').removeClass('active');
-	$(this).addClass('active');
-
-	return false;
-
-	let mySwiper = document.querySelector('.slider-catalog__slider').swiper;
-	mySwiper.update();
-});
-
+//Map_items=====================================================================================================================================================
 $('.location-page__point').click(function(event) {
 	var i=$(this).data('filter');
 	
@@ -431,6 +417,87 @@ $('.location-page__point').click(function(event) {
 
 	$('.location-page__point').removeClass('active');
 	$(this).addClass('active');
+});
+
+//Filter=====================================================================================================================================================
+const catalogSliderSlides = document.querySelectorAll('.slider-catalog__slide');
+const catalogSpans = document.querySelectorAll('.catalog-page__span');
+const filterItems = document.querySelectorAll('.slider-catalog__item');
+
+if(document.querySelector('.slider-catalog__list')) {
+
+	filterItems.forEach(elem => { if(elem.classList.contains('active')) {
+		let filter = elem.dataset['filter'];
+		catalogSliderSlides.forEach( elem => {
+			elem.classList.remove('hide');
+			if(!elem.classList.contains(filter)) {
+				elem.classList.add('hide');
+			}
+		});
+		catalogSpans.forEach( spanelem => {
+			spanelem.classList.remove('hide');
+			if(!spanelem.classList.contains(filter)) {
+				spanelem.classList.add('hide');
+			}
+		});
+	}
+});
+
+document.querySelector('.slider-catalog__list').addEventListener('click', e => {
+
+	if(e.target.classList.contains('slider-catalog__item') || e.target.closest('.slider-catalog__item')) {
+		let filterClass = e.target.closest('.slider-catalog__item').dataset['filter'];
+		filterItems.forEach(elem => elem.classList.remove('active'));
+		e.target.closest('.slider-catalog__item').classList.add('active');
+
+		catalogSliderSlides.forEach( elem => {
+			elem.classList.remove('hide');
+			if(!elem.classList.contains(filterClass)) {
+				elem.classList.add('hide');
+			}
+		});
+
+		catalogSpans.forEach( spanelem => {
+			spanelem.classList.remove('hide');
+			if(!spanelem.classList.contains(filterClass)) {
+				spanelem.classList.add('hide');
+			}
+		});
+			
+		let mySwiper = document.querySelector('.slider-catalog__slider').swiper;
+		mySwiper.update();
+		}
+	});
+}
+//Cards_Filter=====================================================================================================================================================
+const optionsBlock = document.querySelector('#optionsblock');
+const closeButton = optionsBlock.querySelector('.button-close');
+const cards = document.querySelectorAll('.item-options');
+const cardsInfo = document.querySelectorAll('.info-options__body');
+
+optionsBlock.addEventListener("click", (e) => {
+    if(e.target != closeButton) {
+        optionsBlock.classList.add('active');
+        let index;
+        let currentCard = e.target.closest('.item-options');
+
+        currentCard.classList.add('active');
+        index = currentCard.getAttribute('data-circle-index');
+
+        cardsInfo.forEach(function (cardInfo) {
+            if(cardInfo.getAttribute('data-circle-content-index') == index) {
+                cardInfo.classList.add('active');
+            }
+        });
+    } else {
+        optionsBlock.classList.remove('active');
+        cards.forEach(function (card) {
+            card.classList.remove('active');
+        });
+        cardsInfo.forEach(function (cardInfo) {
+            cardInfo.classList.remove('active');
+        });
+    }
 });
 //TABS==================================================================================================================================================
 // Получение хеша в адресе сайта
@@ -559,6 +626,12 @@ function tabs() {
 tabs(); 
 
 /*Panorama=======================================================================================================================================================*/
+/*window.addEventListener('scroll', function () {
+	const scrollPosition = window.scrollY;
+	console.log("Scroll " + scrollPosition);
+});*/
+
+
 function parseParams(paramsString, params) {
 	paramsString = paramsString.substring(1);
 	var firstSeparatorPos = paramsString.indexOf(",");
@@ -601,39 +674,41 @@ if (("onhashchange" in window) && (!(/MSIE (\d+\.\d+);/.test(navigator.userAgent
 		}
 	}, 100);
 }
-	// create the panorama player with the container
-	pano=new pano2vrPlayer("panorama");
-	pano.startNode = startNode;
-	pano.startView = startView;
-	pano.setQueryParameter("ts=80996051")
-	// add the skin object
-	skin=new pano2vrSkin(pano);
-	// load the configuration
-	window.addEventListener("load", function() {
-		pano.readConfigUrlAsync("pano.xml?ts=80996051");
-	});
-	if (window.navigator.userAgent.match(/Safari/i)) {
-		// fix for white borders, rotation on iPhone
-		function iosHfix(e) {
-			window.scrollTo(0, 1);
-			var container=document.getElementById("panorama");
-			var oh=container.offsetHeight;
-			document.documentElement.style.setProperty('height', '60vh');
-			if (oh!=container.offsetHeight) {
-				container.style.setProperty('height',"60vh");
-			} else {
-				container.style.setProperty('height',window.innerHeight/2+"px");
-			}
-			window.scrollTo(0, 0);
-			pano.setViewerSize(container.offsetWidth, container.offsetHeight);
-		};
+
+// create the panorama player with the container
+pano=new pano2vrPlayer("panorama");
+pano.startNode = startNode;
+pano.startView = startView;
+pano.setQueryParameter("ts=80996051")
+// add the skin object
+skin=new pano2vrSkin(pano);
+// load the configuration
+window.addEventListener("load", function() {
+	pano.readConfigUrlAsync("pano.xml?ts=80996051");
+});
+
+if (window.navigator.userAgent.match(/Safari/i)) {
+	// fix for white borders, rotation on iPhone
+	function iosHfix(e) {
+		//window.scrollTo(0, 1);
+		var container=document.getElementById("panorama");
+		var oh=container.offsetHeight;
+		document.documentElement.style.setProperty('height', '60vh');
+		if (oh!=container.offsetHeight) {
+			container.style.setProperty('height',"60vh");
+		} else {
+			container.style.setProperty('height',window.innerHeight/2+"px");
+		}
+		//window.scrollTo(0, 0);
+		pano.setViewerSize(container.offsetWidth, container.offsetHeight);
+	};
+	setTimeout(iosHfix,0);
+	setTimeout(iosHfix,100);
+	window.addEventListener("resize", function() {
 		setTimeout(iosHfix,0);
-		setTimeout(iosHfix,100);
-		window.addEventListener("resize", function() {
-			setTimeout(iosHfix,0);
-			// hide toolbar on iPad happens with a delay
-			setTimeout(iosHfix,500);
-			setTimeout(iosHfix,1000);
-			setTimeout(iosHfix,2000);
-		});
-	}
+		// hide toolbar on iPad happens with a delay
+		setTimeout(iosHfix,500);
+		setTimeout(iosHfix,1000);
+		setTimeout(iosHfix,2000);
+	});
+}
