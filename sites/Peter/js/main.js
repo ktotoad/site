@@ -378,15 +378,16 @@ if(document.querySelector('#optionsblock')) {
             optionsBlock.classList.add('active');
             let index;
             let currentCard = e.target.closest('.item-options');
+            if (currentCard){
+                currentCard.classList.add('active');
+                index = currentCard.getAttribute('data-circle-index');
 
-            currentCard.classList.add('active');
-            index = currentCard.getAttribute('data-circle-index');
-
-            cardsInfo.forEach(function (cardInfo) {
-                if(cardInfo.getAttribute('data-circle-content-index') == index) {
-                    cardInfo.classList.add('active');
-                }
-            });
+                cardsInfo.forEach(function (cardInfo) {
+                    if(cardInfo.getAttribute('data-circle-content-index') == index) {
+                        cardInfo.classList.add('active');
+                    }
+                });
+            }
         } else {
             optionsBlock.classList.remove('active');
             cards.forEach(function (card) {
