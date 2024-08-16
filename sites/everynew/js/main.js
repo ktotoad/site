@@ -24,6 +24,16 @@ if (iconMenu) {
 			body.classList.toggle('lock');
 		});
 }
+//InputMask===============================================================================================================================================
+function inputElements() {
+	let inputPhones = document.querySelectorAll("input[data-format]");
+	inputPhones.forEach(inputPhone => {
+		let phoneMask = new IMask(inputPhone, {
+			mask: inputPhone.getAttribute("data-format")
+		});
+	});
+}
+inputElements();
 //POPUP========================================================================================================================================
 const popupLinks = document.querySelectorAll('.popup-link');
 //const body = document.querySelector('body');
