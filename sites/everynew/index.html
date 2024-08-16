@@ -5,6 +5,7 @@
 		<meta charset="utf-8">
 		<meta name="format-detection" content="telephone=no">
 		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/swiper-bundle.min.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	</head>
@@ -175,22 +176,26 @@
 	<div class="header__container container">
 		<nav class="header__body">
 			<ul class="header__list">
-				<li class="header__item"><a href="" class="header__link link"><span>Портфолио</span></a></li>
-				<li class="header__item"><a href="" class="header__link link"><span>Блог</span></a></li>
-				<li class="header__item"><a href="" class="header__link link"><span>О компании</span></a></li>
-				<li class="header__item"><a href="" class="header__link link"><span>Контакты</span></a></li>		
+				<li class="header__item"><a href="" id="link" class="header__link link"><span>Портфолио</span></a></li>
+				<li class="header__item"><a href="" id="link" class="header__link link"><span>Блог</span></a></li>
+				<li class="header__item"><a href="" id="link" class="header__link link"><span>О компании</span></a></li>
+				<li class="header__item"><a href="" id="link" class="header__link link"><span>Контакты</span></a></li>		
 			</ul>
 		</nav>
 		<div class="header__buttons">
-			<a href="" class="header__button button-social">
-				<svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path fill-rule="evenodd" clip-rule="evenodd" d="M23.5 11.5C23.5 17.8512 18.3512 23 12 23C5.64881 23 0.5 17.8512 0.5 11.5C0.5 5.14881 5.64881 0 12 0C18.3512 0 23.5 5.14881 23.5 11.5ZM12.4131 8.49038C11.2919 8.9551 9.05677 9.92142 5.70783 11.382C5.16196 11.5959 4.88166 11.8098 4.85215 12.0164C4.80789 12.3631 5.2431 12.5032 5.8406 12.695C5.92174 12.7171 6.00289 12.7466 6.0914 12.7761C6.68153 12.9679 7.47081 13.1892 7.87652 13.1966C8.24535 13.204 8.66581 13.0491 9.12316 12.7393C12.2582 10.6222 13.8736 9.5526 13.9769 9.53047C14.0507 9.51572 14.1466 9.49359 14.213 9.5526C14.2793 9.61161 14.272 9.72226 14.2646 9.75914C14.2203 9.94355 12.5016 11.5443 11.609 12.3704C11.3287 12.6286 11.1369 12.813 11.0927 12.8499C11.0042 12.9458 10.9083 13.0343 10.8198 13.1155C10.2739 13.6392 9.86819 14.0375 10.8419 14.6793C11.314 14.9891 11.6902 15.2473 12.059 15.4981C12.4721 15.7784 12.8778 16.0513 13.4015 16.398C13.5343 16.4865 13.6671 16.575 13.7925 16.6636C14.272 17.0029 14.6998 17.3053 15.2235 17.2611C15.5334 17.2316 15.8505 16.9439 16.0128 16.0808C16.3964 14.0449 17.1414 9.63374 17.3185 7.81174C17.3332 7.64946 17.3185 7.45029 17.2963 7.36177C17.2816 7.27325 17.2521 7.14785 17.1341 7.05196C16.9939 6.94131 16.78 6.91918 16.6915 6.91918C16.2563 6.92656 15.5924 7.15523 12.3983 8.483L12.4131 8.49038Z" fill="white"/>
-				</svg>
+			<a href="" id="button" class="header__button button-social">
+				<span>
+					<svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M23.5 11.5C23.5 17.8512 18.3512 23 12 23C5.64881 23 0.5 17.8512 0.5 11.5C0.5 5.14881 5.64881 0 12 0C18.3512 0 23.5 5.14881 23.5 11.5ZM12.4131 8.49038C11.2919 8.9551 9.05677 9.92142 5.70783 11.382C5.16196 11.5959 4.88166 11.8098 4.85215 12.0164C4.80789 12.3631 5.2431 12.5032 5.8406 12.695C5.92174 12.7171 6.00289 12.7466 6.0914 12.7761C6.68153 12.9679 7.47081 13.1892 7.87652 13.1966C8.24535 13.204 8.66581 13.0491 9.12316 12.7393C12.2582 10.6222 13.8736 9.5526 13.9769 9.53047C14.0507 9.51572 14.1466 9.49359 14.213 9.5526C14.2793 9.61161 14.272 9.72226 14.2646 9.75914C14.2203 9.94355 12.5016 11.5443 11.609 12.3704C11.3287 12.6286 11.1369 12.813 11.0927 12.8499C11.0042 12.9458 10.9083 13.0343 10.8198 13.1155C10.2739 13.6392 9.86819 14.0375 10.8419 14.6793C11.314 14.9891 11.6902 15.2473 12.059 15.4981C12.4721 15.7784 12.8778 16.0513 13.4015 16.398C13.5343 16.4865 13.6671 16.575 13.7925 16.6636C14.272 17.0029 14.6998 17.3053 15.2235 17.2611C15.5334 17.2316 15.8505 16.9439 16.0128 16.0808C16.3964 14.0449 17.1414 9.63374 17.3185 7.81174C17.3332 7.64946 17.3185 7.45029 17.2963 7.36177C17.2816 7.27325 17.2521 7.14785 17.1341 7.05196C16.9939 6.94131 16.78 6.91918 16.6915 6.91918C16.2563 6.92656 15.5924 7.15523 12.3983 8.483L12.4131 8.49038Z" fill="white"/>
+					</svg>
+				</span>	
 			</a>
-			<a href="" class="header__button button-social">
-				<svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path fill-rule="evenodd" clip-rule="evenodd" d="M23.5 11.5C23.5 17.8512 18.3512 23 12 23C5.64881 23 0.5 17.8512 0.5 11.5C0.5 5.14881 5.64881 0 12 0C18.3512 0 23.5 5.14881 23.5 11.5ZM12.4131 8.49038C11.2919 8.9551 9.05677 9.92142 5.70783 11.382C5.16196 11.5959 4.88166 11.8098 4.85215 12.0164C4.80789 12.3631 5.2431 12.5032 5.8406 12.695C5.92174 12.7171 6.00289 12.7466 6.0914 12.7761C6.68153 12.9679 7.47081 13.1892 7.87652 13.1966C8.24535 13.204 8.66581 13.0491 9.12316 12.7393C12.2582 10.6222 13.8736 9.5526 13.9769 9.53047C14.0507 9.51572 14.1466 9.49359 14.213 9.5526C14.2793 9.61161 14.272 9.72226 14.2646 9.75914C14.2203 9.94355 12.5016 11.5443 11.609 12.3704C11.3287 12.6286 11.1369 12.813 11.0927 12.8499C11.0042 12.9458 10.9083 13.0343 10.8198 13.1155C10.2739 13.6392 9.86819 14.0375 10.8419 14.6793C11.314 14.9891 11.6902 15.2473 12.059 15.4981C12.4721 15.7784 12.8778 16.0513 13.4015 16.398C13.5343 16.4865 13.6671 16.575 13.7925 16.6636C14.272 17.0029 14.6998 17.3053 15.2235 17.2611C15.5334 17.2316 15.8505 16.9439 16.0128 16.0808C16.3964 14.0449 17.1414 9.63374 17.3185 7.81174C17.3332 7.64946 17.3185 7.45029 17.2963 7.36177C17.2816 7.27325 17.2521 7.14785 17.1341 7.05196C16.9939 6.94131 16.78 6.91918 16.6915 6.91918C16.2563 6.92656 15.5924 7.15523 12.3983 8.483L12.4131 8.49038Z" fill="white"/>
-				</svg>
+			<a href="" id="button" class="header__button button-social">
+				<span>
+					<svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M23.5 11.5C23.5 17.8512 18.3512 23 12 23C5.64881 23 0.5 17.8512 0.5 11.5C0.5 5.14881 5.64881 0 12 0C18.3512 0 23.5 5.14881 23.5 11.5ZM12.4131 8.49038C11.2919 8.9551 9.05677 9.92142 5.70783 11.382C5.16196 11.5959 4.88166 11.8098 4.85215 12.0164C4.80789 12.3631 5.2431 12.5032 5.8406 12.695C5.92174 12.7171 6.00289 12.7466 6.0914 12.7761C6.68153 12.9679 7.47081 13.1892 7.87652 13.1966C8.24535 13.204 8.66581 13.0491 9.12316 12.7393C12.2582 10.6222 13.8736 9.5526 13.9769 9.53047C14.0507 9.51572 14.1466 9.49359 14.213 9.5526C14.2793 9.61161 14.272 9.72226 14.2646 9.75914C14.2203 9.94355 12.5016 11.5443 11.609 12.3704C11.3287 12.6286 11.1369 12.813 11.0927 12.8499C11.0042 12.9458 10.9083 13.0343 10.8198 13.1155C10.2739 13.6392 9.86819 14.0375 10.8419 14.6793C11.314 14.9891 11.6902 15.2473 12.059 15.4981C12.4721 15.7784 12.8778 16.0513 13.4015 16.398C13.5343 16.4865 13.6671 16.575 13.7925 16.6636C14.272 17.0029 14.6998 17.3053 15.2235 17.2611C15.5334 17.2316 15.8505 16.9439 16.0128 16.0808C16.3964 14.0449 17.1414 9.63374 17.3185 7.81174C17.3332 7.64946 17.3185 7.45029 17.2963 7.36177C17.2816 7.27325 17.2521 7.14785 17.1341 7.05196C16.9939 6.94131 16.78 6.91918 16.6915 6.91918C16.2563 6.92656 15.5924 7.15523 12.3983 8.483L12.4131 8.49038Z" fill="white"/>
+					</svg>
+				</span>
 			</a>
 			<a href="" id="button" class="header__button button-main"><span>+7 906 116-99-66</span></a>
 			<a href="" id="button" class="header__button button-main"><span>info@every-tech.ru</span></a>
@@ -200,7 +205,112 @@
 	</div>
 </header>
 				<div class="content">
-					
+					<section class="main">
+						<div class="main__container container">
+							<div class="main__slider main-slider">
+								<div class="main-slider__swiper">
+									<div class="main-slider__slide">
+										<div class="main-slider__image">
+											<img src="./img/main/01.jpg" alt="">
+										</div>
+									</div>
+									<div class="main-slider__slide">
+										<div class="main-slider__image">
+											<img src="./img/main/01.jpg" alt="">
+										</div>
+									</div>
+									<div class="main-slider__slide">
+										<div class="main-slider__image">
+											<img src="./img/main/01.jpg" alt="">
+										</div>
+									</div>
+									<div class="main-slider__slide">
+										<div class="main-slider__image">
+											<img src="./img/main/01.jpg" alt="">
+										</div>
+									</div>
+									<div class="main-slider__slide">
+										<div class="main-slider__image">
+											<img src="./img/main/01.jpg" alt="">
+										</div>
+									</div>
+									<div class="main-slider__slide">
+										<div class="main-slider__image">
+											<img src="./img/main/01.jpg" alt="">
+										</div>
+									</div>
+									<div class="main-slider__slide">
+										<div class="main-slider__image">
+											<img src="./img/main/01.jpg" alt="">
+										</div>
+									</div>
+									<div class="main-slider__slide">
+										<div class="main-slider__image">
+											<img src="./img/main/01.jpg" alt="">
+										</div>
+									</div>
+									<div class="main-slider__slide">
+										<div class="main-slider__image">
+											<img src="./img/main/01.jpg" alt="">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="main-slider__controls">
+								<div class="main-slider__dots"></div>
+								<div thumbsSlider="" class="main__slider-thumb main-thumb">
+									<div class="main-thumb__swiper">
+										<div class="main-thumb__slide">
+											<div class="main-thumb__image">
+												<img src="./img/main/01.jpg" alt="">
+											</div>
+										</div>
+										<div class="main-thumb__slide">
+											<div class="main-thumb__image">
+												<img src="./img/main/01.jpg" alt="">
+											</div>
+										</div>
+										<div class="main-thumb__slide">
+											<div class="main-thumb__image">
+												<img src="./img/main/01.jpg" alt="">
+											</div>
+										</div>
+										<div class="main-thumb__slide">
+											<div class="main-thumb__image">
+												<img src="./img/main/01.jpg" alt="">
+											</div>
+										</div>
+										<div class="main-thumb__slide">
+											<div class="main-thumb__image">
+												<img src="./img/main/01.jpg" alt="">
+											</div>
+										</div>
+										<div class="main-thumb__slide">
+											<div class="main-thumb__image">
+												<img src="./img/main/01.jpg" alt="">
+											</div>
+										</div>
+										<div class="main-thumb__slide">
+											<div class="main-thumb__image">
+												<img src="./img/main/01.jpg" alt="">
+											</div>
+										</div>
+										<div class="main-thumb__slide">
+											<div class="main-thumb__image">
+												<img src="./img/main/01.jpg" alt="">
+											</div>
+										</div>
+										<div class="main-thumb__slide">
+											<div class="main-thumb__image">
+												<img src="./img/main/01.jpg" alt="">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>	
+						</div>
+					</section>
+
 				</div> 
 <footer class="footer">
 	<div class="footer__container container">
@@ -256,7 +366,6 @@
 			</div>
 		</div>
 	</div>
-</div><!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;key="></script>  -->
+</div><script src="js/swiper-bundle.min.js"></script>	
 <script src="js/main.js"></script>		</body>
 </html>

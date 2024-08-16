@@ -153,3 +153,108 @@ if(document.querySelector('#button')) {
 		}
 	});
 }
+
+if(document.querySelector('#link')) {
+	var links = document.querySelectorAll("#link");
+
+	links.forEach(link => {
+		const itemMove = link.querySelector("span");
+
+		link.onmouseover = function(event) {
+			moveAt(event);
+		}
+		
+		link.onmousemove = function(event) {
+			moveAt(event);
+		}
+
+		link.onmouseout = function() {
+			itemMove.style.removeProperty('transform');
+		}
+
+		function moveAt(event) {
+			// получаем координату мыши
+			const x = event.clientX; 
+  			const y = event.clientY;
+  			// центральное положение текста
+  			const spanX = (itemMove.getBoundingClientRect().left + itemMove.getBoundingClientRect().right)/2;
+  			const spanY = (itemMove.getBoundingClientRect().top + itemMove.getBoundingClientRect().bottom)/2;
+
+			itemMove.style.transform  = `translate(${-(x - spanX)/2}px, ${-(y - spanY)/2}px)`;
+		}
+	});
+}
+
+//BuildSlider======================================================================================================================================================
+function buildSliders() {
+	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
+	if (sliders) {
+		sliders.forEach(slider => {
+			slider.parentElement.classList.add('swiper');
+			slider.classList.add('swiper-wrapper');
+			for(const slide of slider.children) {
+				slide.classList.add('swiper-slide');
+			}
+		});
+	}
+}
+
+//Инициализация_Swiper===============================================================================================================================================
+function initSliders() {
+	buildSliders();
+
+	if (document.querySelector('.main-slider')) {
+		var swiper = new Swiper(".main-thumb", {
+			spaceBetween: 30,
+			slidesPerView: 6,
+			freeMode: true,
+			watchSlidesProgress: true,
+			breakpoints: {
+				320: {
+					slidesPerView: 2,
+					spaceBetween: 10,
+				},
+				480: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+				768: {
+					slidesPerView: 4,
+					spaceBetween: 20,
+				},
+				992: {
+					slidesPerView: 5,
+					spaceBetween: 20,
+				},
+				1024: {
+					slidesPerView: 6,
+					spaceBetween: 30,
+				},
+			},
+		});
+		new Swiper('.main-slider', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 20,
+			parallax: true,
+			//loop: true,
+			autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			pagination: {
+				el: '.main-slider__dots',
+				clickable: true,
+			},
+			thumbs: {
+				swiper: swiper,
+			},
+		});
+	}
+}
+
+
+initSliders();
