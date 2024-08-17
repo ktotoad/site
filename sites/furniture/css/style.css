@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap&subset=cyrillic-ext");
 :root {
   --black: #141614;
   --primary: #6a6e77;
@@ -45,7 +44,7 @@ html, body {
 body {
   line-height: 1;
   font-size: 25px;
-  font-family: "Montserrat", serif;
+  font-family: "Butler", serif;
   color: var(--primary);
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
@@ -53,7 +52,7 @@ body {
 }
 
 input, button, textarea {
-  font-family: "Montserrat", serif;
+  font-family: "Butler", serif;
 }
 
 input::-ms-clear {
@@ -153,6 +152,20 @@ body.lock {
 }
 
 /*title text*/
+.title-main {
+  word-spacing: 0px;
+  font-weight: 200;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  font-size: 145px;
+  line-height: 120%;
+}
+@media (max-width: 1170px) {
+  .title-main {
+    font-size: calc(54px + 91 * ((100vw - 320px) / (850)));
+  }
+}
+
 .title {
   font-size: 45px;
   line-height: 120%;
@@ -174,12 +187,12 @@ body.lock {
 }
 
 .text {
-  font-size: 20px;
+  font-size: 22px;
   line-height: 120%;
 }
 @media (max-width: 1170px) {
   .text {
-    font-size: calc(14px + 6 * ((100vw - 320px) / (850)));
+    font-size: calc(18px + 4 * ((100vw - 320px) / (850)));
   }
 }
 
@@ -402,7 +415,7 @@ body.lock {
   position: absolute;
   z-index: 5;
   top: 50%;
-  left: 50%;
+  left: 60%;
   width: 25vw;
   height: 25vw;
   -webkit-transition: -webkit-transform 0.3s ease-in;
@@ -441,7 +454,6 @@ body.lock {
 .main-slider__body {
   position: absolute;
   z-index: 10;
-  width: 50%;
   height: auto;
   top: 40%;
   left: 5%;
@@ -451,7 +463,6 @@ body.lock {
 }
 @media (max-width: 991.98px) {
   .main-slider__body {
-    width: 100%;
     top: 20%;
   }
 }
@@ -463,6 +474,16 @@ body.lock {
   left: 0;
   overflow: hidden;
 }
+.main-slider__image::before {
+  content: "";
+  opacity: 0.1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: var(--black);
+}
 .main-slider__image img {
   width: 100%;
   height: 100%;
@@ -470,11 +491,10 @@ body.lock {
      object-fit: cover;
 }
 .main-slider__title {
-  font-weight: 200;
-  text-transform: uppercase;
   color: var(--white);
 }
 .main-slider__text {
+  font-family: "Matter", serif;
   font-weight: 300;
   margin-top: 30px;
   color: var(--white);
@@ -613,17 +633,10 @@ body.lock {
 .about-page__title {
   color: var(--brown);
   margin-top: 40px;
-  text-transform: uppercase;
-  width: 720px;
 }
 @media (max-width: 1170px) {
   .about-page__title {
     margin-top: calc(15px + 25 * ((100vw - 320px) / (850)));
-  }
-}
-@media (max-width: 1170px) {
-  .about-page__title {
-    width: calc(290px + 430 * ((100vw - 320px) / (850)));
   }
 }
 .about-page__text {
