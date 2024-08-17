@@ -32,6 +32,14 @@ function initSliders() {
 				disableOnInteraction: false,
 			},
 			speed: 1800,
+			breakpoints: {
+		        320: {
+		        	allowTouchMove: false
+		        },
+		        1024: {
+		        	allowTouchMove: true
+		        },
+		    },
 			pagination: {
 				el: '.main-slider__dots',
 				clickable: true,
