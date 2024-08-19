@@ -51,7 +51,7 @@ function initSliders() {
 		new Swiper('.slider-running',{
 			observer: true,
 			observeParents: true,
-	        spaceBetween: 50,
+	        spaceBetween: 20,
 	        centeredSlides: false,
 	        parallax: true,
 			loop: true,
