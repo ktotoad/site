@@ -17,6 +17,8 @@ function buildSliders() {
 function initSliders() {
 	buildSliders();
 
+	let date = ['Office Furniture', 'Talk to an expert', 'Our Services'];
+
 	if (document.querySelector('.main-slider')) {
 		new Swiper('.main-slider', {
 			observer: true,
@@ -43,6 +45,9 @@ function initSliders() {
 			pagination: {
 				el: '.main-slider__dots',
 				clickable: true,
+				renderBullet: (index, className) => {
+			   		return `<span class='${className}'><span class="main-slider__dots-circle"></span><span class="main-slider__dots-title">${date[index]}</span></span>`;
+			    },
 			},
 		});
 	}
