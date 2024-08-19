@@ -17,7 +17,7 @@ function buildSliders() {
 function initSliders() {
 	buildSliders();
 
-	let date = ['Office Furniture', 'Talk to an expert', 'Our Services'];
+	let date = ['Office Furniture', 'Our Services', 'Talk to an expert'];
 
 	if (document.querySelector('.main-slider')) {
 		new Swiper('.main-slider', {
