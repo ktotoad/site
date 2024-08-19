@@ -29,19 +29,13 @@ function initSliders() {
       		direction: "vertical",
 			//loop: true,
 			//autoHeight: true,
+			threshold: 0,
+			touchReleaseOnEdges: true,
 			autoplay: {
 				delay: 7000,
 				disableOnInteraction: false,
 			},
 			speed: 1800,
-			breakpoints: {
-		        320: {
-		        	allowTouchMove: false
-		        },
-		        1024: {
-		        	allowTouchMove: true
-		        },
-		    },
 			pagination: {
 				el: '.main-slider__dots',
 				clickable: true,
