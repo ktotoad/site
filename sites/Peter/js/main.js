@@ -1243,12 +1243,12 @@ if(document.querySelector('#background-video')) {
 	bgs.forEach( image => {
 		setTimeout(function(){
 		    image.classList.add('hide');
-		}, 5000);
+		}, 3000);
 	});
 
 	videos.forEach( video => {
 		setTimeout(function(){
 		    video.play();
-		}, 5000);
+		}, 3000);
 	});
 }
