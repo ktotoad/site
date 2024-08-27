@@ -944,31 +944,35 @@
 		</div>
 <div id="callback" aria-hidden="true" class="popup">
 	<div class="popup__wrapper">
+		<div class="popup__image">
+			<img src="./img/recall.svg" alt="">
+		</div>
 		<div class="popup__content">
 			<div class="popup__header">
-				<h2 class="popup__title">Введите свои данные - мы вам перезвоним!</h2>
 				<button data-close type="button" class="popup__close close-popup"><span></span></button>
+				<p class="form__text text">оставьте свои данные — позвоним, чтобы обсудить детали</p>
 			</div>
-			<form class="popup__form" method="post">
-				<div class="form-body__input-block">
-					<label for="" class="count-block__label">Как к вам обращаться?</label>
-					<input id="" autocomplite="off" type="text" placeholder="Иван Иванов" class="count-block__input input">
+			<from class="form__body">
+				<div class="form__row">
+					<div class="form__input-body">
+						<label for="" class="form__label">Ваше имя</label>
+						<input type="text" placeholder="Введите имя" class="form__input">
+					</div>
+					<div class="form__input-body">
+						<label for="" class="form__label">Номер телефона</label>
+						<input type="tel" data-format="0 (000)000-00-00" placeholder="+7 (___)___-__-__- " class="form__input">
+					</div>
 				</div>
-				<div class="form-body__input-block">
-					<label for="" class="count-block__label">Ваш номер телефона</label>
-					<input id="" data-format="0 000 000 00 00" autocomplite="off" type="tel" data-error="Ошибка"placeholder="+7 (912) 000 78-14" class="count-block__input input">
+				<div class="form__row">
+					<a href="#modalSuccess" id="button" class="form__button button-green popup-link"><span>обсудить проект</span></a>
+					<div class="form__checkbox checkbox">
+						<input id="p_1" type="checkbox" value="1" class="checkbox__input">
+						<label for="p_1" class="checkbox__label"><span class="checkbox__text">Принимаю <a href="" target="_blank" class="checkbox__link">условия обработки</a> персональных данных</span></label>
+					</div>	
 				</div>
-				<div class="form-body__input-block">
-					<label for="" class="count-block__label">Какой у Вас вопрос?</label>
-					<textarea id="" autocomplite="off" rows="2" type="text" data-error="Ошибка"placeholder="Меня интересует.." class="count-block__input input"></textarea>
-				</div>
-				<div class="popup__buttons">
-					<button type="submit" class="form-body__button button-main">Оставить заявку</button>
-					<p class="form-body__text">Отправляя сообщение, я соглашаюсь <br> с<a href="" target="_blank" class="form-body__link">политикой конфиденциальности</a></p>
-				</div>
-			</form>
-			<div class="popup__logo">
-				<img src="./img/logod.png" alt="">
+			</from>
+			<div class="popup__bg">
+				<img src="./img/bg.svg" alt="">
 			</div>
 		</div>
 	</div>
@@ -977,16 +981,13 @@
 <div id="modalSuccess" aria-hidden="true" class="popup">
 	<div class="popup__wrapper">
 		<div class="popup__content_small">
-			<svg width="121" height="121" viewBox="0 0 121 121" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path d="M110.918 86.7165C110.918 91.254 109.657 95.5393 107.388 99.1693C103.204 106.177 95.5405 110.916 86.7176 110.916C77.8947 110.916 70.1809 106.177 66.0467 99.1693C63.8284 95.5393 62.5176 91.254 62.5176 86.7165C62.5176 73.3561 73.3572 62.5166 86.7176 62.5166C100.078 62.5166 110.918 73.3561 110.918 86.7165Z" stroke="#FDB933" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-				<path d="M77.2891 86.7167L83.2382 92.6658L96.1449 80.7676" stroke="#FDB933" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-				<path d="M110.917 43.812C110.917 53.744 108.346 62.5164 104.313 70.1293C99.8761 65.4406 93.6244 62.5166 86.7173 62.5166C73.3569 62.5166 62.5173 73.3562 62.5173 86.7166C62.5173 92.9178 64.8869 98.5646 68.7186 102.85C66.8532 103.707 65.139 104.413 63.6265 104.917C61.9123 105.522 59.089 105.522 57.3748 104.917C42.754 99.9257 10.084 79.1036 10.084 43.812C10.084 28.2332 22.6377 15.6289 38.1157 15.6289C47.2411 15.6289 55.4086 20.0658 60.5007 26.872C65.5927 20.0658 73.7602 15.6289 82.8856 15.6289C98.3636 15.6289 110.917 28.2332 110.917 43.812Z" stroke="#FDB933" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-			</svg>
-			<h2 class="popup__title">Спасибо за заявку!</h2>
-			<p class="popup__subtitle">Совсем скоро мы свяжемся с вами!</p>
-			<button type="submit" class="close-popup button-main">Ок</button>
-			<div class="popup__logo">
-				<img src="./img/logod.png" alt="">
+			<div class="popup__header">
+				<button data-close type="button" class="popup__close close-popup"><span></span></button>
+				<p class="form__text text">спасибо, вот-вот перезвоним</p>
+			</div>
+			<button type="submit" id="button" class="form__button button-green"><span>хорошо, жду</span></button>
+			<div class="popup__bg">
+				<img src="./img/bg.svg" alt="">
 			</div>
 		</div>
 	</div>
