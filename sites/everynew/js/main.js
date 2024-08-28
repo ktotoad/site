@@ -470,12 +470,17 @@ function tabs() {
 			tabsActiveHash = hash.replace('tab-', '').split('-');
 		}
 		tabs.forEach((tabsBlock, index) => {
-			tabsBlock.classList.add('_tab-init');
-			tabsBlock.setAttribute('data-tabs-index', index);
-			tabsBlock.addEventListener("click", setTabsAction);
-			initTabs(tabsBlock);
+			const tabsTitles = tabsBlock.querySelector('[data-tabs-titles]');
+			console.log(tabsBlock);
+			console.log(tabsTitles);
+			if (tabsTitles.children[0]) {
+				console.log("yes");
+				tabsBlock.classList.add('_tab-init');
+				tabsBlock.setAttribute('data-tabs-index', index);
+				tabsBlock.addEventListener("click", setTabsAction);
+				initTabs(tabsBlock);
+			}
 		});
-
 	}
 	// Установка позиций заголовков
 	function setTitlePosition(tabsMediaArray, matchMedia) {
