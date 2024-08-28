@@ -3086,17 +3086,47 @@ section .tabs .tabs__items {
     padding: calc(10px + 20 * ((100vw - 320px) / (1082)));
   }
 }
+.item-contacts__column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1.5rem;
+}
 @media (min-width: 767.98px) {
   .item-contacts__title {
     width: 50%;
+  }
+}
+.item-contacts__label {
+  color: var(--light-gray);
+  font-size: 10px;
+  line-height: 120%;
+}
+.item-contacts__link {
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+@media (any-hover: hover) {
+  .item-contacts__link:hover {
+    color: var(--green);
   }
 }
 .item-contacts__bg {
   overflow: hidden;
   opacity: 0.7;
   position: absolute;
-  width: 70%;
-  height: auto;
+  width: auto;
+  height: 70%;
   top: 0;
   right: 0;
 }
