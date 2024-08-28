@@ -89,3 +89,13 @@ if(document.querySelector('#background-video')) {
 		}, 3000);
 	});
 }
+//InputMask===============================================================================================================================================
+function inputElements() {
+	let inputPhones = document.querySelectorAll("input[data-format]");
+	inputPhones.forEach(inputPhone => {
+		let phoneMask = new IMask(inputPhone, {
+			mask: inputPhone.getAttribute("data-format")
+		});
+	});
+}
+inputElements();
