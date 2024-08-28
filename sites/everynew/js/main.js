@@ -24,6 +24,20 @@ if (iconMenu) {
 			body.classList.toggle('lock');
 		});
 }
+//spollerbutton=====================================================================================================================================================
+if (document.querySelector("#spollerbutton")){
+	const spollerbutton = document.querySelector('#spollerbutton');
+	document.addEventListener("click", (event) => {
+		const withinBoundaries = event.composedPath().includes(spollerbutton);
+
+		if (!withinBoundaries) {
+			spollerbutton.classList.remove('active');
+		}
+		else {
+			spollerbutton.classList.toggle('active');
+		}
+	});
+}
 // Dynamic Adapt v.1
 // HTML data-da="where(uniq class name),when(breakpoint),position(digi)"
 // e.x. data-da=".item,992,2"
