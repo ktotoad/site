@@ -105,25 +105,6 @@ body.lock {
       touch-action: none;
 }
 
-/*html {
-	height:100%;
-}
-body {
-	height:100%;
-	margin: 0px;
-	background: black;
-	color: white;
-	overflow:hidden; 
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-::-webkit-scrollbar {
-	background-color: rgba(0,0,0,0.5);
-	width: 0.75em;
-	height: 0.75em;
-}
-::-webkit-scrollbar-thumb {
-	background-color:  rgba(255,255,255,0.5);
-}*/
 .wrapper {
   min-height: 100%;
   display: -webkit-box;
@@ -703,6 +684,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .fullscreen-page__container {
   position: relative;
   z-index: 5;
+  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -716,7 +698,30 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 100vh;
+}
+.fullscreen-page__main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 20px;
+  border-radius: 15px;
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+}
+@media (max-width: 1200px) {
+  .fullscreen-page__main {
+    padding: calc(10px + 10 * ((100vw - 320px) / (880)));
+  }
 }
 @media (max-width: 767.98px) {
   .fullscreen-page__form {
@@ -744,6 +749,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
   .fullscreen-page__title {
     width: calc(290px + 430 * ((100vw - 320px) / (880)));
   }
+}
+.fullscreen-page__title span {
+  color: var(--primary) !important;
 }
 .fullscreen-page__text {
   margin-top: 50px;
