@@ -7,7 +7,7 @@ if (document.querySelector(".preloader")) {
         loader = document.querySelector('.preloader'),
         body = document.querySelector("body");
     
-    body.classList.add("lock");
+    //body.classList.add("lock");
 
     setTimeout(() => {
         body.classList.remove("lock");
@@ -26,16 +26,15 @@ if (document.querySelector(".preloader")) {
 
     wrapper.classList.add('loaded');
 
-    animateall();
-} else {
-    //window.addEventListener('load', function () {
-    //    wrapper.classList.add('loaded');
-    //    animateall();
-    //});
     setTimeout(function(){
         wrapper.classList.add('loaded');
         animateall();
     }, 2000);
+} else {
+    window.addEventListener('load', function () {
+        wrapper.classList.add('loaded');
+        animateall();
+    });
 }
 function lazyload() {
     const hasSupport = 'loading' in HTMLImageElement.prototype;
