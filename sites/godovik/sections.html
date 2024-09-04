@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 	<head>
-		<title>Авторы на Годовикова — уникальный дом, созданный по концепции траектории полета.</title>
+		<title>Выбрать квартиру</title>
 		<meta name="keywords" content="Авторы на Годовикова — это штучный дом с запоминающейся авторской концепцией в центральной части Авиастроительного района Казани.">
 		<meta name="description" content="Авторы на Годовикова — это штучный дом с запоминающейся авторской концепцией в центральной части Авиастроительного района Казани.">
 		<meta charset="utf-8">
@@ -16,16 +16,6 @@
 		<meta name="yandex-verification" content="1f4dcb3396f5d465" /> 
 	</head>
 	<body>
-		<div class="preloader">
-			<div class="container">
-				<div class="preloader-body">
-					<div class="preloader-body__logo">
-						<dotlottie-player src="js/preloader.json" background="transparent" speed="1" class="preloader-main" loop autoplay></dotlottie-player>
-					</div>
-					<div class="preloader-body__percents">0%</div>
-				</div>
-			</div>
-		</div>
 		<div class="wrapper">
 <header class="header anim-items">
 	<div class="header__container container">
@@ -47,28 +37,253 @@
 	</div>
 </header>
 			<main class="page">
-				<section class="page__main main-page anim-items anim-no-hide">
-					<div class="main-page__container">
-						<div class="main-page__slider slider-main">
-							<div class="slider-main__swiper">
-								<div class="slider-main__slide">
-									<div class="main-page__bg">
-										<img src="./img/main/main.jpg" alt="">
+				<section class="page__catalog catalog-page anim-items anim-no-hide">
+					<div class="catalog-page__container container">
+						<aside class="catalog-page__filter filter-catalog">
+							<div data-spollers="767.98" class="filter-catalog__mobile-spoller mobile-spoller">
+								<button tabindex="-1" type="button" data-spoller class="mobile-spoller__title button-link">Дополнительные параметры</button>
+								<div class="mobile-spoller__body">
+									<div class="filter-catalog__item">
+										<h5 class="filter-catalog__title">Количество спален:</h5>
+										<div class="filter-catalog__buttons">
+											<div class="filter-catalog__radio radio">
+												<span>A1</span>
+												<input name="radio" value="1" type="radio">
+											</div>
+											<div class="filter-catalog__radio radio">
+												<span>A2</span>
+												<input name="radio" value="2" type="radio">
+											</div>
+											<div class="filter-catalog__radio radio">
+												<span>A3</span>
+												<input name="radio" value="3" type="radio">
+											</div>
+										</div>
 									</div>
-								</div>
-								<div class="slider-main__slide">
-									<div class="main-page__bg">
-										<img src="./img/main/main.jpg" alt="">
+									<div id="range-slider-square" class="filter-catalog__item">
+										<h5 class="filter-catalog__title">Площадь:</h5>
+										<div class="filter-catalog__inputs">
+											<div class="filter-catalog__input-body filter-catalog__input-body_small">
+												<span>от</span>
+												<input id="input-min-s" type="number" name="min_square"  class="filter-catalog__input">
+												<span>м²</span>
+											</div>
+											<div class="filter-catalog__input-body filter-catalog__input-body_small">	
+												<span>по</span>
+												<input id="input-max-s" type="number" name="max_square" class="filter-catalog__input">
+												<span>м²</span>
+											</div>
+										</div>
+										<div id="slider-square"></div>
 									</div>
-								</div>
+									<div id="range-slider-floor" class="filter-catalog__item">
+										<h5 class="filter-catalog__title">Этаж:</h5>
+										<div class="filter-catalog__inputs">
+											<div class="filter-catalog__input-body filter-catalog__input-body_small">
+												<span>от</span>
+												<input id="input-min-f" type="number" name="min_etazh" class="filter-catalog__input">
+											</div>
+											<div class="filter-catalog__input-body filter-catalog__input-body_small">	
+												<span>по</span>
+												<input id="input-max-f" type="number" name="max_etazh" class="filter-catalog__input">
+											</div>
+										</div>
+										<div id="slider-floor"></div>
+									</div>
+									<div data-spollers="9767.98" class="filter-catalog__spoller spoller-filter-catalog">
+										<button tabindex="-1" type="button" data-spoller class="spoller-filter-catalog__title">Дополнительные параметры<span>3</span></button>
+										<div class="spoller-filter-catalog__body">
+											<nav class="spoller-filter-catalog__menu">
+												<ul class="spoller-filter-catalog__list">
+													<div class="spoller-filter-catalog__checkbox checkbox">
+														<input id="q_1" type="checkbox" value="1" class="checkbox__input">
+														<label for="q_1" class="checkbox__label"><span class="checkbox__text">параметр 1</span></label>
+													</div>
+													<div class="item-filter-catalog__checkbox checkbox">
+														<input id="q_2" type="checkbox" value="1" class="checkbox__input">
+														<label for="q_2" class="checkbox__label"><span class="checkbox__text">параметр fsd параметр параметр параметр 2</span></label>
+													</div>
+													<div class="item-filter-catalog__checkbox checkbox">
+														<input id="q_3" type="checkbox" value="1" class="checkbox__input">
+														<label for="q_3" class="checkbox__label"><span class="checkbox__text">параметр 3</span></label>
+													</div>
+												</ul>
+											</nav>
+										</div>
+									</div>
+									<button type="submit" class="filter-catalog__button-submit button-white">Применить</button>
+									<button type="submit" class="filter-catalog__button-clear button-icon">
+										<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<g clip-path="url(#clip0_203_1162)">
+												<mask id="mask0_203_1162" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
+													<path d="M20 0H0V20H20V0Z" fill="white"/>
+												</mask>
+												<g mask="url(#mask0_203_1162)">
+													<path d="M9.99936 1.66667C5.39102 1.66667 1.66602 5.39167 1.66602 10C1.66602 14.6083 5.39102 18.3333 9.99936 18.3333C14.6077 18.3333 18.3327 14.6083 18.3327 10C18.3327 5.39167 14.6077 1.66667 9.99936 1.66667ZM14.166 12.9917L12.991 14.1667L9.99936 11.175L7.00769 14.1667L5.83269 12.9917L8.82436 10L5.83269 7.00833L7.00769 5.83333L9.99936 8.825L12.991 5.83333L14.166 7.00833L11.1743 10L14.166 12.9917Z" fill="#131411"/>
+												</g>
+											</g>
+											<defs>
+												<clipPath id="clip0_203_1162">
+													<rect width="20" height="20" fill="white"/>
+												</clipPath>
+											</defs>
+										</svg>
+										<span>Сбросить фильтры</span>
+									</button>
+								</div>	
 							</div>
-						</div>
-						<div class="main-page__controls slider-controls">
-							<div class="slider-controls__pagination slider-main__pagination"></div>
+						</aside>
+						<div class="catalog-page__content content-catalog">
+							<div class="content-catalog__items">
+<div class="content-catalog__item">
+	<div class="content-catalog__item-body">
+		<a href="/resident-page.html" class="content-catalog__image">
+			<img src="./img/resident/02.png" alt="">
+		</a>
+		<div class="content-catalog__tags">
+			<p class="content-catalog__tag content-catalog__text">3 спальни</p>
+			<p class="content-catalog__tag content-catalog__text">2 этаж</p>
+			<p class="content-catalog__tag content-catalog__text">103.23 м²</p>
+			<p class="content-catalog__tag content-catalog__text">A3</p>
+		</div>
+		<div class="content-catalog__text-block">
+			<h4 class="content-catalog__subtitle">Авторы на Большой 62</h4>
+			<a href="/resident-page.html" class="content-catalog__title">Резиденция №1</a>
+		</div>
+		<div class="content-catalog__tags">
+			<p class="content-catalog__option content-catalog__text">Угловое окно</p>
+			<p class="content-catalog__option content-catalog__text">Вид на Волгу</p>
+			<p class="content-catalog__option content-catalog__text">Гардероб</p>
+			<button type="button" class="content-catalog__more">+4</button>
+		</div>
+		<a href="/detail.html" class="content-catalog__button button-main">УЗНАТЬ ЦЕНУ</a>
+	</div>	
+</div><div class="content-catalog__item">
+	<div class="content-catalog__item-body">
+		<a href="/resident-page.html" class="content-catalog__image">
+			<img src="./img/resident/02.png" alt="">
+		</a>
+		<div class="content-catalog__tags">
+			<p class="content-catalog__tag content-catalog__text">3 спальни</p>
+			<p class="content-catalog__tag content-catalog__text">2 этаж</p>
+			<p class="content-catalog__tag content-catalog__text">103.23 м²</p>
+			<p class="content-catalog__tag content-catalog__text">A3</p>
+		</div>
+		<div class="content-catalog__text-block">
+			<h4 class="content-catalog__subtitle">Авторы на Большой 62</h4>
+			<a href="/resident-page.html" class="content-catalog__title">Резиденция №1</a>
+		</div>
+		<div class="content-catalog__tags">
+			<p class="content-catalog__option content-catalog__text">Угловое окно</p>
+			<p class="content-catalog__option content-catalog__text">Вид на Волгу</p>
+			<p class="content-catalog__option content-catalog__text">Гардероб</p>
+			<button type="button" class="content-catalog__more">+4</button>
+		</div>
+		<a href="/detail.html" class="content-catalog__button button-main">УЗНАТЬ ЦЕНУ</a>
+	</div>	
+</div><div class="content-catalog__item">
+	<div class="content-catalog__item-body">
+		<a href="/resident-page.html" class="content-catalog__image">
+			<img src="./img/resident/02.png" alt="">
+		</a>
+		<div class="content-catalog__tags">
+			<p class="content-catalog__tag content-catalog__text">3 спальни</p>
+			<p class="content-catalog__tag content-catalog__text">2 этаж</p>
+			<p class="content-catalog__tag content-catalog__text">103.23 м²</p>
+			<p class="content-catalog__tag content-catalog__text">A3</p>
+		</div>
+		<div class="content-catalog__text-block">
+			<h4 class="content-catalog__subtitle">Авторы на Большой 62</h4>
+			<a href="/resident-page.html" class="content-catalog__title">Резиденция №1</a>
+		</div>
+		<div class="content-catalog__tags">
+			<p class="content-catalog__option content-catalog__text">Угловое окно</p>
+			<p class="content-catalog__option content-catalog__text">Вид на Волгу</p>
+			<p class="content-catalog__option content-catalog__text">Гардероб</p>
+			<button type="button" class="content-catalog__more">+4</button>
+		</div>
+		<a href="/detail.html" class="content-catalog__button button-main">УЗНАТЬ ЦЕНУ</a>
+	</div>	
+</div><div class="content-catalog__item">
+	<div class="content-catalog__item-body">
+		<a href="/resident-page.html" class="content-catalog__image">
+			<img src="./img/resident/02.png" alt="">
+		</a>
+		<div class="content-catalog__tags">
+			<p class="content-catalog__tag content-catalog__text">3 спальни</p>
+			<p class="content-catalog__tag content-catalog__text">2 этаж</p>
+			<p class="content-catalog__tag content-catalog__text">103.23 м²</p>
+			<p class="content-catalog__tag content-catalog__text">A3</p>
+		</div>
+		<div class="content-catalog__text-block">
+			<h4 class="content-catalog__subtitle">Авторы на Большой 62</h4>
+			<a href="/resident-page.html" class="content-catalog__title">Резиденция №1</a>
+		</div>
+		<div class="content-catalog__tags">
+			<p class="content-catalog__option content-catalog__text">Угловое окно</p>
+			<p class="content-catalog__option content-catalog__text">Вид на Волгу</p>
+			<p class="content-catalog__option content-catalog__text">Гардероб</p>
+			<button type="button" class="content-catalog__more">+4</button>
+		</div>
+		<a href="/detail.html" class="content-catalog__button button-main">УЗНАТЬ ЦЕНУ</a>
+	</div>	
+</div><div class="content-catalog__item">
+	<div class="content-catalog__item-body">
+		<a href="/resident-page.html" class="content-catalog__image">
+			<img src="./img/resident/02.png" alt="">
+		</a>
+		<div class="content-catalog__tags">
+			<p class="content-catalog__tag content-catalog__text">3 спальни</p>
+			<p class="content-catalog__tag content-catalog__text">2 этаж</p>
+			<p class="content-catalog__tag content-catalog__text">103.23 м²</p>
+			<p class="content-catalog__tag content-catalog__text">A3</p>
+		</div>
+		<div class="content-catalog__text-block">
+			<h4 class="content-catalog__subtitle">Авторы на Большой 62</h4>
+			<a href="/resident-page.html" class="content-catalog__title">Резиденция №1</a>
+		</div>
+		<div class="content-catalog__tags">
+			<p class="content-catalog__option content-catalog__text">Угловое окно</p>
+			<p class="content-catalog__option content-catalog__text">Вид на Волгу</p>
+			<p class="content-catalog__option content-catalog__text">Гардероб</p>
+			<button type="button" class="content-catalog__more">+4</button>
+		</div>
+		<a href="/detail.html" class="content-catalog__button button-main">УЗНАТЬ ЦЕНУ</a>
+	</div>	
+</div><div class="content-catalog__item">
+	<div class="content-catalog__item-body">
+		<a href="/resident-page.html" class="content-catalog__image">
+			<img src="./img/resident/02.png" alt="">
+		</a>
+		<div class="content-catalog__tags">
+			<p class="content-catalog__tag content-catalog__text">3 спальни</p>
+			<p class="content-catalog__tag content-catalog__text">2 этаж</p>
+			<p class="content-catalog__tag content-catalog__text">103.23 м²</p>
+			<p class="content-catalog__tag content-catalog__text">A3</p>
+		</div>
+		<div class="content-catalog__text-block">
+			<h4 class="content-catalog__subtitle">Авторы на Большой 62</h4>
+			<a href="/resident-page.html" class="content-catalog__title">Резиденция №1</a>
+		</div>
+		<div class="content-catalog__tags">
+			<p class="content-catalog__option content-catalog__text">Угловое окно</p>
+			<p class="content-catalog__option content-catalog__text">Вид на Волгу</p>
+			<p class="content-catalog__option content-catalog__text">Гардероб</p>
+			<button type="button" class="content-catalog__more">+4</button>
+		</div>
+		<a href="/detail.html" class="content-catalog__button button-main">УЗНАТЬ ЦЕНУ</a>
+	</div>	
+</div>							</div>
+							<button type="button" class="filter-catalog__button-clear content-catalog__show-more button-icon">
+								<span>Показать ещё</span>
+								<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z" fill="#131411" stroke="#131411" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+									<path d="M12 6.5L8 11.5L4 6.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+							</button>
 						</div>
 					</div>
 				</section>
-
 				<section class="page__form form-page">
 					<div class="form-page__bg">
 						<img src="./img/formbg.png" alt="">
@@ -96,69 +311,6 @@
 	<button type="submit" class="form__button button-main">Отправить заявку</button>
 </form>
 							</div>
-						</div>
-					</div>
-				</section>
-				<section class="page__location location-page anim-items anim-no-hide">
-					<div class="location-page__container container_l">
-						<div class="location-page__body">
-							<div class="location-page__column">
-								<div class="location-page__bg">
-									<img src="./img/map.png" alt="">
-								</div>
-								<a href="./map.html" class="location-page__button button-main">ПОКАЗАТЬ НА КАРТЕ</a>
-							</div>
-							<div class="location-page__content">
-								<h2 class="location-page__title title-main"><span>ЛОКАЦИЯ,</span> ПОЗВОЛЯЮЩАЯ КОМФОРТНО НАБИРАТЬ ВЫСОТУ</h2>
-								<p class="location-page__text text-main">Дом располагается в центральной части Авиастроительного района, на улице Годовикова. Это комфортное и зеленое место, которое годами благоустраивали для жизни. Дом находится в тихой зоне, удаленной от железнодорожных путей — на второй линии от улицы Максимова. Он соседствует с невысокими частными домиками, которые не перекрывают вид из окна</p>
-								<div class="location-page__items">
-									<div class="location-page__item">
-										<div class="location-page__logo">
-											<img src="./img/location/01.svg" alt="">
-										</div>
-										<div class="location-page__info"><span>Детский сады:</span> №20, №141, №308, №348, №368</div>
-									</div>
-									<div class="location-page__item">
-										<div class="location-page__logo">
-											<img src="./img/location/02.svg" alt="">
-										</div>
-										<div class="location-page__info"><span>Школы:</span> №62, №141, №168 Лицей: №145</div>
-									</div>
-									<div class="location-page__item_big">
-										<div class="location-page__logo">
-											<img src="./img/location/03.svg" alt="">
-										</div>
-										<div class="location-page__info"><span>Медицина:</span> Городская больница №11, Городская клиническая больница № 12, консультативный центр</div>
-									</div>
-									<div class="location-page__item">
-										<div class="location-page__logo">
-											<img src="./img/location/04.svg" alt="">
-										</div>
-										<div class="location-page__info"><span>Остановки:</span> ул.Годовикова, жилой массив Караваево, остановка ул.Максимова, остановка ул.Лукина</div>
-									</div>
-									<div class="location-page__item">
-										<div class="location-page__logo">
-											<img src="./img/location/05.svg" alt="">
-										</div>
-										<div class="location-page__info"><span>Станция метро:</span> «Авиастроительная» 15 минут пешком</div>
-									</div>
-								</div>
-								<p class="location-page__text text-main">Район и сегодня продолжает развиваться. Здесь появятся новые дорожные развязки, жилые комплексы и уникальный курорт «Казанские термы», который станет новым центром притяжения.</p>
-							</div>
-						</div>
-					</div>
-				</section>
-
-
-				<section class="page__aesthetics aesthetics-page anim-items anim-no-hide">
-					<div class="aesthetics-page__container container_l">
-						<div class="aesthetics-page__image">
-							<img src="./img/building/01.jpg" alt="">
-						</div>
-						<div class="aesthetics-page__body">
-							<h2 class="aesthetics-page__title title-main"><span>НИКАКИХ ЛИШНИХ ЭЛЕМЕНТОВ</span> — ЛИШЬ ЭСТЕТИКА</h2>
-							<p class="aesthetics-page__text text-main">Архитектура создает неподражаемую атмосферу современного дома, где функциоальность и эстетика идут рука об руку, гарантируя комфорт и удобство его жильцам.</p>
-							<p class="aesthetics-page__text text-main">Архитектурная подсветка в несколько уровней выделяет природную тактильно приятную фактуру материалов и играет цветами фасада. Даже в темное время суток дом доставит визуальное удовольствие, выражая свою индивидуальность среди окружающей застройки.</p>
 						</div>
 					</div>
 				</section>
@@ -307,7 +459,6 @@
         <p class="text">Ваша заявка принята.<br>Наши менеджеры свяжутся с Вами в ближайшее время.</p>
     </div>
 </div>		</div>
-		<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
 <script src="js/jquery.min.js"></script>	
 <script src="js/gsap.min.js"></script>
 <script src="js/fancybox.umd.js"></script>
