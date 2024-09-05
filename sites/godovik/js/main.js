@@ -75,12 +75,11 @@ function animateall() {
 		}
 	}
 };
-
+const body = document.querySelector('body');
 //burger=====================================================================================================================================================
 if (document.querySelector('.icon-menu')) {
 	const iconSubmenu = document.querySelector('.icon-menu');
 	const submenuBody = document.querySelector('.submenu__body');
-	const body = document.querySelector('body');
 	let submenuItems = document.querySelectorAll('.submenu__nav_links a');
 
 	iconSubmenu.addEventListener('click', 
