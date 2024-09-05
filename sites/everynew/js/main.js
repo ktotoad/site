@@ -356,45 +356,47 @@ if(document.querySelector('#link')) {
 	});
 }
 
- document.addEventListener("DOMContentLoaded", (()=>{
-    ymaps.ready((function() {
-        var e = new ymaps.Map("map",{
-            center: [55.787943, 49.130174],
-            zoom: 15,
-            controls: []
-        })
-          , t = ymaps.templateLayoutFactory.createClass("<div>$[properties.iconContent]</div>")
-          , i = new ymaps.Placemark([55.782543, 49.120074],{
-            balloonContent: '<div class="map__content">Офис в городе на Бутлерова 21</div>',
-            balloonContentFooter: '<div class="map__footer"><a href="" class="map__link"><span>Подробнее</span></a></div>'
-        },{
-            iconLayout: "default#image",
-            iconImageHref: "/img/icons/map_icon.png",
-            iconImageSize: [40, 40],
-            iconImageOffset: [-5, -38],
-            hideIconOnBalloonOpen: !1,
-            balloonCloseButton: !1,
-            balloonOffset: [17, -20]
-        })
-          , n = new ymaps.Placemark([55.787943, 49.130174],{
-            balloonContent: '<div class="map__content">Офис в городе на Бутлерова 21</div>',
-            balloonContentFooter: '<div class="map__footer"><a href="" class="map__link"><span>Подробнее</span></a></div>'
-        },{
-            iconLayout: "default#imageWithContent",
-            iconImageHref: "/local/templates/main/img/icons/map_icon2.png",
-            iconImageSize: [40, 60],
-            iconImageOffset: [-24, -24],
-            iconContentOffset: [15, 15],
-            iconContentLayout: t,
-            hideIconOnBalloonOpen: !1,
-            balloonCloseButton: !1,
-            balloonOffset: [0, -20]
-        });
-        e.geoObjects.add(i).add(n)
-    }
-    ))
+if (document.querySelector("#map")) {
+    document.addEventListener("DOMContentLoaded", (()=>{
+        ymaps.ready((function() {
+            var e = new ymaps.Map("map",{
+                center: [55.787943, 49.130174],
+                zoom: 15,
+                controls: []
+            })
+              , t = ymaps.templateLayoutFactory.createClass("<div>$[properties.iconContent]</div>")
+              , i = new ymaps.Placemark([55.782543, 49.120074],{
+                balloonContent: '<div class="map__content">Офис в городе на Бутлерова 21</div>',
+                balloonContentFooter: '<div class="map__footer"><a href="" class="map__link"><span>Подробнее</span></a></div>'
+            },{
+                iconLayout: "default#image",
+                iconImageHref: "/img/icons/map_icon.png",
+                iconImageSize: [40, 40],
+                iconImageOffset: [-5, -38],
+                hideIconOnBalloonOpen: !1,
+                balloonCloseButton: !1,
+                balloonOffset: [17, -20]
+            })
+              , n = new ymaps.Placemark([55.787943, 49.130174],{
+                balloonContent: '<div class="map__content">Офис в городе на Бутлерова 21</div>',
+                balloonContentFooter: '<div class="map__footer"><a href="" class="map__link"><span>Подробнее</span></a></div>'
+            },{
+                iconLayout: "default#imageWithContent",
+                iconImageHref: "/local/templates/main/img/icons/map_icon2.png",
+                iconImageSize: [40, 60],
+                iconImageOffset: [-24, -24],
+                iconContentOffset: [15, 15],
+                iconContentLayout: t,
+                hideIconOnBalloonOpen: !1,
+                balloonCloseButton: !1,
+                balloonOffset: [0, -20]
+            });
+            e.geoObjects.add(i).add(n)
+        }))
+    }));
 }
-));
+
+
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
@@ -498,6 +500,27 @@ function initSliders() {
 		        nextEl: ".services-slider__next",
 		        prevEl: ".services-slider__prev",
 		    },
+		});
+	}
+	if (document.querySelector('.slider-portfolio')) {
+		new Swiper('.slider-portfolio', {
+			observer: true,
+			observeParents: true,
+    		direction: "vertical",
+			slidesPerView: 4,
+			spaceBetween: 20,
+			parallax: true,
+			//loop: true,
+			autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			pagination: {
+				el: '.slider-portfolio__dots',
+				clickable: true,
+			},
 		});
 	}
 }
