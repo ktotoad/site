@@ -772,6 +772,39 @@ if(document.querySelector("#gallery-wrap")) {
 	});
 }
 
+//Cards_Filter=====================================================================================================================================================
+if(document.querySelector('#optionsblock')) {
+    const optionsBlock = document.querySelector('#optionsblock');
+    const closeButton = optionsBlock.querySelector('.button-close');
+    const cards = document.querySelectorAll('.item-options');
+    const cardsInfo = document.querySelectorAll('.info-options__body');
+
+    optionsBlock.addEventListener("click", (e) => {
+        if(e.target != closeButton) {
+            optionsBlock.classList.add('active');
+            let index;
+            let currentCard = e.target.closest('.item-options');
+            if (currentCard){
+                currentCard.classList.add('active');
+                index = currentCard.getAttribute('data-circle-index');
+
+                cardsInfo.forEach(function (cardInfo) {
+                    if(cardInfo.getAttribute('data-circle-content-index') == index) {
+                        cardInfo.classList.add('active');
+                    }
+                });
+            }
+        } else {
+            optionsBlock.classList.remove('active');
+            cards.forEach(function (card) {
+                card.classList.remove('active');
+            });
+            cardsInfo.forEach(function (cardInfo) {
+                cardInfo.classList.remove('active');
+            });
+        }
+    });
+}
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
