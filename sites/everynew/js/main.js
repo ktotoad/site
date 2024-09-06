@@ -523,6 +523,26 @@ function initSliders() {
 			},
 		});
 	}
+	if (document.querySelector('.about-slider')) {
+		new Swiper('.about-slider', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 0,
+			parallax: true,
+			//loop: true,
+			autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			pagination: {
+				el: '.about-slider__dots',
+				clickable: true,
+			},
+		});
+	}
 }
 
 initSliders();
