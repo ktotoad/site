@@ -824,7 +824,7 @@ function initSliders() {
 	if (document.querySelector('.slider-main')) {
 		var swiper = new Swiper('.thumb-main', {
 			slidesPerView: 1,
-			spaceBetween: 20,
+			spaceBetween: 0,
 			parallax: true,
 			allowTouchMove: false,
     		effect: "fade",
@@ -854,7 +854,7 @@ function initSliders() {
 	if (document.querySelector('.content-question__slider')) {
 		var swiper = new Swiper('.question-page__slider-thumb', {
 			slidesPerView: 6,
-			spaceBetween: 20,
+			spaceBetween: 0,
 			parallax: true,
 			//autoHeight: true,
 			//freeMode: true,
@@ -878,9 +878,16 @@ function initSliders() {
 			slidesPerView: 1,
 			spaceBetween: 20,
 			parallax: true,
-			//autoHeight: true,
     		effect: "fade",
 			speed: 800,
+			breakpoints: {
+				320: {
+					autoHeight: true,
+				},
+				767: {
+					autoHeight: false,
+				},
+			},
 			navigation: {
 				nextEl: ".content-question__next",
 				prevEl: ".content-question__prev",
@@ -935,7 +942,7 @@ function initSliders() {
 	if (document.querySelector('.slider-cozy')) {
 		var swiper = new Swiper('.thumb-cozy', {
 			slidesPerView: 1,
-			spaceBetween: 20,
+			spaceBetween: 0,
 			parallax: true,
 			allowTouchMove: false,
     		effect: "fade",
