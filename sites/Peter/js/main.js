@@ -1107,7 +1107,13 @@ function bodyUnLock() {
 		unlock = true;
 	}, timeout);
 }
-
+//POPUP-timing========================================================================================================================================
+if (document.querySelector("#popuptime")) {
+	let popuptime = document.querySelector("#popuptime");
+	setTimeout(() => {
+        popuptime.classList.add("open");
+    }, 5e3);
+}
 //TABS==================================================================================================================================================
 // Получение хеша в адресе сайта
 function getHash() {
