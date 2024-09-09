@@ -4864,6 +4864,14 @@ input[type=text], input[type=email], input[type=tel], textarea {
     margin-top: calc(40px + 70 * ((100vw - 320px) / (1000)));
   }
 }
+.page__children {
+  margin-top: 110px;
+}
+@media (max-width: 1320px) {
+  .page__children {
+    margin-top: calc(40px + 70 * ((100vw - 320px) / (1000)));
+  }
+}
 .page__form {
   padding-top: 150px;
   padding-bottom: 130px;
@@ -6265,6 +6273,140 @@ input[type=text], input[type=email], input[type=tel], textarea {
   visibility: hidden !important;
   -webkit-transition: all 1.2s ease 0s !important;
   transition: all 1.2s ease 0s !important;
+}
+
+.children-page.active .children-page__title, .children-page.active .children-page__text {
+  opacity: 1;
+}
+.children-page.active .children-page__image::before {
+  width: 320px;
+  height: 320px;
+}
+@media (max-width: 1320px) {
+  .children-page.active .children-page__image::before {
+    width: calc(160px + 160 * ((100vw - 320px) / (1000)));
+  }
+}
+@media (max-width: 1320px) {
+  .children-page.active .children-page__image::before {
+    height: calc(160px + 160 * ((100vw - 320px) / (1000)));
+  }
+}
+.children-page__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 90px;
+}
+@media (max-width: 1320px) {
+  .children-page__container {
+    gap: calc(20px + 70 * ((100vw - 320px) / (1000)));
+  }
+}
+@media (max-width: 767.98px) {
+  .children-page__container {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+.children-page__images {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 0.5rem;
+}
+@media (min-width: 767.98px) {
+  .children-page__images {
+    width: 50%;
+  }
+}
+.children-page__image {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 680px;
+}
+@media (max-width: 1320px) {
+  .children-page__image {
+    height: calc(420px + 260 * ((100vw - 320px) / (1000)));
+  }
+}
+.children-page__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (min-width: 767.98px) {
+  .children-page__content {
+    width: 50%;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+@media (min-width: 767.98px) and (max-width: 1320px) {
+  .children-page__content {
+    padding-left: calc(20px + 30 * ((100vw - 320px) / (1000)));
+  }
+}
+@media (min-width: 767.98px) and (max-width: 1320px) {
+  .children-page__content {
+    padding-right: calc(20px + 30 * ((100vw - 320px) / (1000)));
+  }
+}
+.children-page__title {
+  opacity: 0;
+  -webkit-transition: opacity 1.3s ease 0s;
+  transition: opacity 1.3s ease 0s;
+}
+.children-page__text-block {
+  margin-top: 50px;
+}
+@media (max-width: 1320px) {
+  .children-page__text-block {
+    margin-top: calc(15px + 35 * ((100vw - 320px) / (1000)));
+  }
+}
+.children-page__text {
+  opacity: 0;
+  -webkit-transition: opacity 1.3s ease 0s;
+  transition: opacity 1.3s ease 0s;
+}
+.children-page__text:not(:last-child) {
+  margin-bottom: 30px;
+}
+@media (max-width: 1320px) {
+  .children-page__text:not(:last-child) {
+    margin-bottom: calc(10px + 20 * ((100vw - 320px) / (1000)));
+  }
 }
 
 .options-page.active .options-page__title, .options-page.active .options-page__text {
