@@ -827,7 +827,6 @@ function initSliders() {
 			spaceBetween: 0,
 			parallax: true,
 			allowTouchMove: false,
-      		freeMode: true,
     		effect: "fade",
 			//autoHeight: true,
 			//freeMode: true,
@@ -976,6 +975,26 @@ function initSliders() {
 			},
 			thumbs: {
 				swiper: swiper,
+			},
+		});
+	} 
+
+	if (document.querySelector('.slider-halls')) {
+		new Swiper('.slider-halls', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 0,
+			parallax: true,
+			autoHeight: true,
+			speed: 800,
+			pagination: {
+				el: ".slider-halls__pagination",
+				clickable: true,
+			},
+			navigation: {
+				nextEl: ".slider-halls__next",
+				prevEl: ".slider-halls__prev",
 			},
 		});
 	} 
