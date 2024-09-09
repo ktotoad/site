@@ -827,6 +827,7 @@ function initSliders() {
 			spaceBetween: 0,
 			parallax: true,
 			allowTouchMove: false,
+      		freeMode: true,
     		effect: "fade",
 			//autoHeight: true,
 			//freeMode: true,
@@ -854,7 +855,7 @@ function initSliders() {
 	if (document.querySelector('.content-question__slider')) {
 		var swiper = new Swiper('.question-page__slider-thumb', {
 			slidesPerView: 6,
-			spaceBetween: 0,
+			spaceBetween: 30,
 			parallax: true,
 			//autoHeight: true,
 			//freeMode: true,
@@ -869,6 +870,12 @@ function initSliders() {
 				768: {
 					slidesPerView: 6,
     				direction: "vertical",
+					spaceBetween: 10,
+				},
+				992: {
+					slidesPerView: 6,
+    				direction: "vertical",
+					spaceBetween: 30,
 				},
 			},
 		});
