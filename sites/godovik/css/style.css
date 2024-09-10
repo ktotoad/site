@@ -5900,6 +5900,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
   }
 }
 
+.architecture-page {
+  overflow: hidden;
+}
 .architecture-page.active .architecture-page__title, .architecture-page.active .architecture-page__text {
   opacity: 1;
 }
@@ -6705,6 +6708,28 @@ input[type=text], input[type=email], input[type=tel], textarea {
   transition: all 1.2s ease 0s !important;
 }
 
+.halls-page {
+  overflow: hidden;
+}
+.halls-page.active .slider-halls__image::before {
+  width: 320px;
+  height: 320px;
+}
+@media (max-width: 1280px) {
+  .halls-page.active .slider-halls__image::before {
+    width: calc(160px + 160 * ((100vw - 320px) / (960)));
+  }
+}
+@media (max-width: 1280px) {
+  .halls-page.active .slider-halls__image::before {
+    height: calc(160px + 160 * ((100vw - 320px) / (960)));
+  }
+}
+@media (max-width: 991.98px) {
+  .halls-page__container {
+    padding: 0 1rem;
+  }
+}
 .halls-page__title {
   margin-bottom: 40px;
 }
@@ -6736,38 +6761,66 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  gap: 50px;
 }
-.slider-halls__content {
-  width: 33%;
+@media (max-width: 1280px) {
+  .slider-halls__slide {
+    gap: calc(20px + 30 * ((100vw - 320px) / (960)));
+  }
+}
+@media (max-width: 991.98px) {
+  .slider-halls__slide {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+@media (min-width: 991.98px) {
+  .slider-halls__content {
+    width: 33%;
+  }
 }
 .slider-halls__images {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 0.5rem 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+.slider-halls__left .slider-halls__image {
+  width: 100%;
+  height: 651px;
+  -webkit-transform: translateY(20%);
+          transform: translateY(20%);
+}
+@media (max-width: 1280px) {
+  .slider-halls__left .slider-halls__image {
+    height: calc(320px + 331 * ((100vw - 320px) / (960)));
+  }
+}
+.slider-halls__right {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-orient: horizontal;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.5rem;
 }
 .slider-halls__image {
+  display: block;
   overflow: hidden;
-  width: 320px;
-  height: 320px;
+  width: 100%;
+  height: 340px;
 }
 @media (max-width: 1280px) {
   .slider-halls__image {
-    width: calc(290px + 30 * ((100vw - 320px) / (960)));
-  }
-}
-@media (max-width: 1280px) {
-  .slider-halls__image {
-    height: calc(290px + 30 * ((100vw - 320px) / (960)));
+    height: calc(190px + 150 * ((100vw - 320px) / (960)));
   }
 }
 .slider-halls__image img {
@@ -6798,6 +6851,19 @@ input[type=text], input[type=email], input[type=tel], textarea {
     margin-top: calc(15px + 20 * ((100vw - 320px) / (960)));
   }
 }
+@media (max-width: 991.98px) {
+  .slider-halls__controls {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-top: 120px;
+  }
+}
+@media (max-width: 991.98px) and (max-width: 1280px) {
+  .slider-halls__controls {
+    margin-top: calc(45px + 75 * ((100vw - 320px) / (960)));
+  }
+}
 .slider-halls__buttons {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -6812,6 +6878,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+}
+.slider-halls__pagination {
+  width: auto !important;
 }
 .children-page.active .children-page__title, .children-page.active .children-page__text {
   opacity: 1;
@@ -6860,9 +6929,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
         -ms-flex-pack: center;
             justify-content: center;
     -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
   }
 }
 .children-page__images {
