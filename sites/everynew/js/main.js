@@ -319,8 +319,8 @@ if(document.querySelector('#button')) {
   			const spanX = (itemMove.getBoundingClientRect().left + itemMove.getBoundingClientRect().right)/2;
   			const spanY = (itemMove.getBoundingClientRect().top + itemMove.getBoundingClientRect().bottom)/2;
 
-			button.style.transform  = `translate(${(x - buttonX)/4}px, ${(y - buttonY)/4}px)`;
-			itemMove.style.transform  = `translate(${-(x - spanX)/4}px, ${-(y - spanY)/4}px)`;
+			button.style.transform  = `translate(${(x - buttonX)/20}px, ${(y - buttonY)/20}px)`;
+			itemMove.style.transform  = `translate(${-(x - spanX)/20}px, ${-(y - spanY)/20}px)`;
 		}
 	});
 }
@@ -329,7 +329,7 @@ if(document.querySelector('#link')) {
 	var links = document.querySelectorAll("#link");
 
 	links.forEach(link => {
-		const itemMove = link.querySelector("span");
+		const itemMove = link.children[0];
 
 		link.onmouseover = function(event) {
 			moveAt(event);
@@ -351,7 +351,7 @@ if(document.querySelector('#link')) {
   			const spanX = (itemMove.getBoundingClientRect().left + itemMove.getBoundingClientRect().right)/2;
   			const spanY = (itemMove.getBoundingClientRect().top + itemMove.getBoundingClientRect().bottom)/2;
 
-			itemMove.style.transform  = `translate(${-(x - spanX)/2}px, ${-(y - spanY)/2}px)`;
+			itemMove.style.transform  = `translate(${-(x - spanX)/20}px, ${-(y - spanY)/20}px)`;
 		}
 	});
 }
@@ -567,10 +567,7 @@ function tabs() {
 		}
 		tabs.forEach((tabsBlock, index) => {
 			const tabsTitles = tabsBlock.querySelector('[data-tabs-titles]');
-			console.log(tabsBlock);
-			console.log(tabsTitles);
 			if (tabsTitles.children[0]) {
-				console.log("yes");
 				tabsBlock.classList.add('_tab-init');
 				tabsBlock.setAttribute('data-tabs-index', index);
 				tabsBlock.addEventListener("click", setTabsAction);
