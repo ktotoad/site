@@ -3385,7 +3385,7 @@ body.lock {
   }
 }
 
-.decore-circle, .decore-plane {
+.decore-circle, .decore-plane, .decore-bg {
   position: absolute;
   z-index: 15;
   overflow: hidden;
@@ -3393,16 +3393,16 @@ body.lock {
   height: 320px;
 }
 @media (max-width: 1280px) {
-  .decore-circle, .decore-plane {
+  .decore-circle, .decore-plane, .decore-bg {
     width: calc(160px + 160 * ((100vw - 320px) / (960)));
   }
 }
 @media (max-width: 1280px) {
-  .decore-circle, .decore-plane {
+  .decore-circle, .decore-plane, .decore-bg {
     height: calc(160px + 160 * ((100vw - 320px) / (960)));
   }
 }
-.decore-circle img, .decore-plane img {
+.decore-circle img, .decore-plane img, .decore-bg img {
   width: 100%;
   height: 100%;
   -o-object-fit: contain;
@@ -5252,6 +5252,25 @@ input[type=text], input[type=email], input[type=tel], textarea {
   top: -15%;
   left: -1%;
 }
+.main-page__decore-bg {
+  width: 420px;
+  height: 420px;
+  bottom: 0;
+  right: -5%;
+}
+@media (max-width: 1280px) {
+  .main-page__decore-bg {
+    width: calc(210px + 210 * ((100vw - 320px) / (960)));
+  }
+}
+@media (max-width: 1280px) {
+  .main-page__decore-bg {
+    height: calc(210px + 210 * ((100vw - 320px) / (960)));
+  }
+}
+.main-page__container {
+  position: relative;
+}
 .main-page__container::before {
   top: -210px;
   left: -210px;
@@ -5302,13 +5321,24 @@ input[type=text], input[type=email], input[type=tel], textarea {
   width: 520px;
   position: absolute;
   z-index: 10;
-  bottom: 5%;
-  left: 55%;
+  bottom: 10%;
+  right: 15%;
   color: var(--white);
 }
 @media (max-width: 1280px) {
   .thumb-main {
-    width: calc(290px + 230 * ((100vw - 320px) / (960)));
+    width: calc(210px + 310 * ((100vw - 320px) / (960)));
+  }
+}
+@media (max-width: 1295px) {
+  .thumb-main {
+    right: 5%;
+  }
+}
+@media (max-width: 767.98px) {
+  .thumb-main {
+    margin: 0 1rem;
+    right: 0;
   }
 }
 .thumb-main__swiper .swiper-slide-thumb-active {
@@ -6421,6 +6451,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
   }
 }
 
+.unique-page {
+  position: relative;
+}
 @media (max-width: 991.98px) {
   .unique-page {
     margin-top: 3rem;
@@ -6439,6 +6472,10 @@ input[type=text], input[type=email], input[type=tel], textarea {
   .unique-page.active .unique-page__image_r::before, .unique-page.active .unique-page__image_l::before {
     height: calc(160px + 160 * ((100vw - 320px) / (960)));
   }
+}
+.unique-page__decore-plane {
+  top: 0;
+  left: 33%;
 }
 .unique-page__container {
   display: -ms-grid;
