@@ -9511,6 +9511,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
   position: relative;
   overflow: hidden;
 }
+.gallery-page__container {
+  position: relative;
+}
 .gallery-page__items {
   margin-top: 70px;
   display: -ms-grid;
@@ -9552,8 +9555,21 @@ input[type=text], input[type=email], input[type=tel], textarea {
             flex-direction: column;
   }
 }
+.gallery-page__decore-plane {
+  bottom: 0;
+  right: 0;
+}
+
 .item-gallery {
   position: relative;
+}
+.item-gallery:first-child {
+  -webkit-clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%, 0 25%);
+          clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%, 0 25%);
+}
+.item-gallery:last-child {
+  -webkit-clip-path: polygon(100% 0, 100% 75%, 75% 100%, 0 100%, 0 0);
+          clip-path: polygon(100% 0, 100% 75%, 75% 100%, 0 100%, 0 0);
 }
 @media (max-width: 767.98px) {
   .item-gallery {
