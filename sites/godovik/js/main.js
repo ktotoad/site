@@ -13,7 +13,7 @@ if (document.querySelector(".preloader")) {
     }, 2e3),
     setTimeout(() => {
         loader.classList.add("hidden");
-    }, 1e3),
+    }, 2e3),
     (function (body, loader) {
         let loading = 0,
         i = setInterval(() => {
@@ -75,6 +75,23 @@ function animateall() {
 		}
 	}
 };
+//Video_delay=================================================================================================================================
+if(document.querySelector('#background-video')) {
+	let videos = document.querySelectorAll('#background-video');
+	let bgs = document.querySelectorAll("#fullscreenimage");
+
+	bgs.forEach( image => {
+		setTimeout(function(){
+		    image.classList.add('hide');
+		}, 3000);
+	});
+
+	videos.forEach( video => {
+		setTimeout(function(){
+		    video.play();
+		}, 3000);
+	});
+}
 const body = document.querySelector('body');
 //burger=====================================================================================================================================================
 if (document.querySelector('.icon-menu')) {
@@ -832,6 +849,10 @@ function initSliders() {
 			//freeMode: true,
 			watchSlidesProgress: true,
 			speed: 800,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
 		});
 		new Swiper('.slider-main', {
 			observer: true,
@@ -841,6 +862,10 @@ function initSliders() {
 			parallax: true,
 			autoHeight: true,
 			speed: 800,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
 			pagination: {
 				el: ".slider-main__pagination",
 				clickable: true,
@@ -860,6 +885,10 @@ function initSliders() {
 			//freeMode: true,
 			watchSlidesProgress: true,
 			speed: 800,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
 			breakpoints: {
 				320: {
 					spaceBetween: 10,
@@ -886,6 +915,10 @@ function initSliders() {
 			parallax: true,
     		effect: "fade",
 			speed: 800,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
 			breakpoints: {
 				320: {
 					autoHeight: true,
@@ -916,6 +949,10 @@ function initSliders() {
 			spaceBetween: 30,
 			parallax: true,
 			speed: 800,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
 			breakpoints: {
 				320: {
 					slidesPerView: 1,
@@ -956,6 +993,10 @@ function initSliders() {
 			//freeMode: true,
 			watchSlidesProgress: true,
 			speed: 800,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
 		});
 		new Swiper('.slider-cozy', {
 			observer: true,
@@ -965,6 +1006,10 @@ function initSliders() {
 			parallax: true,
 			autoHeight: true,
 			speed: 800,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
 			pagination: {
 				el: ".slider-cozy__pagination",
 				clickable: true,
@@ -984,10 +1029,14 @@ function initSliders() {
 			observer: true,
 			observeParents: true,
 			slidesPerView: 1,
-			spaceBetween: 0,
+			spaceBetween: 20,
 			parallax: true,
 			autoHeight: true,
 			speed: 800,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
 			pagination: {
 				el: ".slider-halls__pagination",
 				clickable: true,

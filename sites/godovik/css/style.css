@@ -4120,7 +4120,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
     gap: calc(10px + 10 * ((100vw - 320px) / (960)));
   }
 }
-.header__link, .header__link-phone {
+.header__link, .header__link_b, .header__link-phone {
   font-weight: 500;
   color: var(--primary);
   font-size: 12px;
@@ -4131,9 +4131,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
   transition: color 0.3s ease 0s;
 }
 @media (any-hover: hover) {
-  .header__link:hover, .header__link-phone:hover {
+  .header__link:hover, .header__link_b:hover, .header__link-phone:hover {
     color: var(--blue);
   }
+}
+.header__link_b {
+  font-weight: 700;
 }
 @media (max-width: 991.98px) {
   .header__link {
@@ -4178,7 +4181,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
-  background: var(--white);
   font-weight: 700;
   line-height: 110%;
   -webkit-transition: opacity 0.3s ease 0s;
@@ -4196,6 +4198,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 767.98px) {
   .header__link-phone {
+    background: var(--white);
     border: 1px solid var(--blue);
     width: 48px;
     height: 48px;
@@ -5472,8 +5475,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
   }
 }
 .about-page__decore-circle {
-  bottom: -10%;
-  right: 0;
+  bottom: -15%;
+  right: -5%;
   width: 420px;
   height: 420px;
 }
@@ -5523,7 +5526,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-transition: opacity 1.3s ease 0s;
   transition: opacity 1.3s ease 0s;
 }
-.item-about__title, .item-about__title_b {
+.item-about__title {
   font-weight: 400;
   color: var(--blue);
   text-transform: uppercase;
@@ -5533,18 +5536,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
   line-height: 100%;
 }
 @media (max-width: 1280px) {
-  .item-about__title, .item-about__title_b {
+  .item-about__title {
     font-size: calc(24px + 56 * ((100vw - 320px) / (960)));
   }
 }
-.item-about__title_b {
-  font-weight: 700;
-}
-.item-about__text, .item-about__text_b {
+.item-about__text {
   text-transform: lowercase;
-}
-.item-about__text_b {
-  font-weight: 700;
 }
 
 .question-page {
@@ -5895,11 +5892,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
   opacity: 0;
   -webkit-transition: opacity 1.3s ease 0s;
   transition: opacity 1.3s ease 0s;
-  margin-top: 50px;
+  margin-top: 60px;
 }
 @media (max-width: 1280px) {
   .location-page__text {
-    margin-top: calc(15px + 35 * ((100vw - 320px) / (960)));
+    margin-top: calc(20px + 40 * ((100vw - 320px) / (960)));
   }
 }
 .location-page__items {
@@ -5996,11 +5993,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .location-page__button {
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 10px;
 }
 @media (max-width: 1280px) {
   .location-page__button {
-    margin-top: calc(15px + 35 * ((100vw - 320px) / (960)));
+    margin-top: calc(5px + 5 * ((100vw - 320px) / (960)));
   }
 }
 
@@ -6158,6 +6155,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
   opacity: 0;
   -webkit-transition: opacity 1.3s ease 0s;
   transition: opacity 1.3s ease 0s;
+  margin-bottom: 30px;
+}
+@media (max-width: 1280px) {
+  .architecture-page__text {
+    margin-bottom: calc(15px + 15 * ((100vw - 320px) / (960)));
+  }
 }
 .architecture-page__image, .architecture-page__image_d {
   display: block;
