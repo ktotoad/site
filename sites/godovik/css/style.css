@@ -3385,6 +3385,30 @@ body.lock {
   }
 }
 
+.decore-circle, .decore-plane {
+  position: absolute;
+  z-index: 15;
+  overflow: hidden;
+  width: 320px;
+  height: 320px;
+}
+@media (max-width: 1280px) {
+  .decore-circle, .decore-plane {
+    width: calc(160px + 160 * ((100vw - 320px) / (960)));
+  }
+}
+@media (max-width: 1280px) {
+  .decore-circle, .decore-plane {
+    height: calc(160px + 160 * ((100vw - 320px) / (960)));
+  }
+}
+.decore-circle img, .decore-plane img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 /*Buttons*/
 .button-main, .button-white {
   display: -webkit-box;
@@ -5193,17 +5217,17 @@ input[type=text], input[type=email], input[type=tel], textarea {
           transform: translateY(0);
 }
 .main-page.active .main-page__container::before {
-  width: 320px;
-  height: 320px;
+  width: 420px;
+  height: 420px;
 }
 @media (max-width: 1280px) {
   .main-page.active .main-page__container::before {
-    width: calc(160px + 160 * ((100vw - 320px) / (960)));
+    width: calc(210px + 210 * ((100vw - 320px) / (960)));
   }
 }
 @media (max-width: 1280px) {
   .main-page.active .main-page__container::before {
-    height: calc(160px + 160 * ((100vw - 320px) / (960)));
+    height: calc(210px + 210 * ((100vw - 320px) / (960)));
   }
 }
 .main-page.active::before {
@@ -5223,6 +5247,24 @@ input[type=text], input[type=email], input[type=tel], textarea {
           transform: perspective(33vw) rotateX(45deg);
   -webkit-transition: width 0.5s, height 0.5s ease 0s;
   transition: width 0.5s, height 0.5s ease 0s;
+}
+.main-page__decore-circle {
+  top: -15%;
+  left: -1%;
+}
+.main-page__container::before {
+  top: -210px;
+  left: -210px;
+}
+@media (max-width: 1280px) {
+  .main-page__container::before {
+    top: calc(-105px + -105 * ((100vw - 320px) / (960)));
+  }
+}
+@media (max-width: 1280px) {
+  .main-page__container::before {
+    left: calc(-105px + -105 * ((100vw - 320px) / (960)));
+  }
 }
 .main-page__slider {
   -webkit-transition: -webkit-transform 1.3s ease 0s;
@@ -5378,6 +5420,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
      object-fit: cover;
 }
 .about-page__items {
+  position: relative;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 60px 1fr;
@@ -5387,6 +5430,22 @@ input[type=text], input[type=email], input[type=tel], textarea {
 @media (max-width: 1280px) {
   .about-page__items {
     gap: calc(10px + 50 * ((100vw - 320px) / (960)));
+  }
+}
+.about-page__decore-circle {
+  bottom: -10%;
+  right: 0;
+  width: 420px;
+  height: 420px;
+}
+@media (max-width: 1280px) {
+  .about-page__decore-circle {
+    width: calc(210px + 210 * ((100vw - 320px) / (960)));
+  }
+}
+@media (max-width: 1280px) {
+  .about-page__decore-circle {
+    height: calc(210px + 210 * ((100vw - 320px) / (960)));
   }
 }
 .about-page__main {
@@ -5426,6 +5485,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   transition: opacity 1.3s ease 0s;
 }
 .item-about__title, .item-about__title_b {
+  font-weight: 400;
   color: var(--blue);
   text-transform: uppercase;
   font-family: "Pobeda", sans-serif;
@@ -5718,6 +5778,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   }
 }
 .location-page {
+  position: relative;
   overflow: hidden;
 }
 .location-page.active .location-page__title, .location-page.active .location-page__text {
@@ -5726,6 +5787,10 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .location-page.active .location-page__items {
   -webkit-transform: translateX(0);
           transform: translateX(0);
+}
+.location-page__decore-plane {
+  top: 0;
+  right: 0;
 }
 @media (max-width: 991.98px) {
   .location-page__container {
@@ -6709,6 +6774,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 
 .halls-page {
+  position: relative;
   overflow: hidden;
 }
 .halls-page.active .slider-halls__image::before {
@@ -6723,6 +6789,22 @@ input[type=text], input[type=email], input[type=tel], textarea {
 @media (max-width: 1280px) {
   .halls-page.active .slider-halls__image::before {
     height: calc(160px + 160 * ((100vw - 320px) / (960)));
+  }
+}
+.halls-page__decore-circle {
+  top: -15%;
+  left: 55%;
+  width: 520px;
+  height: 520px;
+}
+@media (max-width: 1280px) {
+  .halls-page__decore-circle {
+    width: calc(260px + 260 * ((100vw - 320px) / (960)));
+  }
+}
+@media (max-width: 1280px) {
+  .halls-page__decore-circle {
+    height: calc(260px + 260 * ((100vw - 320px) / (960)));
   }
 }
 @media (max-width: 991.98px) {
@@ -6747,6 +6829,10 @@ input[type=text], input[type=email], input[type=tel], textarea {
   }
 }
 
+.slider-halls {
+  position: relative;
+  z-index: 20;
+}
 .slider-halls__slide {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -6796,6 +6882,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
   height: 651px;
   -webkit-transform: translateY(20%);
           transform: translateY(20%);
+  -webkit-clip-path: polygon(25% 0, 100% 0%, 100% 100%, 0 100%, 0 25%);
+          clip-path: polygon(25% 0, 100% 0%, 100% 100%, 0 100%, 0 25%);
 }
 @media (max-width: 1280px) {
   .slider-halls__left .slider-halls__image {
@@ -7017,10 +7105,15 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 
 .parking-page {
+  position: relative;
   overflow: hidden;
 }
 .parking-page.active .parking-page__title, .parking-page.active .parking-page__text, .parking-page.active .item-about {
   opacity: 1;
+}
+.parking-page__decore-plane {
+  top: 0;
+  right: 0;
 }
 .parking-page__title {
   opacity: 0;
@@ -7031,11 +7124,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
   opacity: 0;
   -webkit-transition: opacity 1.3s ease 0s;
   transition: opacity 1.3s ease 0s;
-  margin-top: 50px;
+  margin-top: 60px;
 }
 @media (max-width: 1280px) {
   .parking-page__text {
-    margin-top: calc(20px + 30 * ((100vw - 320px) / (960)));
+    margin-top: calc(20px + 40 * ((100vw - 320px) / (960)));
   }
 }
 .parking-page__container-images {
