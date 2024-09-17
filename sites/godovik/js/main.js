@@ -92,6 +92,26 @@ if(document.querySelector('#background-video')) {
 		}, 3000);
 	});
 }
+//Buttons_Form==================================================================================================================================================
+if(document.querySelector("#buttonsFormBody")) {
+	const buttonsFormBody = document.querySelector("#buttonsFormBody");
+	const buttonsForm = buttonsFormBody.querySelector("#buttonsForm");
+
+	document.body.onscroll = (e) => {
+		var bounds = buttonsForm.getBoundingClientRect();
+		//const centerTop = buttonsFormBody.offsetTop - (window.innerHeight/2 - buttonsFormBody.clientHeight/2);
+		//const centerBottom = buttonsFormBody.offsetTop - (window.innerHeight/2 - buttonsFormBody.clientHeight/2) + bounds.height;
+		const centerTop = buttonsFormBody.offsetTop - (window.innerHeight - buttonsFormBody.clientHeight);
+		const centerBottom = buttonsFormBody.offsetTop - (window.innerHeight - buttonsFormBody.clientHeight) + bounds.height;
+
+		if(window.scrollY >= centerTop) {
+			buttonsForm.classList.add("change");
+		}
+		if(window.scrollY <= centerTop) {
+			buttonsForm.classList.remove("change");
+		}
+	}
+}
 const body = document.querySelector('body');
 //burger=====================================================================================================================================================
 if (document.querySelector('.icon-menu')) {
@@ -821,6 +841,17 @@ if(document.querySelector('#optionsblock')) {
         }
     });
 }
+//toggle======================================================================================================================================================
+if(document.querySelector("#sunway")) {
+	document.querySelectorAll("#sunway").forEach(function (sunway) {
+		const toggle = sunway.querySelector('#toggle');
+		const svgway = sunway.querySelector('#svgway');
+
+		toggle.addEventListener("click", function () {
+        	sunway.classList.toggle("active");
+        });
+    });
+}
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
@@ -913,7 +944,6 @@ function initSliders() {
 			slidesPerView: 1,
 			spaceBetween: 20,
 			parallax: true,
-    		effect: "fade",
 			speed: 800,
 			autoplay: {
 				delay: 3000,
@@ -923,8 +953,9 @@ function initSliders() {
 				320: {
 					autoHeight: true,
 				},
-				767: {
+				992: {
 					autoHeight: false,
+    				effect: "fade",
 				},
 			},
 			navigation: {
