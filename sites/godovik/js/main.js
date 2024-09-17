@@ -28,10 +28,10 @@ if (document.querySelector(".preloader")) {
         animateall();
     }, 1000);
 } else {
-    window.addEventListener('load', function () {
+    setTimeout(function(){
         wrapper.classList.add('loaded');
         animateall();
-    });
+    }, 2000);
 }
 /*Animation================================================================================*/
 function animateall() {
