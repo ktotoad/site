@@ -1064,10 +1064,6 @@ function initSliders() {
 			parallax: true,
 			autoHeight: true,
 			speed: 800,
-			autoplay: {
-				delay: 3000,
-				disableOnInteraction: false,
-			},
 			pagination: {
 				el: ".slider-halls__pagination",
 				clickable: true,
