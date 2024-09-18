@@ -32,9 +32,9 @@
 		<a href="./" class="header__logo"><img src="img/logo.svg" alt=""></a>
 		<button type="button" class="header__burger-icon icon-menu"><span></span></button>
 		<nav class="header__body">
-			<ul data-da=".submenu__nav_links,992,first" class="header__list">
+			<ul class="header__list">
 				<li class="header__item"><a href="./index.html#about" class="header__link">О проекте</a></li>
-				<li class="header__item"><a href="/index.html#map" class="header__link">Локация</a></li>
+				<li class="header__item"><a href="./index.html#map" class="header__link">Локация</a></li>
 				<li class="header__item"><a href="./gallery.html" class="header__link">Галерея</a></li>
 				<li class="header__item"><a href="./options.html" class="header__link">как купить</a></li>
 				<li class="header__item"><a href="./sections.html" class="header__link_b">ВЫБРАТЬ КВАРТИРУ</a></li>
@@ -47,13 +47,18 @@
 				</svg>
 				<span>8 800 2560-720</span>
 			</a>
-			<a href="#popup" data-da=".submenu__nav_links,480,2" class="header__button button-white popup-link">Заказать звонок</a>
+			<a href="#popup" class="header__button-phone button-white popup-link">Заказать звонок</a>
 		</div>
 	</div>
 	<div class="header__submenu submenu">
 		<div class="submenu__body">
 			<nav class="submenu__nav submenu__nav_links">
 				<ul class="submenu__list">
+					<li data-link="1" class="submenu__item"><a href="./index.html#about" class="submenu__link link"><span>О проекте</span></a></li>
+					<li data-link="2" class="submenu__item"><a href="./index.html#map" class="submenu__link link"><span>Локация</span></a></li>
+					<li data-link="3" class="submenu__item"><a href="./gallery.html" class="submenu__link link"><span>Галерея</span></a></li>
+					<li data-link="4" class="submenu__item"><a href="./options.html" class="submenu__link link"><span>как купить</span></a></li>
+					<li data-link="3" class="submenu__item"><a href="./sections.html" class="submenu__link header__link_b link"><span>ВЫБРАТЬ КВАРТИРУ</span></a></li>
 					<li data-link="1" class="submenu__item"><a href="./index.html#architecture" class="submenu__link link"><span>архитектура</span></a></li>
 					<li data-link="2" class="submenu__item"><a href="./index.html#options" class="submenu__link link"><span>акции</span></a></li>
 					<li data-link="3" class="submenu__item"><a href="./index.html#aesthetics" class="submenu__link link"><span>ЭСТЕТИКА</span></a></li>
@@ -97,6 +102,9 @@
 								<div class="slider-main__slide">
 									<div class="main-page__bg">
 										<img src="./img/main/main.jpg" alt="">
+									</div>
+									<div class="main-page__bg-mob">
+										<img src="./img/main/mob.jpg" alt="">
 									</div>
 								</div>
 							</div>
@@ -230,35 +238,35 @@
 								</div>		
 							</div>
 							<div class="question-page__content content-question">
-								<div class="content-question__slider">
+								<div class="content-question__slider decore_rb">
 									<div class="content-question__swiper" id="gallery-wrap">
 										<div class="content-question__slide">
-											<a href="./img/building/01.jpg" class="content-question__image decore_rb" data-fancybox="gallery">
+											<a href="./img/building/01.jpg" class="content-question__image" data-fancybox="gallery">
 												<img src="./img/building/01.jpg" alt="">
 											</a>
 										</div>
 										<div class="content-question__slide">
-											<a href="./img/building/03.jpg" class="content-question__image decore_rb" data-fancybox="gallery">
+											<a href="./img/building/03.jpg" class="content-question__image" data-fancybox="gallery">
 												<img src="./img/building/03.jpg" alt="">
 											</a>
 										</div>
 										<div class="content-question__slide">
-											<a href="./img/dvor/09.jpg" class="content-question__image decore_rb" data-fancybox="gallery">
+											<a href="./img/dvor/09.jpg" class="content-question__image" data-fancybox="gallery">
 												<img src="./img/dvor/09.jpg" alt="">
 											</a>
 										</div>
 										<div class="content-question__slide">
-											<a href="./img/dvor/10.jpg" class="content-question__image decore_rb" data-fancybox="gallery">
+											<a href="./img/dvor/10.jpg" class="content-question__image" data-fancybox="gallery">
 												<img src="./img/dvor/10.jpg" alt="">
 											</a>
 										</div>
 										<div class="content-question__slide">
-											<a href="./img/dvor/11.jpg" class="content-question__image decore_rb" data-fancybox="gallery">
+											<a href="./img/dvor/11.jpg" class="content-question__image" data-fancybox="gallery">
 												<img src="./img/dvor/11.jpg" alt="">
 											</a>
 										</div>
 										<div class="content-question__slide">
-											<a href="./img/hall/01.jpg" class="content-question__image decore_rb" data-fancybox="gallery">
+											<a href="./img/hall/01.jpg" class="content-question__image" data-fancybox="gallery">
 												<img src="./img/hall/01.jpg" alt="">
 											</a>
 										</div>
@@ -283,7 +291,7 @@
 						<div class="slider-controls__pagination content-question__pagination"></div>
 					</div>
 				</section>
-				<section class="page__form form-page">
+				<section id="buttonsFormBody" class="page__form form-page">
 					<div class="form-page__bg">
 						<img src="./img/formbg.png" alt="">
 					</div>
@@ -300,19 +308,69 @@
 		</div>
 		<div class="form__input-body input-body">
 			<label for="" class="form__label">Номер телефона</label>
-			<input type="tel" data-format="0 000 000-00-00" placeholder="+7" class="form__input">
+			<input type="tel" data-format="+7 000 000-00-00" placeholder="+7" class="form__input">
 		</div>
 	</div>
 	<div class="form__checkbox checkbox">
 		<input id="t_1" type="checkbox" value="1" class="checkbox__input">
 		<label for="t_1" class="checkbox__label"><span class="checkbox__text">Принимаю <a href="" target="_blank" class="checkbox__link">условия обработки</a> персональных данных</span></label>
 	</div>
-	<button type="submit" class="form__button button-main">Отправить</button>
+	<div class="form__buttons">
+		<button type="submit" class="form__button button-main">Отправить</button>
+		<a href="//wa.me/79003276489" target="_blank" class="form__social">
+			<p class="social-footer__link">
+				<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M0 15C0 23.2843 6.71573 30 15 30C23.2843 30 30 23.2843 30 15C30 6.71573 23.2843 0 15 0C6.71573 0 0 6.71573 0 15ZM24.4138 14.4259C24.4119 19.3427 20.4122 23.3433 15.4944 23.3453H15.4907C13.9979 23.3448 12.5311 22.9703 11.2283 22.2597L6.5 23.5L7.76538 18.878C6.98483 17.5253 6.57411 15.9909 6.57478 14.4189C6.57674 9.50106 10.578 5.5 15.4943 5.5C17.8804 5.50103 20.1199 6.42992 21.8039 8.11588C23.4879 9.80176 24.4148 12.0427 24.4138 14.4259Z" fill="#131411"/>
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M8.64187 21.3813L11.4477 20.6452L11.7184 20.8059C12.8567 21.4814 14.1614 21.8388 15.4917 21.8393H15.4947C19.5808 21.8393 22.9065 18.5135 22.9082 14.4257C22.9089 12.4448 22.1385 10.5822 20.7389 9.18093C19.3392 7.77962 17.4778 7.00752 15.4977 7.00684C11.4084 7.00684 8.08268 10.3323 8.08106 14.4197C8.08048 15.8205 8.47243 17.1848 9.21453 18.3651L9.3908 18.6456L8.64187 21.3813ZM19.6831 16.3466C19.8385 16.4217 19.9435 16.4725 19.9883 16.5473C20.044 16.6402 20.044 17.0864 19.8584 17.6071C19.6726 18.1277 18.7822 18.6028 18.354 18.6668C17.9701 18.7242 17.4842 18.7481 16.9503 18.5785C16.6266 18.4758 16.2115 18.3386 15.6798 18.109C13.5904 17.2068 12.1785 15.1818 11.9116 14.7991C11.8929 14.7723 11.8798 14.7535 11.8725 14.7438L11.8707 14.7414C11.7528 14.584 10.9625 13.5296 10.9625 12.4383C10.9625 11.4117 11.4668 10.8736 11.6989 10.6259C11.7148 10.609 11.7294 10.5934 11.7425 10.5791C11.9468 10.3559 12.1883 10.3002 12.3368 10.3002C12.4854 10.3002 12.6341 10.3015 12.764 10.3081C12.78 10.3089 12.7967 10.3088 12.8139 10.3087C12.9438 10.3079 13.1057 10.307 13.2654 10.6906C13.3269 10.8383 13.4168 11.0572 13.5116 11.2881C13.7034 11.755 13.9153 12.2708 13.9526 12.3454C14.0083 12.457 14.0454 12.5871 13.9711 12.7359C13.96 12.7582 13.9497 12.7793 13.9398 12.7994C13.884 12.9133 13.843 12.9971 13.7483 13.1077C13.7111 13.1511 13.6726 13.198 13.6341 13.2449C13.5574 13.3383 13.4807 13.4316 13.414 13.4981C13.3024 13.6093 13.1863 13.7298 13.3163 13.953C13.4463 14.1761 13.8936 14.9059 14.5561 15.4969C15.2683 16.1321 15.8873 16.4006 16.2011 16.5367C16.2623 16.5633 16.312 16.5848 16.3484 16.603C16.5711 16.7146 16.7012 16.696 16.8312 16.5473C16.9612 16.3985 17.3883 15.8965 17.5368 15.6734C17.6854 15.4504 17.834 15.4875 18.0383 15.5618C18.2426 15.6363 19.3383 16.1754 19.5612 16.2869C19.6047 16.3087 19.6454 16.3284 19.6831 16.3466Z" fill="#131411"/>
+				</svg>
+			</p>
+			<span>Написать в WhatsApp</span>
+		</a>
+	</div>	
 </form>
 							</div>
 						</div>
 					</div>
-				</section>
+<div id="buttonsForm" class="buttons-form">
+	<a href="tel:88002560720" class="social-footer__link">
+		<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+			<path d="M11.34 8.25333C10.52 8.25333 9.72667 8.12 8.98667 7.88C8.75333 7.8 8.49333 7.86 8.31333 8.04L7.26667 9.35333C5.38 8.45333 3.61333 6.75333 2.67333 4.8L3.97333 3.69333C4.15333 3.50667 4.20667 3.24667 4.13333 3.01333C3.88667 2.27333 3.76 1.48 3.76 0.66C3.76 0.3 3.46 0 3.1 0H0.793333C0.433333 0 0 0.16 0 0.66C0 6.85333 5.15333 12 11.34 12C11.8133 12 12 11.58 12 11.2133V8.91333C12 8.55333 11.7 8.25333 11.34 8.25333Z" fill="#131411"></path>
+		</svg>
+	</a>
+	<a href="//wa.me/79003276489" target="_blank" class="social-footer__link">
+		<svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<g clip-path="url(#clip0_405_154)">
+				<path d="M591.958 459.691C590.4 458.943 532.078 430.223 521.714 426.493C517.483 424.974 512.95 423.491 508.13 423.491C500.254 423.491 493.639 427.416 488.485 435.125C482.659 443.784 465.023 464.4 459.574 470.558C458.862 471.371 457.891 472.343 457.309 472.343C456.787 472.343 447.761 468.626 445.028 467.439C382.465 440.262 334.976 374.909 328.465 363.888C327.535 362.304 327.496 361.584 327.488 361.584C327.717 360.745 329.82 358.636 330.906 357.548C334.083 354.405 337.524 350.262 340.854 346.255C342.431 344.356 344.01 342.455 345.561 340.662C350.392 335.042 352.542 330.678 355.036 325.623L356.342 322.997C362.431 310.901 357.231 300.694 355.55 297.397C354.171 294.639 329.545 235.205 326.927 228.961C320.631 213.894 312.311 206.878 300.75 206.878C299.678 206.878 300.75 206.878 296.252 207.068C290.774 207.299 260.942 211.226 247.753 219.54C233.766 228.358 210.104 256.468 210.104 305.901C210.104 350.392 238.337 392.4 250.459 408.377C250.761 408.779 251.314 409.597 252.117 410.771C298.54 478.569 356.413 528.813 415.08 552.249C471.561 574.81 498.306 577.418 513.511 577.418H513.514C519.904 577.418 525.018 576.917 529.529 576.473L532.392 576.2C551.903 574.47 594.781 552.252 604.535 525.148C612.218 503.8 614.244 480.475 609.132 472.01C605.631 466.255 599.597 463.358 591.958 459.691Z" fill="#131411"/>
+				<path d="M407.101 0C190.436 0 14.1656 174.945 14.1656 389.982C14.1656 459.532 32.7786 527.613 68.0384 587.197L0.550046 786.275C-0.707097 789.987 0.227968 794.091 2.97342 796.886C4.95524 798.909 7.64355 800 10.389 800C11.441 800 12.5007 799.842 13.5345 799.512L221.119 733.548C277.924 763.899 342.127 779.92 407.103 779.92C623.747 779.922 799.999 604.995 799.999 389.982C799.999 174.945 623.747 0 407.101 0ZM407.101 698.686C345.96 698.686 286.742 681.031 235.838 647.629C234.127 646.504 232.14 645.927 230.14 645.927C229.083 645.927 228.023 646.088 226.992 646.416L123.005 679.47L156.573 580.434C157.659 577.229 157.116 573.694 155.116 570.961C116.353 517.995 95.8617 455.416 95.8617 389.982C95.8617 219.74 235.483 81.2364 407.098 81.2364C578.693 81.2364 718.298 219.74 718.298 389.982C718.301 560.203 578.698 698.686 407.101 698.686Z" fill="#131411"/>
+			</g>
+		</svg>
+	</a>
+	<a href="https://t.me/avtorydevelopment" target="_blank" class="social-footer__link">
+		<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<g clip-path="url(#clip0_64_731)">
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M17.2083 9.215C17.2083 13.5369 13.7048 17.0404 9.38297 17.0404C5.06115 17.0404 1.55762 13.5369 1.55762 9.215C1.55762 4.89318 5.06115 1.38965 9.38297 1.38965C13.7048 1.38965 17.2083 4.89318 17.2083 9.215ZM9.66339 7.16667C8.90227 7.48325 7.38108 8.1385 5.09983 9.1324C4.72939 9.2797 4.53533 9.42382 4.51767 9.56473C4.48781 9.80288 4.78604 9.89665 5.19215 10.0244C5.24739 10.0417 5.30463 10.0597 5.36331 10.0788C5.76286 10.2087 6.30032 10.3606 6.57973 10.3666C6.83318 10.3721 7.11605 10.2677 7.42836 10.0532C9.5598 8.61441 10.6601 7.88718 10.7291 7.8715C10.7779 7.86044 10.8454 7.84653 10.8912 7.8872C10.9369 7.92787 10.9324 8.00489 10.9276 8.02555C10.898 8.1515 9.72735 9.23986 9.12155 9.80307C8.93268 9.97866 8.79873 10.1032 8.77134 10.1316C8.71 10.1954 8.64747 10.2557 8.58738 10.3135C8.21619 10.6713 7.93784 10.9397 8.60279 11.3779C8.92234 11.5885 9.17804 11.7626 9.43314 11.9364C9.71174 12.1261 9.98961 12.3153 10.3491 12.551C10.4407 12.611 10.5282 12.6734 10.6134 12.7342C10.9376 12.9653 11.2289 13.1729 11.5888 13.1399C11.7979 13.1206 12.0139 12.924 12.1236 12.3376C12.3828 10.9517 12.8924 7.9489 13.0102 6.71153C13.0205 6.60311 13.0075 6.46438 12.9971 6.40347C12.9867 6.34256 12.9649 6.25578 12.8857 6.19155C12.792 6.11547 12.6472 6.09942 12.5825 6.10056C12.2881 6.10575 11.8365 6.26277 9.66339 7.16667Z" fill="#131411"/>
+			</g>
+			<defs>
+				<clipPath id="clip0_64_731">
+					<rect width="17.2477" height="17.2477" fill="#131411" transform="translate(0.758789 0.589844)"/>
+				</clipPath>
+			</defs>
+		</svg>
+	</a>
+	<a href="https://www.youtube.com/@avtordev" target="_blank" class="social-footer__link">
+		<svg width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<g clip-path="url(#clip0_64_734)">
+				<path d="M21.1289 4.19142C21.1289 4.19142 20.9324 2.80407 20.3272 2.19491C19.5608 1.39315 18.7041 1.38922 18.3111 1.34206C15.4971 1.1377 11.2722 1.1377 11.2722 1.1377H11.2643C11.2643 1.1377 7.03937 1.1377 4.22538 1.34206C3.83237 1.38922 2.9756 1.39315 2.20922 2.19491C1.60397 2.80407 1.4114 4.19142 1.4114 4.19142C1.4114 4.19142 1.20703 5.82243 1.20703 7.44951V8.9744C1.20703 10.6015 1.40747 12.2325 1.40747 12.2325C1.40747 12.2325 1.60397 13.6198 2.20529 14.229C2.97166 15.0308 3.97779 15.0033 4.42582 15.0897C6.03718 15.243 11.2682 15.2901 11.2682 15.2901C11.2682 15.2901 15.4971 15.2823 18.3111 15.0819C18.7041 15.0347 19.5608 15.0308 20.3272 14.229C20.9324 13.6198 21.1289 12.2325 21.1289 12.2325C21.1289 12.2325 21.3294 10.6054 21.3294 8.9744V7.44951C21.3294 5.82243 21.1289 4.19142 21.1289 4.19142ZM9.18916 10.8255V5.17002L14.6246 8.00758L9.18916 10.8255Z" fill="#131411"/>
+			</g>
+			<defs>
+				<clipPath id="clip0_64_734">
+					<rect width="21.5597" height="15.0918" fill="#131411" transform="translate(0.488281 0.667969)"/>
+				</clipPath>
+			</defs>
+		</svg>
+	</a>
+	<a href="./sections.html" class="buttons-form__link button-main">Выбрать квартиру</a>
+</div>				</section>
 				<section id="map" class="page__location location-page anim-items anim-no-hide">
 					<div class="location-page__decore-plane decore-plane">
 						<img src="./img/decore/plane_line.svg" alt="">
@@ -653,7 +711,7 @@
 						<div class="landscape-page__content">
 							<h2 class="landscape-page__title title-main">Зеленый <span>оазис</span></h2>
 							<p class="landscape-page__text text-main">Как и в других своих проектах, к работе над озеленением мы привлекли дендролога. Вместе мы создали зеленый многоярусный сад прямо внутри вашего двора по трендам биофильного дизайна</p>
-							<p class="landscape-page__text text-main">43% — площади займет озеленения во дворе и на внешней части дома</p>
+							<p class="landscape-page__text text-main"><span>43%</span> — площади займет озеленения во дворе и на внешней части дома</p>
 							<p class="landscape-page__text text-main">Концепция озеленения продолжается и с внешней стороны дома. Зона амфитеатров окружена газоном из белого клевера, который придает территории вид «нетронутой» природы</p>
 							<p class="landscape-page__text text-main">Арт-объект в виде бумажного самолетика, расположенный у входа в дом, станет ярким акцентом, притягивающим взгляды прохожих</p>
 						</div>
@@ -725,8 +783,8 @@
 									</div>
 									<div class="slider-halls__images" id="gallery-wrap">
 										<div class="slider-halls__left">
-											<a href="./img/floor/01.jpg" class="slider-halls__image" data-fancybox="gallery">
-												<img src="./img/floor/01.jpg" alt="">
+											<a href="./img/lobby/06.jpg" class="slider-halls__image" data-fancybox="gallery">
+												<img src="./img/lobby/06.jpg" alt="">
 												<div class="zoom-button">
 													<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<g clip-path="url(#clip0_174_125)">
@@ -742,8 +800,8 @@
 											</a>
 										</div>
 										<div class="slider-halls__right">
-											<a href="./img/floor/02.jpg" class="slider-halls__image" data-fancybox="gallery">
-												<img src="./img/floor/02.jpg" alt="">
+											<a href="./img/lobby/10.jpg" class="slider-halls__image" data-fancybox="gallery">
+												<img src="./img/lobby/10.jpg" alt="">
 												<div class="zoom-button">
 													<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<g clip-path="url(#clip0_174_125)">
@@ -757,8 +815,8 @@
 													</svg>
 												</div>
 											</a>
-											<a href="./img/floor/03.jpg" class="slider-halls__image decore_rb" data-fancybox="gallery">
-												<img src="./img/floor/03.jpg" alt="">
+											<a href="./img/lobby/13.jpg" class="slider-halls__image decore_rb" data-fancybox="gallery">
+												<img src="./img/lobby/13.jpg" alt="">
 												<div class="zoom-button">
 													<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<g clip-path="url(#clip0_174_125)">
@@ -777,14 +835,15 @@
 								</div>
 								<div class="slider-halls__slide">
 									<div class="slider-halls__content">
-										<h2 class="halls-page__title title-main">ХОЛЛЫ С ЭФФЕКТОМ <span>ОТКРЫТОГО НЕБА</span></h2>
-										<p class="halls-page__text text-main">Единому визуальному коду подчиняется и интерьер внутренних пространств. Архитектурная студия BLOCK STUDIO создала дизайн со светлой оболочкой и добавлением глубоких синих и голубых цветовых акцентов, повторяющих цвета во дворе</p>
-										<p class="halls-page__text text-main">При этом, мы остаемся верны своему авторскому почерку при разработке дизайна внутренних пространств, сохраняя черно-белую цветовую гамму как основу интерьера</p>
+										<h2 class="halls-page__title title-main">Функциональные <span>ЗОНЫ:</span></h2>
+										<p class="halls-page__text text-main"><span>1.</span> Два дизайнерских холла на 4 секции, оборудованных теплым тамбуром</p>
+										<p class="halls-page__text text-main"><span>2.</span> В каждом холле - мягкая мебель для ожидания или отдыха</p>
+										<p class="halls-page__text text-main"><span>3.</span> Две просторные зоны с отдельным входом с улицы</p>
 									</div>
 									<div class="slider-halls__images" id="gallery-wrap">
 										<div class="slider-halls__left">
-											<a href="./img/floor/01.jpg" class="slider-halls__image" data-fancybox="gallery">
-												<img src="./img/floor/01.jpg" alt="">
+											<a href="./img/lobby/02.jpg" class="slider-halls__image" data-fancybox="gallery">
+												<img src="./img/lobby/02.jpg" alt="">
 												<div class="zoom-button">
 													<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<g clip-path="url(#clip0_174_125)">
@@ -800,8 +859,8 @@
 											</a>
 										</div>
 										<div class="slider-halls__right">
-											<a href="./img/floor/02.jpg" class="slider-halls__image" data-fancybox="gallery">
-												<img src="./img/floor/02.jpg" alt="">
+											<a href="./img/lobby/08.jpg" class="slider-halls__image" data-fancybox="gallery">
+												<img src="./img/lobby/08.jpg" alt="">
 												<div class="zoom-button">
 													<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<g clip-path="url(#clip0_174_125)">
@@ -815,8 +874,67 @@
 													</svg>
 												</div>
 											</a>
-											<a href="./img/floor/03.jpg" class="slider-halls__image decore_rb" data-fancybox="gallery">
-												<img src="./img/floor/03.jpg" alt="">
+											<a href="./img/lobby/12.jpg" class="slider-halls__image decore_rb" data-fancybox="gallery">
+												<img src="./img/lobby/12.jpg" alt="">
+												<div class="zoom-button">
+													<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<g clip-path="url(#clip0_174_125)">
+															<path d="M15.5563 16.1989C17.0907 14.6646 18.0397 12.5449 18.0397 10.2035C18.0397 5.52072 14.2436 1.72461 9.56086 1.72461C4.87813 1.72461 1.08203 5.52072 1.08203 10.2035C1.08203 14.8862 4.87813 18.6823 9.56086 18.6823C11.9022 18.6823 14.0219 17.7333 15.5563 16.1989ZM15.5563 16.1989L23.1873 23.8301" stroke="#F1EFEB" stroke-width="1.69577" stroke-linecap="round" stroke-linejoin="round"/>
+														</g>
+														<defs>
+															<clipPath id="clip0_174_125">
+																<rect width="25" height="25" fill="white"/>
+															</clipPath>
+														</defs>
+													</svg>
+												</div>
+											</a>
+										</div>	
+									</div>
+								</div>
+								<div class="slider-halls__slide">
+									<div class="slider-halls__content">
+										<h2 class="halls-page__title title-main">Функциональные <span>ЗОНЫ:</span></h2>
+										<p class="halls-page__text text-main"><span>4.</span> Большая детская комната с игровыми зонами для разных возрастов</p>
+										<p class="halls-page__text text-main"><span>5.</span> Санузел с оборудованным местом для мытья лап питомцам в каждом холле</p>
+										<p class="halls-page__text text-main"><span>6.</span> Грузопассажирский лифт от паркинга до последнего этажа в каждой секции</p>
+									</div>
+									<div class="slider-halls__images" id="gallery-wrap">
+										<div class="slider-halls__left">
+											<a href="./img/lobby/15.jpg" class="slider-halls__image" data-fancybox="gallery">
+												<img src="./img/lobby/15.jpg" alt="">
+												<div class="zoom-button">
+													<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<g clip-path="url(#clip0_174_125)">
+															<path d="M15.5563 16.1989C17.0907 14.6646 18.0397 12.5449 18.0397 10.2035C18.0397 5.52072 14.2436 1.72461 9.56086 1.72461C4.87813 1.72461 1.08203 5.52072 1.08203 10.2035C1.08203 14.8862 4.87813 18.6823 9.56086 18.6823C11.9022 18.6823 14.0219 17.7333 15.5563 16.1989ZM15.5563 16.1989L23.1873 23.8301" stroke="#F1EFEB" stroke-width="1.69577" stroke-linecap="round" stroke-linejoin="round"/>
+														</g>
+														<defs>
+															<clipPath id="clip0_174_125">
+																<rect width="25" height="25" fill="white"/>
+															</clipPath>
+														</defs>
+													</svg>
+												</div>
+											</a>
+										</div>
+										<div class="slider-halls__right">
+											<a href="./img/lobby/05.jpg" class="slider-halls__image" data-fancybox="gallery">
+												<img src="./img/lobby/05.jpg" alt="">
+												<div class="zoom-button">
+													<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<g clip-path="url(#clip0_174_125)">
+															<path d="M15.5563 16.1989C17.0907 14.6646 18.0397 12.5449 18.0397 10.2035C18.0397 5.52072 14.2436 1.72461 9.56086 1.72461C4.87813 1.72461 1.08203 5.52072 1.08203 10.2035C1.08203 14.8862 4.87813 18.6823 9.56086 18.6823C11.9022 18.6823 14.0219 17.7333 15.5563 16.1989ZM15.5563 16.1989L23.1873 23.8301" stroke="#F1EFEB" stroke-width="1.69577" stroke-linecap="round" stroke-linejoin="round"/>
+														</g>
+														<defs>
+															<clipPath id="clip0_174_125">
+																<rect width="25" height="25" fill="white"/>
+															</clipPath>
+														</defs>
+													</svg>
+												</div>
+											</a>
+											<a href="./img/hall/01.jpg" class="slider-halls__image decore_rb" data-fancybox="gallery">
+												<img src="./img/hall/01.jpg" alt="">
 												<div class="zoom-button">
 													<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<g clip-path="url(#clip0_174_125)">
@@ -978,14 +1096,25 @@
 		</div>
 		<div class="form__input-body input-body">
 			<label for="" class="form__label">Номер телефона</label>
-			<input type="tel" data-format="0 000 000-00-00" placeholder="+7" class="form__input">
+			<input type="tel" data-format="+7 000 000-00-00" placeholder="+7" class="form__input">
 		</div>
 	</div>
 	<div class="form__checkbox checkbox">
 		<input id="t_1" type="checkbox" value="1" class="checkbox__input">
 		<label for="t_1" class="checkbox__label"><span class="checkbox__text">Принимаю <a href="" target="_blank" class="checkbox__link">условия обработки</a> персональных данных</span></label>
 	</div>
-	<button type="submit" class="form__button button-main">Отправить</button>
+	<div class="form__buttons">
+		<button type="submit" class="form__button button-main">Отправить</button>
+		<a href="//wa.me/79003276489" target="_blank" class="form__social">
+			<p class="social-footer__link">
+				<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M0 15C0 23.2843 6.71573 30 15 30C23.2843 30 30 23.2843 30 15C30 6.71573 23.2843 0 15 0C6.71573 0 0 6.71573 0 15ZM24.4138 14.4259C24.4119 19.3427 20.4122 23.3433 15.4944 23.3453H15.4907C13.9979 23.3448 12.5311 22.9703 11.2283 22.2597L6.5 23.5L7.76538 18.878C6.98483 17.5253 6.57411 15.9909 6.57478 14.4189C6.57674 9.50106 10.578 5.5 15.4943 5.5C17.8804 5.50103 20.1199 6.42992 21.8039 8.11588C23.4879 9.80176 24.4148 12.0427 24.4138 14.4259Z" fill="#131411"/>
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M8.64187 21.3813L11.4477 20.6452L11.7184 20.8059C12.8567 21.4814 14.1614 21.8388 15.4917 21.8393H15.4947C19.5808 21.8393 22.9065 18.5135 22.9082 14.4257C22.9089 12.4448 22.1385 10.5822 20.7389 9.18093C19.3392 7.77962 17.4778 7.00752 15.4977 7.00684C11.4084 7.00684 8.08268 10.3323 8.08106 14.4197C8.08048 15.8205 8.47243 17.1848 9.21453 18.3651L9.3908 18.6456L8.64187 21.3813ZM19.6831 16.3466C19.8385 16.4217 19.9435 16.4725 19.9883 16.5473C20.044 16.6402 20.044 17.0864 19.8584 17.6071C19.6726 18.1277 18.7822 18.6028 18.354 18.6668C17.9701 18.7242 17.4842 18.7481 16.9503 18.5785C16.6266 18.4758 16.2115 18.3386 15.6798 18.109C13.5904 17.2068 12.1785 15.1818 11.9116 14.7991C11.8929 14.7723 11.8798 14.7535 11.8725 14.7438L11.8707 14.7414C11.7528 14.584 10.9625 13.5296 10.9625 12.4383C10.9625 11.4117 11.4668 10.8736 11.6989 10.6259C11.7148 10.609 11.7294 10.5934 11.7425 10.5791C11.9468 10.3559 12.1883 10.3002 12.3368 10.3002C12.4854 10.3002 12.6341 10.3015 12.764 10.3081C12.78 10.3089 12.7967 10.3088 12.8139 10.3087C12.9438 10.3079 13.1057 10.307 13.2654 10.6906C13.3269 10.8383 13.4168 11.0572 13.5116 11.2881C13.7034 11.755 13.9153 12.2708 13.9526 12.3454C14.0083 12.457 14.0454 12.5871 13.9711 12.7359C13.96 12.7582 13.9497 12.7793 13.9398 12.7994C13.884 12.9133 13.843 12.9971 13.7483 13.1077C13.7111 13.1511 13.6726 13.198 13.6341 13.2449C13.5574 13.3383 13.4807 13.4316 13.414 13.4981C13.3024 13.6093 13.1863 13.7298 13.3163 13.953C13.4463 14.1761 13.8936 14.9059 14.5561 15.4969C15.2683 16.1321 15.8873 16.4006 16.2011 16.5367C16.2623 16.5633 16.312 16.5848 16.3484 16.603C16.5711 16.7146 16.7012 16.696 16.8312 16.5473C16.9612 16.3985 17.3883 15.8965 17.5368 15.6734C17.6854 15.4504 17.834 15.4875 18.0383 15.5618C18.2426 15.6363 19.3383 16.1754 19.5612 16.2869C19.6047 16.3087 19.6454 16.3284 19.6831 16.3466Z" fill="#131411"/>
+				</svg>
+			</p>
+			<span>Написать в WhatsApp</span>
+		</a>
+	</div>	
 </form>
 							</div>
 						</div>
@@ -1633,14 +1762,25 @@
 		</div>
 		<div class="form__input-body input-body">
 			<label for="" class="form__label">Номер телефона</label>
-			<input type="tel" data-format="0 000 000-00-00" placeholder="+7" class="form__input">
+			<input type="tel" data-format="+7 000 000-00-00" placeholder="+7" class="form__input">
 		</div>
 	</div>
 	<div class="form__checkbox checkbox">
 		<input id="t_1" type="checkbox" value="1" class="checkbox__input">
 		<label for="t_1" class="checkbox__label"><span class="checkbox__text">Принимаю <a href="" target="_blank" class="checkbox__link">условия обработки</a> персональных данных</span></label>
 	</div>
-	<button type="submit" class="form__button button-main">Отправить</button>
+	<div class="form__buttons">
+		<button type="submit" class="form__button button-main">Отправить</button>
+		<a href="//wa.me/79003276489" target="_blank" class="form__social">
+			<p class="social-footer__link">
+				<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M0 15C0 23.2843 6.71573 30 15 30C23.2843 30 30 23.2843 30 15C30 6.71573 23.2843 0 15 0C6.71573 0 0 6.71573 0 15ZM24.4138 14.4259C24.4119 19.3427 20.4122 23.3433 15.4944 23.3453H15.4907C13.9979 23.3448 12.5311 22.9703 11.2283 22.2597L6.5 23.5L7.76538 18.878C6.98483 17.5253 6.57411 15.9909 6.57478 14.4189C6.57674 9.50106 10.578 5.5 15.4943 5.5C17.8804 5.50103 20.1199 6.42992 21.8039 8.11588C23.4879 9.80176 24.4148 12.0427 24.4138 14.4259Z" fill="#131411"/>
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M8.64187 21.3813L11.4477 20.6452L11.7184 20.8059C12.8567 21.4814 14.1614 21.8388 15.4917 21.8393H15.4947C19.5808 21.8393 22.9065 18.5135 22.9082 14.4257C22.9089 12.4448 22.1385 10.5822 20.7389 9.18093C19.3392 7.77962 17.4778 7.00752 15.4977 7.00684C11.4084 7.00684 8.08268 10.3323 8.08106 14.4197C8.08048 15.8205 8.47243 17.1848 9.21453 18.3651L9.3908 18.6456L8.64187 21.3813ZM19.6831 16.3466C19.8385 16.4217 19.9435 16.4725 19.9883 16.5473C20.044 16.6402 20.044 17.0864 19.8584 17.6071C19.6726 18.1277 18.7822 18.6028 18.354 18.6668C17.9701 18.7242 17.4842 18.7481 16.9503 18.5785C16.6266 18.4758 16.2115 18.3386 15.6798 18.109C13.5904 17.2068 12.1785 15.1818 11.9116 14.7991C11.8929 14.7723 11.8798 14.7535 11.8725 14.7438L11.8707 14.7414C11.7528 14.584 10.9625 13.5296 10.9625 12.4383C10.9625 11.4117 11.4668 10.8736 11.6989 10.6259C11.7148 10.609 11.7294 10.5934 11.7425 10.5791C11.9468 10.3559 12.1883 10.3002 12.3368 10.3002C12.4854 10.3002 12.6341 10.3015 12.764 10.3081C12.78 10.3089 12.7967 10.3088 12.8139 10.3087C12.9438 10.3079 13.1057 10.307 13.2654 10.6906C13.3269 10.8383 13.4168 11.0572 13.5116 11.2881C13.7034 11.755 13.9153 12.2708 13.9526 12.3454C14.0083 12.457 14.0454 12.5871 13.9711 12.7359C13.96 12.7582 13.9497 12.7793 13.9398 12.7994C13.884 12.9133 13.843 12.9971 13.7483 13.1077C13.7111 13.1511 13.6726 13.198 13.6341 13.2449C13.5574 13.3383 13.4807 13.4316 13.414 13.4981C13.3024 13.6093 13.1863 13.7298 13.3163 13.953C13.4463 14.1761 13.8936 14.9059 14.5561 15.4969C15.2683 16.1321 15.8873 16.4006 16.2011 16.5367C16.2623 16.5633 16.312 16.5848 16.3484 16.603C16.5711 16.7146 16.7012 16.696 16.8312 16.5473C16.9612 16.3985 17.3883 15.8965 17.5368 15.6734C17.6854 15.4504 17.834 15.4875 18.0383 15.5618C18.2426 15.6363 19.3383 16.1754 19.5612 16.2869C19.6047 16.3087 19.6454 16.3284 19.6831 16.3466Z" fill="#131411"/>
+				</svg>
+			</p>
+			<span>Написать в WhatsApp</span>
+		</a>
+	</div>	
 </form>
 			</div>
 		</div>
