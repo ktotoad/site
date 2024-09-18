@@ -10132,6 +10132,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .tabs-flat__wrap {
   margin-top: 30px;
+  padding-bottom: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10192,8 +10193,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
           box-shadow: none;
 }
 .tabs-flat__wrap.active .tabs-flat__image {
-  -webkit-transform: scale(0.7);
-          transform: scale(0.7);
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
 }
 .tabs-flat__wrap.active .tabs-flat__start {
   opacity: 1;
@@ -10256,20 +10257,46 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 100%;
-  height: 100%;
+  width: 540px;
+  height: 540px;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
-.tabs-flat__way.section_1-2 .tabs-flat__circle-svg {
-  -webkit-transform: rotate(-59deg);
-          transform: rotate(-59deg);
+@media (max-width: 1280px) {
+  .tabs-flat__way {
+    width: calc(320px + 220 * ((100vw - 320px) / (960)));
+  }
 }
-.tabs-flat__way.section_3-4 .tabs-flat__circle-svg {
-  -webkit-transform: rotate(-143deg);
-          transform: rotate(-143deg);
+@media (max-width: 1280px) {
+  .tabs-flat__way {
+    height: calc(320px + 220 * ((100vw - 320px) / (960)));
+  }
+}
+.tabs-flat__way.section_1-2 {
+  -webkit-transform: translate(-50%, -50%) rotate(-59deg);
+          transform: translate(-50%, -50%) rotate(-59deg);
+}
+.tabs-flat__way.section_1-2 .tabs-flat__start {
+  -webkit-transform: translate(50%, -50%) rotate(59deg);
+          transform: translate(50%, -50%) rotate(59deg);
+}
+.tabs-flat__way.section_1-2 .tabs-flat__finish {
+  -webkit-transform: translate(-50%, 50%) rotate(59deg);
+          transform: translate(-50%, 50%) rotate(59deg);
+}
+.tabs-flat__way.section_3-4 {
+  -webkit-transform: translate(-50%, -50%) rotate(-143deg);
+          transform: translate(-50%, -50%) rotate(-143deg);
+}
+.tabs-flat__way.section_3-4 .tabs-flat__start {
+  -webkit-transform: translate(50%, -50%) rotate(143deg);
+          transform: translate(50%, -50%) rotate(143deg);
+}
+.tabs-flat__way.section_3-4 .tabs-flat__finish {
+  -webkit-transform: translate(-50%, 50%) rotate(143deg);
+          transform: translate(-50%, 50%) rotate(143deg);
 }
 @media (max-width: 767.98px) {
   .tabs-flat__way {
@@ -10289,6 +10316,19 @@ input[type=text], input[type=email], input[type=tel], textarea {
   }
 }
 .tabs-flat__start, .tabs-flat__finish {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   position: absolute;
   text-transform: uppercase;
   color: var(--black);
@@ -10300,6 +10340,18 @@ input[type=text], input[type=email], input[type=tel], textarea {
   .tabs-flat__start, .tabs-flat__finish {
     font-size: calc(8px + 2 * ((100vw - 320px) / (960)));
   }
+}
+.tabs-flat__start {
+  bottom: 50%;
+  right: 0;
+  -webkit-transform: translate(50%, -50%);
+          transform: translate(50%, -50%);
+}
+.tabs-flat__finish {
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, 50%);
+          transform: translate(-50%, 50%);
 }
 .tabs-flat__circle-svg {
   pointer-events: none;
@@ -10492,7 +10544,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (min-width: 767.98px) {
   .tabs-flat__body {
-    width: calc(100% - 4rem);
+    width: 70%;
   }
 }
 .tabs-flat__image {
