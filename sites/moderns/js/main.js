@@ -226,21 +226,19 @@ function initSliders() {
 			watchSlidesProgress: true,
 			//loop: true,
 			autoHeight: false,
-			//autoplay: {
-			//	delay: 3000,
-			//	disableOnInteraction: false,
-			//},
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
 			speed: 800,
 			breakpoints: {
 				320: {
-					slidesPerView: 1,
-					spaceBetween: 0,
-					autoHeight: true,
+					slidesPerView: "auto",
+					spaceBetween: 10,
 				},
 				480: {
 					slidesPerView: 2,
 					spaceBetween: 20,
-					autoHeight: false,
 				},
 				992: {
 					slidesPerView: 3,
