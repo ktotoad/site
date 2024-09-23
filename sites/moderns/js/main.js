@@ -200,6 +200,7 @@ function initSliders() {
 			slidesPerView: 1,
 			spaceBetween: 50,
 			parallax: true,
+			watchSlidesProgress: true,
 			//loop: true,
 			autoHeight: true,
 			autoplay: {
@@ -222,6 +223,7 @@ function initSliders() {
 			slidesPerView: 3,
 			spaceBetween: 20,
 			parallax: true,
+			watchSlidesProgress: true,
 			//loop: true,
 			//autoHeight: true,
 			//autoplay: {
