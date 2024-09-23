@@ -225,7 +225,7 @@ function initSliders() {
 			parallax: true,
 			watchSlidesProgress: true,
 			//loop: true,
-			//autoHeight: true,
+			autoHeight: false,
 			//autoplay: {
 			//	delay: 3000,
 			//	disableOnInteraction: false,
