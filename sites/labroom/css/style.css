@@ -1055,13 +1055,21 @@ body.lock {
           animation: spin 12s linear infinite;
 }
 .main-page__text {
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 120%;
   position: relative;
+}
+@media (max-width: 1600px) {
+  .main-page__text {
+    font-size: calc(18px + 12 * ((100vw - 320px) / (1280)));
+  }
 }
 .main-page__text span {
   display: block;
   position: absolute;
   width: 130px;
-  height: 100%;
+  height: auto;
   top: 110%;
   right: 0;
   overflow: hidden;
@@ -1071,8 +1079,8 @@ body.lock {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  -webkit-animation: wave 12s linear infinite;
-          animation: wave 12s linear infinite;
+  -webkit-animation: wave 32s linear infinite;
+          animation: wave 32s linear infinite;
 }
 
 @-webkit-keyframes spin {
@@ -1098,8 +1106,8 @@ body.lock {
 }
 @-webkit-keyframes wave {
   from {
-    -webkit-transform: translateX(-130px);
-            transform: translateX(-130px);
+    -webkit-transform: translateX(-75%);
+            transform: translateX(-75%);
   }
   to {
     -webkit-transform: translateX(0);
@@ -1108,8 +1116,8 @@ body.lock {
 }
 @keyframes wave {
   from {
-    -webkit-transform: translateX(-130px);
-            transform: translateX(-130px);
+    -webkit-transform: translateX(-75%);
+            transform: translateX(-75%);
   }
   to {
     -webkit-transform: translateX(0);
