@@ -256,3 +256,39 @@ function initSliders() {
 
 
 initSliders();
+//calculator=========================================================================================================================================================
+if(document.querySelector('#calculator')) {
+	const main = document.querySelector('#calculator');
+	const steps = main.querySelectorAll('.step');
+
+	steps.forEach((step, index) => {
+		if(step.querySelector('button')) {
+			const stepButton = step.querySelector('button');
+			const stepInputs = [...step.querySelectorAll('input')];
+			const onInput = () => stepButton.disabled = stepInputs.some(stepInput => !stepInput.value);
+
+			stepInputs.forEach((stepInput) => {
+				stepInput.addEventListener('input', onInput);
+			});
+			stepButton.addEventListener("click", stepAction);
+		}
+
+		step.setAttribute('data-step-index', index);
+
+		const stepIndex = step.dataset.stepIndex;
+		if(stepIndex == 0) {
+			step.classList.add('_active');
+		}
+	});
+		
+	function stepAction(e) {
+		e.target.closest('.step').classList.remove('_active');
+		const newIndex = Number(e.target.closest('.step').dataset.stepIndex) + 1;
+		steps.forEach((step) => {
+			stepIndex = step.dataset.stepIndex;
+			if (stepIndex == newIndex) {
+				step.classList.add('_active');
+			}
+		});
+	}
+}
