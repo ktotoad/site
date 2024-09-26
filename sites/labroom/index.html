@@ -16,7 +16,7 @@
 	<div class="header__container container">
 		<a href="./" class="header__logo"><img src="./img/logo.png" alt=""></a>
 		<div class="header__buttons">
-			<a href="" target="_blank" class="header__link">Telegram</a>
+			<a href="" target="_blank" data-hover="Telegram" class="header__link">Telegram</a>
 			<a href="tel:8800808202" class="header__button button-main">8 800 808202</a>
 			<button type="button" class="icon-menu"><span></span></button>
 		</div>
@@ -97,9 +97,14 @@
 							<div class="main-page__title-row">
 								<h2 class="main-page__title title-big">для</h2>
 								<h2 class="main-page__title title-big">вас</h2>
-								<div class="main-page__video-block">
-									
-								</div>
+								<a href="#" onclick="lightbox_open();" class="main-page__video-block">
+									<video id="background-video" loop="" muted="" playsinline="" preload="auto" autoplay poster="./img/video.jpg"><source src="./video/bg.mp4" type="video/mp4"></video>
+									<span class="main-page__video-icon">
+										<svg width="37" height="43" viewBox="0 0 37 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M37 21.5L0.25 42.7176L0.25 0.282377L37 21.5Z" fill="#303030"/>
+										</svg>
+									</span>
+								</a>
 							</div>
 						</div>				
 					</div>
@@ -108,7 +113,11 @@
 					
 				</section>
 				<section class="page__video video-page">
-					
+					<div class="video-page__container container">
+						<div class="video-page__video-block">
+							<video id="background-video" loop="" muted="" playsinline="" preload="auto" autoplay poster="./img/video.jpg"><source src="./video/bg.mp4" type="video/mp4"></video>
+						</div>
+					</div>
 				</section>
 				<section class="page__about about-page">
 					<div class="about-page__container container">
@@ -298,12 +307,18 @@
 					
 				</section>
 				<section class="page__art art-page">
-					
+					<div class="art-page__container container">
+						<div class="art-page__wrap">
+							
+						</div>
+					</div>
 				</section>
 			</main>
 <footer class="footer">
 	<div class="footer__container container">
-
+		<div class="footer__shower">
+			<img src="./img/shower.png" alt="">
+		</div>
 		<div class="footer__column">
 			<h2 class="footer__title title-main">закажите ванну <br>своей мечты</h2>
 			<div class="footer__contacts">
@@ -385,6 +400,13 @@
 	</div>
 </footer>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>		</div>
+<div id="popupvideo" class="popup-video">
+	<a class="boxclose" id="boxclose" onclick="lightbox_close();"></a>
+ 	<video id="VisaChipCardVideo" width="100%" controls>
+    	<source src="\video\bg.mp4" type="video/mp4">
+    </video>
+</div>
+<div id="fade" onClick="lightbox_close();"></div>
 <script src="js/jquery.min.js"></script> 
 <script src="js/imask.js"></script>	
 <script src="js/swiper-bundle.min.js"></script>	
