@@ -50,3 +50,111 @@ function inputElements() {
 	});
 }
 inputElements();
+//BuildSlider======================================================================================================================================================
+function buildSliders() {
+	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
+	if (sliders) {
+		sliders.forEach(slider => {
+			slider.parentElement.classList.add('swiper');
+			slider.classList.add('swiper-wrapper');
+			for(const slide of slider.children) {
+				slide.classList.add('swiper-slide');
+			}
+		});
+	}
+}
+
+//Инициализация_Swiper===============================================================================================================================================
+function initSliders() {
+	buildSliders();
+
+	if (document.querySelector('.slider-stoke')) {
+		new Swiper(".slider-stoke",{
+			observer: true,
+			observeParents: true,
+	        spaceBetween: 60,
+	        centeredSlides: false,
+	        parallax: true,
+			loop: true,
+	        speed: 6000,
+	        autoplay: {
+				delay: 0,
+				disableOnInteraction: false,
+			},
+			breakpoints: {
+				320: {
+					spaceBetween: 10,
+				},
+				768: {
+					spaceBetween: 30,
+				},
+				992: {
+					spaceBetween: 60,
+				},
+			},
+	        slidesPerView: "auto",
+	        allowTouchMove: false,
+	    });
+	}
+	if (document.querySelector('.slider-stoke-inv')) {
+		new Swiper(".slider-stoke-inv",{
+			observer: true,
+			observeParents: true,
+	        spaceBetween: 60,
+	        centeredSlides: false,
+	        parallax: true,
+			loop: true,
+	        speed: 6000,
+	        autoplay: {
+				delay: 0,
+				disableOnInteraction: false,
+				reverseDirection: true,
+			},
+			breakpoints: {
+				320: {
+					spaceBetween: 10,
+				},
+				768: {
+					spaceBetween: 30,
+				},
+				992: {
+					spaceBetween: 60,
+				},
+			},
+	        slidesPerView: "auto",
+	        allowTouchMove: false,
+	    });
+	}
+
+	if (document.querySelector('.slider-line')) {
+		new Swiper(".slider-line",{
+			observer: true,
+			observeParents: true,
+	        spaceBetween: 60,
+	        centeredSlides: false,
+	        parallax: true,
+			loop: true,
+	        speed: 6000,
+	        autoplay: {
+				delay: 0,
+				disableOnInteraction: false,
+			},
+			breakpoints: {
+				320: {
+					spaceBetween: 10,
+				},
+				768: {
+					spaceBetween: 30,
+				},
+				992: {
+					spaceBetween: 60,
+				},
+			},
+	        slidesPerView: "auto",
+	        allowTouchMove: false,
+	    });
+	}
+}
+
+
+initSliders();
