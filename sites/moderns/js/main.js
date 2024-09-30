@@ -276,6 +276,29 @@ function initSliders() {
 			},
 		});
 	}
+	
+	if (document.querySelector('.slider-news-slider')) {
+		new Swiper('.slider-news-slider', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 50,
+			parallax: true,
+			watchSlidesProgress: true,
+			//loop: true,
+			autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			pagination: {
+				el: '.slider-news-slider__dots',
+				clickable: true,
+				dynamicBullets: false,
+			},
+		});
+	}
 }
 
 
