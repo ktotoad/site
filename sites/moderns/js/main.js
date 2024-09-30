@@ -506,35 +506,36 @@ let _slideToggle = (target, duration = 500) => {
 }
 spollers();
 //Filter=====================================================================================================================================================
-if(document.querySelector('#maptabs')) {
+if(document.querySelector('#allfilter')) {
 
-	const mapTabsBody = document.querySelector('#maptabs');
-	const tabButtons = mapTabsBody.querySelectorAll('#tabbutton');
-	const tabItems = mapTabsBody.querySelectorAll('#tabitem');
+	const filterBody = document.querySelector('#allfilter');
+	const filterButtons = filterBody.querySelectorAll('#filterbutton');
+	const filterItems = filterBody.querySelectorAll('#filteritem');
 
-	tabButtons.forEach(tabButton => { if(tabButton.classList.contains('active')){
-			let filter = tabButton.dataset['filter'];
-			tabItems.forEach( tabItem => {
-				tabItem.classList.remove('hidden');
-				if(!tabItem.classList.contains(filter)) {
-					tabItem.classList.add('hidden');
-				}
-			});
+	filterButtons.forEach(filterButton => { 
+		if(filterButton.classList.contains('active')){
+			let filter = filterButton.dataset['filter'];
+			
+			changeHidden(filter);
 		}
 	});
 
-	mapTabsBody.addEventListener('click', e => {
-		if(e.target.classList.contains('#tabbutton') || e.target.closest('#tabbutton')) {
-			let filter = e.target.closest('#tabbutton').dataset['filter'];
-			tabButtons.forEach(elem => elem.classList.remove('active'));
-			e.target.classList.add('active');
+	filterBody.addEventListener('click', e => {
+		if(e.target.classList.contains('#filterbutton') || e.target.closest('#filterbutton')) {
+			let filter = e.target.closest('#filterbutton').dataset['filter'];
+			filterButtons.forEach(filterButton => filterButton.classList.remove('active'));
+			e.target.closest('#filterbutton').classList.add('active');
 
-			tabItems.forEach( tabItem => {
-				tabItem.classList.remove('hidden');
-				if(!tabItem.classList.contains(filter)) {
-					tabItem.classList.add('hidden');
-				}
-			});
+			changeHidden(filter);
 		}
 	});
+
+	function changeHidden(filter) {
+		filterItems.forEach( tabItem => {
+			tabItem.classList.remove('hidden');
+			if(!tabItem.classList.contains(filter) && filter != "all") {
+				tabItem.classList.add('hidden');
+			}
+		});
+	}
 }
