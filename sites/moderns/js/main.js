@@ -505,3 +505,36 @@ let _slideToggle = (target, duration = 500) => {
 	}
 }
 spollers();
+//Filter=====================================================================================================================================================
+if(document.querySelector('#maptabs')) {
+
+	const mapTabsBody = document.querySelector('#maptabs');
+	const tabButtons = mapTabsBody.querySelectorAll('#tabbutton');
+	const tabItems = mapTabsBody.querySelectorAll('#tabitem');
+
+	tabButtons.forEach(tabButton => { if(tabButton.classList.contains('active')){
+			let filter = tabButton.dataset['filter'];
+			tabItems.forEach( tabItem => {
+				tabItem.classList.remove('hidden');
+				if(!tabItem.classList.contains(filter)) {
+					tabItem.classList.add('hidden');
+				}
+			});
+		}
+	});
+
+	mapTabsBody.addEventListener('click', e => {
+		if(e.target.classList.contains('#tabbutton') || e.target.closest('#tabbutton')) {
+			let filter = e.target.closest('#tabbutton').dataset['filter'];
+			tabButtons.forEach(elem => elem.classList.remove('active'));
+			e.target.classList.add('active');
+
+			tabItems.forEach( tabItem => {
+				tabItem.classList.remove('hidden');
+				if(!tabItem.classList.contains(filter)) {
+					tabItem.classList.add('hidden');
+				}
+			});
+		}
+	});
+}
