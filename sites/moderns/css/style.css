@@ -4461,6 +4461,105 @@ textarea.input {
     color: var(--blue);
   }
 }
+/*documents*/
+.page__documents {
+  margin-top: 60px;
+}
+@media (max-width: 1488px) {
+  .page__documents {
+    margin-top: calc(30px + 30 * (100vw - 320px) / (1168));
+  }
+}
+
+.documents-page__items {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.documents-page__items:not(:last-child) {
+  margin-bottom: 50px;
+}
+@media (max-width: 1488px) {
+  .documents-page__items:not(:last-child) {
+    margin-bottom: calc(20px + 30 * (100vw - 320px) / (1168));
+  }
+}
+.documents-page__title-block {
+  border-radius: 25px;
+  background: var(--blue);
+  padding: 20px;
+}
+@media (max-width: 1488px) {
+  .documents-page__title-block {
+    padding: calc(10px + 10 * (100vw - 320px) / (1168));
+  }
+}
+.documents-page__title {
+  font-weight: 500;
+  color: var(--white);
+}
+.item-documents {
+  border-radius: 25px;
+  background: var(--white);
+  -webkit-box-shadow: 0 4px 23px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 23px 0 rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  padding-bottom: 50px;
+  -webkit-transition: background 0.3s ease 0s;
+  transition: background 0.3s ease 0s;
+}
+@media (max-width: 1488px) {
+  .item-documents {
+    padding: calc(10px + 10 * (100vw - 320px) / (1168));
+  }
+}
+@media (max-width: 1488px) {
+  .item-documents {
+    padding-bottom: calc(20px + 30 * (100vw - 320px) / (1168));
+  }
+}
+@media (any-hover: hover) {
+  .item-documents:hover {
+    background: var(--blue);
+  }
+  .item-documents:hover svg path {
+    stroke: var(--white);
+  }
+  .item-documents:hover .item-documents__title {
+    color: var(--white);
+  }
+}
+.item-documents svg {
+  width: 42px;
+  height: 42px;
+  margin-bottom: 10px;
+}
+@media (max-width: 1488px) {
+  .item-documents svg {
+    width: calc(25px + 17 * (100vw - 320px) / (1168));
+  }
+}
+@media (max-width: 1488px) {
+  .item-documents svg {
+    height: calc(25px + 17 * (100vw - 320px) / (1168));
+  }
+}
+.item-documents svg path {
+  -webkit-transition: stroke 0.3s ease 0s;
+  transition: stroke 0.3s ease 0s;
+}
+.item-documents__body {
+  display: block;
+}
+.item-documents__title {
+  -webkit-transition: color 0.3s ease 0s;
+  transition: color 0.3s ease 0s;
+}
+
 /*news*/
 .news-page__wrap {
   display: -ms-grid;
