@@ -65,7 +65,7 @@
 					<path d="M690.322 121.816C690.322 121.816 755.077 96.5663 749.68 157.888C747.882 183.138 731.693 271.513 719.102 367.103L675.932 650.265C675.932 650.265 672.335 691.746 639.957 698.961C607.578 706.175 559.013 673.711 550.018 666.496C542.823 661.086 415.113 579.925 370.143 540.246C357.552 529.425 343.162 507.781 371.942 482.531L560.812 302.175C582.397 280.532 603.982 230.031 514.043 291.353L262.218 462.693C262.218 462.693 233.438 480.728 179.477 464.497L62.557 428.425C62.557 428.425 19.3868 401.371 93.1358 374.316C273.012 289.548 494.258 202.977 690.322 121.816Z" fill="white"/>
 				</svg>
 			</a>
-			<a href="" class="header__button button-main">оставить заявку</a>
+			<a href="#popup" class="header__button button-main popup-link">оставить заявку</a>
 		</div>
 		<button type="button" class="icon-menu"><span></span></button>
 	</div>
@@ -753,7 +753,7 @@
 							<path d="M690.322 121.816C690.322 121.816 755.077 96.5663 749.68 157.888C747.882 183.138 731.693 271.513 719.102 367.103L675.932 650.265C675.932 650.265 672.335 691.746 639.957 698.961C607.578 706.175 559.013 673.711 550.018 666.496C542.823 661.086 415.113 579.925 370.143 540.246C357.552 529.425 343.162 507.781 371.942 482.531L560.812 302.175C582.397 280.532 603.982 230.031 514.043 291.353L262.218 462.693C262.218 462.693 233.438 480.728 179.477 464.497L62.557 428.425C62.557 428.425 19.3868 401.371 93.1358 374.316C273.012 289.548 494.258 202.977 690.322 121.816Z" fill="white"/>
 						</svg>
 					</a>
-					<a href="" class="footer__button button-white">оставить заявку</a>
+					<a href="#popup" class="footer__button button-white popup-link">оставить заявку</a>
 				</div>
 			</div>
 			<div class="footer__row">
@@ -782,7 +782,47 @@
 	</div>
 </footer>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<div id="popup" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__content">
+			<div class="popup__bg">
+				<img src="./img/bg_full.svg" alt="">
+			</div>
+			<div class="popup__header">
+				<h3 class="popup__title title-medium">Оставьте свои данные — <br>позвоним, чтобы обсудить детали</h3>
+				<button data-close type="button" class="popup__close close-popup"><span></span></button>
+			</div>
+			<form action="" class="popup__body">
+				<div class="popup__row">
+					<input type="tel" data-format="+7 (000)000-00-00" placeholder="+7 (___)___-__-__" class="popup__input input">
+					<input type="text" placeholder="ваше имя" class="popup__input input">
+					<a href="#modalSuccess" class="popup__button button-main popup-link">отправить</a>
+				</div>
+				<div class="popup__checkbox checkbox">
+					<input id="pf_1" type="checkbox" value="1" class="checkbox__input">
+					<label for="pf_1" class="checkbox__label text-small">Принимаю <a href="" target="_blank" class="checkbox__link">условия обработки</a> персональных данных</label>
+				</div>
+			</form>
 		</div>
+	</div>
+</div>
+
+<div id="modalSuccess" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__content_ok">
+			<div class="popup__bg">
+				<img src="./img/bg_full.svg" alt="">
+			</div>
+			<button data-close type="button" class="popup__close close-popup"><span></span></button>
+			<svg width="78" height="79" viewBox="0 0 78 79" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M5.56693 28.899C5.61204 28.493 5.89957 28.1552 6.29317 28.0459L47.8949 16.4898C48.5321 16.3128 49.1626 16.792 49.1626 17.4533V31.5106C49.1626 31.9532 48.8717 32.3431 48.4476 32.4692L19.9859 40.9307C19.5968 41.0464 19.3163 41.3858 19.2759 41.7898L16.1823 72.7259C16.1436 73.1126 15.8844 73.4418 15.5176 73.5702L1.4997 78.4765C0.804766 78.7197 0.0941576 78.154 0.175465 77.4222L5.56693 28.899Z" fill="white"/>
+				<path d="M71.7944 50.102C71.7493 50.508 71.4618 50.8458 71.0682 50.9551L29.4664 62.5112C28.8292 62.6882 28.1987 62.209 28.1987 61.5476V47.4903C28.1987 47.0478 28.4896 46.6579 28.9138 46.5318L57.3754 38.0702C57.7645 37.9546 58.0451 37.6151 58.0854 37.2112L61.1791 6.27511C61.2177 5.88841 61.4769 5.55914 61.8437 5.43076L75.8616 0.524494C76.5566 0.281265 77.2672 0.847016 77.1859 1.57878L71.7944 50.102Z" fill="white"/>
+			</svg>
+			<h3 class="popup__title title-medium">Спасибо, мы скоро с <br>Вами свяжемся</h3>
+			<a href="#" class="popup__button button-white popup-link">хорошо, жду</a>
+		</div>
+	</div>
+</div>		</div>
 <script src="js/imask.js"></script>	
 <script src="js/swiper-bundle.min.js"></script>	
 <script src="js/main.js"></script>	
