@@ -299,6 +299,65 @@ function initSliders() {
 			},
 		});
 	}
+
+	if (document.querySelector('.slider-projects')) {
+		new Swiper('.slider-projects', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 10,
+			parallax: true,
+			watchSlidesProgress: true,
+			//loop: true,
+			autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			pagination: {
+				el: '.slider-projects__dots',
+				clickable: true,
+				dynamicBullets: false,
+			},
+		});
+	}
+
+	if (document.querySelector('.slider-projects-other')) {
+		new Swiper('.slider-projects-other', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 4,
+			spaceBetween: 20,
+			parallax: true,
+			watchSlidesProgress: true,
+			//loop: true,
+			//autoHeight: false,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: "auto",
+					spaceBetween: 10,
+				},
+				480: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
+				780: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+				992: {
+					slidesPerView: 4,
+					spaceBetween: 20,
+				},
+			},
+		});
+	}
 }
 
 
