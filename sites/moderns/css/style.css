@@ -151,6 +151,93 @@ body.lock {
           flex: 1 1 auto;
 }
 
+/*preloader*/
+.preloader {
+  overflow: hidden;
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+  -webkit-transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out;
+  pointer-events: none;
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, rgb(43, 96, 180)), to(rgb(3, 47, 161)));
+  background: linear-gradient(90deg, rgb(43, 96, 180) 50%, rgb(3, 47, 161) 100%);
+}
+.preloader .container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background: url("../img/preloader/bg.svg") repeat;
+}
+.preloader.hidden {
+  opacity: 0;
+}
+
+.preloader-body {
+  position: relative;
+  height: inherit;
+}
+.preloader-body__logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 480px;
+  height: auto;
+}
+@media (max-width: 1488px) {
+  .preloader-body__logo {
+    width: calc(290px + 190 * ((100vw - 320px) / (1168)));
+  }
+}
+.preloader-body__logo img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.preloader-body__percents {
+  overflow: hidden;
+  position: absolute;
+  width: 480px;
+  height: 3px;
+  bottom: 15%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  border-radius: 5px;
+  background: #2E64B6;
+}
+@media (max-width: 1488px) {
+  .preloader-body__percents {
+    width: calc(290px + 190 * ((100vw - 320px) / (1168)));
+  }
+}
+.preloader-body__line {
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 5px;
+  background: var(--white);
+}
+
 .container {
   max-width: 1503px;
   -webkit-box-sizing: content-box;
@@ -3174,12 +3261,12 @@ textarea.input {
   }
 }
 .info-page__text {
-  font-size: 24px;
+  font-size: 20px;
   line-height: 120%;
 }
 @media (max-width: 1488px) {
   .info-page__text {
-    font-size: calc(12px + 12 * ((100vw - 320px) / (1168)));
+    font-size: calc(12px + 8 * ((100vw - 320px) / (1168)));
   }
 }
 .info-page__text:not(:last-child) {

@@ -1,10 +1,32 @@
 
-/*Content_download================================================================================*/
+/*Loading================================================================================*/
 let wrapper = document.querySelector('.wrapper');
-window.addEventListener('load', (event) => {
-	wrapper.classList.add('loaded');
-});
 
+if (document.querySelector(".preloader")) {
+    let loader = document.querySelector('.preloader'),
+        body = document.querySelector("body");
+    
+    body.classList.add("lock");
+
+    setTimeout(() => {
+        body.classList.remove("lock");
+    }, 3e3),
+    setTimeout(() => {
+        loader.classList.add("hidden");
+    }, 2e3),
+    (function (body, loader) {
+        let loading = 0,
+        i = setInterval(() => {
+            (document.querySelector(".preloader-body__line").style.width = ++loading + "%");
+        }, 20);
+    })();
+
+    wrapper.classList.add('loaded');
+} else {
+    window.addEventListener('load', function () {
+        wrapper.classList.add('loaded');
+    });
+}
 //burger=====================================================================================================================================================
 const iconMenu = document.querySelector('.icon-menu');
 const menuBody = document.querySelector('.header__body');
