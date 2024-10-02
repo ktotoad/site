@@ -184,18 +184,50 @@ body.lock {
   -webkit-transition: opacity 0.5s ease-out;
   transition: opacity 0.5s ease-out;
   pointer-events: none;
-  background: -webkit-gradient(linear, left top, right top, color-stop(50%, rgb(43, 96, 180)), to(rgb(3, 47, 161)));
-  background: linear-gradient(90deg, rgb(43, 96, 180) 50%, rgb(3, 47, 161) 100%);
 }
 .preloader .container {
-  position: relative;
+  position: fixed;
   z-index: 10;
   width: 100%;
   height: 100%;
+  -webkit-transition: opacity 0.5s, -webkit-transform 1.5s ease-out;
+  transition: opacity 0.5s, -webkit-transform 1.5s ease-out;
+  transition: opacity 0.5s, transform 1.5s ease-out;
+  transition: opacity 0.5s, transform 1.5s ease-out, -webkit-transform 1.5s ease-out;
   background: url("../img/preloader/bg.svg") 100% repeat;
 }
-.preloader.hidden {
+.preloader::after, .preloader::before {
+  content: "";
+  position: fixed;
+  z-index: 5;
+  top: -50vh;
+  width: 100vw;
+  height: 150vh;
+  -webkit-transition: -webkit-box-shadow 3s ease-out;
+  transition: -webkit-box-shadow 3s ease-out;
+  transition: box-shadow 3s ease-out;
+  transition: box-shadow 3s ease-out, -webkit-box-shadow 3s ease-out;
+}
+.preloader::before {
+  left: -50vw;
+  -webkit-box-shadow: inset 50vw 50vh 0px 50vw var(--blue);
+          box-shadow: inset 50vw 50vh 0px 50vw var(--blue);
+}
+.preloader::after {
+  right: -50vw;
+  -webkit-box-shadow: inset -50vw 50vh 0px 50vw var(--blue);
+          box-shadow: inset -50vw 50vh 0px 50vw var(--blue);
+}
+.preloader.hidden .container {
   opacity: 0;
+}
+.preloader.hidden::before {
+  -webkit-box-shadow: inset 50vw 50vh 0px -50vw var(--blue);
+          box-shadow: inset 50vw 50vh 0px -50vw var(--blue);
+}
+.preloader.hidden::after {
+  -webkit-box-shadow: inset -50vw 50vh 0px -50vw var(--blue);
+          box-shadow: inset -50vw 50vh 0px -50vw var(--blue);
 }
 
 .preloader-body {
@@ -227,7 +259,7 @@ body.lock {
   position: absolute;
   width: 480px;
   height: 3px;
-  bottom: 15%;
+  bottom: 25%;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
