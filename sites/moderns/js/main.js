@@ -10,7 +10,7 @@ if (document.querySelector(".preloader")) {
 
     setTimeout(() => {
         body.classList.remove("lock");
-    }, 3e3),
+    }, 2e3),
     setTimeout(() => {
         loader.classList.add("hidden");
     }, 2e3),
