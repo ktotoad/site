@@ -191,8 +191,8 @@ function initSliders() {
 	    });
 	}
 
-	if (document.querySelector('.slider-toilet')) {
-		new Swiper(".slider-toilet",{
+	if (document.querySelector('.slider-product')) {
+		new Swiper(".slider-product",{
 			observer: true,
 			observeParents: true,
 			slidesPerView: 1,
