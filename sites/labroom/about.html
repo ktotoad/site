@@ -73,7 +73,7 @@
 								<h2 class="map-page__title title-big">Шоу-рум</h2>
 								<p class="map-page__subtitle subtitle">Казань, ул. Ямашева 71а (Евроспар), 2 этаж</p>
 							</div>
-							<a href="" class="map-page__link-block">
+							<a href="#popupmap" class="map-page__link-block popup-link">
 								<div class="map-page__image">
 									<img src="./img/map/02.png" alt="">
 								</div>
@@ -194,13 +194,20 @@
 	</div>
 </footer>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>		</div>
-<div id="popupvideo" class="popup-video">
-	<a class="boxclose" id="boxclose" onclick="lightbox_close();"></a>
- 	<video id="VisaChipCardVideo" width="100%" controls>
-    	<source src="./video/tff.mov" type="video/mp4">
-    </video>
+<div id="popupmap" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__container container">
+			<div class="popup__content">
+				<div class="popup__header">
+					<button data-close type="button" class="popup__close close-popup"><span></span></button>
+				</div>
+				<div class="popup__map">
+					<iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aa8c260896b223e2388957550e3ba209d7000d54c8cb6f978dfaa0cac55db68cb&amp;source=constructor" width="100%" height="100%" frameborder="0"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-<div id="fade" onClick="lightbox_close();"></div>
 <script src="js/jquery.min.js"></script> 
 <script src="js/imask.js"></script>	
 <script src="js/swiper-bundle.min.js"></script>	
