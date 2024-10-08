@@ -31,10 +31,8 @@ if (document.querySelector(".preloader")) {
         animateall();
     }, 2000);
 } else {
-    window.addEventListener('load', function () {
-        wrapper.classList.add('loaded');
-        animateall();
-    });
+    wrapper.classList.add('loaded');
+    animateall();
 }
 function lazyload() {
     const hasSupport = 'loading' in HTMLImageElement.prototype;
@@ -1255,5 +1253,76 @@ if(document.querySelector('#background-video')) {
 		setTimeout(function(){
 		    video.play();
 		}, 3000);
+	});
+}
+//toggle======================================================================================================================================================
+if(document.querySelector("#togglebody")) {
+	document.querySelectorAll("#togglebody").forEach(function (togglebody) {
+		const toggle = togglebody.querySelector('#toggle');
+
+		toggle.addEventListener("click", function () {
+        	togglebody.classList.toggle("active");
+        });
+    });
+}
+//Zoom_Image============================================================================================================================================
+if(document.querySelector("#zoombody")) {
+	document.querySelectorAll("#zoombody").forEach(function (zoomBody, index) {
+		const zoomImage = zoomBody.querySelector('#zoomimage');
+		const zoomImageBody = zoomImage.closest('div');
+		const zoomPlus = zoomBody.querySelector('#zoomplus');
+		const zoomMinus = zoomBody.querySelector('#zoomminus');
+		let zoomid = 1;
+		zoomBody.setAttribute('data-zoom-index', index);
+		
+		zoomPlus.addEventListener("click", function () {
+			if(zoomid < 2) {
+	        	zoomid = zoomid + 0.2;
+	        	zoomImage.style.transform = `scale(${zoomid})`;
+	        	zoomImageBody.classList.add('active');
+	        }
+        });
+
+	    zoomMinus.addEventListener("click", function () {
+	    	if(zoomid > 1) {
+	        	zoomid = zoomid - 0.2;
+	        	zoomImage.style.transform = `scale(${zoomid})`;
+	        	if(zoomid == 1) {
+        			zoomImageBody.classList.remove('active');
+        			zoomImage.style.removeProperty('left');
+					zoomImage.style.removeProperty('top');
+	        	}
+        	} 
+        });
+
+	    zoomImageBody.onmousedown = function(e) {
+	    	if(zoomImageBody.classList.contains('active')) {
+				//координаты мыши
+				const rect = zoomImageBody.getBoundingClientRect();
+				let mouseX = e.clientX - rect.left;
+				let mouseY = e.clientY - rect.top;
+				moveAt(e);
+
+				zoomImageBody.onmousemove = function(e) {
+					moveAt(e);
+				}
+
+				zoomImage.ondragstart = function() {
+					return false;
+				}
+
+				zoomImage.onmouseup = function() {
+					zoomImageBody.onmousemove = null;
+					zoomImage.onmouseup = null;
+				}
+
+				function moveAt(e) {
+					zoomImage.style.left = e.clientX - rect.left - mouseX + 'px';
+					zoomImage.style.top = e.clientY - rect.top - mouseY + 'px';
+
+					console.log(e.clientX + " " + rect.left + " " + rect.right + " " + zoomImage.style.left + " " + index);
+				}
+			}
+		}
 	});
 }
