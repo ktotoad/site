@@ -542,12 +542,24 @@
 							<div class="partition-page__image">
 								<img src="./img/partition/01.jpg" alt="">
 							</div>
-							<div class="partition-page__water-body"></div>
+							<div id="waterbody" class="partition-page__water-body water-body">
+								<div class="water-body__box"></div>
+								<div class="water-body__box">
+									<div class="water-body__circle"></div>
+								</div>
+							</div>
 						</div>
+						<script>
+							const pos = document.documentElement;
+							pos.addEventListener("mousemove", e => {
+								pos.style.setProperty('--x', e.clientX + "px");
+								pos.style.setProperty('--y', e.clientY + "px");
+							})
+						</script>
 						<div class="partition-page__title-block">
 							<h2 class="partition-page__title title">Перегородки</h2>
 							<p class="partition-page__subtitle subtitle">с эффектом конфедициальности</p>
-						</div>
+						</div>	
 					</div>
 				</section>
 				<section class="page__toilet toilet-page anim-items anim-no-hide">

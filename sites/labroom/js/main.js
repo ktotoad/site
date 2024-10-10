@@ -289,10 +289,10 @@ function initSliders() {
 			observer: true,
 			observeParents: true,
 			slidesPerView: 1,
-			spaceBetween: 20,
+			spaceBetween: 30,
 			parallax: true,
 			//loop: true,
-			autoHeight: true,
+			//autoHeight: true,
 			autoplay: {
 				delay: 3000,
 				disableOnInteraction: false,
@@ -314,7 +314,7 @@ function initSliders() {
 				},
 				1268: {
 					slidesPerView: 4,
-					spaceBetween: 20,
+					spaceBetween: 30,
 				}
 			},
 		});
