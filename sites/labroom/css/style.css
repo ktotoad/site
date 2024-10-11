@@ -3178,15 +3178,15 @@ body.lock {
 .partition-page__container {
   position: relative;
   z-index: 3;
-}
-.partition-page__image-block {
-  position: relative;
   margin-bottom: 30px;
 }
 @media (max-width: 1280px) {
-  .partition-page__image-block {
+  .partition-page__container {
     margin-bottom: calc(10px + 20 * ((100vw - 320px) / (960)));
   }
+}
+.partition-page__image-block {
+  position: relative;
 }
 @media (min-width: 767.98px) {
   .partition-page__image-block::before {
@@ -3252,6 +3252,7 @@ body.lock {
   }
 }
 .water-body {
+  overflow: hidden;
   position: absolute;
   z-index: 5;
   width: 50%;
@@ -3265,37 +3266,40 @@ body.lock {
   }
 }
 .water-body__box {
+  cursor: none;
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   right: 0;
-  background: url("../img/partition/01.jpg");
-  background-size: cover;
-  background-position: 0 -10%;
+}
+.water-body__box img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (min-width: 767.98px) {
+  .water-body__box img {
+    -o-object-position: 108%;
+       object-position: 108%;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
 }
 .water-body__box:first-child {
   -webkit-filter: blur(10px);
           filter: blur(10px);
 }
 .water-body__box:last-child {
-  -webkit-clip-path: circle(100px at var(--x) var(--y));
-          clip-path: circle(100px at var(--x) var(--y));
+  -webkit-clip-path: circle(100px at calc(var(--x) - 100%) var(--y));
+          clip-path: circle(100px at calc(var(--x) - 100%) var(--y));
 }
-.water-body__circle {
-  position: absolute;
-  z-index: 1000;
-  width: 200px;
-  height: 200px;
-  top: -100px;
-  left: -100px;
-  border-radius: 50%;
-  border: 2px solid var(--blue);
-  -webkit-box-shadow: 0 5px 25px var(--blue);
-          box-shadow: 0 5px 25px var(--blue);
-  -webkit-transform: translate(var(--x), var(--y));
-          transform: translate(var(--x), var(--y));
-  background: var(--blue);
+@media (max-width: 767.98px) {
+  .water-body__box:last-child {
+    -webkit-clip-path: circle(50px at var(--x) var(--y));
+            clip-path: circle(50px at var(--x) var(--y));
+  }
 }
 
 .toilet-page.active .slider-product__slide {

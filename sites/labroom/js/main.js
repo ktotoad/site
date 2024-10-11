@@ -490,3 +490,11 @@ if (document.querySelector('#slidesmain')) {
 		}
 	});
 }
+//Scroll=====================================================================================================================================================
+if(document.querySelector("#waterbody")) {
+	const pos = document.querySelector("#waterbody");
+	pos.addEventListener("mousemove", e => {
+		pos.style.setProperty('--x', e.clientX + "px");
+		pos.style.setProperty('--y', e.clientY + "px");
+	})
+}
