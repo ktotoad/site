@@ -13662,7 +13662,85 @@ html {
   height: 50px;
   top: 10%;
   left: 10%;
-  background: var(--primary);
+  background: red;
+}
+@media (any-hover: hover) {
+  .parking-popup-button:hover .parking-popup {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.parking-popup {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+  padding: 10px;
+  background: var(--white);
+  border: 1px solid var(--primary);
+  -webkit-transition: opacity 0.3s, visibility 0.3s ease 0s;
+  transition: opacity 0.3s, visibility 0.3s ease 0s;
+}
+@media (max-width: 1280px) {
+  .parking-popup {
+    padding: calc(5px + 5 * ((100vw - 320px) / (960)));
+  }
+}
+.parking-popup__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+}
+.parking-popup__title {
+  text-transform: uppercase;
+  font-family: "Cormorant Garamond";
+  color: var(--black);
+  font-size: 20px;
+  line-height: 120%;
+}
+@media (max-width: 1280px) {
+  .parking-popup__title {
+    font-size: calc(16px + 4 * ((100vw - 320px) / (960)));
+  }
+}
+.parking-popup__text, .parking-popup__text_b {
+  font-family: "TT Norms";
+  font-size: 16px;
+  line-height: 120%;
+}
+@media (max-width: 1280px) {
+  .parking-popup__text, .parking-popup__text_b {
+    font-size: calc(14px + 2 * ((100vw - 320px) / (960)));
+  }
+}
+.parking-popup__text_b {
+  font-weight: 700;
+}
+.parking-popup__price {
+  font-family: "TT Norms";
+  font-size: 18px;
+  white-space: nowrap;
+}
+@media (max-width: 1280px) {
+  .parking-popup__price {
+    font-size: calc(14px + 4 * ((100vw - 320px) / (960)));
+  }
 }
 
 .page__parking-advantages {
@@ -13769,7 +13847,7 @@ html {
   }
 }
 
-.parking-order-page__wrap {
+.parking-order-page {
   color: var(--white);
   background: var(--primary);
   display: -webkit-box;
@@ -13778,61 +13856,54 @@ html {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+      -ms-flex-direction: column;
+          flex-direction: column;
   gap: 1rem;
   padding-top: 30px;
-  padding-bottom: 30px;
+  padding-bottom: 40px;
   padding-left: 50px;
   padding-right: 50px;
   border-radius: 25px;
 }
 @media (max-width: 1280px) {
-  .parking-order-page__wrap {
+  .parking-order-page {
     padding-top: calc(10px + 20 * ((100vw - 320px) / (960)));
   }
 }
 @media (max-width: 1280px) {
-  .parking-order-page__wrap {
-    padding-bottom: calc(10px + 20 * ((100vw - 320px) / (960)));
+  .parking-order-page {
+    padding-bottom: calc(20px + 20 * ((100vw - 320px) / (960)));
   }
 }
 @media (max-width: 1280px) {
-  .parking-order-page__wrap {
+  .parking-order-page {
     padding-left: calc(10px + 40 * ((100vw - 320px) / (960)));
   }
 }
 @media (max-width: 1280px) {
-  .parking-order-page__wrap {
+  .parking-order-page {
     padding-right: calc(10px + 40 * ((100vw - 320px) / (960)));
   }
 }
 @media (max-width: 1280px) {
-  .parking-order-page__wrap {
+  .parking-order-page {
     border-radius: calc(15px + 10 * ((100vw - 320px) / (960)));
   }
 }
-@media (max-width: 479.98px) {
-  .parking-order-page__wrap {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
+.parking-order-page .close-popup span::before, .parking-order-page .close-popup span::after {
+  background: var(--white);
 }
-.parking-order-page__table {
-  max-width: 380px;
-}
-.parking-order-page__table .column-flat__item {
-  color: var(--white);
+.parking-order-page__items {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1rem 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
 }
 .parking-order-page__block {
   display: -webkit-box;
@@ -13851,18 +13922,34 @@ html {
 }
 .parking-order-page__price {
   text-transform: uppercase;
-  font-size: 40px;
+  font-size: 32px;
   line-height: 110%;
-  margin-bottom: 40px;
+  margin-bottom: 15px;
 }
 @media (max-width: 1280px) {
   .parking-order-page__price {
-    font-size: calc(22px + 18 * ((100vw - 320px) / (960)));
+    font-size: calc(18px + 14 * ((100vw - 320px) / (960)));
   }
 }
 @media (max-width: 1280px) {
   .parking-order-page__price {
-    margin-bottom: calc(20px + 20 * ((100vw - 320px) / (960)));
+    margin-bottom: calc(10px + 5 * ((100vw - 320px) / (960)));
+  }
+}
+.parking-order-page__text {
+  text-transform: uppercase;
+  font-size: 18px;
+  line-height: 110%;
+  margin-bottom: 30px;
+}
+@media (max-width: 1280px) {
+  .parking-order-page__text {
+    font-size: calc(14px + 4 * ((100vw - 320px) / (960)));
+  }
+}
+@media (max-width: 1280px) {
+  .parking-order-page__text {
+    margin-bottom: calc(15px + 15 * ((100vw - 320px) / (960)));
   }
 }
 .parking-order-page__button {
@@ -13886,16 +13973,22 @@ html {
   left: 0;
 }
 .parking-order-page__image {
+  margin-top: 20px;
   -webkit-box-flex: 0;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
   overflow: hidden;
-  width: 320px;
-  height: auto;
+  height: 320px;
+  width: auto;
 }
 @media (max-width: 1280px) {
   .parking-order-page__image {
-    width: calc(150px + 170 * ((100vw - 320px) / (960)));
+    margin-top: calc(10px + 10 * ((100vw - 320px) / (960)));
+  }
+}
+@media (max-width: 1280px) {
+  .parking-order-page__image {
+    height: calc(150px + 170 * ((100vw - 320px) / (960)));
   }
 }
 .parking-order-page__image img {
@@ -13904,9 +13997,25 @@ html {
   -o-object-fit: contain;
      object-fit: contain;
 }
-@media (max-width: 767.98px) {
-  .parking-order-page__image {
-    display: none;
+
+.item-parking-order__info {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 120%;
+}
+@media (max-width: 1280px) {
+  .item-parking-order__info {
+    font-size: calc(12px + 4 * ((100vw - 320px) / (960)));
+  }
+}
+.item-parking-order__title {
+  text-transform: uppercase;
+  font-size: 16px;
+  line-height: 120%;
+}
+@media (max-width: 1280px) {
+  .item-parking-order__title {
+    font-size: calc(12px + 4 * ((100vw - 320px) / (960)));
   }
 }
 
