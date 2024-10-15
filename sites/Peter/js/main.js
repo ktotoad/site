@@ -990,6 +990,10 @@ function initSliders() {
 				el: '.slider-parking-advantages__pagination',
 				clickable: true,
 			},
+			navigation: {
+        nextEl: ".slider-parking-advantages__next",
+        prevEl: ".slider-parking-advantages__prev",
+      },
 		});
 	}
 }
