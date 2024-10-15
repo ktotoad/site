@@ -929,7 +929,7 @@ function initSliders() {
 			},
 		});
 	}
-if (document.querySelector('.save-page__slider')) {
+	if (document.querySelector('.save-page__slider')) {
 		new Swiper('.save-page__slider', {
       spaceBetween: 30,
 			slidesPerView: 1,
@@ -953,6 +953,41 @@ if (document.querySelector('.save-page__slider')) {
 			},
 			pagination: {
 				el: '.save-page__pagination',
+				clickable: true,
+			},
+		});
+	}
+	if (document.querySelector('.slider-parking-advantages')) {
+		new Swiper('.slider-parking-advantages', {
+  		observer: true,
+			observeParents: true,
+			slidesPerView: 3,
+			spaceBetween: 30,
+			parallax: true,
+			//loop: true,
+			autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 0,
+					autoHeight: true,
+				},
+				470: {
+					slidesPerView: 2,
+					spaceBetween: 10,
+				},
+				992: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+			},
+			pagination: {
+				el: '.slider-parking-advantages__pagination',
 				clickable: true,
 			},
 		});
