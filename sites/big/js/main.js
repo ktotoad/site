@@ -34,10 +34,10 @@ if (document.querySelector(".preloader")) {
     });
 }
 //burger=====================================================================================================================================================
+const body = document.querySelector('body');
 if(document.querySelector('.icon-menu')) {
 	const iconMenu = document.querySelector('.icon-menu');
 	const menuBody = document.querySelector('.header__body');
-	const body = document.querySelector('body');
 	const menuItems = document.querySelectorAll('.header__link');
 
 	iconMenu.addEventListener('click', 
@@ -260,6 +260,45 @@ function initSliders() {
 			},
 		});
 	}
+	if (document.querySelector('.slider-parking-advantages')) {
+		new Swiper('.slider-parking-advantages', {
+  		observer: true,
+			observeParents: true,
+			slidesPerView: 3,
+			spaceBetween: 30,
+			parallax: true,
+			//loop: true,
+			autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 0,
+					autoHeight: true,
+				},
+				470: {
+					slidesPerView: 2,
+					spaceBetween: 10,
+				},
+				992: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+			},
+			pagination: {
+				el: '.slider-parking-advantages__pagination',
+				clickable: true,
+			},
+			navigation: {
+        nextEl: ".slider-parking-advantages__next",
+        prevEl: ".slider-parking-advantages__prev",
+      },
+		});
+	}
 }
 initSliders();
 //InputMask===============================================================================================================================================
@@ -470,35 +509,38 @@ document.querySelector('.slider-catalog__list').addEventListener('click', e => {
 	});
 }
 //Cards_Filter=====================================================================================================================================================
-const optionsBlock = document.querySelector('#optionsblock');
-const closeButton = optionsBlock.querySelector('.button-close');
-const cards = document.querySelectorAll('.item-options');
-const cardsInfo = document.querySelectorAll('.info-options__body');
+if(document.querySelector('#optionsblock')) {
+    const optionsBlock = document.querySelector('#optionsblock');
+    const closeButton = optionsBlock.querySelector('.button-close');
+    const cards = document.querySelectorAll('.item-options');
+    const cardsInfo = document.querySelectorAll('.info-options__body');
 
-optionsBlock.addEventListener("click", (e) => {
-    if(e.target != closeButton) {
-        optionsBlock.classList.add('active');
-        let index;
-        let currentCard = e.target.closest('.item-options');
+    optionsBlock.addEventListener("click", (e) => {
+        if(e.target != closeButton) {
+            optionsBlock.classList.add('active');
+            let index;
+            let currentCard = e.target.closest('.item-options');
+            if (currentCard){
+                currentCard.classList.add('active');
+                index = currentCard.getAttribute('data-circle-index');
 
-        currentCard.classList.add('active');
-        index = currentCard.getAttribute('data-circle-index');
-
-        cardsInfo.forEach(function (cardInfo) {
-            if(cardInfo.getAttribute('data-circle-content-index') == index) {
-                cardInfo.classList.add('active');
+                cardsInfo.forEach(function (cardInfo) {
+                    if(cardInfo.getAttribute('data-circle-content-index') == index) {
+                        cardInfo.classList.add('active');
+                    }
+                });
             }
-        });
-    } else {
-        optionsBlock.classList.remove('active');
-        cards.forEach(function (card) {
-            card.classList.remove('active');
-        });
-        cardsInfo.forEach(function (cardInfo) {
-            cardInfo.classList.remove('active');
-        });
-    }
-});
+        } else {
+            optionsBlock.classList.remove('active');
+            cards.forEach(function (card) {
+                card.classList.remove('active');
+            });
+            cardsInfo.forEach(function (cardInfo) {
+                cardInfo.classList.remove('active');
+            });
+        }
+    });
+}
 //TABS==================================================================================================================================================
 // Получение хеша в адресе сайта
 function getHash() {
@@ -625,90 +667,162 @@ function tabs() {
 }
 tabs(); 
 
+//toggle======================================================================================================================================================
+if(document.querySelector("#togglebody")) {
+	document.querySelectorAll("#togglebody").forEach(function (togglebody) {
+		const toggle = togglebody.querySelector('#toggle');
+
+		toggle.addEventListener("click", function () {
+        	togglebody.classList.toggle("active");
+        });
+    });
+}
+//Zoom_Image============================================================================================================================================
+if(document.querySelector("#zoombody")) {
+	document.querySelectorAll("#zoombody").forEach(function (zoomBody, index) {
+		const zoomImage = zoomBody.querySelector('#zoomimage');
+		const zoomImageBody = zoomImage.closest('div');
+		const zoomPlus = zoomBody.querySelector('#zoomplus');
+		const zoomMinus = zoomBody.querySelector('#zoomminus');
+		let zoomid = 1;
+		zoomBody.setAttribute('data-zoom-index', index);
+		
+		zoomPlus.addEventListener("click", function () {
+			if(zoomid < 2) {
+	        	zoomid = zoomid + 0.2;
+	        	zoomImage.style.transform = `scale(${zoomid})`;
+	        	zoomImageBody.classList.add('active');
+	        }
+        });
+
+	    zoomMinus.addEventListener("click", function () {
+	    	if(zoomid > 1) {
+	        	zoomid = zoomid - 0.2;
+	        	zoomImage.style.transform = `scale(${zoomid})`;
+	        	if(zoomid == 1) {
+        			zoomImageBody.classList.remove('active');
+        			zoomImage.style.removeProperty('left');
+					zoomImage.style.removeProperty('top');
+	        	}
+        	} 
+        });
+
+	    zoomImageBody.onmousedown = function(e) {
+	    	if(zoomImageBody.classList.contains('active')) {
+				//координаты мыши
+				const rect = zoomImageBody.getBoundingClientRect();
+				let mouseX = e.clientX - rect.left;
+				let mouseY = e.clientY - rect.top;
+				moveAt(e);
+
+				zoomImageBody.onmousemove = function(e) {
+					moveAt(e);
+				}
+
+				zoomImage.ondragstart = function() {
+					return false;
+				}
+
+				zoomImage.onmouseup = function() {
+					zoomImageBody.onmousemove = null;
+					zoomImage.onmouseup = null;
+				}
+
+				function moveAt(e) {
+					zoomImage.style.left = e.clientX - rect.left - mouseX + 'px';
+					zoomImage.style.top = e.clientY - rect.top - mouseY + 'px';
+
+					console.log(e.clientX + " " + rect.left + " " + rect.right + " " + zoomImage.style.left + " " + index);
+				}
+			}
+		}
+	});
+}
 /*Panorama=======================================================================================================================================================*/
 /*window.addEventListener('scroll', function () {
 	const scrollPosition = window.scrollY;
 	console.log("Scroll " + scrollPosition);
 });*/
+if (document.querySelector("#panorama")) {
 
-
-function parseParams(paramsString, params) {
-	paramsString = paramsString.substring(1);
-	var firstSeparatorPos = paramsString.indexOf(",");
-	if (firstSeparatorPos != -1) {
-		params.startNode = paramsString.slice(0, firstSeparatorPos);
-		var viewingParamsString = paramsString.slice(firstSeparatorPos + 1);
-		var viewingParams = viewingParamsString.split(",");
-		if (viewingParams.length >= 3) {
-			var startView = {};
-			startView["pan"] = viewingParams[0];
-			startView["tilt"] = viewingParams[1];
-			startView["fov"] = viewingParams[2];
-			if (viewingParams.length >= 4) {
-				startView["projection"] = viewingParams[3];
+	function parseParams(paramsString, params) {
+		paramsString = paramsString.substring(1);
+		var firstSeparatorPos = paramsString.indexOf(",");
+		if (firstSeparatorPos != -1) {
+			params.startNode = paramsString.slice(0, firstSeparatorPos);
+			var viewingParamsString = paramsString.slice(firstSeparatorPos + 1);
+			var viewingParams = viewingParamsString.split(",");
+			if (viewingParams.length >= 3) {
+				var startView = {};
+				startView["pan"] = viewingParams[0];
+				startView["tilt"] = viewingParams[1];
+				startView["fov"] = viewingParams[2];
+				if (viewingParams.length >= 4) {
+					startView["projection"] = viewingParams[3];
+				}
+				params.startView = startView;
 			}
-			params.startView = startView;
+		} else {
+			params.startNode = paramsString;
+			params.startView = "";
 		}
-	} else {
-		params.startNode = paramsString;
-		params.startView = "";
 	}
-}
 
-var params = {};
-parseParams(document.location.hash, params);
-var startNode = params.startNode;
-var startView = params.startView;
-if (("onhashchange" in window) && (!(/MSIE (\d+\.\d+);/.test(navigator.userAgent)))) {
-	window.onhashchange = function () {
-		parseParams(window.location.hash, params);
-		pano.openNext('{' + params.startNode + '}', params.startView);
-	}
-} else {
-	var lastHash = window.location.hash;
-	window.setInterval(function () {
-		if (window.location.hash != lastHash) {
-			lastHash = window.location.hash;
+	var params = {};
+	parseParams(document.location.hash, params);
+	var startNode = params.startNode;
+	var startView = params.startView;
+	if (("onhashchange" in window) && (!(/MSIE (\d+\.\d+);/.test(navigator.userAgent)))) {
+		window.onhashchange = function () {
 			parseParams(window.location.hash, params);
 			pano.openNext('{' + params.startNode + '}', params.startView);
 		}
-	}, 100);
-}
+	} else {
+		var lastHash = window.location.hash;
+		window.setInterval(function () {
+			if (window.location.hash != lastHash) {
+				lastHash = window.location.hash;
+				parseParams(window.location.hash, params);
+				pano.openNext('{' + params.startNode + '}', params.startView);
+			}
+		}, 100);
+	}
 
-// create the panorama player with the container
-pano=new pano2vrPlayer("panorama");
-pano.startNode = startNode;
-pano.startView = startView;
-pano.setQueryParameter("ts=80996051")
-// add the skin object
-skin=new pano2vrSkin(pano);
-// load the configuration
-window.addEventListener("load", function() {
-	pano.readConfigUrlAsync("pano.xml?ts=80996051");
-});
-
-if (window.navigator.userAgent.match(/Safari/i)) {
-	// fix for white borders, rotation on iPhone
-	function iosHfix(e) {
-		//window.scrollTo(0, 1);
-		var container=document.getElementById("panorama");
-		var oh=container.offsetHeight;
-		document.documentElement.style.setProperty('height', '60vh');
-		if (oh!=container.offsetHeight) {
-			container.style.setProperty('height',"60vh");
-		} else {
-			container.style.setProperty('height',window.innerHeight/2+"px");
-		}
-		//window.scrollTo(0, 0);
-		pano.setViewerSize(container.offsetWidth, container.offsetHeight);
-	};
-	setTimeout(iosHfix,0);
-	setTimeout(iosHfix,100);
-	window.addEventListener("resize", function() {
-		setTimeout(iosHfix,0);
-		// hide toolbar on iPad happens with a delay
-		setTimeout(iosHfix,500);
-		setTimeout(iosHfix,1000);
-		setTimeout(iosHfix,2000);
+	// create the panorama player with the container
+	pano=new pano2vrPlayer("panorama");
+	pano.startNode = startNode;
+	pano.startView = startView;
+	pano.setQueryParameter("ts=80996051")
+	// add the skin object
+	skin=new pano2vrSkin(pano);
+	// load the configuration
+	window.addEventListener("load", function() {
+		pano.readConfigUrlAsync("pano.xml?ts=80996051");
 	});
+
+	if (window.navigator.userAgent.match(/Safari/i)) {
+		// fix for white borders, rotation on iPhone
+		function iosHfix(e) {
+			//window.scrollTo(0, 1);
+			var container=document.getElementById("panorama");
+			var oh=container.offsetHeight;
+			document.documentElement.style.setProperty('height', '60vh');
+			if (oh!=container.offsetHeight) {
+				container.style.setProperty('height',"60vh");
+			} else {
+				container.style.setProperty('height',window.innerHeight/2+"px");
+			}
+			//window.scrollTo(0, 0);
+			pano.setViewerSize(container.offsetWidth, container.offsetHeight);
+		};
+		setTimeout(iosHfix,0);
+		setTimeout(iosHfix,100);
+		window.addEventListener("resize", function() {
+			setTimeout(iosHfix,0);
+			// hide toolbar on iPad happens with a delay
+			setTimeout(iosHfix,500);
+			setTimeout(iosHfix,1000);
+			setTimeout(iosHfix,2000);
+		});
+	}
 }
