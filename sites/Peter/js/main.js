@@ -1308,10 +1308,11 @@ if(document.querySelector("#togglebody")) {
 if(document.querySelector("#zoombody")) {
 	document.querySelectorAll("#zoombody").forEach(function (zoomBody, index) {
 		const zoomImage = zoomBody.querySelector('#zoomimage');
-		const zoomImageBody = zoomImage.closest('div');
+		const zoomImageBody = zoomImage.closest('#zoomimagebody');
 		const zoomPlus = zoomBody.querySelector('#zoomplus');
 		const zoomMinus = zoomBody.querySelector('#zoomminus');
 		let zoomid = 1;
+		
 		zoomBody.setAttribute('data-zoom-index', index);
 		
 		zoomPlus.addEventListener("click", function () {
@@ -1340,26 +1341,40 @@ if(document.querySelector("#zoombody")) {
 				const rect = zoomImageBody.getBoundingClientRect();
 				let mouseX = e.clientX - rect.left;
 				let mouseY = e.clientY - rect.top;
-				moveAt(e);
+				//moveAt(e);
+				console.log("mouse down");
 
 				zoomImageBody.onmousemove = function(e) {
 					moveAt(e);
+					console.log("move");
 				}
 
 				zoomImage.ondragstart = function() {
 					return false;
+					console.log("drag");
 				}
 
 				zoomImage.onmouseup = function() {
-					zoomImageBody.onmousemove = null;
-					zoomImage.onmouseup = null;
+					moveEnd();
+					console.log("up");
 				}
+
+				zoomImage.onmousewheel = function() {
+					moveEnd();
+					console.log("wheel");
+				} 
 
 				function moveAt(e) {
 					zoomImage.style.left = e.clientX - rect.left - mouseX + 'px';
 					zoomImage.style.top = e.clientY - rect.top - mouseY + 'px';
+					console.log("move at");
 
-					console.log(e.clientX + " " + rect.left + " " + rect.right + " " + zoomImage.style.left + " " + index);
+					//console.log(e.clientX + " " + rect.left + " " + rect.right + " " + zoomImage.style.left + " " + index);
+				}
+
+				function moveEnd() {
+					zoomImageBody.onmousemove = null;
+					zoomImage.onmouseup = null;
 				}
 			}
 		}
