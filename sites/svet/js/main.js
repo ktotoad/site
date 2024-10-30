@@ -28,6 +28,7 @@ if (document.querySelector(".preloader")) {
 } else {
     window.addEventListener('load', function () {
         wrapper.classList.add('loaded');
+        animateall();
     });
 }
 // Dynamic Adapt v.1
@@ -233,7 +234,7 @@ if (document.querySelector("#spollerbody")){
 	const spollerBody = document.querySelector('#spollerbody');
 	const spollerButton = document.querySelector('#spollerbutton');
 	document.addEventListener("click", (event) => {
-		const withinBoundaries = event.composedPath().includes( spollerButton);
+		const withinBoundaries = event.composedPath().includes(spollerButton);
 		console.log(withinBoundaries);
 
 		if (!withinBoundaries) {
