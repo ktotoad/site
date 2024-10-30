@@ -99,6 +99,7 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------*/
 body {
   scrollbar-gutter: stable;
+  background: url("../img/bg.svg") bottom repeat-y;
 }
 @media (max-width: 767.98px) {
   body.lock {
@@ -870,6 +871,14 @@ input[type=text], input[type=email], input[type=tel], textarea {
           transform: translateY(0);
   opacity: 1;
 }
+@media (max-width: 767.98px) {
+  .header .catalog-page__items .item-catalog__image {
+    display: none;
+  }
+  .header .catalog-page__items .item-catalog__header {
+    padding: 1em;
+  }
+}
 .header__container {
   position: relative;
   display: -webkit-box;
@@ -1162,6 +1171,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .header__spoller-body.active {
   opacity: 1;
   visibility: visible;
+  max-height: 100vh;
+  overflow-y: auto;
 }
 .header__menu-body {
   -webkit-backdrop-filter: blur(100px);
