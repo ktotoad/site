@@ -872,11 +872,34 @@ input[type=text], input[type=email], input[type=tel], textarea {
   opacity: 1;
 }
 @media (max-width: 767.98px) {
+  .header .catalog-page__items {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 0.5rem;
+  }
   .header .catalog-page__items .item-catalog__image {
     display: none;
   }
   .header .catalog-page__items .item-catalog__header {
-    padding: 1em;
+    padding: 0.5em;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .header .catalog-page__items .catalog-page__item {
+    -webkit-box-flex: 1 !important;
+        -ms-flex: auto !important;
+            flex: auto !important;
+  }
+  .header .catalog-page__items .item-catalog__title {
+    font-size: 2.4em;
+    opacity: 0.7;
+    padding-left: 0.5rem;
+  }
+  .header .catalog-page__items .item-catalog__title br {
+    display: none;
   }
 }
 .header__container {
@@ -1049,6 +1072,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   }
   .header__list .header__link p {
     font-size: 2.4em;
+    line-height: 110%;
     opacity: 0.7;
     -webkit-transition: opacity 0.3s ease 0s;
     transition: opacity 0.3s ease 0s;
@@ -1089,13 +1113,25 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 991.98px) {
   .header__link_phone {
+    display: block;
     margin-left: auto;
+  }
+}
+@media (max-width: 479.98px) {
+  .header__link_phone {
+    margin-top: 1em;
+    font-size: 2.6em;
   }
 }
 .header__button {
   position: relative;
   z-index: 10;
   font-size: 1.6em;
+}
+@media (max-width: 479.98px) {
+  .header__button {
+    margin-top: 1em;
+  }
 }
 .header__nav {
   position: relative;
@@ -1154,6 +1190,45 @@ input[type=text], input[type=email], input[type=tel], textarea {
     fill: var(--orange);
   }
 }
+@media (max-width: 767.98px) {
+  .header__spoller-button {
+    font-size: 1em;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+    gap: 1rem;
+  }
+  .header__spoller-button span {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    background-color: transparent;
+    width: 4.4em;
+    height: 4.4em;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid var(--orange);
+  }
+  .header__spoller-button p {
+    font-size: 2.4em;
+    opacity: 0.7;
+    -webkit-transition: opacity 0.3s ease 0s;
+    transition: opacity 0.3s ease 0s;
+  }
+  .header__spoller-button svg path {
+    fill: var(--orange);
+  }
+}
 .header__spoller-body {
   position: fixed;
   z-index: 5;
@@ -1165,14 +1240,32 @@ input[type=text], input[type=email], input[type=tel], textarea {
   background: var(--white);
   opacity: 0;
   visibility: hidden;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
+  -webkit-transition: opacity 0.3s, visibility 0.3s, height 0.5s ease 0s;
+  transition: opacity 0.3s, visibility 0.3s, height 0.5s ease 0s;
 }
 .header__spoller-body.active {
   opacity: 1;
   visibility: visible;
   max-height: 100vh;
   overflow-y: auto;
+}
+@media (max-width: 767.98px) {
+  .header__spoller-body {
+    position: relative;
+    width: auto;
+    height: 0;
+    padding: 0;
+    margin-bottom: 0.5rem;
+  }
+}
+.header__spoller-body.active {
+  height: auto;
+  overflow: hidden;
+}
+@media (max-width: 767.98px) {
+  .header__sublist {
+    padding-top: 1em;
+  }
 }
 .header__menu-body {
   -webkit-backdrop-filter: blur(100px);
@@ -1187,7 +1280,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
   height: auto;
   top: 0;
   left: 0;
-  overflow: auto;
+  overflow-y: auto;
+  max-height: 100vh;
   background: var(--white);
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
@@ -1197,6 +1291,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .header__menu-body.active {
   -webkit-transform: translate(0px, 0px);
           transform: translate(0px, 0px);
+}
+@media (max-width: 479.98px) {
+  .header__menu-body {
+    width: 100%;
+  }
 }
 .icon-menu {
   -webkit-box-flex: 0;
