@@ -957,6 +957,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
   gap: 1rem;
 }
 .header__list {
+  position: relative;
+  z-index: 10;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1056,6 +1058,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .header__link_phone {
   position: relative;
+  z-index: 10;
 }
 .header__link_phone::before {
   content: attr(data-hover);
@@ -1089,6 +1092,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
   position: relative;
 }
 .header__spoller-button {
+  position: relative;
+  z-index: 10;
   cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1106,6 +1111,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
   gap: 0.5rem;
   font-size: 1.6em;
   line-height: 100%;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+.header__spoller-button svg path {
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
 }
 .header__spoller-button span {
   display: -webkit-box;
@@ -1118,43 +1129,39 @@ input[type=text], input[type=email], input[type=tel], textarea {
       -ms-flex-pack: center;
           justify-content: center;
   border-radius: 0.75em;
-  padding: 5px;
   background: rgba(255, 255, 255, 0.04);
 }
+.header__spoller-button.active {
+  color: var(--orange);
+}
+.header__spoller-button.active svg path {
+  fill: var(--orange);
+}
+@media (any-hover: hover) {
+  .header__spoller-button:hover {
+    color: var(--orange);
+  }
+  .header__spoller-button:hover svg path {
+    fill: var(--orange);
+  }
+}
 .header__spoller-body {
-  cursor: pointer;
-  position: absolute;
-  padding-top: 4em;
-  min-width: 100%;
+  position: fixed;
+  z-index: 5;
+  padding-top: 9em;
+  padding-bottom: 1em;
   top: 0;
   left: 0;
-}
-.header__spoller-body.active .header__sublist {
-  opacity: 1;
-  visibility: visible;
-}
-.header__sublist {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 0.5rem;
+  border-radius: 0 0 2.2em 2.2em;
+  background: var(--white);
   opacity: 0;
   visibility: hidden;
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
-  padding: 1em;
-  border-radius: 2.2em;
-  background: var(--white);
+}
+.header__spoller-body.active {
+  opacity: 1;
+  visibility: visible;
 }
 .header__menu-body {
   -webkit-backdrop-filter: blur(100px);
@@ -1409,6 +1416,24 @@ input[type=text], input[type=email], input[type=tel], textarea {
           flex-direction: row;
   gap: 1rem;
 }
+@media (max-width: 767.98px) {
+  .footer__columns {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 1rem;
+  }
+}
 .footer__items {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1427,8 +1452,19 @@ input[type=text], input[type=email], input[type=tel], textarea {
           flex-direction: row;
   gap: 2rem;
 }
-.footer__item {
-  width: calc(50% - 1rem);
+@media (max-width: 767.98px) {
+  .footer__items {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+@media (min-width: 991.98px) {
+  .footer__item {
+    width: calc(50% - 1rem);
+  }
 }
 .footer__menu-block {
   display: -webkit-box;
@@ -1445,6 +1481,15 @@ input[type=text], input[type=email], input[type=tel], textarea {
       -ms-flex-direction: row;
           flex-direction: row;
   gap: 2rem;
+}
+@media (max-width: 479.98px) {
+  .footer__menu-block {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 .footer__menu {
   display: -webkit-box;
