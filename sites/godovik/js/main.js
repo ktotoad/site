@@ -890,18 +890,23 @@ if(document.querySelector("#zoombody")) {
 			if (evCache.length === 2) {
 				const curDiff = Math.abs(evCache[0].clientX - evCache[1].clientX);
 
-				if (curDiff > prevDiff) {
-					console.log("Pinch moving OUT -> Zoom in", evCache[index]);
-					zoomPlusIn();
-				}
-				if (curDiff < prevDiff) {
-					console.log("Pinch moving IN -> Zoom out", evCache[index]);
-					zoomMinusOut();
+				if (prevDiff > 0) {
+					console.log(prevDiff);
+					if (curDiff > prevDiff) {
+						console.log("Pinch moving OUT -> Zoom in", event);
+						zoomPlusIn(zoomid, zoomImage, zoomImageBody);
+					}
+					if (curDiff < prevDiff) {
+						console.log("Pinch moving IN -> Zoom out", event);
+						zoomMinusOut(zoomid, zoomImage, zoomImageBody);
+					}
 				}
 
 				prevDiff = curDiff;
+			} else {
+				imageMove(event);
+				console.log("imageMove");
 			}
-
 		});
 
 		zoomBody.addEventListener("pointerup", (event) => {
@@ -941,39 +946,43 @@ if(document.querySelector("#zoombody")) {
 
 	    zoomImageBody.onmousedown = function(e) {
 	    	if(zoomImageBody.classList.contains('active')) {
-				const rect = zoomImageBody.getBoundingClientRect();
-				let mouseX = e.clientX - rect.left;
-				let mouseY = e.clientY - rect.top;
-
-				zoomImageBody.onmousemove = function(e) {
-					moveAt(e);
-				}
-
-				zoomImage.ondragstart = function() {
-					return false;
-				}
-
-				zoomImage.onmouseup = function() {
-					moveEnd();
-				}
-
-				zoomImage.onmousewheel = function() {
-					moveEnd();
-				} 
-
-				function moveAt(e) {
-					zoomImage.style.left = e.clientX - rect.left - mouseX + 'px';
-					zoomImage.style.top = e.clientY - rect.top - mouseY + 'px';
-
-					//console.log(e.clientX + " " + rect.left + " " + rect.right + " " + zoomImage.style.left + " " + index);
-				}
-
-				function moveEnd() {
-					zoomImageBody.onmousemove = null;
-					zoomImage.onmouseup = null;
-				}
+				imageMove(e);
 			}
 		}
+
+		function imageMove(e) {
+			const rect = zoomImageBody.getBoundingClientRect();
+			let mouseX = e.clientX - rect.left;
+			let mouseY = e.clientY - rect.top;
+
+			zoomImageBody.onmousemove = function(e) {
+				moveAt(e);
+			}
+
+			zoomImage.ondragstart = function() {
+				return false;
+			}
+
+			zoomImage.onmouseup = function() {
+				moveEnd();
+			}
+
+			zoomImage.onmousewheel = function() {
+				moveEnd();
+			} 
+
+			function moveAt(e) {
+				zoomImage.style.left = e.clientX - rect.left - mouseX + 'px';
+				zoomImage.style.top = e.clientY - rect.top - mouseY + 'px';
+
+				//console.log(e.clientX + " " + rect.left + " " + rect.right + " " + zoomImage.style.left + " " + index);
+			}
+
+			function moveEnd() {
+				zoomImageBody.onmousemove = null;
+				zoomImage.onmouseup = null;
+			}
+	}
 	});
 }
 //BuildSlider======================================================================================================================================================
