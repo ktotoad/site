@@ -868,47 +868,58 @@ if(document.querySelector("#zoombody")) {
 		let prevDiff = -1;
 		
 		zoomBody.setAttribute('data-zoom-index', index);
-		zoomBody.onpointerdown = pointerdownHandler;
-		zoomBody.onpointermove = pointermoveHandler;
 		
 		zoomPlus.addEventListener("click", function () {
-			zoomPlusIn(zoomid, zoomImage, zoomImageBody);
+			zoomPlusIn();
         });
 
 	    zoomMinus.addEventListener("click", function () {
-	    	zoomMinusOut(zoomid, zoomImage, zoomImageBody);
+	    	zoomMinusOut();
         });
 
+	    zoomBody.addEventListener("pointerdown", (event) => {
+			evCache.push(event);
+		});	
 
-		function pointerdownHandler(ev) {
-			evCache.push(ev);
-		}
-
-		function pointermoveHandler(ev) {
+		zoomBody.addEventListener("pointermove", (event) => {
 			const index = evCache.findIndex(
-				(cachedEv) => cachedEv.pointerId === ev.pointerId,
+				(cachedEv) => cachedEv.pointerId === event.pointerId,
 			);
-			evCache[index] = ev;
+			evCache[index] = event;
 
 			if (evCache.length === 2) {
-			const curDiff = Math.abs(evCache[0].clientX - evCache[1].clientX);
+				const curDiff = Math.abs(evCache[0].clientX - evCache[1].clientX);
 
-			if (prevDiff > 0) {
 				if (curDiff > prevDiff) {
-					console.log("Pinch moving OUT -> Zoom in", ev);
-					zoomPlusIn(zoomid, zoomImage, zoomImageBody);
+					console.log("Pinch moving OUT -> Zoom in", evCache[index]);
+					zoomPlusIn();
 				}
 				if (curDiff < prevDiff) {
-					console.log("Pinch moving IN -> Zoom out", ev);
-					zoomMinusOut(zoomid, zoomImage, zoomImageBody);
+					console.log("Pinch moving IN -> Zoom out", evCache[index]);
+					zoomMinusOut();
 				}
+
+				prevDiff = curDiff;
 			}
 
-			prevDiff = curDiff;
+		});
+
+		zoomBody.addEventListener("pointerup", (event) => {
+			removeEvent(event);
+			if (evCache.length < 2) {
+				prevDiff = -1;
 			}
+			console.log("pointerup");
+		});
+
+		function removeEvent(event) {
+			const index = evCache.findIndex(
+				(cachedEv) => cachedEv.pointerId === event.pointerId,
+			);
+			evCache.splice(index, 1);
 		}
 
-	    function zoomPlusIn(zoomid, zoomImage, zoomImageBody) {
+	    function zoomPlusIn() {
 	    	if(zoomid < 4) {
 	        	zoomid = zoomid + 0.5;
 	        	zoomImage.style.transform = `scale(${zoomid})`;
@@ -916,7 +927,7 @@ if(document.querySelector("#zoombody")) {
 	        }
 	    }
 
-	    function zoomMinusOut(zoomid, zoomImage, zoomImageBody) {
+	    function zoomMinusOut() {
 	    	if(zoomid > 1) {
 	        	zoomid = zoomid - 0.5;
 	        	zoomImage.style.transform = `scale(${zoomid})`;
@@ -930,37 +941,29 @@ if(document.querySelector("#zoombody")) {
 
 	    zoomImageBody.onmousedown = function(e) {
 	    	if(zoomImageBody.classList.contains('active')) {
-				//координаты мыши
 				const rect = zoomImageBody.getBoundingClientRect();
 				let mouseX = e.clientX - rect.left;
 				let mouseY = e.clientY - rect.top;
-				//moveAt(e);
-				console.log("mouse down");
 
 				zoomImageBody.onmousemove = function(e) {
 					moveAt(e);
-					console.log("move");
 				}
 
 				zoomImage.ondragstart = function() {
 					return false;
-					console.log("drag");
 				}
 
 				zoomImage.onmouseup = function() {
 					moveEnd();
-					console.log("up");
 				}
 
 				zoomImage.onmousewheel = function() {
 					moveEnd();
-					console.log("wheel");
 				} 
 
 				function moveAt(e) {
 					zoomImage.style.left = e.clientX - rect.left - mouseX + 'px';
 					zoomImage.style.top = e.clientY - rect.top - mouseY + 'px';
-					console.log("move at");
 
 					//console.log(e.clientX + " " + rect.left + " " + rect.right + " " + zoomImage.style.left + " " + index);
 				}
