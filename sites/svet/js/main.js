@@ -443,6 +443,25 @@ function initSliders() {
 			},
 		});
 	}
+
+	if (document.querySelector('.news-detail-slider')) {
+		new Swiper('.news-detail-slider', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 10,
+			parallax: true,
+			speed: 800,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			navigation: {
+				nextEl: ".news-detail-slider__next",
+				prevEl: ".news-detail-slider__prev",
+			},
+		});
+	}
 }
 
 initSliders();
@@ -672,21 +691,16 @@ let _slideToggle = (target, duration = 500) => {
 }
 spollers();
 //Checkbox==========================================================================================================================
-if (document.querySelector('#checkboxes')) { 
-	let checkBoxes = document.querySelectorAll('#checkboxes');
+if (document.querySelector('#checkboxbody')) { 
+	let checkBoxBodies = document.querySelectorAll('#checkboxbody');
 
-	const checkBoxArray = Array.from(checkBoxes);
-	checkBoxArray.forEach(function(element) { 
-		if (element.querySelector('#checkbox').hasAttribute('checked') > 0) {
-			element.classList.add('active');
-		}
-	});
-	checkBoxArray.forEach((element) => element.addEventListener("click", () => {
-		if (element.classList.contains('active') > 0) {
-			element.classList.remove('active');
-		}
-		else {
-			element.classList.add('active');
-		}
-	}));
+	checkBoxBodies.forEach(function (checkBoxBody) {
+        checkBoxBody.addEventListener('click', (e) => {
+
+        	if(e.target.closest('#checkbox')) {
+        		e.target.closest('#checkbox').classList.toggle('active'); 
+        	} 
+
+        });
+    });
 }
