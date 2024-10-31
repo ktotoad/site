@@ -150,7 +150,7 @@ if (document.querySelector('.icon-menu')) {
 //fixed_main==================================================================================================================================================================================================================
 let header = document.querySelector("header");
 window.addEventListener("scroll", function(){
-	if(window.scrollY > 100){
+	if(window.scrollY > 50){
     	header.classList.add('fixed');
 	}
 	else{
@@ -406,6 +406,16 @@ function bodyUnLock() {
 	}, timeout);
 }
 
+//price_spaces================================================================================================================================
+if (document.querySelectorAll(".js_price")) {
+  function numberWithSpaces(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  }
+  let js_prices = document.querySelectorAll(".js_price");
+  js_prices.forEach((js_price) => {
+      js_price.textContent = numberWithSpaces(js_price.textContent);
+  })
+}
 // SPOLLERS========================================================================================================================================
 function spollers() {
 	//Проверка на наличие атрибута
@@ -596,39 +606,31 @@ let _slideToggle = (target, duration = 500) => {
 }
 spollers();
 //CheckBox_RadioButton====================================================================================================================================================================================
-$(document).ready(function () {
+if(document.querySelector('#radiobuttons')) {
+	let radioButtonsBodies = document.querySelectorAll('#radiobuttons');
 
-	//CHECKBOX
-	$.each($('.checkbox'), function(index, val) {
-		if($(this).find('input').prop('checked')==true) {
-			$(this).addClass('active');
-		}
-	});
-	$(document).on('click', '.checkbox', function(event) {
-		if($(this).hasClass('active')) {
-			$(this).find('input').prop('checked', false);
-		}else{
-			$(this).find('input').prop('checked', true);
-		}
-		$(this).toggleClass('active');
+	radioButtonsBodies.forEach(function (radioButtonsBody) {
+        radioButtonsBody.addEventListener('click', (e) => {
 
-		return false;
-	});
+        	if(e.target.closest('.radio')) {
+        		radioButtonsBody.querySelectorAll('.radio').forEach(function (radio) {
+        			radio.classList.remove('active');
+        		});
+        		e.target.closest('.radio').classList.add('active'); 
+        	} 
 
-	//RADIO
-	$.each($('.filter-catalog__radio'), function(index, val) {
-		if($(this).find('input').prop('checked')==true) {
-			$(this).addClass('active');
-		}
-	});
-	$(document).on('click', '.filter-catalog__radio', function(event) {
-		$(this).parents('.filter-catalog__buttons').find('.filter-catalog__radio').removeClass('active');
-		$(this).parents('.filter-catalog__buttons').find('.filter-catalog__radio input').prop('checked', false);
-		$(this).toggleClass('active');
-		$(this).find('input').prop('checked', true);
-		return false;
-	});
-});
+        	let inputs = radioButtonsBody.querySelectorAll('input');
+        	inputs.forEach(function (input, index) {
+        		if(input.checked) {
+        			console.log("checked " + index);
+        		} else {
+        			console.log("not checked " + index);
+        		}
+        	});
+
+        });
+    });
+}
 //Filter=====================================================================================================================================================
 const catalogSliderSlides = document.querySelectorAll('.catalog-slider__slide');
 const filterItems = document.querySelectorAll('.filter-catalog-main__item');
@@ -845,12 +847,140 @@ if(document.querySelector('#optionsblock')) {
 if(document.querySelector("#sunway")) {
 	document.querySelectorAll("#sunway").forEach(function (sunway) {
 		const toggle = sunway.querySelector('#toggle');
-		const svgway = sunway.querySelector('#svgway');
+		if(sunway.querySelector('#svgway')) {
+			const svgway = sunway.querySelector('#svgway');
+		}
 
 		toggle.addEventListener("click", function () {
         	sunway.classList.toggle("active");
         });
     });
+}
+//Zoom_Image============================================================================================================================================
+if(document.querySelector("#zoombody")) {
+	document.querySelectorAll("#zoombody").forEach(function (zoomBody, index) {
+		const zoomImage = zoomBody.querySelector('#zoomimage');
+		const zoomImageBody = zoomImage.closest('#zoomimagebody');
+		const zoomPlus = zoomBody.querySelector('#zoomplus');
+		const zoomMinus = zoomBody.querySelector('#zoomminus');
+		let zoomid = 1;
+		
+		zoomBody.setAttribute('data-zoom-index', index);
+
+		const evCache = [];
+		let prevDiff = -1;
+		zoomBody.onpointerdown = pointerdownHandler;
+		zoomBody.onpointermove = pointermoveHandler;
+		function pointerdownHandler(ev) {
+			evCache.push(ev);
+			console.log("pointerDown", ev);
+		}
+		function pointermoveHandler(ev) {
+			// This function implements a 2-pointer horizontal pinch/zoom gesture.
+			//
+			// If the distance between the two pointers has increased (zoom in),
+			// the target element's background is changed to "pink" and if the
+			// distance is decreasing (zoom out), the color is changed to "lightblue".
+			//
+			// This function sets the target element's border to "dashed" to visually
+			// indicate the pointer's target received a move event.
+			console.log("pointerMove", ev);
+			ev.target.style.border = "dashed";
+
+			// Find this event in the cache and update its record with this event
+			const index = evCache.findIndex(
+			(cachedEv) => cachedEv.pointerId === ev.pointerId,
+			);
+			evCache[index] = ev;
+
+			// If two pointers are down, check for pinch gestures
+			if (evCache.length === 2) {
+			// Calculate the distance between the two pointers
+			const curDiff = Math.abs(evCache[0].clientX - evCache[1].clientX);
+
+			if (prevDiff > 0) {
+			  if (curDiff > prevDiff) {
+			    // The distance between the two pointers has increased
+			    console.log("Pinch moving OUT -> Zoom in", ev);
+			    ev.target.style.background = "pink";
+			  }
+			  if (curDiff < prevDiff) {
+			    // The distance between the two pointers has decreased
+			    console.log("Pinch moving IN -> Zoom out", ev);
+			    ev.target.style.background = "lightblue";
+			  }
+			}
+
+			// Cache the distance for the next move event
+			prevDiff = curDiff;
+			}
+		}
+
+		
+		zoomPlus.addEventListener("click", function () {
+			if(zoomid < 4) {
+	        	zoomid = zoomid + 0.5;
+	        	zoomImage.style.transform = `scale(${zoomid})`;
+	        	zoomImageBody.classList.add('active');
+	        }
+        });
+
+	    zoomMinus.addEventListener("click", function () {
+	    	if(zoomid > 1) {
+	        	zoomid = zoomid - 0.5;
+	        	zoomImage.style.transform = `scale(${zoomid})`;
+	        	if(zoomid == 1) {
+        			zoomImageBody.classList.remove('active');
+        			zoomImage.style.removeProperty('left');
+					zoomImage.style.removeProperty('top');
+	        	}
+        	} 
+        });
+
+	    zoomImageBody.onmousedown = function(e) {
+	    	if(zoomImageBody.classList.contains('active')) {
+				//координаты мыши
+				const rect = zoomImageBody.getBoundingClientRect();
+				let mouseX = e.clientX - rect.left;
+				let mouseY = e.clientY - rect.top;
+				//moveAt(e);
+				console.log("mouse down");
+
+				zoomImageBody.onmousemove = function(e) {
+					moveAt(e);
+					console.log("move");
+				}
+
+				zoomImage.ondragstart = function() {
+					return false;
+					console.log("drag");
+				}
+
+				zoomImage.onmouseup = function() {
+					moveEnd();
+					console.log("up");
+				}
+
+				zoomImage.onmousewheel = function() {
+					moveEnd();
+					console.log("wheel");
+				} 
+
+				function moveAt(e) {
+					zoomImage.style.left = e.clientX - rect.left - mouseX + 'px';
+					zoomImage.style.top = e.clientY - rect.top - mouseY + 'px';
+					console.log("move at");
+
+					//console.log(e.clientX + " " + rect.left + " " + rect.right + " " + zoomImage.style.left + " " + index);
+				}
+
+				function moveEnd() {
+					zoomImageBody.onmousemove = null;
+					zoomImage.onmouseup = null;
+				}
+			}
+		}
+	});
 }
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
@@ -869,43 +999,6 @@ function buildSliders() {
 //Инициализация_Swiper===============================================================================================================================================
 function initSliders() {
 	buildSliders();
-	if (document.querySelector('.slider-main')) {
-		var swiper = new Swiper('.thumb-main', {
-			slidesPerView: 1,
-			spaceBetween: 0,
-			parallax: true,
-			allowTouchMove: false,
-    		effect: "fade",
-			//autoHeight: true,
-			//freeMode: true,
-			watchSlidesProgress: true,
-			speed: 800,
-			autoplay: {
-				delay: 3000,
-				disableOnInteraction: false,
-			},
-		});
-		new Swiper('.slider-main', {
-			observer: true,
-			observeParents: true,
-			slidesPerView: 1,
-			spaceBetween: 0,
-			parallax: true,
-			autoHeight: true,
-			speed: 800,
-			autoplay: {
-				delay: 3000,
-				disableOnInteraction: false,
-			},
-			pagination: {
-				el: ".slider-main__pagination",
-				clickable: true,
-			},
-			thumbs: {
-				swiper: swiper,
-			},
-		});
-	} 
 	
 	if (document.querySelector('.content-question__slider')) {
 		var swiper = new Swiper('.question-page__slider-thumb', {
@@ -1074,5 +1167,154 @@ function initSliders() {
 			},
 		});
 	} 
+	if (document.querySelector('.slider-parking-advantages')) {
+		new Swiper('.slider-parking-advantages', {
+  		observer: true,
+			observeParents: true,
+			slidesPerView: 3,
+			spaceBetween: 30,
+			parallax: true,
+			//loop: true,
+			autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 0,
+					autoHeight: true,
+				},
+				470: {
+					slidesPerView: 2,
+					spaceBetween: 10,
+				},
+				992: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+			},
+			pagination: {
+				el: '.slider-parking-advantages__pagination',
+				clickable: true,
+			},
+			navigation: {
+        nextEl: ".slider-parking-advantages__next",
+        prevEl: ".slider-parking-advantages__prev",
+      },
+		});
+	}
 }
 initSliders();
+//SVG_script==========================================================================================================================
+if(document.querySelector("#zoomimage")) {
+	const svgBody = document.querySelector("#zoomimage svg");
+	let paths = svgBody.querySelectorAll("path");
+	let areaFilter = document.querySelector("#area");
+
+	const parkingPopup = document.querySelector("#parkingpopup");
+	let popupNumber = parkingPopup.querySelector("#popupumber");
+	let popupPrice = parkingPopup.querySelector("#popupprice");
+	let popupArea = parkingPopup.querySelector("#popuparea");
+	let popupSize = parkingPopup.querySelector("#popupsize");
+
+	const parkingOrder = document.querySelector("#parkingorder");
+	let popupNumberOrder = parkingOrder.querySelector("#popupumber");
+	let popupPriceOrder = parkingOrder.querySelector("#popupprice");
+	let popupAreaOrder = parkingOrder.querySelector("#popuparea");
+	let popupSizeOrder = parkingOrder.querySelector("#popupsize");
+
+	let fillStyle, opacityStyle;
+
+	paths.forEach(function (path) {
+		const number = path.dataset.number;
+		const price = path.dataset.price;
+		const area = path.dataset.area;
+		let size;
+
+		switch (area) {
+			case "21.6":
+				size = "4,07 м х 5,3 м";
+				break;
+			case "15.37":
+				size = "2,9 м х 5,3 м";
+				break;
+			default:
+				size = "2,3 м х 5,3 м";
+		}
+		path.addEventListener("mouseover", (event) => {
+
+			parkingPopupActive(event, number, price, area, size);
+
+			fillStyle = path.style.fill;
+			opacityStyle = path.style.opacity;
+
+			path.style.fill = "#97C0E7";
+			path.style.opacity = 0.7;
+		});
+
+		path.addEventListener("click", function (e) {
+			popupOpen(parkingOrder);
+
+	  		popupNumberOrder.innerText = "№" + number;
+	  		popupPriceOrder.innerText = numberWithSpaces(price) + " ₽";
+	  		popupAreaOrder.innerText = area + " м²";
+	  		popupSizeOrder.innerText = size;
+	  		console.log(size);
+		});
+
+		path.addEventListener("mouseout", (event) => {
+			parkingPopupNotActive(path, fillStyle, opacityStyle);
+		});
+
+		path.addEventListener("mousewheel", (event) => {
+			parkingPopupNotActive(path, fillStyle, opacityStyle);
+		});
+	});
+
+	areaFilter.addEventListener("click", function (e) {
+		if(e.target.closest('div .active')) {
+			dataArea = e.target.closest('div .active').dataset.area;
+			paths.forEach(function (path) {
+				if(path.dataset.area == dataArea) {
+					path.style.fill = "#97C0E7";
+					path.style.stroke = "#131411";
+					path.style.opacity = 0.5;
+				} else {
+					path.style.fill = "transparent";
+					path.style.stroke = "transparent";
+				}
+			});
+		}
+	});
+
+	function parkingPopupActive(event, number, price, area, size) {
+		const x = event.clientX;
+  		const y = event.clientY;
+
+  		popupNumber.innerText = "№" + number;
+  		popupPrice.innerText = numberWithSpaces(price) + " ₽";
+  		popupSize.innerText = size;
+  		popupArea.innerText = area + " м²";
+
+  		parkingPopup.style.left = x + "px";
+  		parkingPopup.style.top = y + "px";
+		parkingPopup.classList.add("active");
+	}
+
+	function parkingPopupNotActive(path, fillStyle, opacityStyle) {
+		parkingPopup.classList.remove("active");
+		path.style.fill = fillStyle;
+		path.style.opacity = opacityStyle;
+	}
+}
+
+//prices===================================================================================================================================
+if (document.querySelector(".js_price")) {
+    let js_prices = document.querySelectorAll(".js_price");
+    js_prices.forEach((js_price) => {
+        js_price.textContent = numberWithSpaces(js_price.textContent);
+    });
+}
