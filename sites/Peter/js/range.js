@@ -63,6 +63,38 @@ if (document.querySelector("#range-slider-square2")) {
     });
 }
 //RANGE========================================================================================================================================
+//Площадь
+if (document.querySelector("#range-slider-square3")) {
+    var rangeBody = document.querySelector("#range-slider-square3");
+    var slider = rangeBody.querySelector("#slider-square3");
+    var inputMin = rangeBody.querySelector("#input-min-s3");
+    var inputMax = rangeBody.querySelector("#input-max-s3");
+
+    const inputs = [inputMin, inputMax]; 
+
+    noUiSlider.create(slider, {
+        start: [30, 160],
+        connect: true,
+        step: 1,
+        range: {
+            'min': 27,
+            'max': 160
+        }
+    });
+
+    slider.noUiSlider.on('update', function (values, handle) {
+        inputs[handle].value = parseInt(values[handle]);
+    });
+
+    inputMin.addEventListener('change', function () {
+        slider.noUiSlider.set([this.value, null]);
+    });
+
+    inputMax.addEventListener('change', function () {
+        slider.noUiSlider.set([null, this.value]);
+    });
+}
+//RANGE========================================================================================================================================
 //Этаж
 if (document.querySelector("#range-slider-floor")) {
     var rangeBody = document.querySelector("#range-slider-floor");
