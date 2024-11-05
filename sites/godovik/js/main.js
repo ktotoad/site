@@ -877,44 +877,12 @@ if(document.querySelector("#zoombody")) {
 	    	zoomMinusOut();
         });
 
-	    zoomBody.addEventListener("pointerdown", (event) => {
-			evCache.push(event);
-		});	
-
-		zoomBody.addEventListener("pointermove", (event) => {
-			const index = evCache.findIndex(
-				(cachedEv) => cachedEv.pointerId === event.pointerId,
-			);
-			evCache[index] = event;
-
-			if (evCache.length === 2) {
-				const curDiff = Math.abs(evCache[0].clientX - evCache[1].clientX);
-
-				if (prevDiff > 0) {
-					console.log(prevDiff);
-					if (curDiff > prevDiff) {
-						console.log("Pinch moving OUT -> Zoom in", event);
-						zoomPlusIn(zoomid, zoomImage, zoomImageBody);
-					}
-					if (curDiff < prevDiff) {
-						console.log("Pinch moving IN -> Zoom out", event);
-						zoomMinusOut(zoomid, zoomImage, zoomImageBody);
-					}
-				}
-
-				prevDiff = curDiff;
-			} else {
-				imageMove(event);
-				console.log("imageMove");
-			}
-		});
-
-		zoomBody.addEventListener("pointerup", (event) => {
-			removeEvent(event);
-			if (evCache.length < 2) {
-				prevDiff = -1;
-			}
-			console.log("pointerup");
+	    zoomImage.addEventListener('gesturechange',function(e){
+		    if(e.scale > 1) {
+		        console.log("zoom in");
+		    } else if(e.scale < 1) {
+		        console.log("zoom out");
+		    }
 		});
 
 		function removeEvent(event) {
@@ -982,7 +950,7 @@ if(document.querySelector("#zoombody")) {
 				zoomImageBody.onmousemove = null;
 				zoomImage.onmouseup = null;
 			}
-	}
+		}
 	});
 }
 //BuildSlider======================================================================================================================================================
