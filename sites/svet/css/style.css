@@ -1100,6 +1100,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.1019607843);
           box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.1019607843);
 }
+.header.fixed, .header:not(.main) {
+  position: fixed;
+  -webkit-backdrop-filter: blur(30px);
+          backdrop-filter: blur(30px);
+}
 @media (max-width: 767.98px) {
   .header .catalog-page__items {
     -webkit-box-orient: vertical;
@@ -1175,6 +1180,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
   gap: 1rem;
 }
 .header__logo {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
   display: block;
   position: relative;
   z-index: 10;
@@ -1186,6 +1194,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
+}
+@media (max-width: 767.98px) {
+  .header__logo {
+    width: 16em;
+    height: auto;
+  }
 }
 .header__body {
   display: -webkit-box;
@@ -3258,7 +3272,7 @@ section.active {
   gap: 1rem;
   height: auto;
   position: sticky;
-  top: 2em;
+  top: 10em;
 }
 .filter-block__item {
   border-radius: 2em;

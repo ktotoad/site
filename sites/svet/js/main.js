@@ -229,6 +229,16 @@ if (iconMenu) {
 			body.classList.toggle('lock');
 		});
 }
+//fixed_main==================================================================================================================================================================================================================
+let header = document.querySelector("header");
+window.addEventListener("scroll", function(){
+	if(window.scrollY > 100){
+    	header.classList.add('fixed');
+	}
+	else{
+	    header.classList.remove('fixed');
+	}
+});
 //SpollerBody=====================================================================================================================================================
 if (document.querySelector("#spollerbody")){
 	const spollerBody = document.querySelector('#spollerbody');
