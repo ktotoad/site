@@ -1434,6 +1434,13 @@ textarea.input {
 .location__slider-body {
   position: relative;
   margin-top: 5em;
+  opacity: 0;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  -webkit-transition: opacity 1s, -webkit-transform 1s ease 0s;
+  transition: opacity 1s, -webkit-transform 1s ease 0s;
+  transition: opacity 1s, transform 1s ease 0s;
+  transition: opacity 1s, transform 1s ease 0s, -webkit-transform 1s ease 0s;
 }
 .location__slider-body::before {
   content: "";
@@ -1462,6 +1469,11 @@ textarea.input {
         -ms-flex-direction: row;
             flex-direction: row;
   }
+}
+.location__slider-body.active {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
 }
 .location__slider-info {
   position: relative;
