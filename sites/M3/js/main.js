@@ -270,3 +270,19 @@ function initSliders() {
 
 
 initSliders();
+//ZOOM=====================================================================================================================================================
+if(document.querySelector("#picture-wrap")) {
+	document.querySelectorAll("#picture-wrap").forEach(pictureWrap => {
+		Fancybox.bind(pictureWrap, {
+		  // Your custom options
+		});
+	});
+}
+
+if(document.querySelector("#gallery-wrap")) {
+	document.querySelectorAll("#gallery-wrap").forEach(galleryWrap => {
+		Fancybox.bind(galleryWrap, {
+		  // Your custom options
+		});
+	});
+}
