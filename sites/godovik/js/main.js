@@ -954,15 +954,15 @@ if(document.querySelector("#zoombody")) {
 	document.querySelectorAll("#zoombody").forEach(function (zoomBody, index) {
 		const scaleElement = zoomBody.querySelector('#zoomimage');
 		const gestureArea = scaleElement.closest('#gesture-area');
-		var scale = 2;
+		var scale = 5;
 		var resetTimeout;
 
 		interact(gestureArea)
 			.gesturable({
 				listeners: {
 					start (event) {
-						//clearTimeout(resetTimeout);
-						//scaleElement.classList.remove('reset');
+						clearTimeout(resetTimeout);
+						scaleElement.classList.remove('reset');
 					},
 					move (event) {
 				    	var currentScale = event.scale * scale;
@@ -972,10 +972,10 @@ if(document.querySelector("#zoombody")) {
 				    	dragMoveListener(event);
 				  	},
 				  	end (event) {
-					    angleScale.scale = scale * event.scale;
+					    scale = scale * event.scale;
 
-					    //resetTimeout = setTimeout(reset, 1000);
-					    //scaleElement.classList.add('reset');
+					    resetTimeout = setTimeout(reset, 1000);
+					    scaleElement.classList.add('reset');
 				  	}
 				}
 			})
