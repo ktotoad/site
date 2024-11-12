@@ -954,7 +954,7 @@ if(document.querySelector("#zoombody")) {
 	document.querySelectorAll("#zoombody").forEach(function (zoomBody, index) {
 		const scaleElement = zoomBody.querySelector('#zoomimage');
 		const gestureArea = scaleElement.closest('#gesture-area');
-		var scale = 5;
+		var scale = 1;
 		var resetTimeout;
 
 		interact(gestureArea)
@@ -998,8 +998,6 @@ if(document.querySelector("#zoombody")) {
 			target.setAttribute('data-x', x);
 			target.setAttribute('data-y', y);
 		}
-
-		window.dragMoveListener = dragMoveListener;
 	});
 }
 
