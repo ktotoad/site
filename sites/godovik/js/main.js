@@ -960,10 +960,10 @@ if(document.querySelector("#zoombody")) {
 		interact(gestureArea)
 			.gesturable({
 				listeners: {
-					start (event) {
+					/*start (event) {
 						clearTimeout(resetTimeout);
 						scaleElement.classList.remove('reset');
-					},
+					},*/
 					move (event) {
 				    	var currentScale = event.scale * scale;
 
@@ -971,12 +971,12 @@ if(document.querySelector("#zoombody")) {
 
 				    	dragMoveListener(event);
 				  	},
-				  	end (event) {
+				  	/*end (event) {
 					    scale = scale * event.scale;
 
 					    resetTimeout = setTimeout(reset, 1000);
 					    scaleElement.classList.add('reset');
-				  	}
+				  	}*/
 				}
 			})
 			.draggable({
