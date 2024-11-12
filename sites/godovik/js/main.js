@@ -954,7 +954,7 @@ if(document.querySelector("#zoombody")) {
 	document.querySelectorAll("#zoombody").forEach(function (zoomBody, index) {
 		const scaleElement = zoomBody.querySelector('#zoomimage');
 		const gestureArea = scaleElement.closest('#gesture-area');
-		var scale = 5;
+		var scale = 1;
 		var resetTimeout;
 
 		interact(gestureArea)
@@ -967,8 +967,8 @@ if(document.querySelector("#zoombody")) {
 				move (event) {
 			    	// document.body.appendChild(new Text(event.scale))
 			    	var currentScale = event.scale * scale;
-
-			    scaleElement.style.transform = 'scale(' + currentScale + ')';
+			    	console.log(currentScale);
+			    	scaleElement.style.transform = 'scale(' + currentScale + ')';
 
 			    	// uses the dragMoveListener from the draggable demo above
 			    	dragMoveListener(event);
@@ -987,7 +987,7 @@ if(document.querySelector("#zoombody")) {
 
 		function reset () {
 			scaleElement.style.transform = 'scale(1)';
-			scale = 5;
+			scale = 1;
 		}
 
 		function dragMoveListener (event) {
