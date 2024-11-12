@@ -87,7 +87,7 @@
 							</div>
 							<div class="parkingplaces-page__body">
 								<div class="parkingplaces-page__filter parking-filter">
-									<div class="parking-filter__body">
+									<div id="filterbody" class="parking-filter__body">
 										<div class="parking-filter__items">
 											<div id="area" class="parking-filter__item">
 												<h5 class="parking-filter__title">Площадь места:</h5>
@@ -96,17 +96,29 @@
 														<span>13,25 м²</span>
 														<input name="radio_s" value="13" type="radio">
 													</div>
-													<div data-area="15.37" class="parking-filter__radio radio">
+													<!--<div data-area="15.37" class="parking-filter__radio radio">
 														<span>15,37 м²</span>
 														<input name="radio_s" value="15" type="radio">
-													</div>
+													</div>-->
 													<div data-area="21.6" class="parking-filter__radio radio">
 														<span>21,6 м²</span>
 														<input name="radio_s" value="21" type="radio">
 													</div>
 												</div>
 											</div>
-											<div id="radiobuttons" class="parking-filter__item">
+											<div id="family" class="parking-filter__item">
+												<p class="flat-info__text">
+													Семейный паркинг
+													<span data-tooltip="Зависимые машиноместа, приобретаются оба машиноместа"></span>
+												</p>
+												<div id="checkboxbody" class="parking-filter__buttons">
+													<div id="checkbox" class="parking-filter__radio">
+														<span>Показать cемейный паркинг</span>
+														<input name="checkbox" type="checkbox">
+													</div>
+												</div>
+											</div>
+										<!--	<div id="radiobuttons" class="parking-filter__item">
 												<h5 class="parking-filter__title">Этаж:</h5>
 												<div class="parking-filter__buttons radio__buttons">
 													<div class="parking-filter__radio radio">
@@ -118,7 +130,7 @@
 														<input name="radio_f" value="2" type="radio">
 													</div>
 												</div>
-											</div>
+											</div> -->
 										</div>
 									</div>
 								</div>	
@@ -134,10 +146,14 @@
 											<div id="zoomimage" class="image-parkingplaces__image">
 												<img src="./img/parking/parking.png" alt=""> 
 												<svg width="6175" height="4724" viewBox="0 0 6175 4724" xmlns="http://www.w3.org/2000/svg">
-													<path d="M4690 153 4690 511 4862 511 4862 153Z" data-number="1" data-price="730000" data-area="13.25" fill="transparent" stroke-width="4" stroke="transparent"></path>
-													<path d="M1630 1749.03125 1630 2107.03125 1798 2107.03125 1798 1749.03125Z" data-number="29" data-price="827500" data-area="13.25" fill="transparent" stroke="transparent"></path>
-													<path d="M5612 1487.03125 5612 1727.03125 6010 1727.03125 6010 1485.03125Z" data-number="76" data-price="1172500" stroke-width="4" data-area="21.6" fill="transparent" stroke="transparent"></path>
-													<path d="M4524 151.03125 4524 511.03125 4690 511.03125 4690 153Z" data-number="2" data-price="730000" data-area="13.25" fill="transparent" stroke-width="4" stroke="transparent"></path>
+													<path d="M4690 153 4690 511 4862 511 4862 153Z" data-number="1" data-price="730000" data-area="13.25" data-status="UNAVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+													<path d="M1630 1749.03125 1630 2107.03125 1798 2107.03125 1798 1749.03125Z" data-number="29" data-price="827500" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+													<path d="M3072 1547.03125 3430 1547.03125 3430 1381.03125 3076 1381.03125Z" data-number="14" data-price="827500" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent" style=""></path>
+													<path d="M2712 2461.03125 2712 2105.03125 2880 2105.03125 2880 2465.03125Z" data-number="22" data-price="643500" data-area="13.25" data-status="BOOKED" data-family="11" fill="transparent" stroke-width="4" stroke="transparent"></path>
+													<path d="M4332 511.03125 4502 511.03125 4502 155.03125 4332 155.03125Z" data-number="3" data-price="827500" data-area="13.25" data-status="AVAILABLE" data-family="14512" fill="transparent" stroke-width="4" stroke="transparent"></path>
+													<path d="M3426 851.03125 3072 851.03125 3072 687.03125 3430 687.03125Z" data-number="10" data-price="827500" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+													<path d="M2564 4219.03125 2564 4573.03125 2728 4573.03125 2728 4215.03125Z" data-number="54" data-price="827500" data-area="13.25" data-status="BOOKED" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+													<path d="M5610 979.03125 5610 1217.03125 6016 1217.03125 6016 975.03125Z" data-number="78" data-price="1172500" data-area="21.6" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
 												</svg>
 											</div>
 										</div>
@@ -447,6 +463,12 @@
 	</div>
 </div>
 
+<div id="parkingpopupdisable" class="parking-popup">
+	<div class="parking-popup__body">
+		<p class="parking-popup__text_b">НЕ В ПРОДАЖЕ</p>
+	</div>
+</div>
+
 <div id="parkingorder" aria-hidden="true" class="popup popup-order">
 	<div class="popup__content parking-order-page">
 		<div class="popup__header">
@@ -481,6 +503,7 @@
 	</div>	
 </div>		</div>
 <script src="js/jquery.min.js"></script>	
+<script src="js/interact.min.js"></script>	
 <script src="js/gsap.min.js"></script>
 <script src="js/fancybox.umd.js"></script>
 <script src="js/swiper-bundle.min.js"></script>		

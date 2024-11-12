@@ -605,7 +605,22 @@ let _slideToggle = (target, duration = 500) => {
 	}
 }
 spollers();
-//CheckBox_RadioButton====================================================================================================================================================================================
+//Checkbox==========================================================================================================================
+if (document.querySelector('#checkboxbody')) { 
+	let checkBoxBodies = document.querySelectorAll('#checkboxbody');
+
+	checkBoxBodies.forEach(function (checkBoxBody) {
+        checkBoxBody.addEventListener('click', (e) => {
+
+        	if(e.target.closest('#checkbox')) {
+        		e.target.closest('#checkbox').classList.toggle('active'); 
+        	} 
+
+        });
+    });
+}
+
+//RadioButton====================================================================================================================================================================================
 if(document.querySelector('#radiobuttons')) {
 	let radioButtonsBodies = document.querySelectorAll('#radiobuttons');
 
@@ -618,15 +633,6 @@ if(document.querySelector('#radiobuttons')) {
         		});
         		e.target.closest('.radio').classList.add('active'); 
         	} 
-
-        	let inputs = radioButtonsBody.querySelectorAll('input');
-        	inputs.forEach(function (input, index) {
-        		if(input.checked) {
-        			console.log("checked " + index);
-        		} else {
-        			console.log("not checked " + index);
-        		}
-        	});
 
         });
     });
@@ -864,8 +870,6 @@ if(document.querySelector("#zoombody")) {
 		const zoomPlus = zoomBody.querySelector('#zoomplus');
 		const zoomMinus = zoomBody.querySelector('#zoomminus');
 		let zoomid = 1;
-		const evCache = [];
-		let prevDiff = -1;
 		
 		zoomBody.setAttribute('data-zoom-index', index);
 		
@@ -876,14 +880,6 @@ if(document.querySelector("#zoombody")) {
 	    zoomMinus.addEventListener("click", function () {
 	    	zoomMinusOut();
         });
-
-	    zoomImage.addEventListener('gesturechange',function(e){
-		    if(e.scale > 1) {
-		        console.log("zoom in");
-		    } else if(e.scale < 1) {
-		        console.log("zoom out");
-		    }
-		});
 
 		function removeEvent(event) {
 			const index = evCache.findIndex(
@@ -953,6 +949,74 @@ if(document.querySelector("#zoombody")) {
 		}
 	});
 }
+//Mobile_Zoom=============================================================================================================================================================================================================================
+if(document.querySelector("#zoombody")) {
+	document.querySelectorAll("#zoombody").forEach(function (zoomBody, index) {
+		const scaleElement = zoomBody.querySelector('#zoomimage');
+		const gestureArea = scaleElement.closest('#zoomimagebody');
+		var angleScale = {
+			angle: 0,
+			scale: 1
+		};
+		var resetTimeout;
+
+		interact(gestureArea)
+			.gesturable({
+			listeners: {
+				start (event) {
+					angleScale.angle -= event.angle;
+
+					clearTimeout(resetTimeout);
+					scaleElement.classList.remove('reset');
+				},
+				move (event) {
+			    	// document.body.appendChild(new Text(event.scale))
+			    	var currentAngle = event.angle + angleScale.angle;
+			    	var currentScale = event.scale * angleScale.scale;
+
+			    scaleElement.style.transform =
+					'rotate(' + currentAngle + 'deg)' + 'scale(' + currentScale + ')';
+
+			    	// uses the dragMoveListener from the draggable demo above
+			    	dragMoveListener(event);
+			  	},
+			  	end (event) {
+				    angleScale.angle = angleScale.angle + event.angle;
+				    angleScale.scale = angleScale.scale * event.scale;
+
+				    resetTimeout = setTimeout(reset, 1000);
+				    scaleElement.classList.add('reset');
+			  	}
+			}
+		})
+		.draggable({
+			listeners: { move: dragMoveListener }
+		});
+
+		function reset () {
+			scaleElement.style.transform = 'scale(1)';
+
+			angleScale.angle = 0;
+			angleScale.scale = 1;
+		}
+
+		function dragMoveListener (event) {
+			var target = event.target;
+			// keep the dragged position in the data-x/data-y attributes
+			var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+			var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+			// translate the element
+			target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+
+			// update the posiion attributes
+			target.setAttribute('data-x', x);
+			target.setAttribute('data-y', y);
+		}
+	});
+}
+
+
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
@@ -1182,103 +1246,192 @@ initSliders();
 //SVG_script==========================================================================================================================
 if(document.querySelector("#zoomimage")) {
 	const svgBody = document.querySelector("#zoomimage svg");
-	let paths = svgBody.querySelectorAll("path");
-	let areaFilter = document.querySelector("#area");
-
+	let filterBody = document.querySelector("#filterbody");
 	const parkingPopup = document.querySelector("#parkingpopup");
-	let popupNumber = parkingPopup.querySelector("#popupumber");
-	let popupPrice = parkingPopup.querySelector("#popupprice");
-	let popupArea = parkingPopup.querySelector("#popuparea");
-	let popupSize = parkingPopup.querySelector("#popupsize");
-
 	const parkingOrder = document.querySelector("#parkingorder");
-	let popupNumberOrder = parkingOrder.querySelector("#popupumber");
-	let popupPriceOrder = parkingOrder.querySelector("#popupprice");
-	let popupAreaOrder = parkingOrder.querySelector("#popuparea");
-	let popupSizeOrder = parkingOrder.querySelector("#popupsize");
+	const parkingPopupDis = document.querySelector("#parkingpopupdisable"); 
+	let areaPaths = new Array();
+	let familyPaths = new Array();
 
-	let fillStyle, opacityStyle;
+	filterBody.addEventListener("click", (e) => {
 
-	paths.forEach(function (path) {
-		const number = path.dataset.number;
-		const price = path.dataset.price;
-		const area = path.dataset.area;
-		let size;
-
-		switch (area) {
-			case "21.6":
-				size = "4,07 м х 5,3 м";
-				break;
-			case "15.37":
-				size = "2,9 м х 5,3 м";
-				break;
-			default:
-				size = "2,3 м х 5,3 м";
-		}
-		path.addEventListener("mouseover", (event) => {
-
-			parkingPopupActive(event, number, price, area, size);
-
-			fillStyle = path.style.fill;
-			opacityStyle = path.style.opacity;
-
-			path.style.fill = "#97C0E7";
-			path.style.opacity = 0.7;
-		});
-
-		path.addEventListener("click", function (e) {
-			popupOpen(parkingOrder);
-
-	  		popupNumberOrder.innerText = "№" + number;
-	  		popupPriceOrder.innerText = numberWithSpaces(price) + " ₽";
-	  		popupAreaOrder.innerText = area + " м²";
-	  		popupSizeOrder.innerText = size;
-	  		console.log(size);
-		});
-
-		path.addEventListener("mouseout", (event) => {
-			parkingPopupNotActive(path, fillStyle, opacityStyle);
-		});
-
-		path.addEventListener("mousewheel", (event) => {
-			parkingPopupNotActive(path, fillStyle, opacityStyle);
-		});
-	});
-
-	areaFilter.addEventListener("click", function (e) {
-		if(e.target.closest('div .active')) {
-			dataArea = e.target.closest('div .active').dataset.area;
-			paths.forEach(function (path) {
-				if(path.dataset.area == dataArea) {
-					path.style.fill = "#97C0E7";
-					path.style.stroke = "#131411";
-					path.style.opacity = 0.5;
+		//радио площади
+		if(e.target.closest("#area")) {
+			//нажат ли уже этот чекбокс семейного паркинга
+			if(filterBody.querySelector("#family").querySelector(".active")) { 
+				//выбран ли уже фильтр площади
+				if(e.target.closest("#area").querySelector(".active")) {
+					areaPaths = [];
+					svgBodyFilter();
+					familyPaths.forEach(function (familyPath) {
+						if(familyPath.dataset.area == e.target.closest('div .active').dataset.area && familyPath.dataset.status == "AVAILABLE") {
+							familyPath.setAttribute("data-filter", "filtered");
+						} else {
+							familyPath.setAttribute("data-filter", "disabled");
+						}
+					});
 				} else {
-					path.style.fill = "transparent";
-					path.style.stroke = "transparent";
+					svgBodyFilter();
+					familyPaths.forEach(function (familyPath) {
+						if(familyPath.dataset.area == e.target.closest('div .active').dataset.area && familyPath.dataset.status == "AVAILABLE") {
+							familyPath.setAttribute("data-filter", "filtered");
+						} else {
+							familyPath.setAttribute("data-filter", "disabled");
+						}
+					});
+				}
+			} else {
+				//выбран ли уже фильтр площади
+				if(e.target.closest("#area").querySelector(".active")) {
+					areaPaths = [];
+					svgBody.querySelectorAll("path").forEach(function (path) {
+						if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
+							path.setAttribute("data-filter", "filtered");
+							areaPaths.push(path);
+						} else {
+							path.setAttribute("data-filter", "disabled");
+						}
+					});
+				} else {
+					svgBody.querySelectorAll("path").forEach(function (path) {
+						if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
+							path.setAttribute("data-filter", "filtered");
+							areaPaths.push(path);
+						} else {
+							path.setAttribute("data-filter", "disabled");
+						}
+					});
+				}
+			}
+		}
+
+		//чекбокс семейного паркинга
+		if (e.target.closest("#family") && e.target.closest("#checkboxbody")) {
+			//нажат ли уже этот чекбокс
+			if(e.target.closest("#checkbox").classList.contains("active")) { 
+				//выбран ли уже фильтр площади
+				if (filterBody.querySelector("#area").querySelector(".active")) {
+					areaPaths.forEach(function (areaPath) {
+						if(areaPath.dataset.family && areaPath.dataset.status == "AVAILABLE") {
+							areaPath.setAttribute("data-filter", "filtered");
+						} else {
+							areaPath.setAttribute("data-filter", "disabled");
+						}
+					});
+				} else {
+					svgBody.querySelectorAll("path").forEach(function (path) {
+						if(path.dataset.family && path.dataset.status == "AVAILABLE") {
+							path.setAttribute("data-filter", "filtered");
+							familyPaths.push(path);
+						} else {
+							path.setAttribute("data-filter", "disabled");
+						}
+					});
+				} 
+			} else {
+				//выбран ли уже фильтр площади
+				if (filterBody.querySelector("#area").querySelector(".active")) {
+					areaPaths.forEach(function (areaPath) {
+						areaPath.setAttribute("data-filter", "filtered");
+					});
+				} else {
+					svgBody.querySelectorAll("path").forEach(function (path) {
+						path.removeAttribute("data-filter");
+					});
+				}
+			}
+		}
+
+		function svgBodyFilter() {
+			svgBody.querySelectorAll("path").forEach(function (path) {
+				if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
+					areaPaths.push(path);
 				}
 			});
 		}
+
 	});
 
-	function parkingPopupActive(event, number, price, area, size) {
+	svgBody.addEventListener("mouseover", (event) => {
+		if(event.target.tagName == "path") {
+			if (event.target.dataset.status == "AVAILABLE") {
+				if (event.target.dataset.filter != "disabled") {
+					const area = event.target.dataset.area;
+					const family = event.target.dataset.family;
+					let size;
+
+					switch (area) {
+						case "21.6":
+							size = "4,07 м х 5,3 м";
+							break;
+						case "13.25":
+							size = "2,3 м х 5,3 м";
+					}
+					parkingPopupActive(event, area, size);
+
+					event.target.setAttribute("data-engage", "mouseover");
+
+					event.target.addEventListener("mouseout", (event) => {
+						event.target.removeAttribute("data-engage");
+						parkingPopupNotActive();
+					});
+
+					event.target.addEventListener("mousewheel", (event) => {
+						event.target.removeAttribute("data-engage");
+						parkingPopupNotActive();
+					});
+
+					event.target.addEventListener("click", (event) => {
+						popupOpen(parkingOrder);
+
+				  		parkingOrder.querySelector("#popupumber").innerText = "№" + event.target.dataset.number;
+				  		parkingOrder.querySelector("#popupprice").innerText = numberWithSpaces(event.target.dataset.price) + " ₽";
+				  		parkingOrder.querySelector("#popuparea").innerText = area + " м²";
+				  		parkingOrder.querySelector("#popupsize").innerText = size;
+					});
+				} else {
+					event.target.setAttribute("data-status-enable", "disabled");
+				}
+			} else {
+				event.target.setAttribute("data-status-enable", "disabled");
+				parkingPopupDisabled(event);
+
+				event.target.addEventListener("mouseout", (event) => {
+					parkingPopupDis.classList.remove("active");
+				});
+
+				event.target.addEventListener("mousewheel", (event) => {
+					parkingPopupDis.classList.remove("active");
+				});
+			}
+		}
+	});
+
+	function parkingPopupDisabled(event) {
 		const x = event.clientX;
   		const y = event.clientY;
 
-  		popupNumber.innerText = "№" + number;
-  		popupPrice.innerText = numberWithSpaces(price) + " ₽";
-  		popupSize.innerText = size;
-  		popupArea.innerText = area + " м²";
+  		parkingPopupDis.style.left = x + "px";
+  		parkingPopupDis.style.top = y + "px";
+		parkingPopupDis.classList.add("active");
+	}
+
+	function parkingPopupActive(event, area, size) {
+		const x = event.clientX;
+  		const y = event.clientY;
+
+  		parkingPopup.querySelector("#popupumber").innerText = "№" + event.target.dataset.number;
+  		parkingPopup.querySelector("#popupprice").innerText = numberWithSpaces(event.target.dataset.price) + " ₽";
+  		parkingPopup.querySelector("#popuparea").innerText = area + " м²";
+  		parkingPopup.querySelector("#popupsize").innerText = size;
 
   		parkingPopup.style.left = x + "px";
   		parkingPopup.style.top = y + "px";
 		parkingPopup.classList.add("active");
 	}
 
-	function parkingPopupNotActive(path, fillStyle, opacityStyle) {
+	function parkingPopupNotActive() {
 		parkingPopup.classList.remove("active");
-		path.style.fill = fillStyle;
-		path.style.opacity = opacityStyle;
 	}
 }
 
