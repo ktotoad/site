@@ -908,7 +908,7 @@ if(document.querySelector("#zoombody")) {
         	} 
 	    }
 
-	    zoomImageBody.onmousedown = function(e) {
+	    /*zoomImageBody.onmousedown = function(e) {
 	    	if(zoomImageBody.classList.contains('active')) {
 				imageMove(e);
 			}
@@ -946,43 +946,35 @@ if(document.querySelector("#zoombody")) {
 				zoomImageBody.onmousemove = null;
 				zoomImage.onmouseup = null;
 			}
-		}
+		}*/
 	});
 }
 //Mobile_Zoom=============================================================================================================================================================================================================================
 if(document.querySelector("#zoombody")) {
 	document.querySelectorAll("#zoombody").forEach(function (zoomBody, index) {
 		const scaleElement = zoomBody.querySelector('#zoomimage');
-		const gestureArea = scaleElement.closest('#zoomimagebody');
-		var angleScale = {
-			angle: 0,
-			scale: 1
-		};
+		const gestureArea = scaleElement.closest('#gesture-area');
+		var scale = 5;
 		var resetTimeout;
 
 		interact(gestureArea)
 			.gesturable({
 			listeners: {
 				start (event) {
-					angleScale.angle -= event.angle;
-
 					clearTimeout(resetTimeout);
 					scaleElement.classList.remove('reset');
 				},
 				move (event) {
 			    	// document.body.appendChild(new Text(event.scale))
-			    	var currentAngle = event.angle + angleScale.angle;
-			    	var currentScale = event.scale * angleScale.scale;
+			    	var currentScale = event.scale * scale;
 
-			    scaleElement.style.transform =
-					'rotate(' + currentAngle + 'deg)' + 'scale(' + currentScale + ')';
+			    scaleElement.style.transform = 'scale(' + currentScale + ')';
 
 			    	// uses the dragMoveListener from the draggable demo above
 			    	dragMoveListener(event);
 			  	},
 			  	end (event) {
-				    angleScale.angle = angleScale.angle + event.angle;
-				    angleScale.scale = angleScale.scale * event.scale;
+				    angleScale.scale = scale * event.scale;
 
 				    resetTimeout = setTimeout(reset, 1000);
 				    scaleElement.classList.add('reset');
@@ -995,9 +987,7 @@ if(document.querySelector("#zoombody")) {
 
 		function reset () {
 			scaleElement.style.transform = 'scale(1)';
-
-			angleScale.angle = 0;
-			angleScale.scale = 1;
+			scale = 5;
 		}
 
 		function dragMoveListener (event) {
