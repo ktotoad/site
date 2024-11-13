@@ -1028,7 +1028,7 @@ function initSliders() {
 
 	if (document.querySelector('.resident-slider-thumb')) {
 		var residentthumbs = new Swiper('.resident-slider-thumb', {
-  		slidesPerView: 3,
+  		slidesPerView: thumbsSliderCount,
 			spaceBetween: 10,
 			parallax: true,
 			//autoHeight: true,
@@ -1086,15 +1086,6 @@ if(document.querySelector('#radiobuttons')) {
         		});
         		e.target.closest('.radio').classList.add('active'); 
         	} 
-
-        	let inputs = radioButtonsBody.querySelectorAll('input');
-        	inputs.forEach(function (input, index) {
-        		if(input.checked) {
-        			console.log("checked " + index);
-        		} else {
-        			console.log("not checked " + index);
-        		}
-        	});
 
         });
     });
@@ -1351,6 +1342,123 @@ if(document.querySelector("#togglebody")) {
         });
     });
 }
+//SVG_script==========================================================================================================================
+if(document.querySelector("#zoomimage")) {
+	const svgBody = document.querySelector("#zoomimage svg");
+	let filterBody = document.querySelector("#filterbody");
+	const parkingPopup = document.querySelector("#parkingpopup");
+	const parkingOrder = document.querySelector("#parkingorder");
+	const parkingPopupDis = document.querySelector("#parkingpopupdisable"); 
+
+	filterBody.addEventListener("click", (e) => {
+
+		//радио площади
+		if(e.target.closest("#area")) {
+			//выбран ли уже фильтр площади
+			if(e.target.closest("#area").querySelector(".active")) {
+				svgBody.querySelectorAll("path").forEach(function (path) {
+					if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
+						path.setAttribute("data-filter", "filtered");
+					} else {
+						path.setAttribute("data-filter", "disabled");
+					}
+				});
+			} else {
+				svgBody.querySelectorAll("path").forEach(function (path) {
+					if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
+						path.setAttribute("data-filter", "filtered");
+					} else {
+						path.setAttribute("data-filter", "disabled");
+					}
+				});
+			}
+		}
+
+	});
+
+	svgBody.addEventListener("mouseover", (event) => {
+		if(event.target.tagName == "path") {
+			if (event.target.dataset.status == "AVAILABLE") {
+				if (event.target.dataset.filter != "disabled") {
+					const area = event.target.dataset.area;
+					const family = event.target.dataset.family;
+					let size;
+
+					switch (area) {
+						case "21.6":
+							size = "4,07 м х 5,3 м";
+							break;
+						case "13.25":
+							size = "2,3 м х 5,3 м";
+					}
+					parkingPopupActive(event, area, size);
+
+					event.target.setAttribute("data-engage", "mouseover");
+
+					event.target.addEventListener("mouseout", (event) => {
+						event.target.removeAttribute("data-engage");
+						parkingPopupNotActive();
+					});
+
+					event.target.addEventListener("mousewheel", (event) => {
+						event.target.removeAttribute("data-engage");
+						parkingPopupNotActive();
+					});
+
+					event.target.addEventListener("click", (event) => {
+						popupOpen(parkingOrder);
+
+				  		parkingOrder.querySelector("#popupumber").innerText = "№" + event.target.dataset.number;
+				  		parkingOrder.querySelector("#popupprice").innerText = numberWithSpaces(event.target.dataset.price) + " ₽";
+				  		parkingOrder.querySelector("#popuparea").innerText = area + " м²";
+				  		parkingOrder.querySelector("#popupsize").innerText = size;
+					});
+				} else {
+					event.target.setAttribute("data-status-enable", "disabled");
+				}
+			} else {
+				event.target.setAttribute("data-status-enable", "disabled");
+				parkingPopupDisabled(event);
+
+				event.target.addEventListener("mouseout", (event) => {
+					parkingPopupDis.classList.remove("active");
+				});
+
+				event.target.addEventListener("mousewheel", (event) => {
+					parkingPopupDis.classList.remove("active");
+				});
+			}
+		}
+	});
+
+	function parkingPopupDisabled(event) {
+		const x = event.clientX;
+  		const y = event.clientY;
+
+  		parkingPopupDis.style.left = x + "px";
+  		parkingPopupDis.style.top = y + "px";
+		parkingPopupDis.classList.add("active");
+	}
+
+	function parkingPopupActive(event, area, size) {
+		const x = event.clientX;
+  		const y = event.clientY;
+
+  		parkingPopup.querySelector("#popupumber").innerText = "№" + event.target.dataset.number;
+  		parkingPopup.querySelector("#popupprice").innerText = numberWithSpaces(event.target.dataset.price) + " ₽";
+  		parkingPopup.querySelector("#popuparea").innerText = area + " м²";
+  		parkingPopup.querySelector("#popupsize").innerText = size;
+
+  		parkingPopup.style.left = x + "px";
+  		parkingPopup.style.top = y + "px";
+		parkingPopup.classList.add("active");
+	}
+
+	function parkingPopupNotActive() {
+		parkingPopup.classList.remove("active");
+	}
+}
+
 //Zoom_Image============================================================================================================================================
 if(document.querySelector("#zoombody")) {
 	document.querySelectorAll("#zoombody").forEach(function (zoomBody, index) {
@@ -1363,16 +1471,31 @@ if(document.querySelector("#zoombody")) {
 		zoomBody.setAttribute('data-zoom-index', index);
 		
 		zoomPlus.addEventListener("click", function () {
-			if(zoomid < 2) {
-	        	zoomid = zoomid + 0.2;
-	        	zoomImage.style.transform = `scale(${zoomid})`;
-	        	zoomImageBody.classList.add('active');
-	        }
+			zoomPlusIn();
         });
 
 	    zoomMinus.addEventListener("click", function () {
+	    	zoomMinusOut();
+        });
+
+		function removeEvent(event) {
+			const index = evCache.findIndex(
+				(cachedEv) => cachedEv.pointerId === event.pointerId,
+			);
+			evCache.splice(index, 1);
+		}
+
+	    function zoomPlusIn() {
+	    	if(zoomid < 4) {
+	        	zoomid = zoomid + 0.5;
+	        	zoomImage.style.transform = `scale(${zoomid})`;
+	        	zoomImageBody.classList.add('active');
+	        }
+	    }
+
+	    function zoomMinusOut() {
 	    	if(zoomid > 1) {
-	        	zoomid = zoomid - 0.2;
+	        	zoomid = zoomid - 0.5;
 	        	zoomImage.style.transform = `scale(${zoomid})`;
 	        	if(zoomid == 1) {
         			zoomImageBody.classList.remove('active');
@@ -1380,50 +1503,97 @@ if(document.querySelector("#zoombody")) {
 					zoomImage.style.removeProperty('top');
 	        	}
         	} 
-        });
+	    }
 
-	    zoomImageBody.onmousedown = function(e) {
+	    /*zoomImageBody.onmousedown = function(e) {
 	    	if(zoomImageBody.classList.contains('active')) {
-				//координаты мыши
-				const rect = zoomImageBody.getBoundingClientRect();
-				let mouseX = e.clientX - rect.left;
-				let mouseY = e.clientY - rect.top;
-				//moveAt(e);
-				console.log("mouse down");
-
-				zoomImageBody.onmousemove = function(e) {
-					moveAt(e);
-					console.log("move");
-				}
-
-				zoomImage.ondragstart = function() {
-					return false;
-					console.log("drag");
-				}
-
-				zoomImage.onmouseup = function() {
-					moveEnd();
-					console.log("up");
-				}
-
-				zoomImage.onmousewheel = function() {
-					moveEnd();
-					console.log("wheel");
-				} 
-
-				function moveAt(e) {
-					zoomImage.style.left = e.clientX - rect.left - mouseX + 'px';
-					zoomImage.style.top = e.clientY - rect.top - mouseY + 'px';
-					console.log("move at");
-
-					//console.log(e.clientX + " " + rect.left + " " + rect.right + " " + zoomImage.style.left + " " + index);
-				}
-
-				function moveEnd() {
-					zoomImageBody.onmousemove = null;
-					zoomImage.onmouseup = null;
-				}
+				imageMove(e);
 			}
 		}
+
+		function imageMove(e) {
+			const rect = zoomImageBody.getBoundingClientRect();
+			let mouseX = e.clientX - rect.left;
+			let mouseY = e.clientY - rect.top;
+
+			zoomImageBody.onmousemove = function(e) {
+				moveAt(e);
+			}
+
+			zoomImage.ondragstart = function() {
+				return false;
+			}
+
+			zoomImage.onmouseup = function() {
+				moveEnd();
+			}
+
+			zoomImage.onmousewheel = function() {
+				moveEnd();
+			} 
+
+			function moveAt(e) {
+				zoomImage.style.left = e.clientX - rect.left - mouseX + 'px';
+				zoomImage.style.top = e.clientY - rect.top - mouseY + 'px';
+
+				//console.log(e.clientX + " " + rect.left + " " + rect.right + " " + zoomImage.style.left + " " + index);
+			}
+
+			function moveEnd() {
+				zoomImageBody.onmousemove = null;
+				zoomImage.onmouseup = null;
+			}
+		}*/
 	});
+}
+//Mobile_Zoom=============================================================================================================================================================================================================================
+if(document.querySelector("#zoombody")) {
+	document.querySelectorAll("#zoombody").forEach(function (zoomBody, index) {
+		const scaleElement = zoomBody.querySelector('#zoomimage');
+		const gestureArea = scaleElement.closest('#gesture-area');
+		var scale = 1;
+		var resetTimeout;
+
+		interact(gestureArea)
+			.gesturable({
+				listeners: {
+					move (event) {
+				    	var currentScale = event.scale * scale;
+
+				    	scaleElement.style.transform = 'scale(' + currentScale + ')';
+
+				    	dragMoveListener(event);
+				  	},
+				  	end (event) {
+					    scale = scale * event.scale;
+				  	}
+				}
+			})
+			.draggable({
+				listeners: { move: dragMoveListener }
+		});
+
+		function dragMoveListener (event) {
+			var target = event.target;
+			var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+			var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+			target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+
+			target.setAttribute('data-x', x);
+			target.setAttribute('data-y', y);
+		}
+	});
+}
+
+
+//price_spaces================================================================================================================================
+if (document.querySelectorAll(".js_price")) {
+  function numberWithSpaces(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  }
+  let js_prices = document.querySelectorAll(".js_price");
+  js_prices.forEach((js_price) => {
+      js_price.textContent = numberWithSpaces(js_price.textContent);
+  })
 }
