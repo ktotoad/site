@@ -960,10 +960,10 @@ if(document.querySelector("#zoombody")) {
 		interact(gestureArea)
 			.gesturable({
 				listeners: {
-					/*start (event) {
+					start (event) {
 						clearTimeout(resetTimeout);
 						scaleElement.classList.remove('reset');
-					},*/
+					},
 					move (event) {
 				    	var currentScale = event.scale * scale;
 
@@ -971,12 +971,12 @@ if(document.querySelector("#zoombody")) {
 
 				    	dragMoveListener(event);
 				  	},
-				  	/*end (event) {
+				  	end (event) {
 					    scale = scale * event.scale;
 
 					    resetTimeout = setTimeout(reset, 1000);
 					    scaleElement.classList.add('reset');
-				  	}*/
+				  	}
 				}
 			})
 			.draggable({
@@ -1242,88 +1242,51 @@ if(document.querySelector("#zoomimage")) {
 
 		//радио площади
 		if(e.target.closest("#area")) {
-			//нажат ли уже этот чекбокс семейного паркинга
+			//снимаем чекбокс семейного паркинга
 			if(filterBody.querySelector("#family").querySelector(".active")) { 
-				//выбран ли уже фильтр площади
-				if(e.target.closest("#area").querySelector(".active")) {
-					areaPaths = [];
-					svgBodyFilter();
-					familyPaths.forEach(function (familyPath) {
-						if(familyPath.dataset.area == e.target.closest('div .active').dataset.area && familyPath.dataset.status == "AVAILABLE") {
-							familyPath.setAttribute("data-filter", "filtered");
-						} else {
-							familyPath.setAttribute("data-filter", "disabled");
-						}
-					});
-				} else {
-					svgBodyFilter();
-					familyPaths.forEach(function (familyPath) {
-						if(familyPath.dataset.area == e.target.closest('div .active').dataset.area && familyPath.dataset.status == "AVAILABLE") {
-							familyPath.setAttribute("data-filter", "filtered");
-						} else {
-							familyPath.setAttribute("data-filter", "disabled");
-						}
-					});
-				}
+				filterBody.querySelector("#family").querySelector(".active").querySelector("input").checked = false;
+				filterBody.querySelector("#family").querySelector(".active").classList.toggle('active');
+			}
+			//выбран ли уже фильтр площади
+			if(e.target.closest("#area").querySelector(".active")) {
+				svgBody.querySelectorAll("path").forEach(function (path) {
+					if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
+						path.setAttribute("data-filter", "filtered");
+					} else {
+						path.setAttribute("data-filter", "disabled");
+					}
+				});
 			} else {
-				//выбран ли уже фильтр площади
-				if(e.target.closest("#area").querySelector(".active")) {
-					areaPaths = [];
-					svgBody.querySelectorAll("path").forEach(function (path) {
-						if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
-							path.setAttribute("data-filter", "filtered");
-							areaPaths.push(path);
-						} else {
-							path.setAttribute("data-filter", "disabled");
-						}
-					});
-				} else {
-					svgBody.querySelectorAll("path").forEach(function (path) {
-						if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
-							path.setAttribute("data-filter", "filtered");
-							areaPaths.push(path);
-						} else {
-							path.setAttribute("data-filter", "disabled");
-						}
-					});
-				}
+				svgBody.querySelectorAll("path").forEach(function (path) {
+					if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
+						path.setAttribute("data-filter", "filtered");
+					} else {
+						path.setAttribute("data-filter", "disabled");
+					}
+				});
 			}
 		}
 
 		//чекбокс семейного паркинга
 		if (e.target.closest("#family") && e.target.closest("#checkboxbody")) {
+			//снимаем фильтр площади
+			if(filterBody.querySelector("#area").querySelector(".active")) { 
+				filterBody.querySelector("#area").querySelector(".active").querySelector("input").checked = false;
+				filterBody.querySelector("#area").querySelector(".active").classList.toggle('active');
+			}
 			//нажат ли уже этот чекбокс
-			if(e.target.closest("#checkbox").classList.contains("active")) { 
-				//выбран ли уже фильтр площади
-				if (filterBody.querySelector("#area").querySelector(".active")) {
-					areaPaths.forEach(function (areaPath) {
-						if(areaPath.dataset.family && areaPath.dataset.status == "AVAILABLE") {
-							areaPath.setAttribute("data-filter", "filtered");
-						} else {
-							areaPath.setAttribute("data-filter", "disabled");
-						}
-					});
-				} else {
-					svgBody.querySelectorAll("path").forEach(function (path) {
-						if(path.dataset.family && path.dataset.status == "AVAILABLE") {
-							path.setAttribute("data-filter", "filtered");
-							familyPaths.push(path);
-						} else {
-							path.setAttribute("data-filter", "disabled");
-						}
-					});
-				} 
+			if(e.target.closest("#checkbox").classList.contains("active")) {
+				svgBody.querySelectorAll("path").forEach(function (path) {
+					if(path.dataset.family && path.dataset.status == "AVAILABLE") {
+						path.setAttribute("data-filter", "filtered");
+					} else {
+						path.setAttribute("data-filter", "disabled");
+					}
+				});
 			} else {
-				//выбран ли уже фильтр площади
-				if (filterBody.querySelector("#area").querySelector(".active")) {
-					areaPaths.forEach(function (areaPath) {
-						areaPath.setAttribute("data-filter", "filtered");
-					});
-				} else {
-					svgBody.querySelectorAll("path").forEach(function (path) {
-						path.removeAttribute("data-filter");
-					});
-				}
+				svgBody.querySelectorAll("path").forEach(function (path) {
+					path.removeAttribute("data-filter");
+				});
 			}
 		}
 
