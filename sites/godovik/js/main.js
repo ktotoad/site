@@ -405,6 +405,15 @@ function bodyUnLock() {
 		unlock = true;
 	}, timeout);
 }
+//poputext====================================================================================================================================
+function popupTextBook() {
+	document.querySelector("#popup").querySelector("#popuptitle span").innerText = 'подтверждение бронирования';
+	document.querySelector("#popup").querySelector("#popuptext").innerHTML = 'Оставьте свои контактные данные <br> и мы свяжемся для уточнения деталей бронирования';
+}
+function popupTextMain() {
+	document.querySelector("#popup").querySelector("#popuptitle span").innerText = 'Остались вопросы?';
+	document.querySelector("#popup").querySelector("#popuptext").innerHTML = 'Оставьте свои контактные данные <br>и мы подробно ответим на все. И расскажем еще больше!';
+}
 
 //price_spaces================================================================================================================================
 if (document.querySelectorAll(".js_price")) {
@@ -1184,10 +1193,10 @@ function initSliders() {
 			parallax: true,
 			//loop: true,
 			autoHeight: true,
-			autoplay: {
-				delay: 3000,
-				disableOnInteraction: false,
-			},
+			//autoplay: {
+			//	delay: 3000,
+			//	disableOnInteraction: false,
+			//},
 			speed: 800,
 			breakpoints: {
 				320: {

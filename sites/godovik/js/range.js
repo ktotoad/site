@@ -73,12 +73,12 @@ if (document.querySelector("#range-slider-price")) {
     const inputs = [inputMin, inputMax]; 
 
     noUiSlider.create(slider, {
-        start: [1000000, 20000000],
+        start: [1000000, 25000000],
         connect: true,
         step: 100,
         range: {
             'min': 1000000,
-            'max': 20000000
+            'max': 25000000
         }
     });
 
