@@ -1,10 +1,32 @@
 
-/*Content_download================================================================================*/
+/*Loading================================================================================*/
 let wrapper = document.querySelector('.wrapper');
-window.addEventListener('load', (event) => {
-	wrapper.classList.add('loaded');
-});
 
+if (document.querySelector(".preloader")) {
+    let loader = document.querySelector('.preloader'),
+        body = document.querySelector("body");
+    
+    body.classList.add("lock");
+
+    setTimeout(() => {
+        body.classList.remove("lock");
+    }, 3e3),
+    setTimeout(() => {
+        loader.classList.add("hidden");
+    }, 3e3),
+    (function (body, loader) {
+        let loading = 0,
+        i = setInterval(() => {
+            (document.querySelector(".preloader-body__line").style.width = ++loading + "%");
+        }, 27);
+    })();
+
+    wrapper.classList.add('loaded');
+} else {
+    window.addEventListener('load', function () {
+        wrapper.classList.add('loaded');
+    });
+}
 //burger=====================================================================================================================================================
 if (document.querySelector('.icon-menu')) {
 	const iconSubmenu = document.querySelector('.icon-menu');
@@ -493,8 +515,26 @@ if (document.querySelector('#slidesmain')) {
 //Scroll=====================================================================================================================================================
 if(document.querySelector("#waterbody")) {
 	const pos = document.querySelector("#waterbody");
+	let x, y;
+
 	pos.addEventListener("mousemove", e => {
-		pos.style.setProperty('--x', e.clientX + "px");
-		pos.style.setProperty('--y', e.clientY + "px");
-	})
+		x = e.clientX + "px";
+		y = e.clientY + "px";
+		moveCircle(x, y);
+		console.log("mousemove");
+		console.log(y + "|" + e.clientY);
+	});
+
+	pos.addEventListener("wheel", e => {
+		x = e.clientX + e.deltaX + "px";
+		y = e.clientY + e.deltaY + "px";
+		moveCircle(x, y);
+		console.log("wheel");
+		console.log(y + "|" + e.clientY);
+	});
+
+	function moveCircle(x, y) {
+		pos.style.setProperty('--x', x);
+		pos.style.setProperty('--y', y);
+	}
 }
