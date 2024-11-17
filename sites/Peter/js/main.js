@@ -966,10 +966,10 @@ function initSliders() {
 			parallax: true,
 			//loop: true,
 			autoHeight: true,
-			autoplay: {
-				delay: 3000,
-				disableOnInteraction: false,
-			},
+			//autoplay: {
+			//	delay: 3000,
+			//	disableOnInteraction: false,
+			//},
 			speed: 800,
 			breakpoints: {
 				320: {
@@ -1343,8 +1343,8 @@ if(document.querySelector("#togglebody")) {
     });
 }
 //SVG_script==========================================================================================================================
-if(document.querySelector("#zoomimage")) {
-	const svgBody = document.querySelector("#zoomimage svg");
+if(document.querySelector("#zoomimagetabs")) {
+	const svgBody = document.querySelector("#zoomimagetabs");
 	let filterBody = document.querySelector("#filterbody");
 	const parkingPopup = document.querySelector("#parkingpopup");
 	const parkingOrder = document.querySelector("#parkingorder");
