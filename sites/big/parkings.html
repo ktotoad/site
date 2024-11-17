@@ -41,70 +41,123 @@
 								<h2 class="parkingplaces-page__title title">МАШИНОМЕСТА</h2>
 							</div>
 							<div class="parkingplaces-page__body">
-								<div class="parkingplaces-page__filter parking-filter">
+								<div id="filterbody" class="parkingplaces-page__filter parking-filter">
 									<div class="parking-filter__body">
 										<div class="parking-filter__items">
-											<div class="parking-filter__item">
-												<h5 class="parking-filter__title">Номер дома:</h5>
-												<div class="parking-filter__buttons">
-													<div class="parking-filter__radio radio">
-														<span>Авторы на Большой: 62</span>
-														<input name="radio_n" value="62" type="radio">
-													</div>
-													<div class="parking-filter__radio radio">
-														<span>Авторы на Большой: 76</span>
-														<input name="radio_n" value="76" type="radio">
-													</div>
-												</div>
-											</div>
-											<div class="parking-filter__item">
+											<div id="area" class="parking-filter__item">
 												<h5 class="parking-filter__title">Площадь места:</h5>
-												<div class="parking-filter__buttons">
-													<div class="parking-filter__radio radio">
-														<span>13,25 м²</span>
+												<div id="radiobuttons" class="parking-filter__buttons radio__buttons">
+													<div data-area="13.25" class="parking-filter__radio radio">
+														<p>13,25 м²</p>
 														<input name="radio_s" value="13" type="radio">
 													</div>
-													<div class="parking-filter__radio radio">
-														<span>15,37 м²</span>
-														<input name="radio_s" value="15" type="radio">
-													</div>
-													<div class="parking-filter__radio radio">
-														<span>21,6 м²</span>
+													<div data-area="21.6" class="parking-filter__radio radio">
+														<p>21,6 м²</p>
 														<input name="radio_s" value="21" type="radio">
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>	
+								</div>		
 								<div class="parkingplaces-page__image-block image-parkingplaces">
-									<div id="togglebody" class="parking-filter__toggle toggle-filter">
+									<div id="togglebody" class="parking-filter__toggle toggle-filter" style="display: none;">
 										<h5 class="parking-filter__title">Показать размеры:</h5>
 										<div id="toggle" class="toggle-filter__button">
 											<span></span>
 										</div>
 									</div>
-									<div id="zoombody" class="image-parkingplaces__body">
-										<div class="image-parkingplaces__image">
-											<img id="zoomimage" src="./img/parking/plan.png" alt="">
-											<a href="#order" class="parking-popup-button parkingplace1 popup-link">
-												<div id="parkingplace1" class="parking-popup">
-													<div class="parking-popup__body">
-														<p class="parking-popup__title">№11</p>
-														<div class="parking-popup__column">
-															<p class="parking-popup__text_b">15,37 м²</p>
-															<p class="parking-popup__text">2,3 м x 5,3 м</p>
-															<p class="parking-popup__price">2 400 000 ₽</p>
+									<div data-tabs class="image-parkingplaces__tabs">
+										<nav data-tabs-titles class="image-parkingplaces__navigation">
+											<button type="button" class="image-parkingplaces__tab-button _tab-active" data-tabs-title><span>Авторы на Большой: 62</span></button>
+											<button type="button" class="image-parkingplaces__tab-button" data-tabs-title><span>Авторы на Большой: 76</span></button>
+										</nav>
+										<div id="zoomimagetabs" data-tabs-body class="tabs__content">
+											<div data-tabs-item  class="tabs__body">
+												<div id="zoombody" class="image-parkingplaces__body">
+													<div id="zoomimagebody" class="image-parkingplaces__image-block image-parkingplaces__image-block_1">
+														<div id="gesture-area" class="image-parkingplaces__gesture-area">
+															<div id="zoomimage" class="image-parkingplaces__image">
+																<img src="./img/parking/floor1.png" alt=""> 
+																<svg width="2268" height="2268" viewBox="0 0 2268 2268" xmlns="http://www.w3.org/2000/svg">
+																	<path d="M1994 133.03125 1994 377.03125 2146 377.03125 2146 133.03125Z" data-number="10" data-price="2900000" data-area="21.6" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M868 769.03125 868 1029.03125 1026 1029.03125 1026 769.03125Z" data-number="11" data-price="2900000" data-area="21.6" data-status="BOOKED" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1996 649.03125 1996 905.03125 2148 905.03125 2148 649.03125Z" data-number="12" data-price="2900000" data-area="21.6" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M409.33332824707 256.02084350586 411.33332824707 490.02084350586 519.33332824707 488.02084350586 520.33332824707 259.02084350586Z" data-number="1" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M556.33332824707 258.02081298828 556.33332824707 490.02081298828 667.33332824707 490.02081298828 664.33332824707 259.02081298828Z" data-number="2" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M813.33332824707 263.02081298828 816.33332824707 498.02081298828 924.33332824707 496.02081298828 921.33332824707 264.02081298828Z" data-number="4" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M771.33332824707 484.02081298828 667.33332824707 490.02081298828 664.33332824707 259.02081298828 771.33332824707 260.02081298828Z" data-number="3" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1370 151.03125 1372 383.03125 1482 381.03125 1480 153.03125Z" data-number="5" data-price="2500000" data-area="13.25" data-status="BOOKED" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1584 377.03125 1482 381.03125 1480 153.03125 1586 153.03125Z" data-number="6" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1638 153.03125 1638 379.03125 1746 379.03125 1746 155.03125Z" data-number="7" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1852 381.03125 1746 379.03125 1746 155.03125 1856 153.03125Z" data-number="8" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1886 155.03125 1886 387.03125 1992 387.03125 1994 157.03125Z" data-number="9" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M452 1343.03125 454 1457.03125 680 1455.03125 680 1349.03125Z" data-number="13" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M454 1457.03125 454 1563.03125 680 1563.03125 680 1455.03125Z" data-number="14" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M690 1087.03125 690 1321.03125 798 1321.03125 798 1093.03125Z" data-number="15" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M840 1051.03125 840 1283.03125 952 1283.03125 952 1053.03125Z" data-number="16" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1054 1277.03125 1054 1053.03125 952 1053.03125 952 1279.03125Z" data-number="17" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1104 1051.03125 1104 1279.03125 1214 1279.03125 1214 1051.03125Z" data-number="18" data-price="2500000" data-area="13.25" data-status="SOLD" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1316 1277.03125 1316 1053.03125 1214 1053.03125 1214 1279.03125Z" data-number="19" data-price="2500000" data-area="13.25" data-status="SOLD" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M948 1563.03125 1058 1563.03125 1058 1793.03125 948 1793.03125Z" data-number="20" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1170 1565.03125 1170 1793.03125 1070 1793.03125 1070 1567.03125Z" data-number="21" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1222 1565.03125 1332 1565.03125 1332 1791.03125 1220 1791.03125Z" data-number="22" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1436 1561.03125 1436 1793.03125 1332 1793.03125 1332 1565.03125Z" data-number="23" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																</svg>
+															</div>
 														</div>
 													</div>
+													<div class="image-parkingplaces__zoom zoom-body">
+														<button type="button" id="zoomplus" class="zoom-body__button_plus">+</button>
+														<button type="button" id="zoomminus" class="zoom-body__button_minus">-</button>
+													</div>
 												</div>
-											</a>
-										</div>
-										<div class="image-parkingplaces__zoom zoom-body">
-											<button type="button" id="zoomplus" class="zoom-body__button_plus">+</button>
-											<button type="button" id="zoomminus" class="zoom-body__button_minus">-</button>
-										</div>
-									</div>
+											</div>
+											<div data-tabs-item  class="tabs__body">
+												<div id="zoombody" class="image-parkingplaces__body">
+													<div id="zoomimagebody" class="image-parkingplaces__image-block image-parkingplaces__image-block_2">
+														<div id="gesture-area" class="image-parkingplaces__gesture-area">
+															<div id="zoomimage" class="image-parkingplaces__image">
+																<img src="./img/parking/floor2.png" alt=""> 
+																<svg width="2976" height="2268" viewBox="0 0 2976 2268" xmlns="http://www.w3.org/2000/svg">
+																	<path d="M1090 237 1092 540 1234 539 1233 239Z" data-number="24" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1234 539 1375 539 1375 237.296875 1233 237.296875Z" data-number="25" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1438 237.03125 1438 539.03125 1582 539.03125 1582 235.03125Z" data-number="26" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1582 545.03125 1722 539.03125 1722 239.03125 1582 239.03125Z" data-number="27" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M738 821.03125 738 1121.03125 882 1121.03125 882 821.03125Z" data-number="28" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M882 1121.03125 1022 1121.03125 1022 821.03125 882 821.03125Z" data-number="29" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1090 1147.03125 1234 1147.03125 1234 849.03125 1092 849.03125Z" data-number="30" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1234 1147.03125 1374 1147.03125 1374 851.03125 1234 851.03125Z" data-number="31" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1410 1145.03125 1552 1145.03125 1552 847.03125 1408 847.03125Z" data-number="32" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1690 1147.03125 1690 849.03125 1552 849.03125 1552 1145.03125Z" data-number="33" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1770 1147.03125 1914 1147.03125 1914 849.03125 1770 849.03125Z" data-number="34" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1246 1447.03125 1388 1447.03125 1388 1149.03125 1246 1149.03125Z" data-number="35" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1388 1447.03125 1528 1447.03125 1528 1151.03125 1388 1151.03125Z" data-number="36" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1600 1445.03125 1742 1445.03125 1742 1151.03125 1598 1151.03125Z" data-number="37" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1882 1443.03125 1882 1149.03125 1742 1149.03125 1742 1445.03125Z" data-number="38" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M366 1799.03125 366 2103.03125 510 2103.03125 510 1803.03125Z" data-number="39" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M550 1801.03125 550 2101.03125 692 2101.03125 692 1801.03125Z" data-number="40" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M832 1799.03125 832 2099.03125 692 2099.03125 692 1801.03125Z" data-number="41" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M902 1801.03125 1044 1801.03125 1044 2101.03125 900 2101.03125Z" data-number="42" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1184 1799.03125 1184 2103.03125 1044 2103.03125 1044 1801.03125Z" data-number="43" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1254 1799.03125 1398 1799.03125 1398 2099.03125 1254 2099.03125Z" data-number="44" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1536 1801.03125 1536 2101.03125 1398 2101.03125 1398 1799.03125Z" data-number="45" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1602 1799.03125 1748 1799.03125 1748 2101.03125 1606 2101.03125Z" data-number="46" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1888 1797.03125 1888 2103.03125 1748 2103.03125 1748 1799.03125Z" data-number="47" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M1942 1797.03125 1942 2101.03125 2082 2101.03125 2082 1803.03125Z" data-number="48" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																	<path d="M2224 1799.03125 2224 2101.03125 2082 2101.03125 2082 1803.03125Z" data-number="49" data-price="2500000" data-area="13.25" data-status="AVAILABLE" data-family="" fill="transparent" stroke-width="4" stroke="transparent"></path>
+																</svg>
+															</div>
+														</div>
+													</div>
+													<div class="image-parkingplaces__zoom zoom-body">
+														<button type="button" id="zoomplus" class="zoom-body__button_plus">+</button>
+														<button type="button" id="zoomminus" class="zoom-body__button_minus">-</button>
+													</div>
+												</div>
+											</div>
+										</div>	
+									</div>								
 								</div>
 							</div>
 						</div>
@@ -315,7 +368,24 @@
 			</div>	
 		</div>
 	</div>
-</footer><div id="order" aria-hidden="true" class="popup popup-order">
+</footer><div id="parkingpopup" class="parking-popup">
+	<div class="parking-popup__body">
+		<p id="popupumber" class="parking-popup__title"></p>
+		<div class="parking-popup__column">
+			<p id="popuparea" class="parking-popup__text_b"></p>
+			<p id="popupsize" class="parking-popup__text"></p>
+			<p id="popupprice" class="parking-popup__price"></p>
+		</div>
+	</div>
+</div>
+
+<div id="parkingpopupdisable" class="parking-popup">
+	<div class="parking-popup__body">
+		<p class="parking-popup__text_b">НЕ В ПРОДАЖЕ</p>
+	</div>
+</div>
+
+<div id="parkingorder" aria-hidden="true" class="popup popup-order">
 	<div class="popup__content parking-order-page">
 		<div class="popup__header">
 			<button data-close type="button" class="popup__close close-popup"><span></span></button>
@@ -327,17 +397,17 @@
 					<p class="item-parking-order__title">номер дома</p>
 				</div>
 				<div class="parking-order-page__item item-parking-order">
-					<p class="item-parking-order__info">15,37 м²</p>
-					<p class="item-parking-order__title">площадь</p>
+					<p id="popupumber" class="item-parking-order__info"></p>
+					<p class="item-parking-order__title">номер машиноместа</p>
 				</div>
 			</div>
 			<div class="parking-order-page__items">
 				<div class="parking-order-page__item item-parking-order">
-					<p class="item-parking-order__info">11</p>
-					<p class="item-parking-order__title">номер машиноместа</p>
+					<p id="popuparea" class="item-parking-order__info"></p>
+					<p class="item-parking-order__title">площадь</p>
 				</div>
 				<div class="parking-order-page__item item-parking-order">
-					<p class="item-parking-order__info">2,3 м х 5,3 м</p>
+					<p id="popupsize" class="item-parking-order__info"></p>
 					<p class="item-parking-order__title">размеры</p>
 				</div>
 			</div>	
@@ -345,9 +415,9 @@
 				<img src="./img/parking/car.svg" alt="">
 			</div>				
 			<div class="parking-order-page__block">
-				<p class="parking-order-page__price">2 400 000 ₽</p>
+				<p id="popupprice" class="parking-order-page__price"></p>
 				<p class="parking-order-page__text">стоимость</p>
-				<a href="#popup" class="parking-order-page__button button-main popup-link"><span>Забронировать</span></a>
+				<a href="#popup" class="parking-order-page__button button-white popup-link"><span>Забронировать</span></a>
 			</div>
 		</div>
 	</div>	
@@ -359,6 +429,7 @@
 <script src="js/swiper-bundle.min.js"></script>	
 <script src="js/pano2vr_player.js"></script>
 <script src="js/skin.js"></script>
+<script src="js/interact.min.js"></script>
 <script src="js/main.js"></script>	
 	</body>
 </html>
