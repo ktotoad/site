@@ -717,9 +717,26 @@ textarea.input {
   color: var(--blue);
   margin-bottom: 1em;
 }
+.popup__text span {
+  color: var(--blue);
+}
 .popup__buttons-block {
   position: relative;
   z-index: 5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
 }
 .popup__link-text {
   margin-top: 2em;
@@ -750,6 +767,10 @@ textarea.input {
 }
 .popup__button {
   margin-top: 2em;
+  font-size: 1.4em;
+}
+.popup__button.button-white {
+  border: 1px solid var(--blue);
 }
 .popup__bg {
   position: absolute;
@@ -826,6 +847,7 @@ textarea.input {
 .header {
   background: var(--white);
   position: relative;
+  z-index: 20;
   padding: 2em 0;
 }
 @media (max-width: 991.98px) {
@@ -1045,7 +1067,7 @@ textarea.input {
   color: var(--white);
   background: var(--blue);
 }
-@media (max-width: 479.98px) {
+@media (max-width: 767.98px) {
   .lk-page__wrap, .lk-page__wrap-info {
     padding: 3em;
   }
@@ -1054,6 +1076,9 @@ textarea.input {
   border: 3px solid var(--white);
 }
 .lk-page__button-exit {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1501,6 +1526,19 @@ textarea.input {
   opacity: 0;
   cursor: pointer;
 }
+.info-lk__buttons {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 1rem 1fr;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+}
+@media (max-width: 479.98px) {
+  .info-lk__buttons {
+    -ms-grid-columns: 1fr;
+    grid-template-columns: 1fr;
+  }
+}
 .info-lk__button {
   width: 100%;
 }
@@ -1528,24 +1566,25 @@ textarea.input {
 /*olympic*/
 .tablet-olympic {
   width: 100%;
+  overflow-x: auto;
 }
-.tablet-olympic__main {
+.tablet-olympic__body {
   width: 100%;
 }
-.tablet-olympic__row, .tablet-olympic__row-full {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1rem 1fr 1rem 1fr 1rem 1fr 1rem 1fr 1rem 1fr 1rem 1fr;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 1rem;
-  border-bottom: 1px solid var(--white);
+.tablet-olympic__body tr {
+  position: relative;
 }
-.tablet-olympic__row-full {
-  -ms-grid-columns: 1fr 6fr;
-  grid-template-columns: 1fr 6fr;
+.tablet-olympic__body tr::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background: var(--white);
 }
 .tablet-olympic__item, .tablet-olympic__item-full {
-  padding: 2em 0;
+  padding: 2.5em 0.5em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1555,6 +1594,7 @@ textarea.input {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  text-align: center;
 }
 .tablet-olympic__item .decore, .tablet-olympic__item-full .decore {
   color: var(--blue);
@@ -1615,4 +1655,52 @@ textarea.input {
 .tablet-olympic__link-grad span {
   text-decoration: underline;
   text-underline-position: under;
+}
+
+/*team*/
+.lk-team__input-block {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin-top: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+  text-align: center;
+  padding: 1.5em 2.5rem;
+  border-radius: 8.2em;
+  border: 1px solid var(--white);
+}
+.lk-team__input-block input {
+  width: 8em;
+  color: var(--white);
+  background: transparent;
+  font-size: 3.2em;
+  line-height: 110%;
+}
+.lk-team__input-block input::-webkit-input-placeholder {
+  color: var(--white);
+}
+.lk-team__input-block input::-moz-placeholder {
+  color: var(--white);
+}
+.lk-team__input-block input:-ms-input-placeholder {
+  color: var(--white);
+}
+.lk-team__input-block input::-ms-input-placeholder {
+  color: var(--white);
+}
+.lk-team__input-block input::placeholder {
+  color: var(--white);
 }
