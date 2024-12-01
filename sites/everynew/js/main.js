@@ -12,7 +12,7 @@ window.addEventListener('load', (event) => {
 });
 
 //burger=====================================================================================================================================================
-const iconMenu = document.querySelector('.menu-aside__icon');
+const iconMenu = document.querySelector('.icon-menu');
 const asideBody = document.querySelector('.menu-aside__body');
 const body = document.querySelector('body');
 
@@ -185,6 +185,16 @@ DynamicAdapt.prototype.arraySort = function (arr) {
 };
 const da = new DynamicAdapt("max");
 da.init();
+//fixed_main==================================================================================================================================================================================================================
+let header = document.querySelector("header");
+window.addEventListener("scroll", function(){
+	if(window.scrollY > 50){
+    	header.classList.add('fixed');
+	}
+	else{
+	    header.classList.remove('fixed');
+	}
+});
 //InputMask===============================================================================================================================================
 function inputElements() {
 	let inputPhones = document.querySelectorAll("input[data-format]");
@@ -416,38 +426,6 @@ function initSliders() {
 	buildSliders();
 
 	if (document.querySelector('.main-slider')) {
-		var swiper = new Swiper(".main-thumb", {
-			spaceBetween: 30,
-			slidesPerView: 6,
-			freeMode: true,
-			watchSlidesProgress: true,
-			breakpoints: {
-				320: {
-					slidesPerView: 2,
-					spaceBetween: 10,
-				},
-				480: {
-					slidesPerView: 3,
-					spaceBetween: 20,
-				},
-				768: {
-					slidesPerView: 4,
-					spaceBetween: 20,
-				},
-				992: {
-					slidesPerView: 5,
-					spaceBetween: 10,
-				},
-				1024: {
-					slidesPerView: 5,
-					spaceBetween: 20,
-				},
-				1200: {
-					slidesPerView: 6,
-					spaceBetween: 30,
-				},
-			},
-		});
 		new Swiper('.main-slider', {
 			observer: true,
 			observeParents: true,
@@ -464,9 +442,6 @@ function initSliders() {
 			pagination: {
 				el: '.main-slider__dots',
 				clickable: true,
-			},
-			thumbs: {
-				swiper: swiper,
 			},
 			breakpoints: {
 				320: {
@@ -508,13 +483,21 @@ function initSliders() {
 			observeParents: true,
     		direction: "vertical",
 			slidesPerView: 4,
-			spaceBetween: 20,
+			spaceBetween: 10,
 			parallax: true,
-			//loop: true,
+			loop: true,
 			autoHeight: true,
 			autoplay: {
 				delay: 3000,
 				disableOnInteraction: false,
+			},
+			breakpoints: {
+				320: {
+					slidesPerView: 2,
+				},
+				992: {
+					slidesPerView: 4,
+				},
 			},
 			speed: 800,
 			pagination: {
