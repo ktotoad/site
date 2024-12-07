@@ -272,3 +272,21 @@ function bodyUnLock() {
 		unlock = true;
 	}, timeout);
 }
+
+//RadioButton====================================================================================================================================================================================
+if(document.querySelector('#radiobuttons')) {
+	let radioButtonsBodies = document.querySelectorAll('#radiobuttons');
+
+	radioButtonsBodies.forEach(function (radioButtonsBody) {
+        radioButtonsBody.addEventListener('click', (e) => {
+
+        	if(e.target.closest('.radio')) {
+        		radioButtonsBody.querySelectorAll('.radio').forEach(function (radio) {
+        			radio.classList.remove('active');
+        		});
+        		e.target.closest('.radio').classList.add('active'); 
+        	} 
+
+        });
+    });
+}
