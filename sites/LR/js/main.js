@@ -201,6 +201,18 @@ if (animItems.length > 0) {
 		animOnScroll();
 	}, 300);
 }
+//Paralax=====================================================================================================================================================
+if(document.querySelector("#mainBlock")) {
+	let paralaxItem = document.querySelector('#mainBlock');
+	let paralaxBody = paralaxItem.closest('section');
+
+	document.addEventListener("scroll", function (e) {
+		let s = 0 + paralaxBody.getBoundingClientRect().top/2;
+		console.log(s);
+		paralaxItem.style.transform  = `translateY(${s}px)`;
+	});
+}
+
 //InputMask===============================================================================================================================================
 function inputElements() {
 	let inputPhones = document.querySelectorAll("input[data-format]");
