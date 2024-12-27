@@ -427,6 +427,46 @@ function initSliders() {
 			},
 		});
 	}
+	if (document.querySelector('.slider-portfolio-detail')) {
+		new Swiper('.slider-portfolio-detail', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 5,
+			spaceBetween: 20,
+			parallax: true,
+			//loop: true,
+			//autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 10,
+					autoHeight: true,
+				},
+				480: {
+					slidesPerView: 2,
+					spaceBetween: 10,
+					autoHeight: true,
+				},
+				768: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+				992: {
+					slidesPerView: 4,
+					spaceBetween: 20,
+				},
+				1024: {
+					slidesPerView: 5,
+					spaceBetween: 20,
+				},
+			},
+		});
+	}
 }
 initSliders();
 //Filter=====================================================================================================================================================
