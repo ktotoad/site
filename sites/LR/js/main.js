@@ -213,6 +213,26 @@ if(document.querySelector("#mainBlock")) {
 	});
 }
 
+//Resize_scroll==================================================================================================================================================
+gsap.registerPlugin(ScrollTrigger);
+
+if(document.querySelector("#changeBody")) {
+	var tl_one = gsap.timeline({
+	  paused: true,
+	  scrollTrigger: {
+	    trigger: '#changeBody',
+	    start: 'top top',
+	    end: 'bottom top',
+	    scrub: true,
+	    pin: true
+	  }
+	})
+	tl_one
+	.to('#changeBody', {top: '30px', height: '100vh'})
+	.to('.wrap-resize .wrap-resize__image', {width: '100%', 'border-radius': '0'})
+	.to('.wrap-resize', {width: '100%', height: '100vh'})
+}
+
 //InputMask===============================================================================================================================================
 function inputElements() {
 	let inputPhones = document.querySelectorAll("input[data-format]");

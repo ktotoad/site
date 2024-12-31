@@ -432,6 +432,13 @@ textarea.input {
       -ms-flex-pack: center;
           justify-content: center;
 }
+@media (max-width: 479.98px) {
+  .popup {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: start;
+  }
+}
 .popup.open {
   opacity: 1;
   visibility: visible;
@@ -474,6 +481,9 @@ textarea.input {
   gap: 1rem;
 }
 .popup__close {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -487,7 +497,25 @@ textarea.input {
   width: 4em;
   height: 4em;
   border-radius: 50%;
+  background: var(--orange);
   border: 1px solid var(--orange);
+  -webkit-transition: background 0.3s ease 0s;
+  transition: background 0.3s ease 0s;
+}
+@media (any-hover: hover) {
+  .popup__close:hover {
+    background: var(--white);
+  }
+  .popup__close:hover span::before {
+    -webkit-transform: translate(-50%, -50%) rotate(45deg);
+            transform: translate(-50%, -50%) rotate(45deg);
+    background: var(--primary);
+  }
+  .popup__close:hover span::after {
+    -webkit-transform: translate(-50%, -50%) rotate(135deg);
+            transform: translate(-50%, -50%) rotate(135deg);
+    background: var(--primary);
+  }
 }
 .popup__close span {
   position: relative;
@@ -495,17 +523,18 @@ textarea.input {
   height: 2em;
 }
 .popup__close span::before, .popup__close span::after {
-  -webkit-transition: -webkit-transform 0.9s ease 0s;
-  transition: -webkit-transform 0.9s ease 0s;
-  transition: transform 0.9s ease 0s;
-  transition: transform 0.9s ease 0s, -webkit-transform 0.9s ease 0s;
+  -webkit-transition: background 0.3s ease 0s, -webkit-transform 0.9s;
+  transition: background 0.3s ease 0s, -webkit-transform 0.9s;
+  transition: transform 0.9s, background 0.3s ease 0s;
+  transition: transform 0.9s, background 0.3s ease 0s, -webkit-transform 0.9s;
   content: "";
   position: absolute;
   width: 100%;
-  height: 2px;
+  height: 3px;
   top: 50%;
   left: 50%;
-  background: var(--primary);
+  border-radius: 2px;
+  background: var(--white);
 }
 .popup__close span::before {
   -webkit-transform: translate(-50%, -50%) rotate(-45deg);
@@ -514,16 +543,6 @@ textarea.input {
 .popup__close span::after {
   -webkit-transform: translate(-50%, -50%) rotate(45deg);
           transform: translate(-50%, -50%) rotate(45deg);
-}
-@media (any-hover: hover) {
-  .popup__close span:hover::before {
-    -webkit-transform: translate(-50%, -50%) rotate(45deg);
-            transform: translate(-50%, -50%) rotate(45deg);
-  }
-  .popup__close span:hover::after {
-    -webkit-transform: translate(-50%, -50%) rotate(135deg);
-            transform: translate(-50%, -50%) rotate(135deg);
-  }
 }
 .popup__form {
   margin-top: 2em;
@@ -542,6 +561,11 @@ textarea.input {
           flex-direction: column;
   gap: 1rem;
 }
+@media (max-width: 767.98px) {
+  .popup__form {
+    width: 100%;
+  }
+}
 .popup__row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -557,6 +581,18 @@ textarea.input {
       -ms-flex-direction: row;
           flex-direction: row;
   gap: 1rem;
+}
+@media (max-width: 767.98px) {
+  .popup__row {
+    width: 100%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 .popup__input-block {
   width: 100%;
@@ -595,6 +631,11 @@ textarea.input {
   }
   .popup__button:hover::before {
     background: var(--white);
+  }
+}
+@media (max-width: 479.98px) {
+  .popup__button {
+    width: 100%;
   }
 }
 .popup__logo {
@@ -2347,6 +2388,32 @@ textarea.input {
           transform: translate(-50%, 0);
 }
 
+.portfolio-detail.active .portfolio-detail__title-block, .portfolio-detail.active .portfolio-detail__text-block, .portfolio-detail.active .portfolio-detail__slider {
+  opacity: 1;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+.portfolio-detail.active .portfolio-detail__image-small, .portfolio-detail.active .portfolio-detail__image-big {
+  opacity: 1;
+}
+.portfolio-detail__title-block {
+  opacity: 0;
+  -webkit-transform: translate(50%, 50%);
+          transform: translate(50%, 50%);
+  -webkit-transition: opacity 0.8s, -webkit-transform 0.8s ease 0s;
+  transition: opacity 0.8s, -webkit-transform 0.8s ease 0s;
+  transition: opacity 0.8s, transform 0.8s ease 0s;
+  transition: opacity 0.8s, transform 0.8s ease 0s, -webkit-transform 0.8s ease 0s;
+}
+.portfolio-detail__text-block {
+  opacity: 0;
+  -webkit-transform: translate(50%, 50%);
+          transform: translate(50%, 50%);
+  -webkit-transition: opacity 1.2s, -webkit-transform 1.2s ease 0s;
+  transition: opacity 1.2s, -webkit-transform 1.2s ease 0s;
+  transition: opacity 1.2s, transform 1.2s ease 0s;
+  transition: opacity 1.2s, transform 1.2s ease 0s, -webkit-transform 1.2s ease 0s;
+}
 .portfolio-detail__content {
   margin-bottom: 4em;
   display: -ms-grid;
@@ -2376,6 +2443,15 @@ textarea.input {
     gap: 1rem;
   }
 }
+.portfolio-detail__slider {
+  opacity: 0;
+  -webkit-transform: translate(50%, 50%);
+          transform: translate(50%, 50%);
+  -webkit-transition: opacity 1.8s, -webkit-transform 1.8s ease 0s;
+  transition: opacity 1.8s, -webkit-transform 1.8s ease 0s;
+  transition: opacity 1.8s, transform 1.8s ease 0s;
+  transition: opacity 1.8s, transform 1.8s ease 0s, -webkit-transform 1.8s ease 0s;
+}
 .portfolio-detail__images-right, .portfolio-detail__images-left {
   position: relative;
 }
@@ -2399,6 +2475,9 @@ textarea.input {
           flex: 0 0 auto;
   display: block;
   overflow: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 1s ease 0s;
+  transition: opacity 1s ease 0s;
 }
 .portfolio-detail__image-small img, .portfolio-detail__image-big img {
   width: 100%;
@@ -2456,4 +2535,37 @@ textarea.input {
     -webkit-transform: scale(1.1);
             transform: scale(1.1);
   }
+}
+
+/*portfolio resize*/
+.page__portfolio-resize {
+  overflow: hidden;
+  position: relative;
+  padding-top: 9em;
+  padding-bottom: 9em;
+}
+
+.portfolio-resize__wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.portfolio-resize__image {
+  margin: 0 auto;
+  border-radius: 15em;
+  overflow: hidden;
+  width: 34em;
+  height: 50em;
+  opacity: 0;
+  -webkit-transition: opacity 0.8s ease 0s;
+  transition: opacity 0.8s ease 0s;
+}
+.portfolio-resize__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.portfolio-resize__image.active {
+  opacity: 1;
 }
