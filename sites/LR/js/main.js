@@ -349,144 +349,131 @@ if(document.querySelector("#gallery-wrap")) {
 		});
 	});
 }
-//BuildSlider======================================================================================================================================================
-function buildSliders() {
-	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
-	if (sliders) {
-		sliders.forEach(slider => {
-			slider.parentElement.classList.add('swiper');
-			slider.classList.add('swiper-wrapper');
-			for(const slide of slider.children) {
-				slide.classList.add('swiper-slide');
-			}
+$(document).ready(function(){
+	if($('.slider-about').length > 0){
+		$('.slider-about').slick({
+			autoplay: true,
+			infinite: false,
+			dots: false,
+			arrows: false,
+			accessibility: false,
+			slidesToShow: 1,
+			autoplaySpeed: 3000,
 		});
 	}
-}
-//Инициализация_Swiper===============================================================================================================================================
-function initSliders() {
-	buildSliders();
 
-	if (document.querySelector('.slider-about')) {
-		new Swiper('.slider-about', {
-			effect: "fade",
-			observer: true,
-			observeParents: true,
-			slidesPerView: 1,
-			spaceBetween: 50,
-			parallax: true,
-			//loop: true,
-			autoHeight: true,
-			autoplay: {
-				delay: 3000,
-				disableOnInteraction: false,
-			},
-			speed: 800,
+	if($('.slider-portfolio-detail').length > 0){
+		$('.slider-portfolio-detail').slick({
+			autoplay: true,
+			infinite: false,
+			dots: false,
+			arrows: false,
+			accessibility: false,
+			slidesToShow: 5,
+			autoplaySpeed: 3000,
+			//variableWidth: true,
+			responsive: [
+				{
+					breakpoint: 992,
+					settings: {
+						slidesToShow: 4,
+					}
+				},
+				{
+					breakpoint: 768,
+					settings: {
+						slidesToShow: 3,
+					}
+				},
+				{
+					breakpoint: 480,
+					settings: {
+						slidesToShow: 2,
+					}
+				},
+				{
+					breakpoint: 320,
+					settings: {
+						slidesToShow: 1,
+					}
+				}
+			]
 		});
 	}
-	if (document.querySelector('.slider-portfolio')) {
-		new Swiper('.slider-portfolio', {
-			observer: true,
-			observeParents: true,
-			slidesPerView: 3,
-			spaceBetween: 20,
-			parallax: true,
-			//loop: true,
-			//autoHeight: true,
-			autoplay: {
-				delay: 3000,
-				disableOnInteraction: false,
-			},
-			speed: 800,
-			breakpoints: {
-				320: {
-					slidesPerView: 1,
-					spaceBetween: 0,
-					autoHeight: true,
+
+	if($('.slider-portfolio').length > 0){
+		$('.slider-portfolio').slick({
+			autoplay: true,
+			infinite: false,
+			dots: false,
+			arrows: false,
+			accessibility: false,
+			slidesToShow: 3,
+			autoplaySpeed: 3000,
+			//variableWidth: true,
+			responsive: [
+				{
+					breakpoint: 992,
+					settings: {
+						slidesToShow: 3,
+					}
 				},
-				768: {
-					slidesPerView: 2,
-					spaceBetween: 10,
+				{
+					breakpoint: 768,
+					settings: {
+						slidesToShow: 2,
+					}
 				},
-				992: {
-					slidesPerView: 3,
-					spaceBetween: 10,
-				},
-			},
+				{
+					breakpoint: 320,
+					settings: {
+						slidesToShow: 1,
+					}
+				}
+			]
 		});
 	}
-	if (document.querySelector('.slider-reviews')) {
-		new Swiper('.slider-reviews', {
-			observer: true,
-			observeParents: true,
-			slidesPerView: 3,
-			spaceBetween: 40,
-			parallax: true,
-			//loop: true,
-			//autoHeight: true,
-			autoplay: {
-				delay: 3000,
-				disableOnInteraction: false,
-			},
-			speed: 800,
-			breakpoints: {
-				320: {
-					slidesPerView: 1,
-					spaceBetween: 10,
-					autoHeight: true,
+
+	if($('.slider-reviews').length > 0){
+		$('.slider-reviews').slick({
+			//autoplay: true,
+			infinite: false,
+			dots: false,
+			arrows: false,
+			accessibility: false,
+			slidesToShow: 3,
+			autoplaySpeed: 3000,
+			//variableWidth: true,
+			responsive: [
+				{
+					breakpoint: 992,
+					settings: {
+						slidesToShow: 3,
+					}
 				},
-				768: {
-					slidesPerView: 2,
-					spaceBetween: 20,
+				{
+					breakpoint: 768,
+					settings: {
+						slidesToShow: 2,
+					}
 				},
-				992: {
-					slidesPerView: 3,
-					spaceBetween: 30,
-				},
-			},
+				{
+					breakpoint: 480,
+					settings: {
+						slidesToShow: 1,
+					}
+				}
+			]
+		});
+		
+		$('.review-filter-button').on('click', function(){
+			$('.slider-reviews').slick('slickUnfilter');
+			$('.slider-reviews').slick('slickFilter', '.' + $(this).data('filter'));
 		});
 	}
-	if (document.querySelector('.slider-portfolio-detail')) {
-		new Swiper('.slider-portfolio-detail', {
-			observer: true,
-			observeParents: true,
-			slidesPerView: 5,
-			spaceBetween: 20,
-			parallax: true,
-			//loop: true,
-			//autoHeight: true,
-			autoplay: {
-				delay: 3000,
-				disableOnInteraction: false,
-			},
-			speed: 800,
-			breakpoints: {
-				320: {
-					slidesPerView: 1,
-					spaceBetween: 10,
-					autoHeight: true,
-				},
-				480: {
-					slidesPerView: 2,
-					spaceBetween: 10,
-					autoHeight: true,
-				},
-				768: {
-					slidesPerView: 3,
-					spaceBetween: 20,
-				},
-				992: {
-					slidesPerView: 4,
-					spaceBetween: 20,
-				},
-				1024: {
-					slidesPerView: 5,
-					spaceBetween: 20,
-				},
-			},
-		});
-	}
-}
-initSliders();
+});
+
+
 //Filter=====================================================================================================================================================
 if(document.querySelector('.filter')) {
 	let filters = document.querySelectorAll('.filter');
@@ -495,18 +482,6 @@ if(document.querySelector('.filter')) {
 		let filterList = filter.querySelector('.filter-list');
 		let filterItems = filter.querySelectorAll('.filter-item');
 		let filterButtons = filter.querySelectorAll('.filter-button');
-
-		/*filterButtons.forEach(elem => { 
-			if(elem.classList.contains('active')) {
-				let filter = elem.dataset['filter'];
-				filterItems.forEach( elem => {
-					elem.classList.remove('hide');
-					if(!elem.classList.contains(filter) && filter != "all") {
-						elem.classList.add('hide');
-					}
-				});
-			}
-		});*/
 
 		filterList.addEventListener('click', e => {
 			if(e.target.classList.contains('filter-button') || e.target.closest('.filter-button')) {
@@ -520,11 +495,9 @@ if(document.querySelector('.filter')) {
 						elem.classList.add('hide');
 					}
 				});
-
 				
-				if (e.target.closest('section').querySelector('.swiper')) {
-					let mySwiper = e.target.closest('section').querySelector('.swiper').swiper;
-					mySwiper.update();
+				if (sliderReview) {
+					sliderReview.update();
 				}
 			}
 		});
