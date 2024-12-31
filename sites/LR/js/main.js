@@ -495,10 +495,6 @@ if(document.querySelector('.filter')) {
 						elem.classList.add('hide');
 					}
 				});
-				
-				if (sliderReview) {
-					sliderReview.update();
-				}
 			}
 		});
 	});
