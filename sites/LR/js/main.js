@@ -208,15 +208,13 @@ if(document.querySelector("#mainBlock")) {
 
 	document.addEventListener("scroll", function (e) {
 		let s = 0 + paralaxBody.getBoundingClientRect().top/2;
-		console.log(s);
 		paralaxItem.style.transform  = `translateY(${s}px)`;
 	});
 }
 
 //Resize_scroll==================================================================================================================================================
-gsap.registerPlugin(ScrollTrigger);
-
 if(document.querySelector("#changeBody")) {
+	gsap.registerPlugin(ScrollTrigger);
 	var tl_one = gsap.timeline({
 	  paused: true,
 	  scrollTrigger: {
@@ -490,41 +488,45 @@ function initSliders() {
 }
 initSliders();
 //Filter=====================================================================================================================================================
-const tabsItems = document.querySelectorAll('.filter-item');
-const tabButtons = document.querySelectorAll('.filter-button');
+if(document.querySelector('.filter')) {
+	let filters = document.querySelectorAll('.filter');
 
-if(document.querySelector('.filter-list')) {
+	filters.forEach(filter => { 
+		let filterList = filter.querySelector('.filter-list');
+		let filterItems = filter.querySelectorAll('.filter-item');
+		let filterButtons = filter.querySelectorAll('.filter-button');
 
-	tabButtons.forEach(elem => { if(elem.classList.contains('active')) {
-			let filter = elem.dataset['filter'];
-			tabsItems.forEach( elem => {
-				elem.classList.remove('hide');
-				if(!elem.classList.contains(filter) && filter != "all") {
-					elem.classList.add('hide');
-				}
-			});
-		}
-	});
-
-	document.querySelector('.filter-list').addEventListener('click', e => {
-
-		if(e.target.classList.contains('filter-button') || e.target.closest('.filter-button')) {
-			let filterClass = e.target.closest('.filter-button').dataset['filter'];
-			tabButtons.forEach(elem => elem.classList.remove('active'));
-			e.target.classList.add('active');
-
-			tabsItems.forEach( elem => {
-				elem.classList.remove('hide');
-				if(!elem.classList.contains(filterClass) && filterClass != "all") {
-					elem.classList.add('hide');
-				}
-			});
-
-			
-			if (e.target.closest('section').querySelector('.swiper')) {
-				let mySwiper = e.target.closest('section').querySelector('.swiper').swiper;
-				mySwiper.update();
+		/*filterButtons.forEach(elem => { 
+			if(elem.classList.contains('active')) {
+				let filter = elem.dataset['filter'];
+				filterItems.forEach( elem => {
+					elem.classList.remove('hide');
+					if(!elem.classList.contains(filter) && filter != "all") {
+						elem.classList.add('hide');
+					}
+				});
 			}
-		}
+		});*/
+
+		filterList.addEventListener('click', e => {
+			if(e.target.classList.contains('filter-button') || e.target.closest('.filter-button')) {
+				let filterClass = e.target.closest('.filter-button').dataset['filter'];
+				filterButtons.forEach(elem => elem.classList.remove('active'));
+				e.target.closest('.filter-button').classList.add('active');
+
+				filterItems.forEach( elem => {
+					elem.classList.remove('hide');
+					if(!elem.classList.contains(filterClass) && filterClass != "all") {
+						elem.classList.add('hide');
+					}
+				});
+
+				
+				if (e.target.closest('section').querySelector('.swiper')) {
+					let mySwiper = e.target.closest('section').querySelector('.swiper').swiper;
+					mySwiper.update();
+				}
+			}
+		});
 	});
 }
