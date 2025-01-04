@@ -213,17 +213,18 @@ if(document.querySelector("#mainBlock")) {
 }
 
 //Resize_scroll==================================================================================================================================================
+gsap.registerPlugin(ScrollTrigger);
+
 if(document.querySelector("#changeBody")) {
-	gsap.registerPlugin(ScrollTrigger);
 	var tl_one = gsap.timeline({
-	  paused: true,
-	  scrollTrigger: {
-	    trigger: '#changeBody',
-	    start: 'top top',
-	    end: 'bottom top',
-	    scrub: true,
-	    pin: true
-	  }
+		paused: true,
+		scrollTrigger: {
+			trigger: '#changeBody',
+			start: 'top top',
+			end: 'bottom top',
+			scrub: true,
+			pin: true
+		}
 	})
 	tl_one
 	.to('#changeBody', {top: '30px', height: '100vh'})
@@ -231,6 +232,24 @@ if(document.querySelector("#changeBody")) {
 	.to('.wrap-resize', {width: '100%', height: '100vh'})
 }
 
+if(document.querySelector("#moveBody")) {
+	document.querySelectorAll("#moveBody").forEach(change => {
+		ScrollTrigger.matchMedia({"(min-width: 768px)": () => {
+			var tl_one = gsap.timeline({
+				paused: true,
+				scrollTrigger: {
+					trigger: change,
+					start: 'top top',
+					end: 'bottom top',
+					scrub: true,
+					pin: true
+				}
+			})
+			tl_one
+			.to('#moveBody', {top: 'auto', bottom: '0'})
+		}});
+	});
+}
 //InputMask===============================================================================================================================================
 function inputElements() {
 	let inputPhones = document.querySelectorAll("input[data-format]");
