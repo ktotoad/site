@@ -263,6 +263,16 @@ function inputElements() {
 	});
 }
 inputElements();
+//prices===================================================================================================================================
+if (document.querySelectorAll(".js_price")) {
+  function numberWithSpaces(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  }
+  let js_prices = document.querySelectorAll(".js_price");
+  js_prices.forEach((js_price) => {
+      js_price.textContent = numberWithSpaces(js_price.textContent);
+  })
+}
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
@@ -282,7 +292,7 @@ function initSliders() {
 	buildSliders();
 
 	if (document.querySelector('.content-question__slider')) {
-		var swiper = new Swiper('.question__slider-thumb', {
+		var swiper = new Swiper('.slider-thumb-question', {
 			slidesPerView: 6,
 			spaceBetween: 30,
 			parallax: true,
@@ -349,7 +359,7 @@ function initSliders() {
 		new Swiper('.catalog-slider', {
 			observer: true,
 			observeParents: true,
-			slidesPerView: 4,
+			slidesPerView: 3,
 			spaceBetween: 30,
 			parallax: true,
 			speed: 800,
@@ -372,10 +382,6 @@ function initSliders() {
 				},
 				991: {
 					slidesPerView: 3,
-					spaceBetween: 20,
-				},
-				1023: {
-					slidesPerView: 4,
 					spaceBetween: 20,
 				}
 			},
