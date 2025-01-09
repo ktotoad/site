@@ -1481,21 +1481,23 @@ textarea.input {
           transform: translate3d(0, 0, 0);
   overflow: hidden;
 }
-.main__wrap {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  gap: 1rem;
+@media (min-width: 767.98px) {
+  .main__wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    gap: 1rem;
+  }
 }
 .main__content {
   position: relative;
@@ -1533,19 +1535,35 @@ textarea.input {
   bottom: 0;
   left: -175%;
 }
+@media (max-width: 991.98px) {
+  .main__slider-block {
+    width: 50%;
+  }
+}
+@media (max-width: 767.98px) {
+  .main__slider-block {
+    width: 100%;
+  }
+}
 .main__slider {
   overflow: visible;
 }
 
-.slider-main__slide.swiper-slide-prev {
+.slider-main__slide {
   opacity: 0;
   visibility: hidden;
+  -webkit-transition: opacity 0.3s, visibility 0.3s ease 0s;
+  transition: opacity 0.3s, visibility 0.3s ease 0s;
+}
+.slider-main__slide.swiper-slide-next, .slider-main__slide.swiper-slide-fully-visible {
+  opacity: 1;
+  visibility: visible;
 }
 .slider-main__image-block {
   padding-top: 9em;
   overflow: hidden;
   position: relative;
-  width: 77em;
+  width: 100%;
   height: 59em;
   border-radius: 0 0 25em 25em;
 }
@@ -1559,6 +1577,8 @@ textarea.input {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  -o-object-position: bottom;
+     object-position: bottom;
 }
 .slider-main__image {
   position: relative;
@@ -1572,7 +1592,7 @@ textarea.input {
   width: 100%;
   height: 100%;
   top: 0;
-  right: 5%;
+  right: 0;
 }
 
 @-webkit-keyframes gradient {
