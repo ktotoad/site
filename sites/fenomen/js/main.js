@@ -291,6 +291,23 @@ function buildSliders() {
 function initSliders() {
 	buildSliders();
 
+	if (document.querySelector('.slider-main')) {
+		new Swiper('.slider-main', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 50,
+			parallax: true,
+			//loop: true,
+			autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+		});
+	}
+
 	if (document.querySelector('.content-question__slider')) {
 		var swiper = new Swiper('.slider-thumb-question', {
 			slidesPerView: 6,
