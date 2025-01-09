@@ -307,7 +307,25 @@ function initSliders() {
 			speed: 800,
 		});
 	}
-
+	if (document.querySelector('.slider-concept')) {
+		new Swiper('.slider-concept', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 30,
+			parallax: true,
+      		effect: "fade",
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			navigation: {
+				nextEl: ".slider-concept__next",
+				prevEl: ".slider-concept__prev",
+			},
+			speed: 800,
+		});
+	}
 	if (document.querySelector('.content-question__slider')) {
 		var swiper = new Swiper('.slider-thumb-question', {
 			slidesPerView: 6,
