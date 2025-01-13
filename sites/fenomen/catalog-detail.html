@@ -73,7 +73,7 @@
 						<div class="detail-catalog__wrap">
 							<div class="catalog-page__detail detail-catalog">
 								<div class="detail-catalog__header">
-									<a href="catalog.html" class="detail-catalog__button button-main">
+									<a href="./catalog.html" class="detail-catalog__button button-main">
 										<span>
 											<svg width="83" height="15" viewBox="0 0 83 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 											<path d="M0.289726 6.79289C-0.1008 7.18342 -0.1008 7.81658 0.289726 8.20711L6.65369 14.5711C7.04421 14.9616 7.67738 14.9616 8.0679 14.5711C8.45843 14.1805 8.45843 13.5474 8.0679 13.1569L2.41105 7.5L8.0679 1.84315C8.45843 1.45262 8.45843 0.819457 8.0679 0.428932C7.67738 0.0384078 7.04421 0.0384078 6.65369 0.428932L0.289726 6.79289ZM83.0029 6.5L0.996834 6.5V8.5L83.0029 8.5V6.5Z" fill="black"/>
@@ -120,7 +120,7 @@
 												</tbody>
 											</table>
 											<h3 class="detail-catalog__price title">22 472 520 ₽</h3>
-											<button class="detail-catalog__button button-main"><span>Забронировать</span></button>
+											<a href="#callback" class="detail-catalog__button button-main popup-link"><span>Забронировать</span></a>
 											<div class="detail-catalog__buttons">
 												<button type="button" onclick="urlCopyButton()" class="detail-catalog__link button-icon">
 													<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -522,7 +522,7 @@
 		<div class="footer__row">
 			<div class="footer__column">
 				<div class="footer__buttons">
-					<a href="" class="footer__button button-main popup-link"><span>Заказать консультацию</span></a>
+					<a href="#callback" class="footer__button button-main popup-link"><span>Заказать консультацию</span></a>
 					<a href="" target="_blank" class="footer__button button-tr-white"><span>Скачать полную презентацию</span></a>
 				</div>
 				<div class="footer__copy-block">
@@ -561,54 +561,50 @@
 		<img src="./img/logof.svg" alt="">
 	</div>
 </footer>
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script><div id="popup" aria-hidden="true" class="popup">
-	<div class="popup__wrapper">
-		<div class="popup__content">
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script><div id="callback" class="popup">
+	<div class="popup__content">
+		<div class="popup__body">	
 			<div class="popup__header">
-				<h2 class="popup__title">Введите свои данные - мы вам перезвоним!</h2>
+				<h2 class="form-page__title title-main"><span>Остались вопросы?</span></h2>
 				<button data-close type="button" class="popup__close close-popup"><span></span></button>
 			</div>
-			<form class="popup__form" method="post">
-				<div class="form-body__input-block">
-					<label for="" class="count-block__label">Как к вам обращаться?</label>
-					<input id="" autocomplite="off" type="text" placeholder="Иван Иванов" class="count-block__input input">
-				</div>
-				<div class="form-body__input-block">
-					<label for="" class="count-block__label">Ваш номер телефона</label>
-					<input id="" data-format="0 000 000 00 00" autocomplite="off" type="tel" data-error="Ошибка"placeholder="+7 (912) 000 78-14" class="count-block__input input">
-				</div>
-				<div class="form-body__input-block">
-					<label for="" class="count-block__label">Какой у Вас вопрос?</label>
-					<textarea id="" autocomplite="off" rows="2" type="text" data-error="Ошибка"placeholder="Меня интересует.." class="count-block__input input"></textarea>
-				</div>
-				<div class="popup__buttons">
-					<button type="submit" class="form-body__button button-main">Оставить заявку</button>
-					<p class="form-body__text">Отправляя сообщение, я соглашаюсь <br> с<a href="" target="_blank" class="form-body__link">политикой конфиденциальности</a></p>
-				</div>
-			</form>
-			<div class="popup__logo">
-				<img src="./img/logod.png" alt="">
+			<p class="popup__text text-main">Оставьте свои контактные данные <br>и мы подробно ответим на все. И расскажем еще больше!</p>
+			<div class="form-page__form form-main">
+<form action="" class="form__body">
+	<div class="form__row">
+		<div class="form__input-body input-body">
+			<label for="" class="form__label">Ваше имя</label>
+			<input type="text" placeholder="Александр" class="form__input">
+		</div>
+		<div class="form__input-body input-body">
+			<label for="" class="form__label">Номер телефона</label>
+			<input type="tel" data-format="+7 000 000-00-00" placeholder="+7" class="form__input">
+		</div>
+	</div>
+	<div class="form__checkbox checkbox">
+		<input id="t_1" type="checkbox" value="1" class="checkbox__input">
+		<label for="t_1" class="checkbox__label"><span class="checkbox__text text-small">Принимаю <a href="" target="_blank" class="checkbox__link">условия обработки</a> персональных данных</span></label>
+	</div>
+	<div class="form__buttons">
+		<button type="submit" class="form__button button-main"><span>Отправить</span></button>
+	</div>	
+</form>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div id="modalSuccess" aria-hidden="true" class="popup">
-	<div class="popup__wrapper">
-		<div class="popup__content_small">
-			<svg width="121" height="121" viewBox="0 0 121 121" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path d="M110.918 86.7165C110.918 91.254 109.657 95.5393 107.388 99.1693C103.204 106.177 95.5405 110.916 86.7176 110.916C77.8947 110.916 70.1809 106.177 66.0467 99.1693C63.8284 95.5393 62.5176 91.254 62.5176 86.7165C62.5176 73.3561 73.3572 62.5166 86.7176 62.5166C100.078 62.5166 110.918 73.3561 110.918 86.7165Z" stroke="#FDB933" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-				<path d="M77.2891 86.7167L83.2382 92.6658L96.1449 80.7676" stroke="#FDB933" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-				<path d="M110.917 43.812C110.917 53.744 108.346 62.5164 104.313 70.1293C99.8761 65.4406 93.6244 62.5166 86.7173 62.5166C73.3569 62.5166 62.5173 73.3562 62.5173 86.7166C62.5173 92.9178 64.8869 98.5646 68.7186 102.85C66.8532 103.707 65.139 104.413 63.6265 104.917C61.9123 105.522 59.089 105.522 57.3748 104.917C42.754 99.9257 10.084 79.1036 10.084 43.812C10.084 28.2332 22.6377 15.6289 38.1157 15.6289C47.2411 15.6289 55.4086 20.0658 60.5007 26.872C65.5927 20.0658 73.7602 15.6289 82.8856 15.6289C98.3636 15.6289 110.917 28.2332 110.917 43.812Z" stroke="#FDB933" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-			</svg>
-			<h2 class="popup__title">Спасибо за заявку!</h2>
-			<p class="popup__subtitle">Совсем скоро мы свяжемся с вами!</p>
-			<button type="submit" class="close-popup button-main">Ок</button>
-			<div class="popup__logo">
-				<img src="./img/logod.png" alt="">
-			</div>
+<div id="modalSuccess" class="popup">
+    <div class="popup__body">
+    	<div class="popup__header">
+			<h2 class="form-page__title title-main"><span>Спасибо!</span></h2>
+			<button data-close type="button" class="popup__close close-popup"><span></span></button>
 		</div>
-	</div>
+	    <p class="text-main">Ваша заявка принята.<br>Наши менеджеры свяжутся с Вами в ближайшее время.</p>
+		<div class="form__buttons">
+			<button data-close type="submit" class="form__button button-main close-popup"><span>Хорошо</span></button>
+		</div>
+    </div>
 </div>		</div>
 <script src="js/jquery.min.js"></script>
 <script src="js/imask.js"></script>
