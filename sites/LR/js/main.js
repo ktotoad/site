@@ -213,9 +213,8 @@ if(document.querySelector("#mainBlock")) {
 }
 
 //Resize_scroll==================================================================================================================================================
-gsap.registerPlugin(ScrollTrigger);
-
 if(document.querySelector("#changeBody")) {
+	gsap.registerPlugin(ScrollTrigger);
 	var tl_one = gsap.timeline({
 		paused: true,
 		scrollTrigger: {
@@ -233,6 +232,7 @@ if(document.querySelector("#changeBody")) {
 }
 
 if(document.querySelector("#moveBody")) {
+	gsap.registerPlugin(ScrollTrigger);
 	document.querySelectorAll("#moveBody").forEach(change => {
 		ScrollTrigger.matchMedia({"(min-width: 768px)": () => {
 			var tl_one = gsap.timeline({
