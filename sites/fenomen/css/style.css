@@ -2062,6 +2062,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .page__panorama {
   padding-top: 8em;
 }
+.page__parking {
+  padding-top: 8em;
+}
 .page__build {
   padding-top: 8em;
 }
@@ -3060,18 +3063,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   margin-bottom: 1em;
 }
 .view__text {
-  margin-bottom: 3em;
-}
-.view__logo {
-  overflow: hidden;
-  width: 20em;
-  height: 5.6em;
-}
-.view__logo img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  margin-bottom: 7em;
 }
 .view__image {
   overflow: hidden;
@@ -3113,30 +3105,30 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .arch__wrap {
   color: var(--white);
 }
-.arch__text-block {
+.arch__title-block {
   margin-bottom: 8em;
 }
 @media (min-width: 991.98px) {
-  .arch__text-block {
+  .arch__title-block {
     display: -ms-grid;
     display: grid;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: start;
     -ms-grid-columns: 1fr 1rem 1fr;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
 }
 @media (max-width: 1335px) {
-  .arch__text-block {
+  .arch__title-block {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
   }
 }
 @media (max-width: 991.98px) {
-  .arch__text-block {
+  .arch__title-block {
     text-align: center;
   }
 }
@@ -3151,15 +3143,46 @@ input[type=text], input[type=email], input[type=tel], textarea {
     margin-left: auto;
   }
 }
+.arch__text-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 2rem;
+}
+@media (min-width: 1335px) {
+  .arch__text-block {
+    margin-left: auto;
+  }
+}
+@media (max-width: 991.98px) {
+  .arch__text-block {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
 @media (min-width: 991.98px) {
   .arch__text {
     width: 31em;
   }
 }
-@media (min-width: 1335px) {
-  .arch__text {
-    margin-left: auto;
-  }
+.arch__logo {
+  overflow: hidden;
+  width: 20em;
+  height: 5.6em;
+}
+.arch__logo img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .arch__image {
   overflow: hidden;
@@ -4633,6 +4656,44 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 
 /*parking*/
+.parking__header {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-grid-columns: 1fr 1rem 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 767.98px) {
+  .parking__header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+@media (min-width: 767.98px) {
+  .parking__title {
+    width: 8em;
+  }
+}
+@media (min-width: 767.98px) {
+  .parking__text {
+    width: 22em;
+  }
+}
+.parking__wrap {
+  margin-top: 6em;
+}
+
 /*build*/
 .build__wrap {
   position: relative;

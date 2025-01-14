@@ -887,3 +887,56 @@ function tabs() {
 	}
 }
 tabs();
+//RadioButton====================================================================================================================================================================================
+if(document.querySelector('#radiobuttons')) {
+	let radioButtonsBodies = document.querySelectorAll('#radiobuttons');
+
+	radioButtonsBodies.forEach(function (radioButtonsBody) {
+        radioButtonsBody.addEventListener('click', (e) => {
+
+        	if(e.target.closest('.radio')) {
+        		radioButtonsBody.querySelectorAll('.radio').forEach(function (radio) {
+        			radio.classList.remove('active');
+        		});
+        		e.target.closest('.radio').classList.add('active'); 
+        	} 
+
+        });
+    });
+}
+//Filter=====================================================================================================================================================
+const catalogSliderSlides = document.querySelectorAll('.catalog-slider__slide');
+const filterItems = document.querySelectorAll('.filter-catalog-main__item');
+
+if(document.querySelector('.filter-catalog-main')) {
+
+	filterItems.forEach(elem => { if(elem.classList.contains('active')) {
+		let filter = elem.dataset['filter'];
+		catalogSliderSlides.forEach( elem => {
+			elem.classList.remove('hide');
+			if(!elem.classList.contains(filter)) {
+				elem.classList.add('hide');
+			}
+		});
+	}
+});
+
+document.querySelector('.filter-catalog-main').addEventListener('click', e => {
+
+	if(e.target.classList.contains('filter-catalog-main__item') || e.target.closest('.filter-catalog-main__item')) {
+		let filterClass = e.target.closest('.filter-catalog-main__item').dataset['filter'];
+		filterItems.forEach(elem => elem.classList.remove('active'));
+		e.target.closest('.filter-catalog-main__item').classList.add('active');
+
+		catalogSliderSlides.forEach( elem => {
+			elem.classList.remove('hide');
+			if(!elem.classList.contains(filterClass)) {
+				elem.classList.add('hide');
+			}
+		});
+			
+		let mySwiper = document.querySelector('.catalog-slider').swiper;
+		mySwiper.update();
+		}
+	});
+}
