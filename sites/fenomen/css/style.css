@@ -2384,8 +2384,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .time__image-full {
   overflow: hidden;
   border-radius: 45em;
-  width: 100%;
-  height: 85.6em;
+  margin: 0 auto;
+  width: 70%;
+  height: 75.6em;
 }
 .time__image-full img {
   width: 100%;
@@ -2395,7 +2396,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 767.98px) {
   .time__image-full {
-    height: 42em;
+    height: 32em;
   }
 }
 .time__items {
@@ -2550,6 +2551,60 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 
 /*digits*/
+.digits__items {
+  width: 500%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  position: relative;
+  z-index: 4;
+}
+.digits__items::before, .digits__items::after {
+  content: "";
+  position: absolute;
+  border-radius: 40em/35em;
+  width: 78em;
+  height: 50em;
+}
+.digits__items::before {
+  left: 10%;
+  width: 100%;
+  background: var(--gray-light);
+}
+.digits__items::after {
+  border: 1px solid var(--orange);
+}
+.item-digits {
+  position: relative;
+  z-index: 5;
+  margin: 20em 5em;
+  width: 42em;
+}
+@media (max-width: 767.98px) {
+  .item-digits {
+    width: 29em;
+  }
+}
+.item-digits__title {
+  white-space: nowrap;
+  font-size: 9.4em;
+  font-weight: 500;
+  line-height: 120%;
+}
+@media (max-width: 767.98px) {
+  .item-digits__title {
+    font-size: 6em;
+  }
+}
+@media (min-width: 767.98px) {
+  .item-digits__text {
+    width: 5.5em;
+  }
+}
+
 /*map*/
 .map__header {
   display: -ms-grid;

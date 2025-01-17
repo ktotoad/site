@@ -940,3 +940,64 @@ document.querySelector('.filter-catalog-main').addEventListener('click', e => {
 		}
 	});
 }
+//gsap_animation===========================================================================================================================
+//resize anim
+if(document.querySelector("#gsapresize")) {
+  gsap.registerPlugin(ScrollTrigger);
+  var tl_one = gsap.timeline({
+    paused: true,
+    scrollTrigger: {
+      trigger: '#gsapresize',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true,
+      pin: true
+    }
+  })
+  tl_one
+  .to('#gsapresize', {top: 0, height: '100vh'})
+  .to('#gsapresizeimage', {width: '100%', height: '85.6em'})
+  ScrollTrigger.matchMedia({"(max-width: 768px)": () => {
+    var tl_one = gsap.timeline({
+      paused: true,
+      scrollTrigger: {
+        trigger: '#gsapresize',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+        pin: true
+      }
+    })
+    tl_one
+    .to('#gsapresize', {top: 0, height: '100vh'})
+    .to('#gsapresizeimage', {width: '100%', height: '42em'})
+  }});
+}
+
+//row anim
+if(document.querySelector("#gsapcontainerrow")) {
+  gsap.registerPlugin(ScrollTrigger);
+
+  const e = document.querySelector("#gsapcontainerrow");
+  let sections = gsap.utils.toArray(".item-digits");
+  let dragRatio = 1;
+  let scrollTo;
+
+  let scrollTween = gsap.to(sections, {
+    xPercent: -100 * (sections.length),
+    ease: "none", // <-- IMPORTANT!
+    scrollTrigger: {
+      trigger: "#gsapcontainerrow",
+      pin: true, 
+      start: "center center",
+      scrub: 0.1,
+      onRefresh: (self) => {
+        dragRatio =
+          (self.end - self.start) /
+          ((sections.length - 1) * sections[0].offsetWidth);
+      },
+      markers: false,
+      end: "+=1000"
+    }
+  });
+}
