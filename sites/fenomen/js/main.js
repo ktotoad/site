@@ -389,7 +389,7 @@ function initSliders() {
 			observeParents: true,
 			slidesPerView: 1,
 			spaceBetween: 50,
-			parallax: true,
+			effect: 'fade',
 			//loop: true,
 			autoHeight: true,
 			autoplay: {

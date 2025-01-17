@@ -2167,14 +2167,17 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 
 .slider-main__slide {
-  opacity: 0;
-  visibility: hidden;
-  -webkit-transition: opacity 0.3s, visibility 0.3s ease 0s;
-  transition: opacity 0.3s, visibility 0.3s ease 0s;
+  -webkit-transition: opacity 0.3s, visibility 0.3s, translateX 0.3s ease 0s;
+  transition: opacity 0.3s, visibility 0.3s, translateX 0.3s ease 0s;
 }
-.slider-main__slide.swiper-slide-next, .slider-main__slide.swiper-slide-fully-visible {
-  opacity: 1;
-  visibility: visible;
+.slider-main__slide.swiper-slide-prev {
+  -webkit-transform: translateX(110%) !important;
+          transform: translateX(110%) !important;
+}
+.slider-main__slide.swiper-slide-next {
+  opacity: 1 !important;
+  -webkit-transform: translateX(10%) !important;
+          transform: translateX(10%) !important;
 }
 .slider-main__image-block {
   padding-top: 9em;
