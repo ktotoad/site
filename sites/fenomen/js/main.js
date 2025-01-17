@@ -518,6 +518,26 @@ function initSliders() {
 			},
 		});
 	}
+	if (document.querySelector('.slider-parking')) {
+		new Swiper('.slider-parking', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 50,
+			effect: 'fade',
+			//loop: true,
+			autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			navigation: {
+				nextEl: ".slider-parking__next",
+				prevEl: ".slider-parking__prev",
+			},
+		});
+	}
 	if (document.querySelector('.build-slider')) {
 		new Swiper('.build-slider', {
 			observer: true,
