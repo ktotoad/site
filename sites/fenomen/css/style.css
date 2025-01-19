@@ -4993,8 +4993,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
   height: 100%;
   top: 0;
   left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -5014,25 +5012,21 @@ input[type=text], input[type=email], input[type=tel], textarea {
   background-size: 400% 400%;
   -webkit-animation: gradient 10s ease infinite;
           animation: gradient 10s ease infinite;
-  -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(-50%, 0, 0);
+          transform: translate3d(-50%, 0, 0);
   border-radius: 45em;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   padding: 7em;
 }
-@media (max-width: 991.98px) {
+@media (max-width: 767.98px) {
   .parking__slider-controls {
+    padding: 3em;
     right: 0;
     left: auto;
     -webkit-transform: translateX(0);
             transform: translateX(0);
-  }
-}
-@media (max-width: 767.98px) {
-  .parking__slider-controls {
-    padding: 3em;
   }
 }
 @media (max-width: 479.98px) {
@@ -5077,23 +5071,31 @@ input[type=text], input[type=email], input[type=tel], textarea {
     font-size: 6em;
   }
 }
-.slider-parking__image {
+.slider-parking__slide {
+  display: block;
   overflow: hidden;
   border-radius: 45em;
-  width: 78em;
   height: 50em;
+}
+@media (max-width: 767.98px) {
+  .slider-parking__slide {
+    height: 42em;
+  }
+}
+@media (max-width: 479.98px) {
+  .slider-parking__slide {
+    height: 36em;
+  }
+}
+.slider-parking__image {
+  width: 100%;
+  height: 100%;
 }
 .slider-parking__image img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-}
-@media (max-width: 767.98px) {
-  .slider-parking__image {
-    width: 100%;
-    height: 42em;
-  }
 }
 .slider-parking__controls {
   display: -webkit-box;

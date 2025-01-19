@@ -537,11 +537,11 @@ function initSliders() {
 		new Swiper('.slider-parking', {
 			observer: true,
 			observeParents: true,
-			slidesPerView: 1,
-			spaceBetween: 50,
-			effect: 'fade',
+			slidesPerView: 2,
+			spaceBetween: 150,
+			parallax: true,
 			//loop: true,
-			autoHeight: true,
+			//autoHeight: true,
 			autoplay: {
 				delay: 3000,
 				disableOnInteraction: false,
@@ -550,6 +550,16 @@ function initSliders() {
 			navigation: {
 				nextEl: ".slider-parking__next",
 				prevEl: ".slider-parking__prev",
+			},
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 10,
+				},
+				768: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
 			},
 		});
 	}
@@ -560,8 +570,6 @@ function initSliders() {
 			slidesPerView: 3,
 			spaceBetween: 50,
 			parallax: true,
-			//loop: true,
-			autoHeight: true,
 			autoplay: {
 				delay: 3000,
 				disableOnInteraction: false,
@@ -571,7 +579,6 @@ function initSliders() {
 				320: {
 					slidesPerView: 1,
 					spaceBetween: 10,
-					autoHeight: true,
 				},
 				768: {
 					slidesPerView: 2,
