@@ -383,17 +383,32 @@ function buildSliders() {
 function initSliders() {
 	buildSliders();
 
+	if (document.querySelector('.slider-thumb')) {
+		new Swiper('.slider-thumb', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 30,
+			effect: 'fade',
+			fadeEffect: { crossFade: true },
+			autoplay: {
+				delay: 2000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+		});
+	}
+
 	if (document.querySelector('.slider-main')) {
 		new Swiper('.slider-main', {
 			observer: true,
 			observeParents: true,
 			slidesPerView: 1,
-			spaceBetween: 50,
+			spaceBetween: 30,
 			effect: 'fade',
-			//loop: true,
-			autoHeight: true,
+			fadeEffect: { crossFade: true },
 			autoplay: {
-				delay: 3000,
+				delay: 2000,
 				disableOnInteraction: false,
 			},
 			speed: 800,
