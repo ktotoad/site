@@ -895,7 +895,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1320px) {
   .option-popup__main-body {
-    width: calc(270px + 830 * (100vw - 320px) / (1000));
+    width: calc(270px + 830 * ((100vw - 320px) / (1000)));
   }
 }
 .option-popup__body {
@@ -954,7 +954,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
   width: max-content;
   height: 100vh;
   padding: 1em 3em;
-  clip-path: polygon(100% 0, 100% 90%, 75% 100%, 0 100%, 0 0);
+  -webkit-clip-path: polygon(100% 0, 100% 90%, 75% 100%, 0 100%, 0 0);
+          clip-path: polygon(100% 0, 100% 90%, 75% 100%, 0 100%, 0 0);
   background: var(--blue);
   opacity: 0;
   -webkit-transform: translateX(-100%);
@@ -1087,7 +1088,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1320px) {
   .popup-sale .close-popup::before, .popup-sale .close-popup::after {
-    width: calc(15px + 5 * (100vw - 320px) / (1000));
+    width: calc(15px + 5 * ((100vw - 320px) / (1000)));
   }
 }
 .popup-sale .content-form__button {
@@ -1137,12 +1138,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1320px) {
   .popup-sale__body {
-    padding: calc(10px + 20 * (100vw - 320px) / (1000));
+    padding: calc(10px + 20 * ((100vw - 320px) / (1000)));
   }
 }
 @media (max-width: 1320px) {
   .popup-sale__body {
-    width: calc(290px + 702 * (100vw - 320px) / (1000));
+    width: calc(290px + 702 * ((100vw - 320px) / (1000)));
   }
 }
 @media (max-width: 767.98px) {
@@ -1189,7 +1190,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1320px) {
   .popup-sale__text span {
-    font-size: calc(18px + 14 * (100vw - 320px) / (1000));
+    font-size: calc(18px + 14 * ((100vw - 320px) / (1000)));
   }
 }
 .popup-sale__row {
@@ -2089,7 +2090,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
 
 /*thumb*/
 .thumb {
-  height: 100vh;
   background: linear-gradient(104.15deg, #256C79 9.55%, #003438 87.62%);
   background-size: 400% 400%;
   -webkit-animation: gradient 10s ease infinite;
@@ -2097,6 +2097,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
   overflow: hidden;
+}
+@media (min-width: 767.98px) {
+  .thumb {
+    height: 100vh;
+  }
 }
 .thumb__container {
   height: 100%;
@@ -2109,9 +2114,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
@@ -2144,6 +2149,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
 @media (min-width: 767.98px) {
   .thumb__content {
     width: 33em;
+  }
+}
+@media (max-width: 767.98px) {
+  .thumb__content {
+    margin-top: 4em;
   }
 }
 .thumb__logo {
@@ -2181,6 +2191,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 1rem;
+  margin-bottom: 1rem;
 }
 .thumb__input-body {
   padding: 1em 0;
@@ -2204,7 +2215,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .thumb__input {
   font-size: 1.8em;
   line-height: 140%;
-  color: rgb(255, 255, 255);
+  color: var(--white);
   background: transparent;
 }
 .thumb__input::-webkit-input-placeholder {
@@ -2222,25 +2233,33 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .thumb__input::placeholder {
   color: rgb(217, 217, 217);
 }
+.thumb__checkbox .checkbox__text {
+  color: var(--white);
+}
+.thumb__checkbox .checkbox__label::before {
+  border: 1px solid var(--white);
+}
 .thumb__button {
   width: 100%;
 }
 .thumb__slider-block {
   position: relative;
   width: 102em;
-  padding-bottom: 4em;
-  border-radius: 35em;
-  background: var(--orange);
 }
 .thumb__slider-block::after {
   content: "";
   position: absolute;
   width: 100%;
   height: 50em;
-  border-radius: 35em;
-  top: 110%;
+  top: 95%;
   left: 0;
   background: var(--orange);
+  border-radius: 35em/20em;
+}
+@media (max-width: 1279.98px) {
+  .thumb__slider-block {
+    width: 90em;
+  }
 }
 @media (max-width: 991.98px) {
   .thumb__slider-block {
@@ -2251,31 +2270,51 @@ input[type=text], input[type=email], input[type=tel], textarea {
   .thumb__slider-block {
     width: 100%;
   }
+  .thumb__slider-block::after {
+    display: none;
+  }
 }
 .thumb__slider {
   overflow: visible;
+  padding-bottom: 4em;
+  position: relative;
+}
+.thumb__slider::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  bottom: 0;
+  left: 0;
+  background: var(--orange);
+  border-radius: 30em/25em;
 }
 
 .slider-thumb__slide {
-  -webkit-transition: opacity 0.3s, visibility 0.3s, translateX 0.3s ease 0s;
-  transition: opacity 0.3s, visibility 0.3s, translateX 0.3s ease 0s;
+  -webkit-transition: opacity 0.8s, visibility 0.8s, translateX 0.8s ease 0s !important;
+  transition: opacity 0.8s, visibility 0.8s, translateX 0.8s ease 0s !important;
+}
+.slider-thumb__slide.swiper-slide-active .slider-thumb__image-block {
+  border-radius: 0 0 30em 30em/0 0 25em 25em;
 }
 .slider-thumb__slide.swiper-slide-prev {
-  -webkit-transform: translateX(-110%) !important;
-          transform: translateX(-110%) !important;
+  opacity: 0.9 !important;
+  -webkit-transform: translate3d(-100%, 0, 0) scale(0.9) !important;
+          transform: translate3d(-100%, 0, 0) scale(0.9) !important;
 }
 .slider-thumb__slide.swiper-slide-next {
-  opacity: 1 !important;
-  -webkit-transform: translateX(-10%) !important;
-          transform: translateX(-10%) !important;
+  opacity: 0.9 !important;
+  -webkit-transform: translate3d(-200%, 0, 0) scale(0.9) !important;
+          transform: translate3d(-200%, 0, 0) scale(0.9) !important;
 }
 .slider-thumb__image-block {
-  padding-top: 9em;
   overflow: hidden;
   position: relative;
   width: 100%;
   height: 65em;
-  border-radius: 0 0 25em 25em;
+  border-radius: 30em/25em;
+  -webkit-transition: border-radius 0.8s ease 0s;
+  transition: border-radius 0.8s ease 0s;
 }
 .slider-thumb__image, .slider-thumb__image-abs {
   overflow: hidden;
@@ -2291,10 +2330,10 @@ input[type=text], input[type=email], input[type=tel], textarea {
      object-position: bottom;
 }
 .slider-thumb__image {
+  margin-top: 6em;
   position: relative;
   z-index: 2;
-  height: 59em;
-  border-radius: 35em;
+  border-radius: 30em/25em;
 }
 .slider-thumb__image-abs {
   position: absolute;
@@ -2409,7 +2448,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .slider-main__slide {
   -webkit-transition: opacity 0.8s, visibility 0.8s, translateX 0.8s ease 0s !important;
   transition: opacity 0.8s, visibility 0.8s, translateX 0.8s ease 0s !important;
-  /**/
 }
 .slider-main__slide.swiper-slide-active .slider-main__image-block {
   border-radius: 0 0 25em 25em;
@@ -5805,7 +5843,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1320px) {
   .resident__slider-body {
-    width: calc(290px + 436 * (100vw - 320px) / (1000));
+    width: calc(290px + 436 * ((100vw - 320px) / (1000)));
   }
 }
 @media (max-width: 991.98px) {
@@ -5845,7 +5883,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1320px) {
   .resident-slider__image {
-    height: calc(320px + 220 * (100vw - 320px) / (1000));
+    height: calc(320px + 220 * ((100vw - 320px) / (1000)));
   }
 }
 .resident-slider__image img {
@@ -5872,12 +5910,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1320px) {
   .resident-slider-thumb__link {
-    padding: calc(5px + 5 * (100vw - 320px) / (1000));
+    padding: calc(5px + 5 * ((100vw - 320px) / (1000)));
   }
 }
 @media (max-width: 1320px) {
   .resident-slider-thumb__link {
-    font-size: calc(10px + 4 * (100vw - 320px) / (1000));
+    font-size: calc(10px + 4 * ((100vw - 320px) / (1000)));
   }
 }
 .resident-slider-thumb__link.swiper-slide-thumb-active {
