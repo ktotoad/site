@@ -2108,6 +2108,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .thumb__container {
   height: 100%;
+  padding-right: calc((100vw - 1593px) / 2);
+}
+@media (max-width: 1593px) {
+  .thumb__container {
+    padding: 0 1rem;
+  }
 }
 .thumb__wrap {
   height: 100%;
@@ -2117,20 +2123,23 @@ input[type=text], input[type=email], input[type=tel], textarea {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-            align-items: stretch;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: end;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-    gap: 1rem;
+    gap: 10em;
   }
 }
 .thumb__content {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
   position: relative;
   z-index: 5;
   color: rgb(217, 217, 217);
@@ -2247,68 +2256,75 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .thumb__slider-block {
   position: relative;
-  width: 102em;
 }
 .thumb__slider-block::after {
   content: "";
   position: absolute;
-  width: 100%;
+  width: 50%;
   height: 50em;
-  top: 95%;
-  left: 0;
+  top: 115%;
+  right: 0;
   background: var(--orange);
   border-radius: 35em/20em;
 }
-@media (max-width: 1279.98px) {
-  .thumb__slider-block {
-    width: 90em;
-  }
-}
-@media (max-width: 991.98px) {
-  .thumb__slider-block {
-    width: 50%;
-  }
-}
 @media (max-width: 767.98px) {
-  .thumb__slider-block {
-    width: 100%;
-  }
   .thumb__slider-block::after {
     display: none;
   }
 }
 .thumb__slider {
-  overflow: visible;
   padding-bottom: 4em;
   position: relative;
+  width: 204em;
+  padding-left: 102em;
 }
 .thumb__slider::before {
   content: "";
   position: absolute;
-  width: 100%;
+  width: 50%;
   height: 80%;
   bottom: 0;
-  left: 0;
+  right: 0;
   background: var(--orange);
   border-radius: 30em/25em;
 }
+@media (max-width: 1279.98px) {
+  .thumb__slider {
+    width: 180em;
+    padding-left: 90em;
+  }
+}
+@media (max-width: 991.98px) {
+  .thumb__slider {
+    width: 100vw;
+    padding-left: 50vw;
+  }
+}
+@media (max-width: 767.98px) {
+  .thumb__slider {
+    width: 100%;
+    padding-left: 0;
+  }
+  .thumb__slider::before {
+    width: 100%;
+  }
+}
 
 .slider-thumb__slide {
-  -webkit-transition: opacity 0.8s, visibility 0.8s, translateX 0.8s ease 0s !important;
-  transition: opacity 0.8s, visibility 0.8s, translateX 0.8s ease 0s !important;
-}
-.slider-thumb__slide.swiper-slide-active .slider-thumb__image-block {
-  border-radius: 0 0 30em 30em/0 0 25em 25em;
-}
-.slider-thumb__slide.swiper-slide-prev {
-  opacity: 0.9 !important;
-  -webkit-transform: translate3d(-100%, 0, 0) scale(0.9) !important;
-          transform: translate3d(-100%, 0, 0) scale(0.9) !important;
-}
-.slider-thumb__slide.swiper-slide-next {
-  opacity: 0.9 !important;
-  -webkit-transform: translate3d(-200%, 0, 0) scale(0.9) !important;
-          transform: translate3d(-200%, 0, 0) scale(0.9) !important;
+  /*transition: transform 0.8s ease 0s !important;
+  &.swiper-slide-active {
+  	.slider-thumb__image-block {
+  		border-radius: 0 0 30em 30em / 0 0 25em 25em;
+  	}
+  }
+  &.swiper-slide-prev {
+  	opacity: 0.9 !important;
+  	transform: translate3d(-100%,0,0) scale(0.9) !important;
+  }
+  &.swiper-slide-next {
+  	opacity: 0.9 !important;
+  	transform: translate3d(-200%,0,0) scale(0.9) !important;
+  }*/
 }
 .slider-thumb__image-block {
   overflow: hidden;
@@ -2316,8 +2332,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
   width: 100%;
   height: 65em;
   border-radius: 30em/25em;
-  -webkit-transition: border-radius 0.8s ease 0s;
-  transition: border-radius 0.8s ease 0s;
+  -webkit-transition: border-radius 1.8s ease 0s;
+  transition: border-radius 1.8s ease 0s;
 }
 .slider-thumb__image, .slider-thumb__image-abs {
   overflow: hidden;

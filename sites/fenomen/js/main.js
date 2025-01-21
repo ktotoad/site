@@ -389,13 +389,15 @@ function initSliders() {
 			observeParents: true,
 			slidesPerView: 1,
 			spaceBetween: 30,
-			effect: 'fade',
-			fadeEffect: { crossFade: true },
+			initialSlide: 1,
+			loop: true,
+			//effect: 'fade',
+			//fadeEffect: { crossFade: true },
 			autoplay: {
 				delay: 2000,
 				disableOnInteraction: false,
 			},
-			speed: 800,
+			speed: 1200,
 		});
 	}
 
