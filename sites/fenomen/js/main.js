@@ -414,6 +414,31 @@ function initSliders() {
 			speed: 800,
 		});
 	}
+	if (document.querySelector('.archforms-slider')) {
+		new Swiper('.archforms-slider', {
+			grabCursor: true,
+			effect: "creative",
+			creativeEffect: {
+				prev: {
+				  shadow: true,
+				  translate: ["-110%", 0, -500],
+				},
+				next: {
+				  shadow: true,
+				  translate: ["110%", 0, -500],
+				},
+			},
+			navigation: {
+				nextEl: ".archforms-slider__next",
+				prevEl: ".archforms-slider__prev",
+			},
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+		});
+	}
 	if (document.querySelector('.slider-concept')) {
 		new Swiper('.slider-concept', {
 			observer: true,
