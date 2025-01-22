@@ -315,6 +315,26 @@ function initSliders() {
 			},
 		});
 	}
+	if (document.querySelector('.slider-popup-service')) {
+		new Swiper('.slider-popup-service', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 10,
+			parallax: true,
+			//loop: true,
+			autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			pagination: {
+				el: '.slider-popup-service__dots',
+				clickable: true,
+			},
+		});
+	}
 	if (document.querySelector('.slider-objects')) {
 		new Swiper('.slider-objects', {
 			observer: true,
