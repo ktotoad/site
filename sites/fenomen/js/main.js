@@ -405,15 +405,27 @@ function initSliders() {
 		new Swiper('.slider-main', {
 			observer: true,
 			observeParents: true,
-			slidesPerView: 1,
+			slidesPerView: 2,
 			spaceBetween: 30,
-			effect: 'fade',
-			fadeEffect: { crossFade: true },
+			//initialSlide: 1,
+			loop: true,
+			//effect: 'fade',
+			//fadeEffect: { crossFade: true },
 			autoplay: {
 				delay: 2000,
 				disableOnInteraction: false,
 			},
 			speed: 800,
+			breakpoints: {
+				320: {
+					spaceBetween: 10,
+					slidesPerView: 1,
+				},
+				992: {
+					slidesPerView: 2,
+					spaceBetween: 30,
+				},
+			},
 		});
 	}
 	if (document.querySelector('.archforms-slider')) {
