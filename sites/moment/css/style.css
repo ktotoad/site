@@ -271,6 +271,7 @@ body.lock {
 }
 
 .number {
+  color: var(--brown);
   font-style: italic;
   font-weight: 300;
   font-size: 10em;
@@ -1075,6 +1076,9 @@ textarea.input {
 .page__gallery {
   padding-top: 9em;
 }
+.page__catalog {
+  padding-top: 12em;
+}
 .page__form {
   padding-top: 9em;
   padding-bottom: 9em;
@@ -1232,6 +1236,9 @@ textarea.input {
 }
 
 /*map*/
+.map {
+  overflow: hidden;
+}
 .map__header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1283,6 +1290,15 @@ textarea.input {
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
+  width: 100%;
+}
+@media (max-width: 991.98px) {
+  .map__filter {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: start;
+    overflow-x: auto;
+  }
 }
 .map__button {
   white-space: nowrap;
@@ -1365,13 +1381,75 @@ textarea.input {
           flex-direction: row;
   gap: 1rem;
 }
+/*catalog*/
+.catalog {
+  overflow: hidden;
+  position: relative;
+  z-index: 3;
+}
+.catalog__title {
+  text-align: center;
+}
+.catalog__image-block {
+  overflow: hidden;
+  position: relative;
+  border-bottom-left-radius: 26em;
+  border-bottom-right-radius: 26em;
+}
+.catalog__image-block::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  height: 50%;
+  top: 0;
+  left: 0;
+  background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), color-stop(30.25%, rgba(255, 255, 255, 0.4)), color-stop(50%, rgba(255, 255, 255, 0)));
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.4) 30.25%, rgba(255, 255, 255, 0) 50%);
+}
+.catalog__image {
+  overflow: hidden;
+  width: 100%;
+}
+.catalog__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.catalog__icons {
+  position: absolute;
+  z-index: 5;
+  width: 116em;
+  height: 60em;
+  bottom: 5%;
+  right: 0;
+}
+.catalog__icons svg {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.catalog__icons svg path {
+  cursor: pointer;
+  -webkit-transition: stroke 0.3s, fill 0.3s ease 0s;
+  transition: stroke 0.3s, fill 0.3s ease 0s;
+}
+@media (any-hover: hover) {
+  .catalog__icons svg path:hover {
+    fill: var(--white-op);
+    stroke: var(--brown);
+  }
+}
+
 /*form*/
 .form {
   position: relative;
   color: var(--white);
   background: var(--primary);
-  -webkit-box-shadow: 0px -20em 0px 0px var(--primary);
-          box-shadow: 0px -20em 0px 0px var(--primary);
+  -webkit-box-shadow: 0px -30em 0px 0px var(--primary);
+          box-shadow: 0px -30em 0px 0px var(--primary);
   border-radius: 0 0 20em 20em;
   overflow: hidden;
 }
