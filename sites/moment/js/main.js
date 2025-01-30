@@ -253,6 +253,19 @@ DynamicAdapt.prototype.arraySort = function (arr) {
 };
 const da = new DynamicAdapt("max");
 da.init();
+//prices===================================================================================================================================
+function numberSpace() {
+    if (document.querySelectorAll(".js_price")) {
+        function numberWithSpaces(x) {
+          return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        }
+        let js_prices = document.querySelectorAll(".js_price");
+        js_prices.forEach((js_price) => {
+            js_price.textContent = numberWithSpaces(js_price.textContent);
+        })
+    }
+}
+numberSpace();
 //InputMask===============================================================================================================================================
 function inputElements() {
 	let inputPhones = document.querySelectorAll("input[data-format]");
@@ -390,6 +403,26 @@ function initSliders() {
 			navigation: {
 				nextEl: ".slider-gallery__next",
 				prevEl: ".slider-gallery__prev",
+			},
+		});
+	}
+	if (document.querySelector('.slider-popup-catalog')) {
+		new Swiper('.slider-popup-catalog', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 10,
+			parallax: true,
+			//loop: true,
+			//autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,		
+			navigation: {
+				nextEl: ".slider-popup-catalog__next",
+				prevEl: ".slider-popup-catalog__prev",
 			},
 		});
 	}
@@ -635,7 +668,10 @@ if(document.querySelector("#iconssvg")) {
 			event.target.addEventListener("click", (event) => {
 				popupOpen(parkingOrder);
 
-		  		parkingOrder.querySelector("#popupumber").innerText = "№" + event.target.dataset.number;
+		  		parkingOrder.querySelector("#popupnumber").innerText = "№" + event.target.dataset.number;
+		  		parkingOrder.querySelector("#popupsize").innerText = event.target.dataset.size;
+		  		parkingOrder.querySelector("#popupprice").innerText = event.target.dataset.price;
+		  		numberSpace();
 			});
 		}
 	});
