@@ -890,3 +890,82 @@ if(document.querySelector("#gallery-wrap")) {
 		});
 	});
 }
+//Resize_scroll==================================================================================================================================================
+if(document.querySelector("#main")) {
+	const logoM = document.querySelector("#logom");
+	const logo = document.querySelector("#logo");
+	gsap.fromTo(logo ,{
+		y: 400,
+		opacity: 0
+	},{
+		y: 0,
+		opacity: 1,
+		duration: 1,
+	});
+	gsap.fromTo(logoM ,{
+		opacity: 0
+	},{
+		opacity: 1,
+		duration: 2,
+	})
+}
+
+if(document.querySelector("[data-gsap-borderitem]")) {
+	gsap.registerPlugin(ScrollTrigger);
+	var tl = gsap.timeline();
+
+	document.querySelectorAll("[data-gsap-borderitem]").forEach((element) => {
+		const image = element.querySelector('#gsapimage');
+		tl.to(image, {
+			scrollTrigger: {
+				trigger: element,
+				markers: false,
+				start: 'top top',
+				scrub: true,
+			},
+			'border-bottom-left-radius': '26em', 
+			'border-bottom-right-radius': '26em'
+		})
+	});
+}
+
+if(document.querySelector("[data-gsap-items]")) {
+	gsap.registerPlugin(ScrollTrigger);
+
+	document.querySelectorAll("[data-gsap-items]").forEach((element) => {
+		element.querySelectorAll('#gsapitem').forEach((item) => {
+			const image = item.querySelector('#image');
+			const button = item.querySelector('#button');
+			var tl = gsap.timeline({
+				paused: true,
+				scrollTrigger: {
+					trigger: item,
+					start: 'top center',
+					end: 'bottom center',
+					scrub: true,
+					pin: false
+				}
+			})
+			tl
+			.to(item, {height: '58em'})
+			.to(image, {width: '88em', height: '50em'})
+			.to(button, {opacity: '1', transform: 'translateX(0)'})
+		});
+	});
+}
+
+if(document.querySelector("[data-gsap-slider]")) {
+	gsap.registerPlugin(ScrollTrigger);
+
+	document.querySelectorAll("[data-gsap-slider]").forEach((element) => {
+		const items = gsap.utils.toArray(element.querySelectorAll('#gsapitem'));
+		gsap.to(items, {
+			scrollTrigger: {
+				trigger: element,
+				start: 'center center',
+				scrub: true,
+			},
+			xPercent: -100 * (items.length - 1)
+		})
+	});
+}
