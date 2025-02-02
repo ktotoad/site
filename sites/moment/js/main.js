@@ -900,7 +900,6 @@ if(document.querySelector("[data-gsap-title]")) {
 		tl.to(titles, {
 			scrollTrigger: {
 				trigger: element,
-				markers: false,
 				start: 'top center',
 				scrub: true,
 			},
