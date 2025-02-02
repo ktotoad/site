@@ -973,7 +973,6 @@ if(document.querySelector("[data-gsap-items]")) {
 				paused: true,
 				scrollTrigger: {
 					trigger: gsapitem,
-					markers: true,
 					start: 'top center',
 					end: 'center center',
 					scrub: true,
@@ -986,7 +985,6 @@ if(document.querySelector("[data-gsap-items]")) {
 				paused: true,
 				scrollTrigger: {
 					trigger: gsapitem,
-					markers: true,
 					start: 'top center',
 					end: 'center center',
 					scrub: true,
@@ -999,7 +997,6 @@ if(document.querySelector("[data-gsap-items]")) {
 				paused: true,
 				scrollTrigger: {
 					trigger: gsapitem,
-					markers: true,
 					start: 'top center',
 					end: 'center center',
 					scrub: true,
@@ -1026,5 +1023,62 @@ if(document.querySelector("[data-gsap-slider]")) {
 			},
 			xPercent: -50 * (items.length - 1)
 		})
+	});
+}
+
+if(document.querySelector("#things")) {
+	gsap.registerPlugin(ScrollTrigger);
+
+	document.querySelectorAll("#things").forEach((element) => {
+		const itemthingsleft = element.querySelector('#itemthingsleft');
+		const itemthingsright = element.querySelector('#itemthingsright');
+		gsap.from(itemthingsleft.querySelector('.item-things__images'), {
+			paused: true,
+			scrollTrigger: {
+				trigger: itemthingsleft,
+				start: 'top center',
+				end: 'bottom center',
+				scrub: true,
+				pin: false
+			},
+			x: '-50%',
+			opacity: '0'
+		});
+		gsap.from(itemthingsleft.querySelector('.item-things__blocks'), {
+			paused: true,
+			scrollTrigger: {
+				trigger: itemthingsleft,
+				start: 'top center',
+				end: 'bottom center',
+				scrub: true,
+				pin: false
+			},
+			x: '50%',
+			opacity: '0'
+		});
+		gsap.from(itemthingsright.querySelector('.item-things__images'), {
+			paused: true,
+			scrollTrigger: {
+				trigger: itemthingsright,
+				start: 'top center',
+				end: 'bottom center',
+				scrub: true,
+				pin: false
+			},
+			x: '50%',
+			opacity: '0'
+		});
+		gsap.from(itemthingsright.querySelector('.item-things__blocks'), {
+			paused: true,
+			scrollTrigger: {
+				trigger: itemthingsright,
+				start: 'top center',
+				end: 'bottom center',
+				scrub: true,
+				pin: false
+			},
+			x: '-50%',
+			opacity: '0'
+		});
 	});
 }
