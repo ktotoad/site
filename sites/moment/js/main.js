@@ -891,6 +891,42 @@ if(document.querySelector("#gallery-wrap")) {
 	});
 }
 //Resize_scroll==================================================================================================================================================
+if(document.querySelector("[data-gsap-title]")) {
+	gsap.registerPlugin(ScrollTrigger);
+	var tl = gsap.timeline();
+
+	document.querySelectorAll("[data-gsap-title]").forEach((element) => {
+		const titles = gsap.utils.toArray(element.querySelectorAll('h2'));
+		tl.to(titles, {
+			scrollTrigger: {
+				trigger: element,
+				markers: false,
+				start: 'top center',
+				scrub: true,
+			},
+			'transform': 'translateY(0)'
+		})
+	});
+}
+
+if(document.querySelector("[data-gsap-borderitem]")) {
+	gsap.registerPlugin(ScrollTrigger);
+	var tl = gsap.timeline();
+
+	document.querySelectorAll("[data-gsap-borderitem]").forEach((element) => {
+		const image = element.querySelector('#gsapimage');
+		tl.to(image, {
+			scrollTrigger: {
+				trigger: element,
+				start: 'top top',
+				scrub: true,
+			},
+			'border-bottom-left-radius': '26em', 
+			'border-bottom-right-radius': '26em'
+		})
+	});
+}
+
 if(document.querySelector("#main")) {
 	const logoM = document.querySelector("#logom");
 	const logo = document.querySelector("#logo");
@@ -910,46 +946,68 @@ if(document.querySelector("#main")) {
 	})
 }
 
-if(document.querySelector("[data-gsap-borderitem]")) {
+if(document.querySelector("#content")) {
 	gsap.registerPlugin(ScrollTrigger);
 	var tl = gsap.timeline();
-
-	document.querySelectorAll("[data-gsap-borderitem]").forEach((element) => {
-		const image = element.querySelector('#gsapimage');
-		tl.to(image, {
-			scrollTrigger: {
-				trigger: element,
-				markers: false,
-				start: 'top top',
-				scrub: true,
-			},
-			'border-bottom-left-radius': '26em', 
-			'border-bottom-right-radius': '26em'
-		})
-	});
+	tl.to('#gsapabout', {
+		scrollTrigger: {
+			trigger: '#content',
+			start: 'top top',
+			end: 'bottom bottom',
+			scrub: true,
+		},
+		'bottom': '0',
+	})
 }
+
 
 if(document.querySelector("[data-gsap-items]")) {
 	gsap.registerPlugin(ScrollTrigger);
 
 	document.querySelectorAll("[data-gsap-items]").forEach((element) => {
-		element.querySelectorAll('#gsapitem').forEach((item) => {
-			const image = item.querySelector('#image');
-			const button = item.querySelector('#button');
-			var tl = gsap.timeline({
+		element.querySelectorAll("#gsapitem").forEach((gsapitem) => {
+			const gsapimage = gsapitem.querySelector('#image');
+			const gsapbutton = gsapitem.querySelector('#button');
+			const gsaplogo = gsapitem.querySelector('#logo');
+			gsap.from(gsapimage, {
 				paused: true,
 				scrollTrigger: {
-					trigger: item,
+					trigger: gsapitem,
+					markers: true,
 					start: 'top center',
-					end: 'bottom center',
+					end: 'center center',
 					scrub: true,
 					pin: false
-				}
-			})
-			tl
-			.to(item, {height: '58em'})
-			.to(image, {width: '88em', height: '50em'})
-			.to(button, {opacity: '1', transform: 'translateX(0)'})
+				},
+				scale: '0.66',
+				transformOrigin: 'left top'
+			});
+			gsap.to(gsapbutton, {
+				paused: true,
+				scrollTrigger: {
+					trigger: gsapitem,
+					markers: true,
+					start: 'top center',
+					end: 'center center',
+					scrub: true,
+					pin: false
+				},
+				opacity: '1', 
+				transform: 'translateX(0)'
+			});
+			gsap.from(gsaplogo, {
+				paused: true,
+				scrollTrigger: {
+					trigger: gsapitem,
+					markers: true,
+					start: 'top center',
+					end: 'center center',
+					scrub: true,
+					pin: false
+				},
+				opacity: '0', 
+				width: '0'
+			});
 		});
 	});
 }
@@ -962,10 +1020,11 @@ if(document.querySelector("[data-gsap-slider]")) {
 		gsap.to(items, {
 			scrollTrigger: {
 				trigger: element,
-				start: 'center center',
+				start: 'top top',
+				end: 'bottom bottom',
 				scrub: true,
 			},
-			xPercent: -100 * (items.length - 1)
+			xPercent: -50 * (items.length - 1)
 		})
 	});
 }
