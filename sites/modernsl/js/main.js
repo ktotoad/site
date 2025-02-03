@@ -272,3 +272,56 @@ function bodyUnLock() {
 		unlock = true;
 	}, timeout);
 }
+
+//BuildSlider======================================================================================================================================================
+function buildSliders() {
+	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
+	if (sliders) {
+		sliders.forEach(slider => {
+			slider.parentElement.classList.add('swiper');
+			slider.classList.add('swiper-wrapper');
+			for(const slide of slider.children) {
+				slide.classList.add('swiper-slide');
+			}
+		});
+	}
+}
+
+//Инициализация_Swiper===============================================================================================================================================
+function initSliders() {
+	buildSliders();
+
+	if (document.querySelector('.slider-projects')) {
+		new Swiper('.slider-projects', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 2,
+			spaceBetween: 30,
+			parallax: true,
+			//loop: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 10,
+				},
+				768: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
+			},
+			scrollbar: {
+				el: ".slider-projects__scrollbar",
+				hide: false,
+		        draggable: true,
+		        dragSize: 83
+			},
+		});
+	}
+}
+
+initSliders();
