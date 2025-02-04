@@ -1,10 +1,4 @@
 
-/*Loading================================================================================*/
-window.addEventListener('load', function () {
-    const loader = document.querySelector('.loader');
-    loader.classList.add('hidden');
-});
-
 /*Content_download================================================================================*/
 let wrapper = document.querySelector('.wrapper');
 window.addEventListener('load', (event) => {
@@ -325,3 +319,54 @@ function initSliders() {
 }
 
 initSliders();
+//RadioButton====================================================================================================================================================================================
+if(document.querySelector('#radiobuttons')) {
+	let radioButtonsBodies = document.querySelectorAll('#radiobuttons');
+
+	radioButtonsBodies.forEach(function (radioButtonsBody) {
+        radioButtonsBody.addEventListener('click', (e) => {
+
+        	if(e.target.closest('.radio')) {
+        		radioButtonsBody.querySelectorAll('.radio').forEach(function (radio) {
+        			radio.classList.remove('active');
+        		});
+        		e.target.closest('.radio').classList.add('active'); 
+        	} 
+
+        });
+    });
+}
+//Steps====================================================================================================================================================================================
+if(document.querySelector('#steps')) {
+	const steps = document.querySelectorAll('[data-step]');
+	let answers = [];
+	if (steps.length > 0) {
+		steps.forEach((stepsBlock, index) => {
+			const stepRadios = stepsBlock.querySelector('#radiobuttons');
+			stepsBlock.setAttribute('data-step-index', index);
+			stepRadios.addEventListener("click", setStepsAction);
+		});
+	}
+	function setStepsAction(e) {
+		const el = e.target;
+		const stepBlock = el.closest('[data-step]');
+		const stepBlockIndex = stepBlock.dataset.stepIndex;
+			console.log(stepBlockIndex);
+		if (el.closest('.radio')) {
+			const radioBlock = el.closest('.radio').querySelector('input');
+			answers.push(radioBlock.value);
+			console.log(answers);
+			steps.forEach((block) => {
+				if(block.getAttribute('data-step-index') == (Number(stepBlockIndex) + 1)) {
+					block.classList.add('active-step');
+				};
+			});
+			if(stepBlockIndex != (steps.length - 1)) {
+				stepBlock.classList.remove('active-step');
+			} else {
+				alert(answers);
+			}
+			e.preventDefault();
+		}
+	}
+}
