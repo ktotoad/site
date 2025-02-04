@@ -1224,15 +1224,16 @@ textarea.input {
   }
 }
 .config__wrap {
+  overflow: hidden;
   margin-top: 3em;
   border-radius: 6em;
-  padding: 4em;
+  padding: 6em 4em;
   color: var(--white);
   background: var(--blue);
 }
 @media (max-width: 767.98px) {
   .config__wrap {
-    padding: 2em;
+    padding: 3em 2em;
   }
 }
 .config__bg {
@@ -1297,11 +1298,11 @@ textarea.input {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
 @media (min-width: 767.98px) {
   .step-config__text-block {
-    width: 50em;
+    width: 70em;
   }
 }
 .step-config__radio-buttons {
@@ -1317,12 +1318,17 @@ textarea.input {
 .step-config__radio-block {
   position: relative;
   border-radius: 4em;
-  padding: 2em 3em;
+  padding: 2em;
   color: var(--blue);
   background: var(--white);
 }
 .step-config__radio-block.active label {
   opacity: 0.5;
+}
+@media (min-width: 991.98px) {
+  .step-config__radio-block {
+    width: 56em;
+  }
 }
 .step-config__radio {
   position: absolute;
@@ -1344,6 +1350,24 @@ textarea.input {
 }
 @media (max-width: 767.98px) {
   .step-config__image {
+    display: none;
+  }
+}
+.step-config__img {
+  overflow: hidden;
+  position: absolute;
+  width: 35em;
+  bottom: -6em;
+  right: 15vw;
+}
+.step-config__img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+@media (max-width: 991.98px) {
+  .step-config__img {
     display: none;
   }
 }
