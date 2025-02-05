@@ -181,7 +181,7 @@ body.lock {
 }
 
 /*title text*/
-.title-anim-block {
+.title-anim-block, .text-anim-block {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -197,7 +197,7 @@ body.lock {
       -ms-flex-direction: column;
           flex-direction: column;
 }
-.title-anim-block.active h2, .title-anim-block.active h1 {
+.title-anim-block.active h2, .title-anim-block.active h1, .title-anim-block.active p, .text-anim-block.active h2, .text-anim-block.active h1, .text-anim-block.active p {
   -webkit-transform: translateY(0) rotate(0);
           transform: translateY(0) rotate(0);
 }
@@ -205,7 +205,7 @@ body.lock {
 .title-anim {
   overflow: hidden;
 }
-.title-anim h2, .title-anim h1 {
+.title-anim h2, .title-anim h1, .title-anim p {
   -webkit-transition: -webkit-transform 1s ease 0s;
   transition: -webkit-transform 1s ease 0s;
   transition: transform 1s ease 0s;
@@ -1701,6 +1701,9 @@ textarea.input {
   }
 }
 /*about*/
+.about__container .text-anim-block {
+  margin-top: 3em;
+}
 .about__title-main {
   text-align: center;
 }
@@ -3110,7 +3113,7 @@ textarea.input {
 }
 @media (max-width: 1170px) {
   .info-options__body {
-    width: calc(290px + 240 * ((100vw - 320px) / (850)));
+    width: calc(290px + 240 * (100vw - 320px) / (850));
   }
 }
 .info-options__body.active {
@@ -3906,7 +3909,7 @@ textarea.input {
 }
 @media (max-width: 1170px) {
   .resident__slider-body {
-    width: calc(290px + 436 * ((100vw - 320px) / (850)));
+    width: calc(290px + 436 * (100vw - 320px) / (850));
   }
 }
 @media (max-width: 991.98px) {
@@ -3946,7 +3949,7 @@ textarea.input {
 }
 @media (max-width: 1170px) {
   .resident-slider__image {
-    height: calc(320px + 220 * ((100vw - 320px) / (850)));
+    height: calc(320px + 220 * (100vw - 320px) / (850));
   }
 }
 .resident-slider__image img {
@@ -3973,12 +3976,12 @@ textarea.input {
 }
 @media (max-width: 1170px) {
   .resident-slider-thumb__link {
-    padding: calc(5px + 5 * ((100vw - 320px) / (850)));
+    padding: calc(5px + 5 * (100vw - 320px) / (850));
   }
 }
 @media (max-width: 1170px) {
   .resident-slider-thumb__link {
-    font-size: calc(10px + 4 * ((100vw - 320px) / (850)));
+    font-size: calc(10px + 4 * (100vw - 320px) / (850));
   }
 }
 .resident-slider-thumb__link.swiper-slide-thumb-active {
