@@ -340,6 +340,7 @@ if(document.querySelector('#radiobuttons')) {
 if(document.querySelector('#steps')) {
 	const steps = document.querySelectorAll('[data-step]');
 	let answers = [];
+	const inputAnswers = document.querySelector('#steps').querySelector('#answers');
 	if (steps.length > 0) {
 		steps.forEach((stepsBlock, index) => {
 			const stepRadios = stepsBlock.querySelector('#radiobuttons');
@@ -354,6 +355,7 @@ if(document.querySelector('#steps')) {
 		if (el.closest('.radio')) {
 			const radioBlock = el.closest('.radio').querySelector('input');
 			answers.push(radioBlock.value);
+			inputAnswers.value = answers;
 			steps.forEach((block) => {
 				if(block.getAttribute('data-step-index') == (Number(stepBlockIndex) + 1)) {
 					block.classList.add('active-step');
@@ -361,8 +363,6 @@ if(document.querySelector('#steps')) {
 			});
 			if(stepBlockIndex != (steps.length - 1)) {
 				stepBlock.classList.remove('active-step');
-			} else {
-				alert(answers);
 			}
 			e.preventDefault();
 		}
