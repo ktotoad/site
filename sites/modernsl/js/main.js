@@ -351,11 +351,9 @@ if(document.querySelector('#steps')) {
 		const el = e.target;
 		const stepBlock = el.closest('[data-step]');
 		const stepBlockIndex = stepBlock.dataset.stepIndex;
-			console.log(stepBlockIndex);
 		if (el.closest('.radio')) {
 			const radioBlock = el.closest('.radio').querySelector('input');
 			answers.push(radioBlock.value);
-			console.log(answers);
 			steps.forEach((block) => {
 				if(block.getAttribute('data-step-index') == (Number(stepBlockIndex) + 1)) {
 					block.classList.add('active-step');
