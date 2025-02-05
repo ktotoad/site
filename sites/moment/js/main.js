@@ -915,11 +915,11 @@ if(document.querySelector("#content")) {
 	tl.to('#gsapabout', {
 		scrollTrigger: {
 			trigger: '#content',
-			start: 'center top',
+			start: '-30% top',
 			end: 'bottom bottom',
 			scrub: true,
 		},
-		'bottom': '0',
+		'bottom': '20%',
 	})
 }
 
