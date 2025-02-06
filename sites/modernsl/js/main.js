@@ -351,19 +351,25 @@ if(document.querySelector('#steps')) {
 	function setStepsAction(e) {
 		const el = e.target;
 		const stepBlock = el.closest('[data-step]');
+		const stepNext = stepBlock.querySelector('#next');
 		const stepBlockIndex = stepBlock.dataset.stepIndex;
-		if (el.closest('.radio')) {
-			const radioBlock = el.closest('.radio').querySelector('input');
-			answers.push(radioBlock.value);
-			inputAnswers.value = answers;
-			steps.forEach((block) => {
-				if(block.getAttribute('data-step-index') == (Number(stepBlockIndex) + 1)) {
-					block.classList.add('active-step');
-				};
-			});
-			if(stepBlockIndex != (steps.length - 1)) {
-				stepBlock.classList.remove('active-step');
-			}
+
+		if (el.closest('input')) {
+			const input = el.closest('input');
+			stepNext.disabled = false;
+			stepNext.onclick = function() {
+				answers.push(input.value);
+				inputAnswers.value = answers;
+				console.log(answers);
+				steps.forEach((block) => {
+					if(block.getAttribute('data-step-index') == (Number(stepBlockIndex) + 1)) {
+						block.classList.add('active-step');
+					};
+				});
+				if(stepBlockIndex != (steps.length - 1)) {
+					stepBlock.classList.remove('active-step');
+				}
+			};
 			e.preventDefault();
 		}
 	}
