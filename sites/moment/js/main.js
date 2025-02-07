@@ -887,8 +887,8 @@ if(document.querySelector("#iconssvg")) {
 
   		numberPopup.querySelector("#number").innerText = "№" + event.target.dataset.number;
 
-  		numberPopup.style.left = x + "px";
-  		numberPopup.style.top = y + "px";
+  		numberPopup.style.left = x + 2 + "px";
+  		numberPopup.style.top = y + 2 + "px";
 		numberPopup.classList.add("active");
 	}
 
