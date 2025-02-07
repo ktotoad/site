@@ -859,20 +859,42 @@ if(document.querySelector('.filter-list')) {
 //SVG_script==========================================================================================================================
 if(document.querySelector("#iconssvg")) {
 	const svgBody = document.querySelector("#iconssvg svg");
-	const parkingOrder = document.querySelector("#parkingorder");
+	const catalogOrder = document.querySelector("#catalogorder");
+	const numberPopup = document.querySelector("#numberpopup");
 
 	svgBody.addEventListener("mouseover", (event) => {
 		if(event.target.tagName == "path") {
-			event.target.addEventListener("click", (event) => {
-				popupOpen(parkingOrder);
+			parkingPopupActive(event);
 
-		  		parkingOrder.querySelector("#popupnumber").innerText = "№" + event.target.dataset.number;
-		  		parkingOrder.querySelector("#popupsize").innerText = event.target.dataset.size;
-		  		parkingOrder.querySelector("#popupprice").innerText = event.target.dataset.price;
+			event.target.addEventListener("click", (event) => {
+				popupOpen(catalogOrder);
+
+		  		catalogOrder.querySelector("#popupnumber").innerText = "№" + event.target.dataset.number;
+		  		catalogOrder.querySelector("#popupsize").innerText = event.target.dataset.size;
+		  		catalogOrder.querySelector("#popupprice").innerText = event.target.dataset.price;
 		  		numberSpace();
+			});
+
+			event.target.addEventListener("mouseout", (event) => {
+				parkingPopupNotActive();
 			});
 		}
 	});
+
+	function parkingPopupActive(event) {
+		const x = event.clientX;
+  		const y = event.clientY;
+
+  		numberPopup.querySelector("#number").innerText = "№" + event.target.dataset.number;
+
+  		numberPopup.style.left = x + "px";
+  		numberPopup.style.top = y + "px";
+		numberPopup.classList.add("active");
+	}
+
+	function parkingPopupNotActive() {
+		numberPopup.classList.remove("active");
+	}
 }
 
 //Image_modal=====================================================================================================================================================
@@ -898,30 +920,60 @@ if(document.querySelector("[data-gsap-borderitem]")) {
 
 	document.querySelectorAll("[data-gsap-borderitem]").forEach((element) => {
 		const image = element.querySelector('#gsapimage');
-		tl.to(image, {
-			scrollTrigger: {
-				trigger: element,
-				start: 'top top',
-				scrub: true,
-			},
-			'border-bottom-left-radius': '26em', 
-			'border-bottom-right-radius': '26em'
-		})
+		ScrollTrigger.matchMedia({"(min-width: 768px)": () => {
+			tl.to(image, {
+				scrollTrigger: {
+					trigger: element,
+					start: 'top top',
+					scrub: true,
+				},
+				'border-bottom-left-radius': '26em', 
+				'border-bottom-right-radius': '26em'
+			})
+			}
+		});
+		ScrollTrigger.matchMedia({"(max-width: 768px)": () => {
+			tl.to(image, {
+				scrollTrigger: {
+					trigger: element,
+					start: 'top top',
+					scrub: true,
+				},
+				'border-bottom-left-radius': '10em', 
+				'border-bottom-right-radius': '10em'
+			})
+			}
+		});
 	});
 }
 
 if(document.querySelector("#content")) {
 	gsap.registerPlugin(ScrollTrigger);
 	var tl = gsap.timeline();
-	tl.to('#gsapabout', {
-		scrollTrigger: {
-			trigger: '#content',
-			start: '-30% top',
-			end: 'bottom bottom',
-			scrub: true,
-		},
-		'bottom': '20%',
-	})
+	ScrollTrigger.matchMedia({"(min-width: 768px)": () => {
+		tl.from('#gsapabout', {
+			scrollTrigger: {
+				trigger: '#content',
+				start: '-30% top',
+				end: 'bottom bottom',
+				scrub: true,
+			},
+			'y': '50%',
+		})
+		}
+	});
+	ScrollTrigger.matchMedia({"(max-width: 768px)": () => {
+		tl.from('#gsapabout', {
+			scrollTrigger: {
+				trigger: '#content',
+				start: '-30% top',
+				end: 'bottom bottom',
+				scrub: true,
+			},
+			'y': '15%',
+		})
+		}
+	});
 }
 
 
@@ -1000,8 +1052,8 @@ if(document.querySelector("#things")) {
 			paused: true,
 			scrollTrigger: {
 				trigger: itemthingsleft,
-				start: 'top center',
-				end: 'bottom center',
+				start: '-30% center',
+				end: '30% center',
 				scrub: true,
 				pin: false
 			},
@@ -1012,8 +1064,8 @@ if(document.querySelector("#things")) {
 			paused: true,
 			scrollTrigger: {
 				trigger: itemthingsleft,
-				start: 'top center',
-				end: 'bottom center',
+				start: '-30% center',
+				end: '30% center',
 				scrub: true,
 				pin: false
 			},
@@ -1024,8 +1076,8 @@ if(document.querySelector("#things")) {
 			paused: true,
 			scrollTrigger: {
 				trigger: itemthingsright,
-				start: 'top center',
-				end: 'bottom center',
+				start: '-30% center',
+				end: '30% center',
 				scrub: true,
 				pin: false
 			},
@@ -1036,8 +1088,8 @@ if(document.querySelector("#things")) {
 			paused: true,
 			scrollTrigger: {
 				trigger: itemthingsright,
-				start: 'top center',
-				end: 'bottom center',
+				start: '-30% center',
+				end: '30% center',
 				scrub: true,
 				pin: false
 			},
