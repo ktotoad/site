@@ -1062,15 +1062,28 @@ if(document.querySelector("[data-gsap-slider]")) {
 
 	document.querySelectorAll("[data-gsap-slider]").forEach((element) => {
 		const items = gsap.utils.toArray(element.querySelectorAll('#gsapitem'));
-		gsap.to(items, {
-			scrollTrigger: {
-				trigger: element,
-				start: 'top top',
-				end: 'bottom bottom',
-				scrub: true,
-			},
-			xPercent: -100 * (items.length - 1)
-		})
+		ScrollTrigger.matchMedia({"(min-width: 768px)": () => {
+			gsap.to(items, {
+				scrollTrigger: {
+					trigger: element,
+					start: 'top top',
+					end: 'bottom center',
+					scrub: true,
+				},
+				xPercent: -100 * ((items.length - 1) / 2)
+			})
+		}});
+		ScrollTrigger.matchMedia({"(max-width: 768px)": () => {
+			gsap.to(items, {
+				scrollTrigger: {
+					trigger: element,
+					start: 'top top',
+					end: 'bottom bottom',
+					scrub: true,
+				},
+				xPercent: -100 * (items.length - 1)
+			})
+		}});
 	});
 }
 
