@@ -401,6 +401,37 @@ if(document.querySelector('#optionsblock')) {
         }
     });
 }
+//map======================================================================================================================================================================
+if (document.querySelector("#map")) {
+    document.addEventListener("DOMContentLoaded", (()=>{
+        ymaps.ready((function() {
+            var e = new ymaps.Map("map",{
+                center: [55.719051, 49.087963],
+                zoom: 15,
+                controls: []
+            }),
+            t = ymaps.templateLayoutFactory.createClass("<div>$[properties.iconContent]</div>"),
+            i = new ymaps.Placemark([55.719051, 49.087963],
+            {
+                balloonContent: '<div class="popup-map__body"><p class="text">Моменты — 12 элегантных таунхаусов</p></div>',
+                balloonContentFooter: '<div class="popup-map__footer"><a href="" class="popup-map__link"><span>Подробнее</span></a></div>'
+            },
+            {
+                iconLayout: "default#imageWithContent",
+                iconImageHref: "/img/icons/logomap.svg",
+                iconImageSize: [60, 60],
+                iconImageOffset: [-24, -24],
+                iconContentOffset: [15, 15],
+                iconContentLayout: t,
+                hideIconOnBalloonOpen: !1,
+                balloonCloseButton: !1,
+                balloonOffset: [0, -20]
+            });
+            e.geoObjects.add(i)
+        }))
+    }));
+}
+
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
@@ -867,7 +898,8 @@ if(document.querySelector("#iconssvg")) {
 			parkingPopupActive(event);
 
 			event.target.addEventListener("click", (event) => {
-				popupOpen(catalogOrder);
+				//popupOpen(catalogOrder);
+				catalogOrder.classList.add("open");
 
 		  		catalogOrder.querySelector("#popupnumber").innerText = "№" + event.target.dataset.number;
 		  		catalogOrder.querySelector("#popupsize").innerText = event.target.dataset.size;
