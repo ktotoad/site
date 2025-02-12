@@ -895,7 +895,7 @@ if(document.querySelector("#iconssvg")) {
 
 	svgBody.addEventListener("mouseover", (event) => {
 		if(event.target.tagName == "path") {
-			parkingPopupActive(event);
+			//parkingPopupActive(event);
 
 			event.target.addEventListener("click", (event) => {
 				//popupOpen(catalogOrder);
