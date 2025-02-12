@@ -1734,7 +1734,7 @@ textarea.input {
   padding-top: 12em;
 }
 .page__lobby {
-  padding-top: 9em;
+  margin-top: 9em;
 }
 .page__map {
   padding-top: 12em;
@@ -2183,6 +2183,7 @@ textarea.input {
 /*lobby*/
 .lobby {
   position: relative;
+  z-index: 8;
 }
 .lobby__item {
   position: sticky;
@@ -2203,6 +2204,30 @@ textarea.input {
   .lobby__image {
     height: 42em;
   }
+}
+.lobby__logo_top, .lobby__logo_bottom {
+  overflow: hidden;
+  position: absolute;
+  z-index: 10;
+  width: 13em;
+  height: 13em;
+  left: 50%;
+}
+.lobby__logo_top img, .lobby__logo_bottom img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.lobby__logo_top {
+  top: 0;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.lobby__logo_bottom {
+  bottom: 0;
+  -webkit-transform: translate(-50%, 50%);
+          transform: translate(-50%, 50%);
 }
 
 /*map*/
@@ -2437,6 +2462,23 @@ textarea.input {
   background: var(--dark);
   -webkit-box-shadow: 0px -26em 0px 0px var(--dark);
           box-shadow: 0px -26em 0px 0px var(--dark);
+}
+.comfort__logo {
+  overflow: hidden;
+  position: absolute;
+  z-index: 10;
+  width: 13em;
+  height: 13em;
+  left: 50%;
+  bottom: 0;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.comfort__logo img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .comfort__title {
   text-align: center;
