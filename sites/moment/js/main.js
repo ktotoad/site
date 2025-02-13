@@ -904,6 +904,7 @@ if(document.querySelector("#iconssvg")) {
 		  		catalogOrder.querySelector("#popupnumber").innerText = "№" + event.target.dataset.number;
 		  		catalogOrder.querySelector("#popupsize").innerText = event.target.dataset.size;
 		  		catalogOrder.querySelector("#popupprice").innerText = event.target.dataset.price;
+		  		catalogOrder.querySelector("#popuplink").href = "./catalog-detail" + event.target.dataset.number + ".html";
 		  		numberSpace();
 			});
 
