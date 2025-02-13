@@ -403,33 +403,41 @@ if(document.querySelector('#optionsblock')) {
 }
 //map======================================================================================================================================================================
 if (document.querySelector("#map")) {
-    document.addEventListener("DOMContentLoaded", (()=>{
-        ymaps.ready((function() {
-            var e = new ymaps.Map("map",{
-                center: [55.719051, 49.087963],
-                zoom: 15,
-                controls: []
-            }),
-            t = ymaps.templateLayoutFactory.createClass("<div>$[properties.iconContent]</div>"),
-            i = new ymaps.Placemark([55.719051, 49.087963],
-            {
-                balloonContent: '<div class="popup-map__body"><p class="text">Моменты — 12 элегантных таунхаусов</p></div>',
-                balloonContentFooter: '<div class="popup-map__footer"><a href="" class="popup-map__link"><span>Подробнее</span></a></div>'
-            },
-            {
-                iconLayout: "default#imageWithContent",
-                iconImageHref: "../img/icons/logomap.svg",
-                iconImageSize: [60, 60],
-                iconImageOffset: [-24, -24],
-                iconContentOffset: [15, 15],
-                iconContentLayout: t,
-                hideIconOnBalloonOpen: !1,
-                balloonCloseButton: !1,
-                balloonOffset: [0, -20]
-            });
-            e.geoObjects.add(i)
-        }))
-    }));
+    ymaps.ready(mapInit);
+}
+function mapInit() {
+    var myMap = new ymaps.Map("map",{
+        center: [55.624461, 49.011208],
+        zoom: 15,
+        //controls: ['zoomControl']
+    }),
+    t = ymaps.templateLayoutFactory.createClass("<div>$[properties.iconContent]</div>"),
+    i = new ymaps.Placemark([55.624461, 49.011208],
+    {
+        balloonContent: '<div class="popup-map__body"><p class="text">Моменты — 12 элегантных таунхаусов</p></div>',
+        balloonContentFooter: '<div class="popup-map__footer"><a href="#catalog" class="popup-map__link"><span>Подробнее</span></a></div>'
+    },
+    {
+        iconLayout: "default#imageWithContent",
+        iconImageHref: "../img/icons/logomap.svg",
+        iconImageSize: [60, 60],
+        iconImageOffset: [-24, -24],
+        iconContentOffset: [15, 15],
+        iconContentLayout: t,
+        hideIconOnBalloonOpen: !1,
+        balloonCloseButton: !1,
+        balloonOffset: [0, -20]
+    });
+    ymaps.route([
+        [55.624461, 49.011208],
+        [55.797557, 49.107295]
+    ]).then(function (route) {
+        myMap.geoObjects.add(route);
+    }, function (error) {
+        alert('Возникла ошибка: ' + error.message);
+    });
+    myMap.behaviors.disable('scrollZoom');
+    myMap.geoObjects.add(i)
 }
 
 //BuildSlider======================================================================================================================================================
