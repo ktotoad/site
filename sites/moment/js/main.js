@@ -418,8 +418,7 @@ if (document.querySelector("#map")) {
             },
             {
                 iconLayout: "default#imageWithContent",
-                //iconImageHref: "../img/icons/logomap.svg",
-                iconImageHref: "./logomap.svg",
+                iconImageHref: "../img/icons/logomap.svg",
                 iconImageSize: [60, 60],
                 iconImageOffset: [-24, -24],
                 iconContentOffset: [15, 15],
