@@ -61,6 +61,17 @@ if(document.querySelector("#buttonsFormBody")) {
 		}
 	}
 }
+//Paralax=====================================================================================================================================================
+if(document.querySelector("#catalogorder")) {
+	let paralaxItem = document.querySelector('#catalogorder');
+	let paralaxBody = paralaxItem.closest('section');
+
+	document.addEventListener("scroll", function (e) {
+		let s = 0 + paralaxBody.getBoundingClientRect().top / 4;
+		paralaxItem.style.transform  = `translateY(${s}px)`;
+	});
+}
+
 const body = document.querySelector('body');
 //burger=====================================================================================================================================================
 if (document.querySelector('.icon-menu')) {
@@ -406,38 +417,48 @@ if (document.querySelector("#map")) {
     ymaps.ready(mapInit);
 }
 function mapInit() {
+    // Создаем карту
     var myMap = new ymaps.Map("map",{
         center: [55.624461, 49.011208],
-        zoom: 15,
-        //controls: ['zoomControl']
-    }),
-    t = ymaps.templateLayoutFactory.createClass("<div>$[properties.iconContent]</div>"),
-    i = new ymaps.Placemark([55.624461, 49.011208],
-    {
-        balloonContent: '<div class="popup-map__body"><p class="text">Моменты — 12 элегантных таунхаусов</p></div>',
-        balloonContentFooter: '<div class="popup-map__footer"><a href="#catalog" class="popup-map__link"><span>Подробнее</span></a></div>'
-    },
-    {
-        iconLayout: "default#imageWithContent",
-        iconImageHref: "../img/icons/logomap.svg",
-        iconImageSize: [60, 60],
-        iconImageOffset: [-24, -24],
-        iconContentOffset: [15, 15],
-        iconContentLayout: t,
-        hideIconOnBalloonOpen: !1,
-        balloonCloseButton: !1,
-        balloonOffset: [0, -20]
+        zoom: 10,
+        controls: ['zoomControl']
     });
-    ymaps.route([
-        [55.624461, 49.011208],
-        [55.797557, 49.107295]
-    ]).then(function (route) {
-        myMap.geoObjects.add(route);
+    //маршрут с иконками
+    var multiRoute = new ymaps.multiRouter.MultiRoute({
+        referencePoints: [ 
+            [55.624461, 49.011208],
+            [55.797557, 49.107295]
+        ]
+    },{
+        // Внешний вид начальной точки
+        wayPointStartIconLayout: "default#imageWithContent",
+        wayPointStartIconImageHref: "../img/icons/logomap.svg",
+        wayPointStartIconImageSize: [60, 60],
+        wayPointStartIconImageOffset: [-24, -24],
+
+        // Внешний вид конечной точки
+        wayPointFinishIconLayout: "default#imageWithContent",
+        wayPointFinishIconImageHref: "../img/icons/kr.png",
+        wayPointFinishIconImageSize: [40, 40],
+        wayPointFinishIconImageOffset: [-20, -20],
+
+        // Внешний вид линии маршрута
+        routeStrokeWidth: 2,
+        routeStrokeColor: "#202229",
+        routeActiveStrokeWidth: 6,
+        routeActiveStrokeColor: "#D69A66",
+
+        // Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком
+        boundsAutoApply: true
     }, function (error) {
         alert('Возникла ошибка: ' + error.message);
     });
+    //убираем скрол
     myMap.behaviors.disable('scrollZoom');
-    myMap.geoObjects.add(i)
+    //добавляем маршрут
+    myMap.geoObjects.add(multiRoute);
+    //добавляем точку
+    //myMap.geoObjects.add(myPlacemark);
 }
 
 //BuildSlider======================================================================================================================================================
