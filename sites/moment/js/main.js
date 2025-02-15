@@ -559,6 +559,46 @@ function initSliders() {
 			},
 		});
 	}
+
+	if (document.querySelector('.slider-detail-catalog')) {
+		new Swiper('.slider-detail-catalog', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 4,
+			spaceBetween: 10,
+			parallax: true,
+			//loop: true,
+			//autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 0,
+					autoHeight: true,
+				},
+				480: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
+				992: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+				1268: {
+					slidesPerView: 4,
+					spaceBetween: 30,
+				}
+			},		
+			navigation: {
+				nextEl: ".slider-detail-catalog__next",
+				prevEl: ".slider-detail-catalog__prev",
+			},
+		});
+	}
 }
 
 
@@ -932,8 +972,9 @@ if(document.querySelector("#iconssvg")) {
 
 		  		catalogOrder.querySelector("#popupnumber").innerText = "№" + event.target.dataset.number;
 		  		catalogOrder.querySelector("#popupsize").innerText = event.target.dataset.size;
-		  		catalogOrder.querySelector("#popupprice").innerText = event.target.dataset.price;
-		  		catalogOrder.querySelector("#popuplink").href = "./catalog-detail" + event.target.dataset.number + ".html";
+		  		catalogOrder.querySelector("#popupprice").innerText = event.target.dataset.price;		  		
+		  		//catalogOrder.querySelector("#popuplink").href = "./catalog-detail" + event.target.dataset.number + ".php";
+				catalogOrder.querySelector("#popuplink").href = "./catalog-detail" + event.target.dataset.number + ".html";
 		  		numberSpace();
 			});
 
