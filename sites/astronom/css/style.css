@@ -2058,7 +2058,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
   padding-top: 11em;
 }
 .page__gallery {
-  padding-top: 11em;
+  padding-top: 16em;
+  padding-bottom: 9em;
 }
 .page__map {
   padding-top: 11em;
@@ -2067,7 +2068,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   padding-top: 11em;
   padding-bottom: 6em;
 }
-.page__teaM {
+.page__team {
   padding-top: 11em;
 }
 .page__options {
@@ -2839,10 +2840,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .options.active .item-options {
   opacity: 1;
-}
-.options.active .item-options::before {
-  width: 100%;
-  height: 100%;
 }
 .options__container {
   display: -webkit-box;
@@ -4398,6 +4395,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   }
 }
 
+/*gallery-page*/
 .gallery-page {
   position: relative;
   overflow: hidden;
@@ -4411,15 +4409,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
   margin-top: 7em;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 4em 1fr 4em 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 4em 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 4em;
-}
-@media (max-width: 991.98px) {
-  .gallery-page__items {
-    -ms-grid-columns: 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-  }
 }
 @media (max-width: 767.98px) {
   .gallery-page__items {
@@ -4438,21 +4430,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
             flex-direction: column;
   }
 }
-.gallery-page__decore-plane {
-  top: -50%;
-  right: 0;
-}
-
 .item-gallery {
   position: relative;
-}
-.item-gallery:first-child {
-  -webkit-clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%, 0 25%);
-          clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%, 0 25%);
-}
-.item-gallery:last-child {
-  -webkit-clip-path: polygon(100% 0, 100% 75%, 75% 100%, 0 100%, 0 0);
-          clip-path: polygon(100% 0, 100% 75%, 75% 100%, 0 100%, 0 0);
 }
 @media (max-width: 767.98px) {
   .item-gallery {
@@ -4530,16 +4509,32 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .item-gallery__title {
   font-size: 3.2em;
 }
+/*map-page*/
+.map-page {
+  padding-top: 16em;
+}
 .map-page__title {
   text-align: center;
 }
 .map-page__body {
-  -webkit-clip-path: polygon(15% 0, 100% 0%, 100% 100%, 0 100%, 0 15%);
-          clip-path: polygon(15% 0, 100% 0%, 100% 100%, 0 100%, 0 15%);
   margin-top: 7em;
   overflow: hidden;
 }
 
+/*options-page*/
+.options-page {
+  margin-top: 16em;
+  color: var(--primary);
+  background: var(--white);
+}
+.options-page .options__content {
+  color: var(--white);
+}
+
+.payment-page__items {
+  margin-top: 6em;
+  margin-bottom: 6em;
+}
 .item-payment {
   border-top: 1px solid var(--light-gray);
   padding: 3em 0;
@@ -4581,7 +4576,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   line-height: 110%;
   color: var(--primary);
   background: var(--white);
-  border: 1px solid var(--blue);
+  border: 1px solid var(--gray6);
   -webkit-transition: color 0.3s, background 0.3s ease 0s;
   transition: color 0.3s, background 0.3s ease 0s;
 }
@@ -4592,8 +4587,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .item-payment__tab._tab-active {
   color: var(--white);
-  background: var(--blue);
-  border: 1px solid var(--blue);
+  background: var(--gray6);
+  border: 1px solid var(--gray6);
 }
 .item-payment__main {
   display: -webkit-box;
@@ -4631,7 +4626,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   margin-top: 1.25em;
 }
 .item-payment__text a {
-  color: var(--blue);
+  color: var(--gray6);
   -webkit-transition: color 0.3s ease 0s;
   transition: color 0.3s ease 0s;
 }
@@ -4663,13 +4658,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%, 0 25%);
-          clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%, 0 25%);
   width: 3.9em;
   height: 3.9em;
   font-weight: 700;
   color: var(--white);
-  background: var(--light-blue);
+  background: var(--primary);
   font-size: 6.4em;
   line-height: 120%;
 }
@@ -4680,22 +4673,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
   line-height: 120%;
 }
 
-.options-page__container {
-  position: relative;
-}
-.options-page__decore-circle {
-  z-index: 5;
-  width: 4.2em;
-  height: 4.2em;
-  top: -10%;
-  right: 0;
-}
-
-.page__parking {
-  padding-top: 16em;
-}
-
+/*parking-page*/
 .parking-page {
+  padding-top: 16em;
   overflow: hidden;
 }
 .parking-page__header {
