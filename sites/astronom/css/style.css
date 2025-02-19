@@ -5726,15 +5726,15 @@ input[type=text], input[type=email], input[type=tel], textarea {
   position: relative;
   z-index: 20;
 }
-@media (min-width: 767.98px) {
+@media (min-width: 991.98px) {
   .detail-page__container {
     display: -ms-grid;
     display: grid;
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: start;
-    -ms-grid-columns: 1fr 2em 2fr;
-    grid-template-columns: 1fr 2fr;
+    -ms-grid-columns: 2fr 2em 3fr;
+    grid-template-columns: 2fr 3fr;
     gap: 2em;
   }
 }
@@ -5907,12 +5907,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
   gap: 1rem;
 }
 .detail-page__slider-body {
-  width: 73em;
+  width: 81em;
 }
 @media (max-width: 991.98px) {
   .detail-page__slider-body {
-    margin-top: 4em;
     width: 100%;
+    margin-top: 4em;
   }
 }
 .detail-page__navigation {
@@ -5961,7 +5961,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   left: 0;
   background: var(--gray);
 }
-@media (max-width: 767.98px) {
+@media (max-width: 991.98px) {
   .table-detail__line {
     width: 60vw;
   }
@@ -6018,9 +6018,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  border: 1px solid var(--gray);
-  border-radius: 4em;
   overflow: hidden;
+  gap: 1rem;
 }
 @media (min-width: 479.98px) {
   .tabs-detail__navigation {
@@ -6042,30 +6041,28 @@ input[type=text], input[type=email], input[type=tel], textarea {
   }
 }
 .tabs-detail__title {
-  display: block;
   cursor: pointer;
-  white-space: nowrap;
+  text-align: center;
+  padding: 0.75em;
+  color: var(--primary);
+  background: transparent;
+  border: 1px solid var(--dark-gray);
+  font-size: 1.4em;
+  line-height: 150%;
   text-transform: uppercase;
-  font-weight: 500;
-  color: var(--dark-gray3);
-  background: var(--white);
-  font-size: 1.2em;
-  line-height: 120%;
-  padding: 1.5em;
-  -webkit-transition: color 0.3s, background 0.3s ease 0s;
-  transition: color 0.3s, background 0.3s ease 0s;
-}
-.tabs-detail__title:not(:last-child) {
-  border-right: 1px solid var(--gray8);
+  -webkit-transition: color 0.5s, border 0.5s, background 0.5s ease 0s;
+  transition: color 0.5s, border 0.5s, background 0.5s ease 0s;
 }
 .tabs-detail__title._tab-active {
   color: var(--white);
-  background: var(--dark-gray3);
+  background: var(--dark-gray);
+  border: 1px solid var(--dark-gray);
 }
 @media (any-hover: hover) {
-  .tabs-detail__title:not(.active):hover {
+  .tabs-detail__title:hover {
     color: var(--white);
-    background: var(--gray8);
+    background: var(--dark-gray3);
+    border: 1px solid var(--dark-gray3);
   }
 }
 .tabs-detail__wrap {
@@ -6321,14 +6318,15 @@ input[type=text], input[type=email], input[type=tel], textarea {
   transition: color 0.5s, border 0.5s, background 0.5s ease 0s;
 }
 .detail-slider-thumb__link.swiper-slide-thumb-active {
-  color: var(--primary);
+  color: var(--white);
+  background: var(--dark-gray);
   border: 1px solid var(--dark-gray);
 }
 @media (any-hover: hover) {
   .detail-slider-thumb__link:hover {
     color: var(--white);
-    background: var(--dark-gray);
-    border: 1px solid var(--dark-gray);
+    background: var(--dark-gray3);
+    border: 1px solid var(--dark-gray3);
   }
 }
 
