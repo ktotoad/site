@@ -5710,6 +5710,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   margin: 0 auto;
 }
 
+/*catalog detail*/
 .detail-page {
   position: relative;
   overflow: hidden;
@@ -5720,15 +5721,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
   opacity: 1;
   -webkit-transform: translateY(0);
           transform: translateY(0);
-}
-.detail-page__decore-plane {
-  top: 0;
-  left: 35%;
-}
-@media (max-width: 767.98px) {
-  .detail-page__decore-plane {
-    left: 60%;
-  }
 }
 .detail-page__container {
   position: relative;
@@ -5914,7 +5906,38 @@ input[type=text], input[type=email], input[type=tel], textarea {
           flex-direction: row;
   gap: 1rem;
 }
-
+.detail-page__slider-body {
+  width: 73em;
+}
+@media (max-width: 991.98px) {
+  .detail-page__slider-body {
+    margin-top: 4em;
+    width: 100%;
+  }
+}
+.detail-page__navigation {
+  position: relative;
+  z-index: 10;
+  margin-bottom: 3em;
+}
+@media (min-width: 767.98px) {
+  .detail-page__navigation {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    gap: 1rem;
+  }
+}
 .table-detail__body {
   width: 100%;
 }
@@ -6268,6 +6291,44 @@ input[type=text], input[type=email], input[type=tel], textarea {
 @media (min-width: 479.98px) {
   .alike-page__slide:nth-child(2n) .content-catalog__item-body {
     background: var(--white);
+  }
+}
+
+.detail-slider__image {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 54em;
+}
+.detail-slider__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.detail-slider-thumb__link {
+  cursor: pointer;
+  text-align: center;
+  padding: 0.75em;
+  color: var(--primary);
+  background: transparent;
+  border: 1px solid var(--dark-gray);
+  font-size: 1.4em;
+  line-height: 150%;
+  text-transform: uppercase;
+  -webkit-transition: color 0.5s, border 0.5s, background 0.5s ease 0s;
+  transition: color 0.5s, border 0.5s, background 0.5s ease 0s;
+}
+.detail-slider-thumb__link.swiper-slide-thumb-active {
+  color: var(--primary);
+  border: 1px solid var(--dark-gray);
+}
+@media (any-hover: hover) {
+  .detail-slider-thumb__link:hover {
+    color: var(--white);
+    background: var(--dark-gray);
+    border: 1px solid var(--dark-gray);
   }
 }
 
@@ -6809,12 +6870,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
       -ms-flex-direction: row;
           flex-direction: row;
 }
-.parking-filter__title {
-  font-family: "TT Norms";
-  color: var(--light-black);
-  font-size: 1.8em;
-  line-height: 120%;
-}
 .parking-filter__items {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -6866,10 +6921,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
       -ms-flex-direction: column;
           flex-direction: column;
   text-align: center;
-  font-family: "TT Norms";
-  background: var(--light);
   font-size: 1.6em;
-  line-height: 110%;
+  line-height: 120%;
+  background: var(--light);
   padding: 1em 1.2em;
   -webkit-transition: background 0.3s ease 0s;
   transition: background 0.3s ease 0s;
@@ -6893,12 +6947,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .parking-filter__radio.active {
   color: var(--white);
-  background: var(--blue);
+  background: var(--gray3);
 }
 @media (any-hover: hover) {
-  .parking-filter__radio:hover {
+  .parking-filter__radio:not(.active):hover {
     color: var(--white);
-    background: var(--blue);
+    background: var(--gray4);
   }
 }
 

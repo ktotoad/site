@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ru">
 	<head>
-		<title>Выбрать квартиру</title>
+		<title>Выбрать Помещение</title>
 		<meta charset="utf-8">
-		<link rel="icon" href="/favicon.png" type="image/x-icon">
+		<meta name="format-detection" content="telephone=no">
 		<link rel="stylesheet" href="css/fonts.css" />
 		<link rel="stylesheet" href="css/nouislider.css" />
-		<link rel="stylesheet" href="css/style.css?v=1.9" />
+		<link rel="stylesheet" href="css/style.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	</head>
 	<body>
@@ -74,29 +74,8 @@
 					<div class="catalog-page__container container">
 						<aside class="catalog-page__filter filter-catalog">
 							<div data-spollers="767.98" class="filter-catalog__mobile-spoller mobile-spoller">
-								<button tabindex="-1" type="button" data-spoller class="mobile-spoller__title button-black">Дополнительные параметры</button>
+								<button tabindex="-1" type="button" data-spoller class="mobile-spoller__title button-link">Дополнительные параметры</button>
 								<div class="mobile-spoller__body">
-									<div class="filter-catalog__item">
-										<h5 class="filter-catalog__title">Количество спален:</h5>
-										<div id="radiobuttons" class="filter-catalog__buttons radio__buttons">
-											<div class="filter-catalog__radio radio">
-												<span>A1</span>
-												<input name="spalni" value="1" type="radio">
-											</div>
-											<div class="filter-catalog__radio radio">
-												<span>A2</span>
-												<input name="spalni" value="2" type="radio">
-											</div>
-											<div class="filter-catalog__radio radio">
-												<span>A3</span>
-												<input name="spalni" value="3" type="radio">
-											</div>
-											<div class="filter-catalog__radio radio">
-												<span>пентхаус</span>
-												<input name="spalni" value="pent" type="radio">
-											</div>
-										</div>
-									</div>
 									<div id="range-slider-square" class="filter-catalog__item">
 										<h5 class="filter-catalog__title">Площадь:</h5>
 										<div class="filter-catalog__inputs">
@@ -113,33 +92,22 @@
 										</div>
 										<div id="slider-square"></div>
 									</div>
-									<div id="range-slider-floor" class="filter-catalog__item">
-										<h5 class="filter-catalog__title">Этаж:</h5>
-										<div class="filter-catalog__inputs">
-											<div class="filter-catalog__input-body filter-catalog__input-body_small">
-												<span>от</span>
-												<input id="input-min-f" type="number" name="min_etazh" class="filter-catalog__input">
+									<div class="filter-catalog__item">
+										<h5 class="filter-catalog__title">Секция:</h5>
+										<div id="radiobuttons" class="filter-catalog__radio-buttons radio__buttons">
+											<div class="parking-filter__radio radio">
+												<p><span>Секция 1 -</span><br>ул. Старообрядческая</p>
+												<input name="radio_sec" value="13" type="radio">
 											</div>
-											<div class="filter-catalog__input-body filter-catalog__input-body_small">	
-												<span>по</span>
-												<input id="input-max-f" type="number" name="max_etazh" class="filter-catalog__input">
+											<div class="parking-filter__radio radio">
+												<p><span>Секция 2 -</span><br>ул. Айдинова</p>
+												<input name="radio_sec" value="15" type="radio">
 											</div>
-										</div>
-										<div id="slider-floor"></div>
-									</div>
-									<div id="range-slider-price" class="filter-catalog__item">
-										<h5 class="filter-catalog__title">Цена:</h5>
-										<div class="filter-catalog__inputs">
-											<div class="filter-catalog__input-body filter-catalog__input-body_small">
-												<span>от</span>
-												<input id="input-min-price" type="text" name="min_price" class="filter-catalog__input">
-											</div>
-											<div class="filter-catalog__input-body filter-catalog__input-body_small">	
-												<span>по</span>
-												<input id="input-max-price" type="text" name="max_price" class="filter-catalog__input">
+											<div class="parking-filter__radio radio">
+												<p><span>Секция 3 -</span><br>Щербаковский переулок</p>
+												<input name="radio_sec" value="21" type="radio">
 											</div>
 										</div>
-										<div id="slider-price"></div>
 									</div>
 									<div data-spollers="9767.98" class="filter-catalog__spoller spoller-filter-catalog">
 										<button tabindex="-1" type="button" data-spoller class="spoller-filter-catalog__title">Дополнительные параметры<span>3</span></button>
@@ -185,137 +153,71 @@
 							</div>
 						</aside>
 						<div class="catalog-page__content content-catalog">
-							<div class="catalog-page__select-body">
-								<select class="catalog-page__select" id="sorting">
-						            <option value="default" selected="">По номеру квартиры</option>
-						            <option value="smallcost">Сначала недорогие</option>
-						            <option value="bigcost">Сначала дорогие</option>
-						            <option value="smallsize">Сначала небольшие</option>
-						            <option value="bigsize">Сначала большие</option>
-						        </select>
-					        </div>
 							<div class="content-catalog__items">
-								<a href="./catalog-detail.html" class="content-catalog__item item-catalog">
-									<div class="item-catalog__text-block">
-										<h3 class="item-catalog__title title-l">№82</h3>
-										<p class="item-catalog__subtitle text-l">1-комнатная 57 м²</p>
-									</div>
-									<div class="item-catalog__image">
-										<img src="./img/catalog/01.png" alt="">
-									</div>
-									<div class="item-catalog__text-block">
-										<p class="item-catalog__price text"><span class="js_price">26820500</span> ₽</p>
-										<p class="item-catalog__info">В ипотеку - от 54 391 ₽/мес.</p>
-									</div>
-									<div class="item-catalog__tags">
-										<p class="item-catalog__tag">С видом на город</p>
-										<p class="item-catalog__tag">1 этаж</p>
-										<p class="item-catalog__tag">терасса</p>
-										<p class="item-catalog__tag">1 санузел</p>
-										<p class="item-catalog__tag_park">Парковка в подарок</p>
-									</div>
-								</a>
-<a href="./catalog-detail.html" class="content-catalog__item item-catalog">
+<a href="./commercial-detail.html" class="content-catalog__item item-catalog">
 	<div class="item-catalog__text-block">
-		<h3 class="item-catalog__title title-l">№82</h3>
-		<p class="item-catalog__subtitle text-l">1-комнатная 57 м²</p>
+		<h3 class="item-catalog__title title-m">№9</h3>
+		<p class="item-catalog__subtitle title-s">Коммерческое<br>помещение</p>
+		<p class="item-catalog__subtitle text-l">96,34 м²</p>
 	</div>
-	<div class="item-catalog__image">
-		<img src="./img/catalog/03.png" alt="">
+	<div class="item-catalog__image-block">
+		<div class="item-catalog__image">
+			<img src="./img/catalog/01.png" alt="">
+		</div>
+		<div class="item-catalog__image-absolute">
+			<img src="./img/catalog/03.png" alt="">
+		</div>
 	</div>
 	<div class="item-catalog__text-block">
-		<p class="item-catalog__price text"><span class="js_price">26820500</span> ₽</p>
-		<p class="item-catalog__info">В ипотеку - от 54 391 ₽/мес.</p>
+		<p class="item-catalog__price text"><span class="js_price">22570100</span> ₽</p>
 	</div>
 	<div class="item-catalog__tags">
-		<p class="item-catalog__tag">С видом на город</p>
 		<p class="item-catalog__tag">1 этаж</p>
-		<p class="item-catalog__tag">терасса</p>
-		<p class="item-catalog__tag">1 санузел</p>
-		<p class="item-catalog__tag_park">Парковка в подарок</p>
+		<p class="item-catalog__tag">Секция 1</p>
 	</div>
-</a>
-<a href="./catalog-detail.html" class="content-catalog__item item-catalog">
+</a><a href="./commercial-detail.html" class="content-catalog__item item-catalog">
 	<div class="item-catalog__text-block">
-		<h3 class="item-catalog__title title-l">№82</h3>
-		<p class="item-catalog__subtitle text-l">1-комнатная 57 м²</p>
+		<h3 class="item-catalog__title title-m">№9</h3>
+		<p class="item-catalog__subtitle title-s">Коммерческое<br>помещение</p>
+		<p class="item-catalog__subtitle text-l">96,34 м²</p>
 	</div>
-	<div class="item-catalog__image">
-		<img src="./img/catalog/03.png" alt="">
+	<div class="item-catalog__image-block">
+		<div class="item-catalog__image">
+			<img src="./img/catalog/01.png" alt="">
+		</div>
+		<div class="item-catalog__image-absolute">
+			<img src="./img/catalog/03.png" alt="">
+		</div>
 	</div>
 	<div class="item-catalog__text-block">
-		<p class="item-catalog__price text"><span class="js_price">26820500</span> ₽</p>
-		<p class="item-catalog__info">В ипотеку - от 54 391 ₽/мес.</p>
+		<p class="item-catalog__price text"><span class="js_price">22570100</span> ₽</p>
 	</div>
 	<div class="item-catalog__tags">
-		<p class="item-catalog__tag">С видом на город</p>
 		<p class="item-catalog__tag">1 этаж</p>
-		<p class="item-catalog__tag">терасса</p>
-		<p class="item-catalog__tag">1 санузел</p>
-		<p class="item-catalog__tag_park">Парковка в подарок</p>
+		<p class="item-catalog__tag">Секция 1</p>
 	</div>
-</a>
-<a href="./catalog-detail.html" class="content-catalog__item item-catalog">
+</a><a href="./commercial-detail.html" class="content-catalog__item item-catalog">
 	<div class="item-catalog__text-block">
-		<h3 class="item-catalog__title title-l">№82</h3>
-		<p class="item-catalog__subtitle text-l">1-комнатная 57 м²</p>
+		<h3 class="item-catalog__title title-m">№9</h3>
+		<p class="item-catalog__subtitle title-s">Коммерческое<br>помещение</p>
+		<p class="item-catalog__subtitle text-l">96,34 м²</p>
 	</div>
-	<div class="item-catalog__image">
-		<img src="./img/catalog/03.png" alt="">
+	<div class="item-catalog__image-block">
+		<div class="item-catalog__image">
+			<img src="./img/catalog/01.png" alt="">
+		</div>
+		<div class="item-catalog__image-absolute">
+			<img src="./img/catalog/03.png" alt="">
+		</div>
 	</div>
 	<div class="item-catalog__text-block">
-		<p class="item-catalog__price text"><span class="js_price">26820500</span> ₽</p>
-		<p class="item-catalog__info">В ипотеку - от 54 391 ₽/мес.</p>
+		<p class="item-catalog__price text"><span class="js_price">22570100</span> ₽</p>
 	</div>
 	<div class="item-catalog__tags">
-		<p class="item-catalog__tag">С видом на город</p>
 		<p class="item-catalog__tag">1 этаж</p>
-		<p class="item-catalog__tag">терасса</p>
-		<p class="item-catalog__tag">1 санузел</p>
-		<p class="item-catalog__tag_park">Парковка в подарок</p>
+		<p class="item-catalog__tag">Секция 1</p>
 	</div>
-</a>
-<a href="./catalog-detail.html" class="content-catalog__item item-catalog">
-	<div class="item-catalog__text-block">
-		<h3 class="item-catalog__title title-l">№82</h3>
-		<p class="item-catalog__subtitle text-l">1-комнатная 57 м²</p>
-	</div>
-	<div class="item-catalog__image">
-		<img src="./img/catalog/03.png" alt="">
-	</div>
-	<div class="item-catalog__text-block">
-		<p class="item-catalog__price text"><span class="js_price">26820500</span> ₽</p>
-		<p class="item-catalog__info">В ипотеку - от 54 391 ₽/мес.</p>
-	</div>
-	<div class="item-catalog__tags">
-		<p class="item-catalog__tag">С видом на город</p>
-		<p class="item-catalog__tag">1 этаж</p>
-		<p class="item-catalog__tag">терасса</p>
-		<p class="item-catalog__tag">1 санузел</p>
-		<p class="item-catalog__tag_park">Парковка в подарок</p>
-	</div>
-</a>
-<a href="./catalog-detail.html" class="content-catalog__item item-catalog">
-	<div class="item-catalog__text-block">
-		<h3 class="item-catalog__title title-l">№82</h3>
-		<p class="item-catalog__subtitle text-l">1-комнатная 57 м²</p>
-	</div>
-	<div class="item-catalog__image">
-		<img src="./img/catalog/03.png" alt="">
-	</div>
-	<div class="item-catalog__text-block">
-		<p class="item-catalog__price text"><span class="js_price">26820500</span> ₽</p>
-		<p class="item-catalog__info">В ипотеку - от 54 391 ₽/мес.</p>
-	</div>
-	<div class="item-catalog__tags">
-		<p class="item-catalog__tag">С видом на город</p>
-		<p class="item-catalog__tag">1 этаж</p>
-		<p class="item-catalog__tag">терасса</p>
-		<p class="item-catalog__tag">1 санузел</p>
-		<p class="item-catalog__tag_park">Парковка в подарок</p>
-	</div>
-</a>
-							</div>
+</a>							</div>
 							<button type="button" class="filter-catalog__button-clear content-catalog__show-more button-icon">
 								<span>Показать ещё</span>
 								<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

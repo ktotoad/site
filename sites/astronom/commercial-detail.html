@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
 	<head>
-		<title>Выбрать квартиру</title>
+		<title>Выбрать коммерческое Помещение</title>
 		<meta charset="utf-8">
-		<link rel="icon" href="/favicon.png" type="image/x-icon">
+		<meta name="format-detection" content="telephone=no">
 		<link rel="stylesheet" href="css/fonts.css" />
-		<link rel="stylesheet" href="css/nouislider.css" />
-		<link rel="stylesheet" href="css/style.css?v=1.9" />
+		<link rel="stylesheet" href="css/fancybox.css"/>
+		<link rel="stylesheet" href="css/swiper-bundle.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	</head>
 	<body>
@@ -70,259 +71,304 @@
 	</div>	
 </header>
 			<main class="page">
-				<section class="page__catalog catalog-page anim-items anim-no-hide">
-					<div class="catalog-page__container container">
-						<aside class="catalog-page__filter filter-catalog">
-							<div data-spollers="767.98" class="filter-catalog__mobile-spoller mobile-spoller">
-								<button tabindex="-1" type="button" data-spoller class="mobile-spoller__title button-black">Дополнительные параметры</button>
-								<div class="mobile-spoller__body">
-									<div class="filter-catalog__item">
-										<h5 class="filter-catalog__title">Количество спален:</h5>
-										<div id="radiobuttons" class="filter-catalog__buttons radio__buttons">
-											<div class="filter-catalog__radio radio">
-												<span>A1</span>
-												<input name="spalni" value="1" type="radio">
-											</div>
-											<div class="filter-catalog__radio radio">
-												<span>A2</span>
-												<input name="spalni" value="2" type="radio">
-											</div>
-											<div class="filter-catalog__radio radio">
-												<span>A3</span>
-												<input name="spalni" value="3" type="radio">
-											</div>
-											<div class="filter-catalog__radio radio">
-												<span>пентхаус</span>
-												<input name="spalni" value="pent" type="radio">
-											</div>
-										</div>
-									</div>
-									<div id="range-slider-square" class="filter-catalog__item">
-										<h5 class="filter-catalog__title">Площадь:</h5>
-										<div class="filter-catalog__inputs">
-											<div class="filter-catalog__input-body filter-catalog__input-body_small">
-												<span>от</span>
-												<input id="input-min-s" type="number" name="min_square"  class="filter-catalog__input">
-												<span>м²</span>
-											</div>
-											<div class="filter-catalog__input-body filter-catalog__input-body_small">	
-												<span>по</span>
-												<input id="input-max-s" type="number" name="max_square" class="filter-catalog__input">
-												<span>м²</span>
-											</div>
-										</div>
-										<div id="slider-square"></div>
-									</div>
-									<div id="range-slider-floor" class="filter-catalog__item">
-										<h5 class="filter-catalog__title">Этаж:</h5>
-										<div class="filter-catalog__inputs">
-											<div class="filter-catalog__input-body filter-catalog__input-body_small">
-												<span>от</span>
-												<input id="input-min-f" type="number" name="min_etazh" class="filter-catalog__input">
-											</div>
-											<div class="filter-catalog__input-body filter-catalog__input-body_small">	
-												<span>по</span>
-												<input id="input-max-f" type="number" name="max_etazh" class="filter-catalog__input">
-											</div>
-										</div>
-										<div id="slider-floor"></div>
-									</div>
-									<div id="range-slider-price" class="filter-catalog__item">
-										<h5 class="filter-catalog__title">Цена:</h5>
-										<div class="filter-catalog__inputs">
-											<div class="filter-catalog__input-body filter-catalog__input-body_small">
-												<span>от</span>
-												<input id="input-min-price" type="text" name="min_price" class="filter-catalog__input">
-											</div>
-											<div class="filter-catalog__input-body filter-catalog__input-body_small">	
-												<span>по</span>
-												<input id="input-max-price" type="text" name="max_price" class="filter-catalog__input">
-											</div>
-										</div>
-										<div id="slider-price"></div>
-									</div>
-									<div data-spollers="9767.98" class="filter-catalog__spoller spoller-filter-catalog">
-										<button tabindex="-1" type="button" data-spoller class="spoller-filter-catalog__title">Дополнительные параметры<span>3</span></button>
-										<div class="spoller-filter-catalog__body">
-											<nav class="spoller-filter-catalog__menu">
-												<ul class="spoller-filter-catalog__list">
-													<div class="spoller-filter-catalog__checkbox checkbox">
-														<input id="q_1" type="checkbox" value="1" class="checkbox__input">
-														<label for="q_1" class="checkbox__label"><span class="checkbox__text">параметр 1</span></label>
-													</div>
-													<div class="item-filter-catalog__checkbox checkbox">
-														<input id="q_2" type="checkbox" value="1" class="checkbox__input">
-														<label for="q_2" class="checkbox__label"><span class="checkbox__text">параметр fsd параметр параметр параметр 2</span></label>
-													</div>
-													<div class="item-filter-catalog__checkbox checkbox">
-														<input id="q_3" type="checkbox" value="1" class="checkbox__input">
-														<label for="q_3" class="checkbox__label"><span class="checkbox__text">параметр 3</span></label>
-													</div>
-												</ul>
-											</nav>
-										</div>
-									</div>
-									<button type="submit" class="filter-catalog__button-submit button-black">Применить</button>
-									<button type="submit" class="filter-catalog__button-clear button-icon">
-										<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<g clip-path="url(#clip0_203_1162)">
-												<mask id="mask0_203_1162" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
-													<path d="M20 0H0V20H20V0Z" fill="white"/>
-												</mask>
-												<g mask="url(#mask0_203_1162)">
-													<path d="M9.99936 1.66667C5.39102 1.66667 1.66602 5.39167 1.66602 10C1.66602 14.6083 5.39102 18.3333 9.99936 18.3333C14.6077 18.3333 18.3327 14.6083 18.3327 10C18.3327 5.39167 14.6077 1.66667 9.99936 1.66667ZM14.166 12.9917L12.991 14.1667L9.99936 11.175L7.00769 14.1667L5.83269 12.9917L8.82436 10L5.83269 7.00833L7.00769 5.83333L9.99936 8.825L12.991 5.83333L14.166 7.00833L11.1743 10L14.166 12.9917Z" fill="#131411"/>
-												</g>
-											</g>
-											<defs>
-												<clipPath id="clip0_203_1162">
-													<rect width="20" height="20" fill="white"/>
-												</clipPath>
-											</defs>
-										</svg>
-										<span>Сбросить фильтры</span>
-									</button>
-								</div>	
-							</div>
-						</aside>
-						<div class="catalog-page__content content-catalog">
-							<div class="catalog-page__select-body">
-								<select class="catalog-page__select" id="sorting">
-						            <option value="default" selected="">По номеру квартиры</option>
-						            <option value="smallcost">Сначала недорогие</option>
-						            <option value="bigcost">Сначала дорогие</option>
-						            <option value="smallsize">Сначала небольшие</option>
-						            <option value="bigsize">Сначала большие</option>
-						        </select>
-					        </div>
-							<div class="content-catalog__items">
-								<a href="./catalog-detail.html" class="content-catalog__item item-catalog">
-									<div class="item-catalog__text-block">
-										<h3 class="item-catalog__title title-l">№82</h3>
-										<p class="item-catalog__subtitle text-l">1-комнатная 57 м²</p>
-									</div>
-									<div class="item-catalog__image">
-										<img src="./img/catalog/01.png" alt="">
-									</div>
-									<div class="item-catalog__text-block">
-										<p class="item-catalog__price text"><span class="js_price">26820500</span> ₽</p>
-										<p class="item-catalog__info">В ипотеку - от 54 391 ₽/мес.</p>
-									</div>
-									<div class="item-catalog__tags">
-										<p class="item-catalog__tag">С видом на город</p>
-										<p class="item-catalog__tag">1 этаж</p>
-										<p class="item-catalog__tag">терасса</p>
-										<p class="item-catalog__tag">1 санузел</p>
-										<p class="item-catalog__tag_park">Парковка в подарок</p>
-									</div>
+				<section class="page__detail detail-page anim-items anim-no-hide">
+					<div class="detail-page__container container">
+						<div class="detail-page__column">
+							<div class="detail-page__header">
+								<a href="./catalog.html" class="detail-page__link slider-controls__prev">
+									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M16.875 10H3.125" stroke="#161616" stroke-linecap="round" stroke-linejoin="round"/>
+										<path d="M8.75 4.375L3.125 10L8.75 15.625" stroke="#161616" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
 								</a>
-<a href="./catalog-detail.html" class="content-catalog__item item-catalog">
-	<div class="item-catalog__text-block">
-		<h3 class="item-catalog__title title-l">№82</h3>
-		<p class="item-catalog__subtitle text-l">1-комнатная 57 м²</p>
-	</div>
-	<div class="item-catalog__image">
-		<img src="./img/catalog/03.png" alt="">
-	</div>
-	<div class="item-catalog__text-block">
-		<p class="item-catalog__price text"><span class="js_price">26820500</span> ₽</p>
-		<p class="item-catalog__info">В ипотеку - от 54 391 ₽/мес.</p>
-	</div>
-	<div class="item-catalog__tags">
-		<p class="item-catalog__tag">С видом на город</p>
-		<p class="item-catalog__tag">1 этаж</p>
-		<p class="item-catalog__tag">терасса</p>
-		<p class="item-catalog__tag">1 санузел</p>
-		<p class="item-catalog__tag_park">Парковка в подарок</p>
-	</div>
-</a>
-<a href="./catalog-detail.html" class="content-catalog__item item-catalog">
-	<div class="item-catalog__text-block">
-		<h3 class="item-catalog__title title-l">№82</h3>
-		<p class="item-catalog__subtitle text-l">1-комнатная 57 м²</p>
-	</div>
-	<div class="item-catalog__image">
-		<img src="./img/catalog/03.png" alt="">
-	</div>
-	<div class="item-catalog__text-block">
-		<p class="item-catalog__price text"><span class="js_price">26820500</span> ₽</p>
-		<p class="item-catalog__info">В ипотеку - от 54 391 ₽/мес.</p>
-	</div>
-	<div class="item-catalog__tags">
-		<p class="item-catalog__tag">С видом на город</p>
-		<p class="item-catalog__tag">1 этаж</p>
-		<p class="item-catalog__tag">терасса</p>
-		<p class="item-catalog__tag">1 санузел</p>
-		<p class="item-catalog__tag_park">Парковка в подарок</p>
-	</div>
-</a>
-<a href="./catalog-detail.html" class="content-catalog__item item-catalog">
-	<div class="item-catalog__text-block">
-		<h3 class="item-catalog__title title-l">№82</h3>
-		<p class="item-catalog__subtitle text-l">1-комнатная 57 м²</p>
-	</div>
-	<div class="item-catalog__image">
-		<img src="./img/catalog/03.png" alt="">
-	</div>
-	<div class="item-catalog__text-block">
-		<p class="item-catalog__price text"><span class="js_price">26820500</span> ₽</p>
-		<p class="item-catalog__info">В ипотеку - от 54 391 ₽/мес.</p>
-	</div>
-	<div class="item-catalog__tags">
-		<p class="item-catalog__tag">С видом на город</p>
-		<p class="item-catalog__tag">1 этаж</p>
-		<p class="item-catalog__tag">терасса</p>
-		<p class="item-catalog__tag">1 санузел</p>
-		<p class="item-catalog__tag_park">Парковка в подарок</p>
-	</div>
-</a>
-<a href="./catalog-detail.html" class="content-catalog__item item-catalog">
-	<div class="item-catalog__text-block">
-		<h3 class="item-catalog__title title-l">№82</h3>
-		<p class="item-catalog__subtitle text-l">1-комнатная 57 м²</p>
-	</div>
-	<div class="item-catalog__image">
-		<img src="./img/catalog/03.png" alt="">
-	</div>
-	<div class="item-catalog__text-block">
-		<p class="item-catalog__price text"><span class="js_price">26820500</span> ₽</p>
-		<p class="item-catalog__info">В ипотеку - от 54 391 ₽/мес.</p>
-	</div>
-	<div class="item-catalog__tags">
-		<p class="item-catalog__tag">С видом на город</p>
-		<p class="item-catalog__tag">1 этаж</p>
-		<p class="item-catalog__tag">терасса</p>
-		<p class="item-catalog__tag">1 санузел</p>
-		<p class="item-catalog__tag_park">Парковка в подарок</p>
-	</div>
-</a>
-<a href="./catalog-detail.html" class="content-catalog__item item-catalog">
-	<div class="item-catalog__text-block">
-		<h3 class="item-catalog__title title-l">№82</h3>
-		<p class="item-catalog__subtitle text-l">1-комнатная 57 м²</p>
-	</div>
-	<div class="item-catalog__image">
-		<img src="./img/catalog/03.png" alt="">
-	</div>
-	<div class="item-catalog__text-block">
-		<p class="item-catalog__price text"><span class="js_price">26820500</span> ₽</p>
-		<p class="item-catalog__info">В ипотеку - от 54 391 ₽/мес.</p>
-	</div>
-	<div class="item-catalog__tags">
-		<p class="item-catalog__tag">С видом на город</p>
-		<p class="item-catalog__tag">1 этаж</p>
-		<p class="item-catalog__tag">терасса</p>
-		<p class="item-catalog__tag">1 санузел</p>
-		<p class="item-catalog__tag_park">Парковка в подарок</p>
-	</div>
-</a>
+								<h2 class="detail-page__title title">Коммерческое помещение №2</h2>
 							</div>
-							<button type="button" class="filter-catalog__button-clear content-catalog__show-more button-icon">
-								<span>Показать ещё</span>
-								<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z" fill="#131411" stroke="#131411" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-									<path d="M12 6.5L8 11.5L4 6.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-								</svg>
-							</button>
+							<div class="detail-page__body">
+								<div class="detail-page__row">
+									<div class="detail-page__info"> 
+										<a href="./img/catalog/03.png" class="detail-page__image" id="picture-wrap" data-fancybox>
+											<img src="./img/catalog/03.png" alt="">
+										</a>
+										<table class="table-detail__body">
+											<tbody>
+												<tr>
+													<td class="table-detail__item">ННомер помещения:</td>
+													<td class="table-detail__line"></td>
+													<td class="table-detail__item">4</td>
+												</tr>
+												<tr>
+													<td class="table-detail__item">Типология:</td>
+													<td class="table-detail__line"></td>
+													<td class="table-detail__item">Коммерческое помещение</td>
+												</tr>
+												<tr>
+													<td class="table-detail__item">Площадь:</td>
+													<td class="table-detail__line"></td>
+													<td class="table-detail__item">83.57 м²</td>
+												</tr>
+												<tr>
+													<td class="table-detail__item">Этаж:</td>
+													<td class="table-detail__line"></td>
+													<td class="table-detail__item">1</td>
+												</tr>
+												<tr>
+													<td class="table-detail__item">Секция:</td>
+													<td class="table-detail__line"></td>
+													<td class="table-detail__item">Секция 3</td>
+												</tr>
+												<tr>
+													<td class="table-detail__item">Срок сдачи:</td>
+													<td class="table-detail__line"></td>
+													<td class="table-detail__item">2 кв. 2025</td>
+												</tr>
+											</tbody>
+										</table>
+										<h3 class="detail-page__price title-l">22 472 520 ₽</h3>
+										<p class="detail-page__sale"><span>-3%</span> от стоимости за полную оплату</p>
+										<button class="detail-page__button button-black">Забронировать</button>
+										<div class="detail-page__buttons">
+											<button type="button" onclick="urlCopyButton()" class="column-flat__link button-icon">
+												<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<g clip-path="url(#clip0_386_102)">
+														<path d="M30 27.46V32H34.54L30 27.46ZM37 24H41.54L37 19.46V24ZM32 0C14.327 0 0 14.327 0 32C0 49.673 14.327 64 32 64C49.673 64 64 49.673 64 32C64 14.327 49.673 0 32 0ZM37 32V45C37 46.104 36.104 47 35 47H23C21.896 47 21 46.104 21 45V27C21 25.896 21.896 25 23 25H30V25.431L30.445 24.986L37.014 31.555L36.568 32H37ZM44 24V37C44 38.104 43.104 39 42 39H39V37H42V26H37C35.896 26 35 25.104 35 24V19H30V23H28V19C28 17.896 28.896 17 30 17H37V17.431L37.445 16.986L44.013 23.555L43.568 24H44ZM28 32V27H23V45H35V34H30C28.896 34 28 33.104 28 32Z" fill="#131411"/>
+													</g>
+													<defs>
+														<clipPath id="clip0_386_102">
+															<rect width="64" height="64" fill="white"/>
+														</clipPath>
+													</defs>
+												</svg>
+												<span>Скопировать ссылку</span>
+											</button>
+											<script type="text/javascript">
+												function urlCopyButton(){
+												    var record_url = document.URL;
+												    navigator.clipboard.writeText(record_url);
+												    console.log(record_url);
+												}
+											</script>
+											<div class="detail-page__social social">
+												<a href="" target="_blank" class="social__item">
+													<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path fill-rule="evenodd" clip-rule="evenodd" d="M16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8ZM8.28662 5.90595C7.5085 6.2296 5.95336 6.89946 3.62119 7.91555C3.24249 8.06615 3.0441 8.21348 3.02604 8.35754C2.99552 8.601 3.30041 8.69687 3.71558 8.82742C3.77205 8.84517 3.83057 8.86357 3.89056 8.88307C4.29902 9.01585 4.84848 9.17118 5.13412 9.17735C5.39323 9.18295 5.68242 9.07613 6.00169 8.85689C8.1807 7.386 9.30552 6.64254 9.37614 6.62651C9.42596 6.6152 9.495 6.60099 9.54178 6.64256C9.58855 6.68414 9.58395 6.76288 9.579 6.784C9.5488 6.91276 8.352 8.02541 7.73267 8.6012C7.5396 8.78069 7.40265 8.90801 7.37465 8.93709C7.31193 9.00223 7.24802 9.06385 7.18658 9.12307C6.80711 9.48889 6.52254 9.76321 7.20234 10.2112C7.52902 10.4265 7.79043 10.6045 8.05123 10.7821C8.33604 10.9761 8.62012 11.1695 8.98767 11.4104C9.08132 11.4718 9.17075 11.5356 9.25786 11.5977C9.58931 11.834 9.8871 12.0463 10.255 12.0124C10.4688 11.9928 10.6896 11.7917 10.8017 11.1922C11.0667 9.77543 11.5877 6.70564 11.7081 5.44065C11.7186 5.32982 11.7054 5.18798 11.6947 5.12572C11.684 5.06345 11.6618 4.97474 11.5808 4.90907C11.485 4.83129 11.337 4.81489 11.2708 4.81606C10.9699 4.82136 10.5083 4.98188 8.28662 5.90595Z" fill="#161616"/>
+													</svg>
+												</a>
+												<a href="" target="_blank" class="social__item">
+													<svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M15.8406 2.79922C15.8406 2.79922 15.6844 1.69609 15.2031 1.21172C14.5938 0.574219 13.9125 0.571094 13.6 0.533594C11.3625 0.371094 8.00313 0.371094 8.00313 0.371094H7.99687C7.99687 0.371094 4.6375 0.371094 2.4 0.533594C2.0875 0.571094 1.40625 0.574219 0.796875 1.21172C0.315625 1.69609 0.1625 2.79922 0.1625 2.79922C0.1625 2.79922 0 4.09609 0 5.38984V6.60234C0 7.89609 0.159375 9.19297 0.159375 9.19297C0.159375 9.19297 0.315625 10.2961 0.79375 10.7805C1.40313 11.418 2.20313 11.3961 2.55938 11.4648C3.84063 11.5867 8 11.6242 8 11.6242C8 11.6242 11.3625 11.618 13.6 11.4586C13.9125 11.4211 14.5938 11.418 15.2031 10.7805C15.6844 10.2961 15.8406 9.19297 15.8406 9.19297C15.8406 9.19297 16 7.89922 16 6.60234V5.38984C16 4.09609 15.8406 2.79922 15.8406 2.79922ZM6.34688 8.07422V3.57734L10.6687 5.83359L6.34688 8.07422Z" fill="#161616"/>
+													</svg>
+												</a>
+												<a href="" target="_blank" class="social__item">
+													<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M14.8767 1.12333C13.75 0 11.94 0 8.33333 0H7.66667C4.06 0 2.25 0 1.12333 1.12333C-0.00333333 2.24667 1.15348e-07 4.06 1.15348e-07 7.66667V8.33333C1.15348e-07 11.94 7.94729e-08 13.75 1.12333 14.8767C2.24667 16.0033 4.06 16 7.66667 16H8.33333C11.9533 16 13.7633 16 14.89 14.8767C16.0167 13.7533 16 11.94 16 8.33333V7.66667C16 4.06 16 2.25 14.8767 1.12333ZM11.48 11.5267C11.3057 10.9021 10.9507 10.343 10.4597 9.91959C9.96861 9.49615 9.36338 9.22725 8.72 9.14667V11.5267H8.51333C4.86667 11.5267 2.78667 9.02667 2.7 4.86H4.52667C4.58667 7.91333 5.93333 9.19333 7 9.47333V4.86667H8.72V7.5C9.77333 7.38667 10.88 6.18667 11.2533 4.86667H12.9733C12.8351 5.55309 12.5565 6.20353 12.155 6.77715C11.7534 7.35077 11.2377 7.83519 10.64 8.2C11.3063 8.53048 11.895 8.99842 12.3673 9.57298C12.8396 10.1475 13.1847 10.8157 13.38 11.5333L11.48 11.5267Z" fill="#161616"/>
+													</svg>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="detail-page__slider-body">
+							<div class="detail-page__navigation">
+								<div thumbsSlider="" class="detail-page__slider-thumb detail-slider-thumb">
+									<div id="swipernavigation" class="detail-slider-thumb__swiper">
+										<div class="detail-slider-thumb__link">План помещения</div>
+										<div class="detail-slider-thumb__link">План этажа</div>
+									</div>
+									<script>
+										let thumbsSliderCount = document.querySelector('#swipernavigation').childElementCount;
+									</script>
+								</div>
+								<div class="tabs-detail__info-block">
+									<p>Свободная планировка
+									<span data-tooltip="Возводим внутренние стены в квартире только высотой в 1 блок, Вы можете согласиться с нашей разметкой и возвести стены до конца, либо воплотить свои дизайнерские фантазии через перенос перегородок"></span></p>
+								</div>
+							</div>
+							<div class="detail__slider detail-slider">
+								<div class="detail-slider__swiper">
+									<div class="detail-slider__slide">
+										<a href="./img/catalog/01.png" class="detail-slider__image" id="picture-wrap" data-fancybox>
+											<img src="./img/catalog/01.png" alt="">
+										</a>
+									</div>
+									<div class="detail-slider__slide">
+										<a href="./img/catalog/03.png" class="detail-slider__image" id="picture-wrap" data-fancybox>
+											<img src="./img/catalog/03.png" alt="">
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="page__alike alike-page anim-items anim-no-hide">
+					<div class="alike-page__container container">
+						<h2 class="alike-page__title title">ПОХОЖИЕ ПОМЕЩЕНИЯ</h2>
+						<div class="alike-page__slider catalog-slider">
+							<div class="catalog-slider__swiper">
+								<div class="catalog-slider__slide">
+<a href="./commercial-detail.html" class="content-catalog__item item-catalog">
+	<div class="item-catalog__text-block">
+		<h3 class="item-catalog__title title-m">№9</h3>
+		<p class="item-catalog__subtitle title-s">Коммерческое<br>помещение</p>
+		<p class="item-catalog__subtitle text-l">96,34 м²</p>
+	</div>
+	<div class="item-catalog__image-block">
+		<div class="item-catalog__image">
+			<img src="./img/catalog/01.png" alt="">
+		</div>
+		<div class="item-catalog__image-absolute">
+			<img src="./img/catalog/03.png" alt="">
+		</div>
+	</div>
+	<div class="item-catalog__text-block">
+		<p class="item-catalog__price text"><span class="js_price">22570100</span> ₽</p>
+	</div>
+	<div class="item-catalog__tags">
+		<p class="item-catalog__tag">1 этаж</p>
+		<p class="item-catalog__tag">Секция 1</p>
+	</div>
+</a>								</div>
+								<div class="catalog-slider__slide">
+<a href="./commercial-detail.html" class="content-catalog__item item-catalog">
+	<div class="item-catalog__text-block">
+		<h3 class="item-catalog__title title-m">№9</h3>
+		<p class="item-catalog__subtitle title-s">Коммерческое<br>помещение</p>
+		<p class="item-catalog__subtitle text-l">96,34 м²</p>
+	</div>
+	<div class="item-catalog__image-block">
+		<div class="item-catalog__image">
+			<img src="./img/catalog/01.png" alt="">
+		</div>
+		<div class="item-catalog__image-absolute">
+			<img src="./img/catalog/03.png" alt="">
+		</div>
+	</div>
+	<div class="item-catalog__text-block">
+		<p class="item-catalog__price text"><span class="js_price">22570100</span> ₽</p>
+	</div>
+	<div class="item-catalog__tags">
+		<p class="item-catalog__tag">1 этаж</p>
+		<p class="item-catalog__tag">Секция 1</p>
+	</div>
+</a>								</div>
+								<div class="catalog-slider__slide">
+<a href="./commercial-detail.html" class="content-catalog__item item-catalog">
+	<div class="item-catalog__text-block">
+		<h3 class="item-catalog__title title-m">№9</h3>
+		<p class="item-catalog__subtitle title-s">Коммерческое<br>помещение</p>
+		<p class="item-catalog__subtitle text-l">96,34 м²</p>
+	</div>
+	<div class="item-catalog__image-block">
+		<div class="item-catalog__image">
+			<img src="./img/catalog/01.png" alt="">
+		</div>
+		<div class="item-catalog__image-absolute">
+			<img src="./img/catalog/03.png" alt="">
+		</div>
+	</div>
+	<div class="item-catalog__text-block">
+		<p class="item-catalog__price text"><span class="js_price">22570100</span> ₽</p>
+	</div>
+	<div class="item-catalog__tags">
+		<p class="item-catalog__tag">1 этаж</p>
+		<p class="item-catalog__tag">Секция 1</p>
+	</div>
+</a>								</div>
+								<div class="catalog-slider__slide">
+<a href="./commercial-detail.html" class="content-catalog__item item-catalog">
+	<div class="item-catalog__text-block">
+		<h3 class="item-catalog__title title-m">№9</h3>
+		<p class="item-catalog__subtitle title-s">Коммерческое<br>помещение</p>
+		<p class="item-catalog__subtitle text-l">96,34 м²</p>
+	</div>
+	<div class="item-catalog__image-block">
+		<div class="item-catalog__image">
+			<img src="./img/catalog/01.png" alt="">
+		</div>
+		<div class="item-catalog__image-absolute">
+			<img src="./img/catalog/03.png" alt="">
+		</div>
+	</div>
+	<div class="item-catalog__text-block">
+		<p class="item-catalog__price text"><span class="js_price">22570100</span> ₽</p>
+	</div>
+	<div class="item-catalog__tags">
+		<p class="item-catalog__tag">1 этаж</p>
+		<p class="item-catalog__tag">Секция 1</p>
+	</div>
+</a>								</div>
+								<div class="catalog-slider__slide">
+<a href="./commercial-detail.html" class="content-catalog__item item-catalog">
+	<div class="item-catalog__text-block">
+		<h3 class="item-catalog__title title-m">№9</h3>
+		<p class="item-catalog__subtitle title-s">Коммерческое<br>помещение</p>
+		<p class="item-catalog__subtitle text-l">96,34 м²</p>
+	</div>
+	<div class="item-catalog__image-block">
+		<div class="item-catalog__image">
+			<img src="./img/catalog/01.png" alt="">
+		</div>
+		<div class="item-catalog__image-absolute">
+			<img src="./img/catalog/03.png" alt="">
+		</div>
+	</div>
+	<div class="item-catalog__text-block">
+		<p class="item-catalog__price text"><span class="js_price">22570100</span> ₽</p>
+	</div>
+	<div class="item-catalog__tags">
+		<p class="item-catalog__tag">1 этаж</p>
+		<p class="item-catalog__tag">Секция 1</p>
+	</div>
+</a>								</div>
+								<div class="catalog-slider__slide">
+<a href="./commercial-detail.html" class="content-catalog__item item-catalog">
+	<div class="item-catalog__text-block">
+		<h3 class="item-catalog__title title-m">№9</h3>
+		<p class="item-catalog__subtitle title-s">Коммерческое<br>помещение</p>
+		<p class="item-catalog__subtitle text-l">96,34 м²</p>
+	</div>
+	<div class="item-catalog__image-block">
+		<div class="item-catalog__image">
+			<img src="./img/catalog/01.png" alt="">
+		</div>
+		<div class="item-catalog__image-absolute">
+			<img src="./img/catalog/03.png" alt="">
+		</div>
+	</div>
+	<div class="item-catalog__text-block">
+		<p class="item-catalog__price text"><span class="js_price">22570100</span> ₽</p>
+	</div>
+	<div class="item-catalog__tags">
+		<p class="item-catalog__tag">1 этаж</p>
+		<p class="item-catalog__tag">Секция 1</p>
+	</div>
+</a>								</div>
+								<div class="catalog-slider__slide">
+<a href="./commercial-detail.html" class="content-catalog__item item-catalog">
+	<div class="item-catalog__text-block">
+		<h3 class="item-catalog__title title-m">№9</h3>
+		<p class="item-catalog__subtitle title-s">Коммерческое<br>помещение</p>
+		<p class="item-catalog__subtitle text-l">96,34 м²</p>
+	</div>
+	<div class="item-catalog__image-block">
+		<div class="item-catalog__image">
+			<img src="./img/catalog/01.png" alt="">
+		</div>
+		<div class="item-catalog__image-absolute">
+			<img src="./img/catalog/03.png" alt="">
+		</div>
+	</div>
+	<div class="item-catalog__text-block">
+		<p class="item-catalog__price text"><span class="js_price">22570100</span> ₽</p>
+	</div>
+	<div class="item-catalog__tags">
+		<p class="item-catalog__tag">1 этаж</p>
+		<p class="item-catalog__tag">Секция 1</p>
+	</div>
+</a>								</div>
+							</div>
 						</div>
 					</div>
 				</section>

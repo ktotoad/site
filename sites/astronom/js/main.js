@@ -26,12 +26,12 @@ if (document.querySelector(".preloader")) {
     setTimeout(function(){
         wrapper.classList.add('loaded');
         animateall();
-    }, 1000);
+    }, 500);
 } else {
     setTimeout(function(){
         wrapper.classList.add('loaded');
         animateall();
-    }, 2000);
+    }, 500);
 }
 /*Animation================================================================================*/
 function animateall() {
@@ -45,7 +45,7 @@ function animateall() {
 						const animItem = animItems[index];
 						const animItemHeight = animItem.offsetHeight;
 						const animItemOffset = offset(animItem).top;
-						const animStart = 4;
+						const animStart = 10;
 
 						let animItemPoint = window.innerHeight - animItemHeight /animStart;
 						if (animItemHeight > window.innerHeight) {
@@ -1063,6 +1063,33 @@ function initSliders() {
 				nextEl: ".slider-building__next",
 				prevEl: ".slider-building__prev",
 			},
+		});
+	}
+
+
+	if (document.querySelector('.detail-slider-thumb')) {
+		var residentthumbs = new Swiper('.detail-slider-thumb', {
+  		slidesPerView: thumbsSliderCount,
+			spaceBetween: 10,
+			parallax: true,
+			//autoHeight: true,
+			//freeMode: true,
+			autoplay: false,
+			watchSlidesProgress: true,
+			speed: 800,
+		});
+	}
+	if (document.querySelector('.detail-slider')) {
+		new Swiper('.detail-slider', {
+  		observer: true,
+			observeParents: true,
+  		//effect: "fade",
+			slidesPerView: 1,
+			spaceBetween: 0,
+			parallax: true,
+      thumbs: {
+        swiper: residentthumbs,
+      },
 		});
 	}
 }
