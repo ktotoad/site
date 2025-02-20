@@ -304,127 +304,6 @@ DynamicAdapt.prototype.arraySort = function (arr) {
 };
 const da = new DynamicAdapt("max");
 da.init();
-//InputMask===============================================================================================================================================
-function inputElements() {
-	let inputPhones = document.querySelectorAll("input[data-format]");
-	inputPhones.forEach(inputPhone => {
-		let phoneMask = new IMask(inputPhone, {
-			mask: inputPhone.getAttribute("data-format")
-		});
-	});
-}
-inputElements();
-//POPUP========================================================================================================================================
-const popupLinks = document.querySelectorAll('.popup-link');
-const lockPadding = document.querySelectorAll(".lock-padding");
-
-let unlock = true;
-
-const timeout = 800;
-
-if (popupLinks.length > 0) {
-	for (let index = 0; index < popupLinks.length; index++ ) {
-		const popupLink = popupLinks[index];
-		popupLink.addEventListener("click", function (e) {
-			const popupName = popupLink.getAttribute('href').replace('#', '');
-			const curentPopup = document.getElementById(popupName);
-			popupOpen(curentPopup);
-			e.preventDefault();
-		});
-	}
-}
-
-const popupCloseIcon = document.querySelectorAll('.close-popup');
-if (popupCloseIcon.length > 0) {
-	for (let index = 0; index < popupCloseIcon.length; index++) {
-		const el = popupCloseIcon[index];
-		el.addEventListener("click", function (e) {
-			popupClose(el.closest('.popup'));
-			e.preventDefault();
-		});
-	}
-}
-
-function popupOpen(curentPopup) {
-	if (curentPopup && unlock) {
-		const popupActive = document.querySelector('.popup.open');
-		if(popupActive) {
-			popupClose(popupActive, false);
-		} else {
-			bodyLock();
-		}
-		curentPopup.classList.add('open');
-		curentPopup.addEventListener("click", function (e) {
-			if (!e.target.closest('.popup__content')) {
-				popupClose(e.target.closest('.popup'));
-			}
-		});	
-	}
-}
-
-function popupClose(popupActive, doUnlock = true) {
-	if (unlock) {
-		popupActive.classList.remove('open');
-		if (doUnlock) {
-			bodyUnLock();
-		}
-	}
-}
-
-function bodyLock() {
-	const lockPaddingValue = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px';
-	if (lockPadding.length > 0) {	
-		for (let index = 0; index < lockPadding.length; index++) {
-			const el = lockPadding[index];
-			el.style.paddingRight = lockPaddingValue;
-		}
-	}
-	body.style.paddingRight = lockPaddingValue;
-	body.classList.add('lock');
-
-	unlock = false;
-	setTimeout(function () {
-		unlock = true;
-	}, timeout);
-}
-
-function bodyUnLock() {
-	setTimeout(function () {
-		if (lockPadding.length > 0) {	
-			for (let index = 0; index < lockPadding.length; index++) {
-				const el = lockPadding[index];
-				el.style.paddingRight = '0px';
-			}
-		}
-		body.style.paddingRight = '0px';
-		body.classList.remove('lock');
-	}, timeout);
-
-	unlock = false;
-	setTimeout(function () {
-		unlock = true;
-	}, timeout);
-}
-//poputext====================================================================================================================================
-function popupTextBook() {
-	document.querySelector("#popup").querySelector("#popuptitle span").innerText = 'подтверждение бронирования';
-	document.querySelector("#popup").querySelector("#popuptext").innerHTML = 'Оставьте свои контактные данные <br> и мы свяжемся для уточнения деталей бронирования';
-}
-function popupTextMain() {
-	document.querySelector("#popup").querySelector("#popuptitle span").innerText = 'Остались вопросы?';
-	document.querySelector("#popup").querySelector("#popuptext").innerHTML = 'Оставьте свои контактные данные <br>и мы подробно ответим на все. И расскажем еще больше!';
-}
-
-//price_spaces================================================================================================================================
-if (document.querySelectorAll(".js_price")) {
-  function numberWithSpaces(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-  }
-  let js_prices = document.querySelectorAll(".js_price");
-  js_prices.forEach((js_price) => {
-      js_price.textContent = numberWithSpaces(js_price.textContent);
-  })
-}
 // SPOLLERS========================================================================================================================================
 function spollers() {
 	//Проверка на наличие атрибута
@@ -1092,6 +971,45 @@ function initSliders() {
       },
 		});
 	}
+	if (document.querySelector('.slider-parking-advantages')) {
+		new Swiper('.slider-parking-advantages', {
+  		observer: true,
+			observeParents: true,
+			slidesPerView: 3,
+			spaceBetween: 30,
+			parallax: true,
+			//loop: true,
+			autoHeight: true,
+			//autoplay: {
+			//	delay: 3000,
+			//	disableOnInteraction: false,
+			//},
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 0,
+					autoHeight: true,
+				},
+				470: {
+					slidesPerView: 2,
+					spaceBetween: 10,
+				},
+				992: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+			},
+			pagination: {
+				el: '.slider-parking-advantages__pagination',
+				clickable: true,
+			},
+			navigation: {
+        nextEl: ".slider-parking-advantages__next",
+        prevEl: ".slider-parking-advantages__prev",
+      },
+		});
+	}
 }
 initSliders();
 //SVG_script==========================================================================================================================
@@ -1250,10 +1168,270 @@ if(document.querySelector("#zoomimage")) {
 	}
 }
 
+//InputMask===============================================================================================================================================
+function inputElements() {
+	let inputPhones = document.querySelectorAll("input[data-format]");
+	inputPhones.forEach(inputPhone => {
+		let phoneMask = new IMask(inputPhone, {
+			mask: inputPhone.getAttribute("data-format")
+		});
+	});
+}
+inputElements();
+//POPUP========================================================================================================================================
+const popupLinks = document.querySelectorAll('.popup-link');
+const lockPadding = document.querySelectorAll(".lock-padding");
+
+let unlock = true;
+
+const timeout = 800;
+
+if (popupLinks.length > 0) {
+	for (let index = 0; index < popupLinks.length; index++ ) {
+		const popupLink = popupLinks[index];
+		popupLink.addEventListener("click", function (e) {
+			const popupName = popupLink.getAttribute('href').replace('#', '');
+			const curentPopup = document.getElementById(popupName);
+			popupOpen(curentPopup);
+			e.preventDefault();
+		});
+	}
+}
+
+const popupCloseIcon = document.querySelectorAll('.close-popup');
+if (popupCloseIcon.length > 0) {
+	for (let index = 0; index < popupCloseIcon.length; index++) {
+		const el = popupCloseIcon[index];
+		el.addEventListener("click", function (e) {
+			popupClose(el.closest('.popup'));
+			e.preventDefault();
+		});
+	}
+}
+
+function popupOpen(curentPopup) {
+	if (curentPopup && unlock) {
+		const popupActive = document.querySelector('.popup.open');
+		if(popupActive) {
+			popupClose(popupActive, false);
+		} else {
+			bodyLock();
+		}
+		curentPopup.classList.add('open');
+		curentPopup.addEventListener("click", function (e) {
+			if (!e.target.closest('.popup__content')) {
+				popupClose(e.target.closest('.popup'));
+			}
+		});	
+	}
+}
+
+function popupClose(popupActive, doUnlock = true) {
+	if (unlock) {
+		popupActive.classList.remove('open');
+		if (doUnlock) {
+			bodyUnLock();
+		}
+	}
+}
+
+function bodyLock() {
+	const lockPaddingValue = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px';
+	if (lockPadding.length > 0) {	
+		for (let index = 0; index < lockPadding.length; index++) {
+			const el = lockPadding[index];
+			el.style.paddingRight = lockPaddingValue;
+		}
+	}
+	body.style.paddingRight = lockPaddingValue;
+	body.classList.add('lock');
+
+	unlock = false;
+	setTimeout(function () {
+		unlock = true;
+	}, timeout);
+}
+
+function bodyUnLock() {
+	setTimeout(function () {
+		if (lockPadding.length > 0) {	
+			for (let index = 0; index < lockPadding.length; index++) {
+				const el = lockPadding[index];
+				el.style.paddingRight = '0px';
+			}
+		}
+		body.style.paddingRight = '0px';
+		body.classList.remove('lock');
+	}, timeout);
+
+	unlock = false;
+	setTimeout(function () {
+		unlock = true;
+	}, timeout);
+}
+//poputext====================================================================================================================================
+function popupTextBook() {
+	document.querySelector("#popup").querySelector("#popuptitle span").innerText = 'подтверждение бронирования';
+	document.querySelector("#popup").querySelector("#popuptext").innerHTML = 'Оставьте свои контактные данные <br> и мы свяжемся для уточнения деталей бронирования';
+}
+function popupTextMain() {
+	document.querySelector("#popup").querySelector("#popuptitle span").innerText = 'Остались вопросы?';
+	document.querySelector("#popup").querySelector("#popuptext").innerHTML = 'Оставьте свои контактные данные <br>и мы подробно ответим на все. И расскажем еще больше!';
+}
+
+//price_spaces================================================================================================================================
+if (document.querySelectorAll(".js_price")) {
+  function numberWithSpaces(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  }
+  let js_prices = document.querySelectorAll(".js_price");
+  js_prices.forEach((js_price) => {
+      js_price.textContent = numberWithSpaces(js_price.textContent);
+  })
+}
 //prices===================================================================================================================================
 if (document.querySelector(".js_price")) {
     let js_prices = document.querySelectorAll(".js_price");
     js_prices.forEach((js_price) => {
         js_price.textContent = numberWithSpaces(js_price.textContent);
     });
+}
+//map======================================================================================================================================================================
+if (document.querySelector("#map")) {
+    ymaps.ready(mapInit);
+}
+function mapInit() {
+    // Создаем карту
+    var myMap = new ymaps.Map("map",{
+        center: [55.624461, 49.011208],
+        zoom: 10,
+        controls: ['zoomControl']
+    });
+    //маршрут с иконками
+    var multiRoute = new ymaps.multiRouter.MultiRoute({
+        referencePoints: [ 
+            [55.624461, 49.011208],
+            [55.797557, 49.107295]
+        ]
+    },{
+        // Внешний вид начальной точки
+        wayPointStartIconLayout: "default#imageWithContent",
+        wayPointStartIconImageHref: "../img/icons/logomap.svg",
+        wayPointStartIconImageSize: [60, 60],
+        wayPointStartIconImageOffset: [-24, -24],
+
+        // Внешний вид конечной точки
+        wayPointFinishIconLayout: "default#imageWithContent",
+        wayPointFinishIconImageHref: "../img/icons/kr.png",
+        wayPointFinishIconImageSize: [40, 40],
+        wayPointFinishIconImageOffset: [-20, -20],
+
+        // Внешний вид линии маршрута
+        routeStrokeWidth: 2,
+        routeStrokeColor: "#202229",
+        routeActiveStrokeWidth: 6,
+        routeActiveStrokeColor: "#D69A66",
+
+        // Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком
+        boundsAutoApply: true
+    }, function (error) {
+        alert('Возникла ошибка: ' + error.message);
+    });
+    //убираем скрол
+    myMap.behaviors.disable('scrollZoom');
+    //добавляем маршрут
+    myMap.geoObjects.add(multiRoute);
+
+    //добавляем точки
+    // Создаем коллекцию.
+    myCollection = new ymaps.GeoObjectCollection(),
+    // Создаем массив с данными.
+    myPoints = {
+        storePoints : [
+            { coords: [55.621527, 49.014279], text: 'Верный' },
+            { coords: [55.625423, 49.139786], text: 'Пятёрочка' },
+            { coords: [55.623853, 49.145322], text: 'Магнит' },
+            { coords: [55.622222, 49.143119], text: 'Авокадо' },
+        ],
+        tcPoints : [
+            { coords: [55.623361, 49.143905], text: 'Торговый центр У дачи' },
+            { coords: [55.625650, 49.140471], text: 'ТК Ковали' },
+            { coords: [55.629866, 49.133371], text: 'Капиталъ' },
+            { coords: [55.725314, 49.191592], text: 'Порт' },
+            { coords: [55.768644, 49.148097], text: 'KazanMall' },
+            { coords: [55.786574, 49.124078], text: 'Кольцо' },
+            { coords: [55.769446, 49.217446], text: 'Южный' },
+            { coords: [55.780657, 49.212967], text: 'Мега' },
+        ],
+        medPoints : [
+            { coords: [55.616163, 49.134729], text: 'Аптека Фарм Планета' },
+            { coords: [55.629857, 49.133292], text: 'Фармленд' },
+            { coords: [55.623544, 49.145410], text: 'Вита Экспресс' },
+        ],
+        sportPoints : [
+            { coords: [55.625310, 49.015372], text: 'Волга' },
+            { coords: [55.624219, 49.147440], text: 'Спортивно-досуговый центр Дружба' },
+        ],
+        cafePoints : [
+            { coords: [55.621277, 49.013950], text: 'Папа Карло' },
+            { coords: [55.616415, 49.134692], text: 'Шаурма' },
+            { coords: [55.624031, 49.142335], text: 'Император' },
+            { coords: [55.631844, 49.132555], text: 'Старые Ковали' },
+        ]
+    };
+
+    if(document.querySelector('.filter__list')) {
+        const tabButtons = document.querySelectorAll('.filter__item');
+        tabButtons.forEach(elem => { 
+            if(elem.classList.contains('active')) {
+                let filter = elem.dataset['filter'];
+                mapSearchPoints(filter);
+            }
+        });
+        document.querySelector('.filter__list').addEventListener('click', e => {
+            if(e.target.classList.contains('filter__item') || e.target.closest('.filter__item')) {
+                let filter = e.target.closest('.filter__item').dataset['filter'];
+                tabButtons.forEach(elem => elem.classList.remove('active'));
+                e.target.classList.add('active');
+                mapSearchPoints(filter);
+            }
+        });
+    }
+
+    function mapSearchPoints(filter) {
+        for (const [key, value] of Object.entries(myPoints)) {
+            if(key == filter) {
+                let result = value;
+                mapAddPoints(result);
+            }
+        }
+    }
+
+    function mapAddPoints(result) {
+        // Удаляем "старую" коллекцию меток на карту.
+        myCollection.removeAll();
+        // Заполняем коллекцию данными.
+        for (var i = 0, l = result.length; i < l; i++) {
+            var point = result[i];
+            myCollection.add(new ymaps.Placemark(
+                point.coords, {
+                    balloonContentBody: [
+                        '<address><strong>' + point.text + '</strong><br/>Адрес: ' + point.coords + '</address>'                        
+                    ]
+                }, {
+                    // Необходимо указать данный тип макета.
+                    iconLayout: 'default#image',
+                    // Своё изображение иконки метки.
+                    iconImageHref: '../img/icons/mapimg.svg',
+                    // Размеры метки.
+                    iconImageSize: [42, 42],
+                    // Смещение левого верхнего угла иконки относительно
+                    // её "ножки" (точки привязки).
+                    iconImageOffset: [-21, -21]
+                }
+            ));
+        }
+        // Добавляем коллекцию меток на карту.
+        myMap.geoObjects.add(myCollection);
+    }
 }
