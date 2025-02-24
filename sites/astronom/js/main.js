@@ -33,6 +33,16 @@ if (document.querySelector(".preloader")) {
         animateall();
     }, 500);
 }
+//fixed_main==================================================================================================================================================================================================================
+let header = document.querySelector("header");
+window.addEventListener("scroll", function(){
+	if(window.scrollY > 50){
+    	header.classList.add('fixed');
+	}
+	else{
+	    header.classList.remove('fixed');
+	}
+});
 /*Animation================================================================================*/
 function animateall() {
 	if(document.querySelector('.anim-items')) {
@@ -768,6 +778,14 @@ function initSliders() {
 			autoplay: {
 				delay: 3000,
 				disableOnInteraction: false,
+			},
+			breakpoints: {
+				320: {
+					spaceBetween: 0,
+				},
+				470: {
+					spaceBetween: 10,
+				},
 			},
 		});
 	}
