@@ -4224,6 +4224,18 @@ input[type=text], input[type=email], input[type=tel], textarea {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 1rem;
+  opacity: 0;
+  -webkit-transform: translateY(50%);
+          transform: translateY(50%);
+  -webkit-transition: opacity 0.8s, -webkit-transform 0.5s ease 0s;
+  transition: opacity 0.8s, -webkit-transform 0.5s ease 0s;
+  transition: opacity 0.8s, transform 0.5s ease 0s;
+  transition: opacity 0.8s, transform 0.5s ease 0s, -webkit-transform 0.5s ease 0s;
+}
+.comfort__header.active {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 .comfort__subtext {
   color: var(--gray);
@@ -4307,10 +4319,16 @@ input[type=text], input[type=email], input[type=tel], textarea {
   right: 0;
 }
 .comfort__image {
+  opacity: 0;
+  -webkit-transition: opacity 1.3s ease 0s;
+  transition: opacity 1.3s ease 0s;
   overflow: hidden;
   border-radius: 30em;
   width: 60em;
   height: 100%;
+}
+.comfort__image.active {
+  opacity: 1;
 }
 .comfort__image img {
   width: 100%;
@@ -4329,6 +4347,31 @@ input[type=text], input[type=email], input[type=tel], textarea {
   }
 }
 
+.item-comfort {
+  opacity: 0;
+  -webkit-transform: translateY(50%);
+          transform: translateY(50%);
+  -webkit-transition: opacity 1.3s, -webkit-transform 0.8s ease 0s;
+  transition: opacity 1.3s, -webkit-transform 0.8s ease 0s;
+  transition: opacity 1.3s, transform 0.8s ease 0s;
+  transition: opacity 1.3s, transform 0.8s ease 0s, -webkit-transform 0.8s ease 0s;
+}
+.item-comfort.active {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+.item-comfort.active .item-comfort__decore::before {
+  opacity: 1;
+}
+.item-comfort.active .item-comfort__decore::after {
+  width: 8.4em;
+}
+@media (max-width: 767.98px) {
+  .item-comfort.active .item-comfort__decore::after {
+    width: 5.5em;
+  }
+}
 .item-comfort__body {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4361,14 +4404,19 @@ input[type=text], input[type=email], input[type=tel], textarea {
   top: 0;
   border-radius: 50%;
   border: 1px solid var(--gray2);
+  opacity: 0;
+  -webkit-transition: opacity 2.3s ease 0s;
+  transition: opacity 2.3s ease 0s;
 }
 .item-comfort__decore::after {
   content: "";
   position: absolute;
-  width: 8.4em;
+  width: 0;
   height: 1px;
   top: 50%;
   background: var(--white);
+  -webkit-transition: width 2.3s ease 0s;
+  transition: width 2.3s ease 0s;
 }
 @media (max-width: 767.98px) {
   .item-comfort__decore {
@@ -4378,9 +4426,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
   .item-comfort__decore::before {
     width: 3em;
     height: 3em;
-  }
-  .item-comfort__decore::after {
-    width: 5.5em;
   }
 }
 @media (min-width: 991.98px) {
