@@ -138,13 +138,7 @@ if(document.querySelector("[data-paralax]")) {
 					s = 0 + paralaxBody.getBoundingClientRect().top / step;
 					break;
 				case 'bottom':
-					s = 0 + paralaxBody.getBoundingClientRect().bottom / step;
-					break;
-				case 'left':
-					s = 0 + paralaxBody.getBoundingClientRect().left / step;
-					break;
-				case 'right':
-					s = 0 + paralaxBody.getBoundingClientRect().right / step;
+					s = 0 - paralaxBody.getBoundingClientRect().top / step;
 					break;
 				default:
 					s = 0 + paralaxBody.getBoundingClientRect().top / step;
@@ -764,6 +758,185 @@ if(document.querySelector('#optionsblock')) {
         }
     });
 }
+//SVG_script==========================================================================================================================
+if(document.querySelector("#zoomimage")) {
+	const svgBody = document.querySelector("#zoomimage svg");
+	let filterBody = document.querySelector("#filterbody");
+	const parkingPopup = document.querySelector("#parkingpopup");
+	const parkingOrder = document.querySelector("#parkingorder");
+	const parkingPopupDis = document.querySelector("#parkingpopupdisable"); 
+	let areaPaths = new Array();
+	let familyPaths = new Array();
+
+	filterBody.addEventListener("click", (e) => {
+
+		//радио площади
+		if(e.target.closest("#area")) {
+			//снимаем чекбокс семейного паркинга
+			if(filterBody.querySelector("#family").querySelector(".active")) { 
+				filterBody.querySelector("#family").querySelector(".active").querySelector("input").checked = false;
+				filterBody.querySelector("#family").querySelector(".active").classList.toggle('active');
+			}
+			//выбран ли уже фильтр площади
+			if(e.target.closest("#area").querySelector(".active")) {
+				svgBody.querySelectorAll("path").forEach(function (path) {
+					if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
+						path.setAttribute("data-filter", "filtered");
+					} else {
+						path.setAttribute("data-filter", "disabled");
+					}
+				});
+			} else {
+				svgBody.querySelectorAll("path").forEach(function (path) {
+					if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
+						path.setAttribute("data-filter", "filtered");
+					} else {
+						path.setAttribute("data-filter", "disabled");
+					}
+				});
+			}
+		}
+
+		//чекбокс семейного паркинга
+		if (e.target.closest("#family") && e.target.closest("#checkboxbody")) {
+			//снимаем фильтр площади
+			if(filterBody.querySelector("#area").querySelector(".active")) { 
+				filterBody.querySelector("#area").querySelector(".active").querySelector("input").checked = false;
+				filterBody.querySelector("#area").querySelector(".active").classList.toggle('active');
+			}
+			//нажат ли уже этот чекбокс
+			if(e.target.closest("#checkbox").classList.contains("active")) {
+				svgBody.querySelectorAll("path").forEach(function (path) {
+					if(path.dataset.family && path.dataset.status == "AVAILABLE") {
+						path.setAttribute("data-filter", "filtered");
+					} else {
+						path.setAttribute("data-filter", "disabled");
+					}
+				});
+			} else {
+				svgBody.querySelectorAll("path").forEach(function (path) {
+					path.removeAttribute("data-filter");
+				});
+			}
+		}
+
+		function svgBodyFilter() {
+			svgBody.querySelectorAll("path").forEach(function (path) {
+				if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
+					areaPaths.push(path);
+				}
+			});
+		}
+
+	});
+
+	svgBody.addEventListener("mouseover", (event) => {
+		if(event.target.tagName == "path") {
+			if (event.target.dataset.status == "AVAILABLE") {
+				if (event.target.dataset.filter != "disabled") {
+					const area = event.target.dataset.area;
+					const family = event.target.dataset.family;
+					let size;
+
+					switch (area) {
+						case "21.6":
+							size = "4,07 м х 5,3 м";
+							break;
+						case "13.25":
+							size = "2,3 м х 5,3 м";
+					}
+					parkingPopupActive(event, area, size);
+
+					event.target.setAttribute("data-engage", "mouseover");
+
+					event.target.addEventListener("mouseout", (event) => {
+						event.target.removeAttribute("data-engage");
+						parkingPopupNotActive();
+					});
+
+					event.target.addEventListener("mousewheel", (event) => {
+						event.target.removeAttribute("data-engage");
+						parkingPopupNotActive();
+					});
+
+					event.target.addEventListener("click", (event) => {
+						popupOpen(parkingOrder);
+
+				  		parkingOrder.querySelector("#popupumber").innerText = "№" + event.target.dataset.number;
+				  		parkingOrder.querySelector("#popupprice").innerText = numberWithSpaces(event.target.dataset.price) + " ₽";
+				  		parkingOrder.querySelector("#popuparea").innerText = area + " м²";
+				  		parkingOrder.querySelector("#popupsize").innerText = size;
+  						parkingOrder.querySelector("#popupimage img").src = event.target.dataset.photo;
+					});
+				} else {
+					event.target.setAttribute("data-status-enable", "disabled");
+				}
+			} else {
+				event.target.setAttribute("data-status-enable", "disabled");
+				parkingPopupDisabled(event);
+
+				event.target.addEventListener("mouseout", (event) => {
+					parkingPopupDis.classList.remove("active");
+				});
+
+				event.target.addEventListener("mousewheel", (event) => {
+					parkingPopupDis.classList.remove("active");
+				});
+			}
+		}
+	});
+
+	function parkingPopupDisabled(event) {
+		const x = event.clientX;
+  		const y = event.clientY;
+
+  		parkingPopupDis.style.left = x + "px";
+  		parkingPopupDis.style.top = y + "px";
+		parkingPopupDis.classList.add("active");
+	}
+
+	function parkingPopupActive(event, area, size) {
+		const x = event.clientX;
+  		const y = event.clientY;
+
+  		parkingPopup.querySelector("#popupumber").innerText = "№" + event.target.dataset.number;
+  		parkingPopup.querySelector("#popupprice").innerText = numberWithSpaces(event.target.dataset.price) + " ₽";
+  		parkingPopup.querySelector("#popuparea").innerText = area + " м²";
+  		parkingPopup.querySelector("#popupsize").innerText = size;
+
+  		parkingPopup.style.left = x + "px";
+  		parkingPopup.style.top = y + "px";
+		parkingPopup.classList.add("active");
+	}
+
+	function parkingPopupNotActive() {
+		parkingPopup.classList.remove("active");
+	}
+}
+
+//Image_modal=====================================================================================================================================================
+const options = {
+	contentClick: "toggleCover",
+	Images: {
+		Panzoom: {
+			panMode: "mousemove",
+			mouseMoveFactor: 1.1,
+			mouseMoveFriction: 0.12,
+		},
+	},
+};
+
+if(document.querySelector("#picture-wrap")) {
+	document.querySelectorAll("#picture-wrap").forEach(pictureWrap => {
+		Fancybox.bind(pictureWrap, {options});
+	});
+}
+
+if(document.querySelector("#gallery-wrap")) {
+	document.querySelectorAll("#gallery-wrap").forEach(galleryWrap => {
+		Fancybox.bind(galleryWrap, {options});
+	});
+}
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
@@ -924,162 +1097,6 @@ function initSliders() {
 	}
 }
 initSliders();
-//SVG_script==========================================================================================================================
-if(document.querySelector("#zoomimage")) {
-	const svgBody = document.querySelector("#zoomimage svg");
-	let filterBody = document.querySelector("#filterbody");
-	const parkingPopup = document.querySelector("#parkingpopup");
-	const parkingOrder = document.querySelector("#parkingorder");
-	const parkingPopupDis = document.querySelector("#parkingpopupdisable"); 
-	let areaPaths = new Array();
-	let familyPaths = new Array();
-
-	filterBody.addEventListener("click", (e) => {
-
-		//радио площади
-		if(e.target.closest("#area")) {
-			//снимаем чекбокс семейного паркинга
-			if(filterBody.querySelector("#family").querySelector(".active")) { 
-				filterBody.querySelector("#family").querySelector(".active").querySelector("input").checked = false;
-				filterBody.querySelector("#family").querySelector(".active").classList.toggle('active');
-			}
-			//выбран ли уже фильтр площади
-			if(e.target.closest("#area").querySelector(".active")) {
-				svgBody.querySelectorAll("path").forEach(function (path) {
-					if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
-						path.setAttribute("data-filter", "filtered");
-					} else {
-						path.setAttribute("data-filter", "disabled");
-					}
-				});
-			} else {
-				svgBody.querySelectorAll("path").forEach(function (path) {
-					if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
-						path.setAttribute("data-filter", "filtered");
-					} else {
-						path.setAttribute("data-filter", "disabled");
-					}
-				});
-			}
-		}
-
-		//чекбокс семейного паркинга
-		if (e.target.closest("#family") && e.target.closest("#checkboxbody")) {
-			//снимаем фильтр площади
-			if(filterBody.querySelector("#area").querySelector(".active")) { 
-				filterBody.querySelector("#area").querySelector(".active").querySelector("input").checked = false;
-				filterBody.querySelector("#area").querySelector(".active").classList.toggle('active');
-			}
-			//нажат ли уже этот чекбокс
-			if(e.target.closest("#checkbox").classList.contains("active")) {
-				svgBody.querySelectorAll("path").forEach(function (path) {
-					if(path.dataset.family && path.dataset.status == "AVAILABLE") {
-						path.setAttribute("data-filter", "filtered");
-					} else {
-						path.setAttribute("data-filter", "disabled");
-					}
-				});
-			} else {
-				svgBody.querySelectorAll("path").forEach(function (path) {
-					path.removeAttribute("data-filter");
-				});
-			}
-		}
-
-		function svgBodyFilter() {
-			svgBody.querySelectorAll("path").forEach(function (path) {
-				if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
-					areaPaths.push(path);
-				}
-			});
-		}
-
-	});
-
-	svgBody.addEventListener("mouseover", (event) => {
-		if(event.target.tagName == "path") {
-			if (event.target.dataset.status == "AVAILABLE") {
-				if (event.target.dataset.filter != "disabled") {
-					const area = event.target.dataset.area;
-					const family = event.target.dataset.family;
-					let size;
-
-					switch (area) {
-						case "21.6":
-							size = "4,07 м х 5,3 м";
-							break;
-						case "13.25":
-							size = "2,3 м х 5,3 м";
-					}
-					parkingPopupActive(event, area, size);
-
-					event.target.setAttribute("data-engage", "mouseover");
-
-					event.target.addEventListener("mouseout", (event) => {
-						event.target.removeAttribute("data-engage");
-						parkingPopupNotActive();
-					});
-
-					event.target.addEventListener("mousewheel", (event) => {
-						event.target.removeAttribute("data-engage");
-						parkingPopupNotActive();
-					});
-
-					event.target.addEventListener("click", (event) => {
-						popupOpen(parkingOrder);
-
-				  		parkingOrder.querySelector("#popupumber").innerText = "№" + event.target.dataset.number;
-				  		parkingOrder.querySelector("#popupprice").innerText = numberWithSpaces(event.target.dataset.price) + " ₽";
-				  		parkingOrder.querySelector("#popuparea").innerText = area + " м²";
-				  		parkingOrder.querySelector("#popupsize").innerText = size;
-  						parkingOrder.querySelector("#popupimage img").src = event.target.dataset.photo;
-					});
-				} else {
-					event.target.setAttribute("data-status-enable", "disabled");
-				}
-			} else {
-				event.target.setAttribute("data-status-enable", "disabled");
-				parkingPopupDisabled(event);
-
-				event.target.addEventListener("mouseout", (event) => {
-					parkingPopupDis.classList.remove("active");
-				});
-
-				event.target.addEventListener("mousewheel", (event) => {
-					parkingPopupDis.classList.remove("active");
-				});
-			}
-		}
-	});
-
-	function parkingPopupDisabled(event) {
-		const x = event.clientX;
-  		const y = event.clientY;
-
-  		parkingPopupDis.style.left = x + "px";
-  		parkingPopupDis.style.top = y + "px";
-		parkingPopupDis.classList.add("active");
-	}
-
-	function parkingPopupActive(event, area, size) {
-		const x = event.clientX;
-  		const y = event.clientY;
-
-  		parkingPopup.querySelector("#popupumber").innerText = "№" + event.target.dataset.number;
-  		parkingPopup.querySelector("#popupprice").innerText = numberWithSpaces(event.target.dataset.price) + " ₽";
-  		parkingPopup.querySelector("#popuparea").innerText = area + " м²";
-  		parkingPopup.querySelector("#popupsize").innerText = size;
-
-  		parkingPopup.style.left = x + "px";
-  		parkingPopup.style.top = y + "px";
-		parkingPopup.classList.add("active");
-	}
-
-	function parkingPopupNotActive() {
-		parkingPopup.classList.remove("active");
-	}
-}
-
 //InputMask===============================================================================================================================================
 function inputElements() {
 	let inputPhones = document.querySelectorAll("input[data-format]");
