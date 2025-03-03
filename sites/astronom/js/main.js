@@ -10,13 +10,14 @@ if (document.querySelector(".preloader")) {
 
     setTimeout(() => {
         body.classList.remove("lock");
-    }, 2e3),
+    }, 1500),
     setTimeout(() => {
         loader.classList.add("hidden");
-    }, 2e3),
+    }, 1500),
     (function (body, loader) {
         let loading = 0,
         i = setInterval(() => {
+            (document.querySelector(".preloader-body__decore").style.width = ++loading + "%"),
             (document.querySelector(".preloader-body__percents").innerHTML = ++loading + "%"), 100 === loading && clearInterval(i);
         }, 20);
     })();
@@ -26,7 +27,7 @@ if (document.querySelector(".preloader")) {
     setTimeout(function(){
         wrapper.classList.add('loaded');
         animateall();
-    }, 500);
+    }, 1500);
 } else {
     setTimeout(function(){
         wrapper.classList.add('loaded');
