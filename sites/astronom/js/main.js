@@ -1365,3 +1365,36 @@ function mapInit() {
         myMap.geoObjects.add(myCollection);
     }
 }
+
+//Text_color=========================================================================================================================================
+if(document.querySelector('[data-text]')) {
+	document.querySelectorAll('[data-text]').forEach((textColor) => {	
+		window.addEventListener('scroll', function() {
+			Visible (textColor);
+		});
+	});
+
+	var Visible = function (target) {
+		var targetPosition = {
+			top: window.pageYOffset + target.getBoundingClientRect().top,
+			left: window.pageXOffset + target.getBoundingClientRect().left,
+			right: window.pageXOffset + target.getBoundingClientRect().right,
+			bottom: window.pageYOffset + target.getBoundingClientRect().bottom
+		},
+		windowPosition = {
+			top: window.pageYOffset,
+			left: window.pageXOffset,
+			right: window.pageXOffset + document.documentElement.clientWidth,
+			bottom: window.pageYOffset + document.documentElement.clientHeight
+		};
+
+		if (targetPosition.bottom > windowPosition.top &&
+			targetPosition.top < windowPosition.bottom &&
+			targetPosition.right > windowPosition.left &&
+			targetPosition.left < windowPosition.right) {
+			
+				let overlay = target.querySelector('.overlay');
+				overlay.style.clip =  'rect(0 '+ overlay.clientWidth +'px '+ overlay.clientHeight +'px 0)';
+		}
+	};
+}
