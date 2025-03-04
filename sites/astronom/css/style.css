@@ -4552,8 +4552,10 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .item-garden__image-round {
   border-radius: 50%;
-  width: 52em;
-  height: 52em;
+  max-width: 52em;
+  width: 100%;
+  max-height: 52em;
+  height: 30vw;
 }
 @media (max-width: 991.98px) {
   .item-garden__image-round {
@@ -4821,11 +4823,17 @@ input[type=text], input[type=email], input[type=tel], textarea {
   width: 105em;
   height: 105em;
   opacity: 0;
-  -webkit-transition: opacity 1.8s ease 0s;
-  transition: opacity 1.8s ease 0s;
+  -webkit-transform: translateY(50%);
+          transform: translateY(50%);
+  -webkit-transition: opacity 1.8s, -webkit-transform 1s ease 0s;
+  transition: opacity 1.8s, -webkit-transform 1s ease 0s;
+  transition: opacity 1.8s, transform 1s ease 0s;
+  transition: opacity 1.8s, transform 1s ease 0s, -webkit-transform 1s ease 0s;
 }
 .artzone__slider-block.active {
   opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 .artzone__slider-block .slider-fade {
   overflow: hidden;
