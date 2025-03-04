@@ -4588,21 +4588,23 @@ input[type=text], input[type=email], input[type=tel], textarea {
   overflow: clip;
   overflow-y: visible;
 }
-.lobby__wrap {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  gap: 4rem;
+@media (min-width: 991.98px) {
+  .lobby__wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: start;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    gap: 4rem;
+  }
 }
 .lobby__content {
   width: 100%;
@@ -4676,7 +4678,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
   overflow: hidden;
   width: 100%;
   height: auto;
-  max-width: calc(50% - 2rem);
 }
 .lobby__image img {
   width: 100%;
@@ -4684,9 +4685,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -o-object-fit: cover;
      object-fit: cover;
 }
-@media (max-width: 991.98px) {
+@media (min-width: 991.98px) {
   .lobby__image {
-    display: none;
+    max-width: calc(50% - 2rem);
   }
 }
 .lobby__items {
@@ -4733,9 +4734,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .item-lobby__image {
   overflow: hidden;
-  border-radius: 27em;
   width: 100%;
-  height: 90em;
+  height: auto;
 }
 .item-lobby__image img {
   width: 100%;
@@ -4743,9 +4743,10 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -o-object-fit: cover;
      object-fit: cover;
 }
-@media (max-width: 991.98px) {
+@media (min-width: 991.98px) {
   .item-lobby__image {
-    height: auto;
+    border-radius: 27em;
+    height: 90em;
   }
 }
 .item-lobby__text-block {
