@@ -2547,7 +2547,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
 /*about*/
 .about {
   position: relative;
-  overflow-y: hidden;
+  overflow: clip;
+  overflow-y: visible;
   color: var(--white);
   background: var(--primary);
 }
@@ -2564,6 +2565,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+.about__paralax-image {
+  position: absolute;
+  overflow: hidden;
+  bottom: -25em;
+  right: 0;
 }
 .about__container {
   position: relative;
@@ -2810,6 +2817,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -ms-grid-column-span: 1;
   grid-area: 8/1/14/2;
 }
+.about__item.active .decore-dots__body {
+  width: 100%;
+}
 .about__image, .about__image_round, .about__image_rect {
   overflow: hidden;
   width: 55em;
@@ -2851,9 +2861,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
   .about__text-block {
     width: 42em;
   }
-}
-.about__text-block.active .decore-dots__body {
-  width: 100%;
 }
 .about__decore {
   -webkit-transform: rotate(180deg);
@@ -4518,7 +4525,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .item-garden.active .decore-dots__body {
   width: 100%;
 }
-@media (max-width: 767.98px) {
+@media (max-width: 991.98px) {
   .item-garden {
     -webkit-transform: translateY(0) !important;
             transform: translateY(0) !important;
@@ -4578,7 +4585,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
 
 /*lobby*/
 .lobby {
-  overflow: hidden;
+  overflow: clip;
+  overflow-y: visible;
 }
 .lobby__wrap {
   display: -webkit-box;
@@ -4597,7 +4605,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
   gap: 4rem;
 }
 .lobby__content {
-  margin-top: 20em;
   width: 100%;
   position: relative;
   padding: 7em;
@@ -4605,6 +4612,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
 @media (max-width: 991.98px) {
   .lobby__content {
     padding: 4em;
+    -webkit-transform: translateY(0) !important;
+            transform: translateY(0) !important;
   }
 }
 .lobby__text-block {
@@ -4679,6 +4688,92 @@ input[type=text], input[type=email], input[type=tel], textarea {
   .lobby__image {
     display: none;
   }
+}
+.lobby__items {
+  position: relative;
+  z-index: 5;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+  -ms-grid-columns: 1fr 4em 1fr 4em 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4em;
+}
+@media (max-width: 991.98px) {
+  .lobby__items {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+.item-lobby {
+  opacity: 0;
+  -webkit-transition: opacity 1.3s ease 0s;
+  transition: opacity 1.3s ease 0s;
+}
+.item-lobby.active {
+  opacity: 1;
+}
+.item-lobby.active .decore-dots__body {
+  width: 100%;
+}
+@media (min-width: 991.98px) {
+  .item-lobby:last-child {
+    margin-left: auto;
+  }
+}
+.item-lobby__image {
+  overflow: hidden;
+  border-radius: 27em;
+  width: 100%;
+  height: 90em;
+}
+.item-lobby__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (max-width: 991.98px) {
+  .item-lobby__image {
+    height: auto;
+  }
+}
+.item-lobby__text-block {
+  margin-top: 3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 6em;
+}
+@media (min-width: 991.98px) {
+  .item-lobby__text-block {
+    width: 44em;
+  }
+}
+.item-lobby__text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+  color: var(--gray);
 }
 
 /*artzone*/
