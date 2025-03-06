@@ -185,17 +185,19 @@ if (document.querySelector('.icon-menu')) {
 	});
 }
 //spollerbutton=====================================================================================================================================================
-if (document.querySelector("#spollerbutton")){
-	const spollerbutton = document.querySelector('#spollerbutton');
-	document.addEventListener("click", (event) => {
-		const withinBoundaries = event.composedPath().includes(spollerbutton);
+if (document.querySelector("#spollerbutton")) {
+	const spollerbuttons = document.querySelectorAll('#spollerbutton');
+	spollerbuttons.forEach((spollerbutton) => {
+		document.addEventListener("click", (event) => {
+			const withinBoundaries = event.composedPath().includes(spollerbutton);
 
-		if (!withinBoundaries) {
-			spollerbutton.classList.remove('active');
-		}
-		else {
-			spollerbutton.classList.toggle('active');
-		}
+			if (!withinBoundaries) {
+				spollerbutton.classList.remove('active');
+			}
+			else {
+				spollerbutton.classList.toggle('active');
+			}
+		});		
 	});
 }
 //Dynamic_Adapt=========================================================================================================================================
@@ -938,6 +940,19 @@ if(document.querySelector("#gallery-wrap")) {
 		Fancybox.bind(galleryWrap, {options});
 	});
 }
+//toggle======================================================================================================================================================
+if(document.querySelector("#sunway")) {
+	document.querySelectorAll("#sunway").forEach(function (sunway) {
+		const toggle = sunway.querySelector('#toggle');
+		if(sunway.querySelector('#svgway')) {
+			const svgway = sunway.querySelector('#svgway');
+		}
+
+		toggle.addEventListener("click", function () {
+        	sunway.classList.toggle("active");
+        });
+    });
+}
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
@@ -1006,6 +1021,16 @@ function initSliders() {
 			autoplay: {
 				delay: 3000,
 				disableOnInteraction: false,
+			},
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 10,
+				},
+				470: {
+					slidesPerView: "auto",
+					spaceBetween: 20,
+				},
 			},
 			navigation: {
 				nextEl: ".catalog-slider__next",
@@ -1233,44 +1258,31 @@ if (document.querySelector("#map")) {
 function mapInit() {
     // Создаем карту
     var myMap = new ymaps.Map("map",{
-        center: [55.624461, 49.011208],
-        zoom: 10,
+        center: [55.789973, 49.116825],
+        zoom: 15,
         controls: ['zoomControl']
-    });
-    //маршрут с иконками
-    var multiRoute = new ymaps.multiRouter.MultiRoute({
-        referencePoints: [ 
-            [55.624461, 49.011208],
-            [55.797557, 49.107295]
-        ]
-    },{
-        // Внешний вид начальной точки
-        wayPointStartIconLayout: "default#imageWithContent",
-        wayPointStartIconImageHref: "../img/icons/logomap.svg",
-        wayPointStartIconImageSize: [60, 60],
-        wayPointStartIconImageOffset: [-24, -24],
-
-        // Внешний вид конечной точки
-        wayPointFinishIconLayout: "default#imageWithContent",
-        wayPointFinishIconImageHref: "../img/icons/kr.png",
-        wayPointFinishIconImageSize: [40, 40],
-        wayPointFinishIconImageOffset: [-20, -20],
-
-        // Внешний вид линии маршрута
-        routeStrokeWidth: 2,
-        routeStrokeColor: "#202229",
-        routeActiveStrokeWidth: 6,
-        routeActiveStrokeColor: "#D69A66",
-
-        // Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком
-        boundsAutoApply: true
-    }, function (error) {
-        alert('Возникла ошибка: ' + error.message);
+    }), 
+    myIcon = ymaps.templateLayoutFactory.createClass("<div>$[properties.iconContent]</div>"),
+    myPlacemark = new ymaps.Placemark([55.789973, 49.116825],
+    {
+        balloonContent: '<div class="popup-map__body"><p class="text">Моменты — 12 элегантных таунхаусов</p></div>',
+        balloonContentFooter: '<div class="popup-map__footer"><a href="#catalog" class="popup-map__link"><span>Подробнее</span></a></div>'
+    },
+    {
+        iconLayout: "default#imageWithContent",
+        iconImageHref: "../img/icons/logomap.svg",
+        iconImageSize: [60, 60],
+        iconImageOffset: [-24, -24],
+        iconContentOffset: [15, 15],
+        iconContentLayout: myIcon,
+        hideIconOnBalloonOpen: !1,
+        balloonCloseButton: !1,
+        balloonOffset: [0, -20]
     });
     //убираем скрол
     myMap.behaviors.disable('scrollZoom');
-    //добавляем маршрут
-    myMap.geoObjects.add(multiRoute);
+    //добавляем точку
+    myMap.geoObjects.add(myPlacemark);
 
     //добавляем точки
     // Создаем коллекцию.
@@ -1310,7 +1322,7 @@ function mapInit() {
         ]
     };
 
-    if(document.querySelector('.filter__list')) {
+    if(document.querySelector('#mapfilter')) {
         const tabButtons = document.querySelectorAll('.filter__item');
         tabButtons.forEach(elem => { 
             if(elem.classList.contains('active')) {
@@ -1318,7 +1330,7 @@ function mapInit() {
                 mapSearchPoints(filter);
             }
         });
-        document.querySelector('.filter__list').addEventListener('click', e => {
+        document.querySelector('#mapfilter').addEventListener('click', e => {
             if(e.target.classList.contains('filter__item') || e.target.closest('.filter__item')) {
                 let filter = e.target.closest('.filter__item').dataset['filter'];
                 tabButtons.forEach(elem => elem.classList.remove('active'));
@@ -1364,4 +1376,30 @@ function mapInit() {
         // Добавляем коллекцию меток на карту.
         myMap.geoObjects.add(myCollection);
     }
+}
+
+//SVG_hover==========================================================================================================================
+if(document.querySelector("#hoveritemsbody")) {
+	document.querySelectorAll("#hoveritemsbody").forEach((hoveritemsbody) => {
+		const hoverimagesbody = hoveritemsbody.querySelector("#hoverimagesbody");
+		const hoverimages = hoverimagesbody.querySelectorAll("[data-image]")
+		const hoveritems = hoveritemsbody.querySelectorAll("[data-item]");		
+
+		hoveritems.forEach((hoveritem) => {
+			hoveritem.addEventListener("mouseover", (event) => {
+				let number = hoveritem.dataset.item;
+				console.log(number);
+				showImage(number);
+			});
+		});
+
+		function showImage(number) {
+			hoverimages.forEach((hoverimage) => {
+				hoverimage.classList.remove('show');
+				if (hoverimage.dataset.image == number) {
+					hoverimage.classList.add('show');
+				}
+			});
+		}
+	});
 }
