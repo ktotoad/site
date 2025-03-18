@@ -362,7 +362,7 @@ body.lock {
 }
 
 /*Buttons*/
-.button-icon, .button-red-big {
+.button-icon, .button-red-big, .button-black {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -389,26 +389,26 @@ body.lock {
   transition: all 0.3s ease 0s;
 }
 @media (any-hover: hover) {
-  .button-icon:hover, .button-red-big:hover {
+  .button-icon:hover, .button-red-big:hover, .button-black:hover {
     background: var(--primary);
   }
-  .button-icon:hover svg path, .button-red-big:hover svg path {
+  .button-icon:hover svg path, .button-red-big:hover svg path, .button-black:hover svg path {
     stroke: var(--white);
   }
 }
-.button-icon i, .button-red-big i {
+.button-icon i, .button-red-big i, .button-black i {
   width: 2.4em;
   height: 2.4em;
 }
-.button-icon i svg, .button-red-big i svg {
+.button-icon i svg, .button-red-big i svg, .button-black i svg {
   width: 100%;
   height: 100%;
 }
-.button-icon i svg path, .button-red-big i svg path {
+.button-icon i svg path, .button-red-big i svg path, .button-black i svg path {
   -webkit-transition: stroke 0.3s ease 0s;
   transition: stroke 0.3s ease 0s;
 }
-.button-icon:disabled, .button-red-big:disabled {
+.button-icon:disabled, .button-red-big:disabled, .button-black:disabled {
   pointer-events: none;
   opacity: 0.7;
 }
@@ -427,6 +427,27 @@ body.lock {
   .button-red-big:hover {
     color: var(--primary);
     background: var(--white);
+  }
+}
+
+.button-black {
+  padding: 0.5em;
+  border-radius: 0.5em;
+  font-size: 1.6em;
+  line-height: 110%;
+  white-space: nowrap;
+  color: var(--white);
+  background: var(--primary);
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+@media (any-hover: hover) {
+  .button-black:hover {
+    color: var(--primary);
+    background: var(--white);
+  }
+  .button-black:hover svg path {
+    stroke: var(--primary);
   }
 }
 
