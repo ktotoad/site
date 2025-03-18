@@ -362,7 +362,7 @@ body.lock {
 }
 
 /*Buttons*/
-.button-icon, .button-red-big, .button-black {
+.button-icon, .button-red-big, .button-black, .button-white {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -382,33 +382,34 @@ body.lock {
   border-radius: 1em;
   font-size: 10px;
   line-height: 110%;
-  color: var(--white);
+  color: var(--primary);
   background: var(--white);
   border: 1px solid var(--primary);
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
 }
 @media (any-hover: hover) {
-  .button-icon:hover, .button-red-big:hover, .button-black:hover {
+  .button-icon:hover, .button-red-big:hover, .button-black:hover, .button-white:hover {
+    color: var(--white);
     background: var(--primary);
   }
-  .button-icon:hover svg path, .button-red-big:hover svg path, .button-black:hover svg path {
+  .button-icon:hover svg path, .button-red-big:hover svg path, .button-black:hover svg path, .button-white:hover svg path {
     stroke: var(--white);
   }
 }
-.button-icon i, .button-red-big i, .button-black i {
+.button-icon i, .button-red-big i, .button-black i, .button-white i {
   width: 2.4em;
   height: 2.4em;
 }
-.button-icon i svg, .button-red-big i svg, .button-black i svg {
+.button-icon i svg, .button-red-big i svg, .button-black i svg, .button-white i svg {
   width: 100%;
   height: 100%;
 }
-.button-icon i svg path, .button-red-big i svg path, .button-black i svg path {
+.button-icon i svg path, .button-red-big i svg path, .button-black i svg path, .button-white i svg path {
   -webkit-transition: stroke 0.3s ease 0s;
   transition: stroke 0.3s ease 0s;
 }
-.button-icon:disabled, .button-red-big:disabled, .button-black:disabled {
+.button-icon:disabled, .button-red-big:disabled, .button-black:disabled, .button-white:disabled {
   pointer-events: none;
   opacity: 0.7;
 }
@@ -430,16 +431,21 @@ body.lock {
   }
 }
 
-.button-black {
+.button-black, .button-white {
   padding: 0.5em;
   border-radius: 0.5em;
   font-size: 1.6em;
-  line-height: 110%;
+  line-height: 10%;
   white-space: nowrap;
+}
+.button-black i, .button-white i {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.button-black {
   color: var(--white);
   background: var(--primary);
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
 }
 @media (any-hover: hover) {
   .button-black:hover {
@@ -580,6 +586,8 @@ textarea.input {
   background: var(--gray1);
 }
 .breadcrumbs__link, .breadcrumbs__current {
+  font-size: 1.6em;
+  line-height: 100%;
   color: var(--gray1);
   text-transform: lowercase;
 }
@@ -1148,6 +1156,74 @@ textarea.input {
 }
 
 /*catalog-page*/
+.catalog-page {
+  margin-top: 18em;
+}
+@media (min-width: 767.98px) {
+  .catalog-page__wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: start;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    gap: 1rem;
+  }
+}
+.catalog-page__filter {
+  width: 23em;
+}
+.catalog-page__items {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1rem 1fr 1rem 1fr 1rem 1fr 1rem 1fr;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 1279.98px) {
+  .catalog-page__items {
+    -ms-grid-columns: (1fr)[4];
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 767.98px) {
+  .catalog-page__items {
+    -ms-grid-columns: (1fr)[3];
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 479.98px) {
+  .catalog-page__items {
+    -ms-grid-columns: (1fr)[2];
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 1279.98px) {
+  .catalog-page__items .item-catalog__image {
+    height: 22.5vw;
+  }
+}
+@media (max-width: 767.98px) {
+  .catalog-page__items .item-catalog__image {
+    height: 30vw;
+    border-radius: 1em;
+    border: 1px solid var(--light);
+  }
+}
+@media (max-width: 479.98px) {
+  .catalog-page__items .item-catalog__image {
+    height: 45vw;
+  }
+}
+
 /*detail-page*/
 @media (max-width: 767.98px) {
   .detail-page__breadcrumbs {
