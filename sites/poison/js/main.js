@@ -165,6 +165,20 @@ DynamicAdapt.prototype.arraySort = function (arr) {
 };
 const da = new DynamicAdapt("max");
 da.init();
+//spollerbutton=====================================================================================================================================================
+if (document.querySelector("#spollerbutton")){
+	const spollerbutton = document.querySelector('#spollerbutton');
+	document.addEventListener("click", (event) => {
+		const withinBoundaries = event.composedPath().includes(spollerbutton);
+
+		if (!withinBoundaries) {
+			spollerbutton.classList.remove('active');
+		}
+		else {
+			spollerbutton.classList.toggle('active');
+		}
+	});
+}
 //InputMask===============================================================================================================================================
 function inputElements() {
 	let inputPhones = document.querySelectorAll("input[data-format]");
@@ -374,39 +388,6 @@ let _slideToggle = (target, duration = 500) => {
 	}
 }
 spollers();
-//RANGE========================================================================================================================================
-//Цена
-if (document.querySelector("#range-slider-price")) {
-    var rangeBody = document.querySelector("#range-slider-price");
-    var slider = rangeBody.querySelector("#slider-price");
-    var inputMin = rangeBody.querySelector("#input-min-price");
-    var inputMax = rangeBody.querySelector("#input-max-price");
-
-    const inputs = [inputMin, inputMax]; 
-
-    noUiSlider.create(slider, {
-        start: [1000, 250000],
-        connect: true,
-        step: 100,
-        range: {
-            'min': 1000,
-            'max': 250000
-        }
-    });
-
-    slider.noUiSlider.on('update', function (values, handle) {
-        var price = parseInt(values[handle]);
-        inputs[handle].value = Number(price).toLocaleString();
-    });
-
-    inputMin.addEventListener('change', function () {
-        slider.noUiSlider.set([price, null]);
-    });
-
-    inputMax.addEventListener('change', function () {
-        slider.noUiSlider.set([null, this.value]);
-    });
-}
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
