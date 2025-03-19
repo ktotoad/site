@@ -167,16 +167,32 @@ const da = new DynamicAdapt("max");
 da.init();
 //spollerbutton=====================================================================================================================================================
 if (document.querySelector("#spollerbutton")){
-	const spollerbutton = document.querySelector('#spollerbutton');
-	document.addEventListener("click", (event) => {
-		const withinBoundaries = event.composedPath().includes(spollerbutton);
+	document.querySelectorAll("#spollerbutton").forEach((spollerbutton) => {
+		document.addEventListener("click", (event) => {
+			const withinBoundaries = event.composedPath().includes(spollerbutton);
 
-		if (!withinBoundaries) {
+			if (!withinBoundaries) {
+				spollerbutton.classList.remove('active');
+			}
+			else {
+				spollerbutton.classList.toggle('active');
+				if(spollerbutton.classList.contains("select__spoller")) {
+					let options = spollerbutton.querySelectorAll(".select__item");
+					if(event.target.classList.contains("select__item")) {
+						options.forEach((option) => {
+							option.classList.remove("active");
+						});
+						let optionText = event.target.innerText;
+						let buttonSpoller = event.target.closest("#select").querySelector("#button");
+						buttonSpoller.textContent = optionText;
+						event.target.classList.add("active");
+					}	
+				}
+			}
+		});
+		document.addEventListener("scroll", (event) => {
 			spollerbutton.classList.remove('active');
-		}
-		else {
-			spollerbutton.classList.toggle('active');
-		}
+		});	
 	});
 }
 //InputMask===============================================================================================================================================
