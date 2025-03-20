@@ -485,6 +485,7 @@ function initSliders() {
 			},
 			pagination: {
 				el: '.slider-detail__pagination',
+       			type: "fraction",
 				clickable: true,
 			},
 			thumbs: {
