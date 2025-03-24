@@ -215,6 +215,16 @@ if (document.querySelectorAll(".js_price")) {
       js_price.textContent = numberWithSpaces(js_price.textContent);
   })
 }
+//Copy_id_number=================================================================================================================================
+if(document.querySelector("#idnumber")) {
+    document.querySelectorAll("#idnumber").forEach((idnumber) => {
+        
+    });
+
+    function urlCopyButton(){
+        console.log(this);
+    }
+}
 // SPOLLERS========================================================================================================================================
 function spollers() {
 	//Проверка на наличие атрибута
