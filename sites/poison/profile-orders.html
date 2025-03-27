@@ -6,6 +6,7 @@
 		<meta name="format-detection" content="telephone=no">
 		<link rel="icon" href="/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" href="./fonts/onest/font-face.css" />
+		<link rel="stylesheet" href="css/fancybox.css"/>
 		<link rel="stylesheet" href="./css/style.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<!-- прячем от поисковиков -->
@@ -197,7 +198,7 @@
 														<div id="idnumber" class="item-order__info-block">
 															<p class="item-order__date text-s">от 26.02.2025</p>
 															<div class="item-order__id">
-																<p class="text-s">ID заказа - <span id="copytext">384959</span></p>
+																<p class="text-s"><span>ID заказа - </span><a href="./profile-order-detail.html" id="copytext">384959</a></p>
 																<button type="button" onclick="urlCopyButton()">
 																	<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 																		<path d="M10.6666 8.60001V11.4C10.6666 13.7333 9.73331 14.6667 7.39998 14.6667H4.59998C2.26665 14.6667 1.33331 13.7333 1.33331 11.4V8.60001C1.33331 6.26668 2.26665 5.33334 4.59998 5.33334H7.39998C9.73331 5.33334 10.6666 6.26668 10.6666 8.60001Z" stroke="#292D32" stroke-linecap="round" stroke-linejoin="round"/>
@@ -206,8 +207,10 @@
 																</button>	
 															</div>
 														</div>
-														<h3 class="item-order__title title-s">Передаем в доставку</h3>
-														<p class="item-order__price text"><span class="js_price">48000</span> ₽</p>
+														<div class="item-order__text-block">
+															<h3 class="item-order__title title-s">Передаем в доставку</h3>
+															<p class="item-order__price text"><span class="js_price">48000</span> ₽</p>
+														</div>
 													</div>
 													<div class="item-order__products-block">
 														<div class="item-order__products">
@@ -288,7 +291,7 @@
 											</div>
 											<div class="item-order__report report-order">
 												<h3 class="report-order__title text-main">Сделали фотоотчет по вашему заказу</h3>
-												<a href="#popupfoto" class="report-order__button button-black-tr">
+												<a href="#popupfoto" class="report-order__button button-black-tr popup-link">
 													<i>
 														<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 															<path d="M9 10C10.1046 10 11 9.10457 11 8C11 6.89543 10.1046 6 9 6C7.89543 6 7 6.89543 7 8C7 9.10457 7.89543 10 9 10Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -308,7 +311,7 @@
 														<div class="item-order__info-block">
 															<p class="item-order__date text-s">от 12.02.2025</p>
 															<div id="idnumber" class="item-order__id">
-																<p class="text-s">ID заказа - <span id="copytext">452951</span></p>
+																<p class="text-s"><span>ID заказа - </span><a href="./profile-order-detail.html" id="copytext">452951</a></p>
 																<button type="button" onclick="urlCopyButton()">
 																	<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 																		<path d="M10.6666 8.60001V11.4C10.6666 13.7333 9.73331 14.6667 7.39998 14.6667H4.59998C2.26665 14.6667 1.33331 13.7333 1.33331 11.4V8.60001C1.33331 6.26668 2.26665 5.33334 4.59998 5.33334H7.39998C9.73331 5.33334 10.6666 6.26668 10.6666 8.60001Z" stroke="#292D32" stroke-linecap="round" stroke-linejoin="round"/>
@@ -317,8 +320,10 @@
 																</button>	
 															</div>
 														</div>
-														<h3 class="item-order__title title-s">Заказ доставлен</h3>
-														<p class="item-order__price text">10 000 ₽</p>
+														<div class="item-order__text-block">
+															<h3 class="item-order__title title-s">Заказ доставлен</h3>
+															<p class="item-order__price text">10 000 ₽</p>
+														</div>	
 													</div>
 													<div class="item-order__products">
 														<div class="item-order__product order-product">
@@ -356,7 +361,6 @@
 												</div>
 											</div>
 										</div>
-
 									</div>
 								</div>
 							</div>
@@ -373,7 +377,97 @@
 		</div>	
 	</div>
 </footer>		</div>
-<div id="popup" aria-hidden="true" class="popup">
+<div id="popupfoto" aria-hidden="true" class="popup popup-big">
+	<div class="popup-big__wrapper">
+		<div class="popup-big__content">
+			<div class="popup-big__header">
+				<div class="popup-big__text-block">
+					<h2 class="popup-big__title title">Фотоотчет по вашему заказу</h2>
+					<p class="popup-big__text text">Загружаем фотографии по мере возможности, следите за обновлениями</p>
+				</div>
+				<button data-close type="button" class="popup-big__close button-gray">
+					<span>Закрыть</span>
+					<i>
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="#EC2E32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M9.16992 14.83L14.8299 9.17001" stroke="#EC2E32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M14.8299 14.83L9.16992 9.17001" stroke="#EC2E32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</i>
+				</button>
+			</div>
+			<div class="popup-big__body">
+				<div class="popup-big__row">
+					<div class="popup-big__date">
+						<p class="text">24.03.2025</p>
+					</div>
+					<div id="gallery-wrap" class="popup-big__images">
+						<a href="./img/order/01.jpg" class="popup-big__image" data-fancybox="gallery">
+							<img src="./img/order/01.jpg" alt="">
+						</a>
+						<a href="./img/order/02.jpg" class="popup-big__image" data-fancybox="gallery">
+							<img src="./img/order/02.jpg" alt="">
+						</a>
+						<a href="./img/order/03.jpg" class="popup-big__image" data-fancybox="gallery">
+							<img src="./img/order/03.jpg" alt="">
+						</a>
+					</div>
+				</div>
+				<div class="popup-big__row">
+					<div class="popup-big__date">
+						<p class="text">22.03.2025</p>
+					</div>
+					<div id="gallery-wrap" class="popup-big__images">
+						<a href="./img/order/04.jpg" class="popup-big__image" data-fancybox="gallery">
+							<img src="./img/order/04.jpg" alt="">
+						</a>
+						<a href="./img/order/05.jpg" class="popup-big__image" data-fancybox="gallery">
+							<img src="./img/order/05.jpg" alt="">
+						</a>
+						<a href="./img/order/06.jpg" class="popup-big__image" data-fancybox="gallery">
+							<img src="./img/order/06.jpg" alt="">
+						</a>
+						<a href="./img/order/07.jpg" class="popup-big__image" data-fancybox="gallery">
+							<img src="./img/order/07.jpg" alt="">
+						</a>
+						<a href="./img/order/08.jpg" class="popup-big__image" data-fancybox="gallery">
+							<img src="./img/order/08.jpg" alt="">
+						</a>
+					</div>
+				</div>
+				<div class="popup-big__block">
+					<div class="about-page__item item-about item-about_white">
+						<div class="item-about__body">
+							<h3 class="item-about__title title-xl">Вопросы? Поддержка рядом, напишите нам!</h3>
+							<a href="" class="item-about__button button-black-tr">
+								<span>Открыть чат</span>
+								<i>
+									<svg width="33" height="24" viewBox="0 0 33 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<g clip-path="url(#clip0_773_4915)">
+											<path fill-rule="evenodd" clip-rule="evenodd" d="M9.18787 7.90895H7.876C7.73939 7.91787 7.61068 7.97636 7.51388 8.07351C7.41707 8.17066 7.3588 8.29984 7.34991 8.43695V18.3609C7.34947 18.4306 7.36326 18.4997 7.3904 18.5638C7.41754 18.628 7.45747 18.6858 7.50774 18.7339C7.55457 18.7851 7.61161 18.8257 7.67514 18.8533C7.73867 18.8808 7.80727 18.8946 7.87648 18.8938H9.18835C9.25499 18.893 9.32075 18.8784 9.3815 18.8509C9.44225 18.8234 9.49666 18.7836 9.5413 18.7339C9.5953 18.6882 9.63847 18.6311 9.66768 18.5666C9.69688 18.502 9.71138 18.4318 9.71013 18.3609V8.44175C9.70739 8.37388 9.69103 8.30727 9.66202 8.2459C9.63301 8.18454 9.59195 8.12968 9.5413 8.08463C9.49964 8.03023 9.44614 7.98612 9.38488 7.95567C9.32362 7.92522 9.25623 7.90924 9.18787 7.90895ZM21.1573 7.93583H20.0984C19.9601 7.90727 19.8164 7.92095 19.6859 7.97511C19.5554 8.02926 19.4441 8.12141 19.3662 8.23967L16.3422 14.9549H16.2896L13.4076 8.23967C13.3698 8.14591 13.3038 8.06629 13.2189 8.01185C13.134 7.9574 13.0343 7.93083 12.9336 7.93583H11.506C11.4255 7.92587 11.3438 7.93797 11.2697 7.97085C11.1955 8.00372 11.1315 8.05615 11.0847 8.12255C11.0476 8.18857 11.0303 8.26394 11.035 8.33957C11.0397 8.41521 11.0661 8.48787 11.111 8.54879L15.7979 18.8731C15.8391 18.9626 15.9067 19.0371 15.9916 19.0867C16.0765 19.1362 16.1745 19.1584 16.2723 19.1501H16.4158C16.5092 19.1529 16.6014 19.1281 16.681 19.0789C16.7605 19.0297 16.824 18.9581 16.8635 18.8731L21.5504 8.54927C21.5952 8.48827 21.6214 8.41563 21.6261 8.34004C21.6308 8.26444 21.6136 8.1891 21.5767 8.12303C21.5289 8.05812 21.4651 8.00672 21.3916 7.97384C21.3181 7.94096 21.2374 7.9277 21.1573 7.93535V7.93583ZM27.5 7.68575C26.768 7.67611 26.0423 7.82109 25.3697 8.11127C24.6972 8.40144 24.0931 8.83032 23.5964 9.37007C23.0725 9.8963 22.659 10.5226 22.3803 11.2119C22.1016 11.9012 21.9633 12.6395 21.9737 13.3833C21.9541 14.8964 22.534 16.3553 23.5859 17.4394C24.0825 17.9789 24.685 18.4094 25.3554 18.7039C26.0258 18.9983 26.7498 19.1504 27.4816 19.1504C28.2134 19.1504 28.9373 18.9983 29.6078 18.7039C30.2782 18.4094 30.8807 17.9789 31.3773 17.4394C31.9021 16.9047 32.3158 16.2708 32.5943 15.5743C32.8729 14.8779 33.0108 14.1328 33 13.3824C33.0103 12.6386 32.8721 11.9002 32.5934 11.2109C32.3147 10.5216 31.9011 9.89534 31.3773 9.36911C30.8845 8.83161 30.2847 8.40398 29.6168 8.11392C28.9489 7.82385 28.2277 7.6783 27.5 7.68575ZM29.7918 15.888C29.498 16.2045 29.1426 16.4572 28.7477 16.6305C28.3528 16.8037 27.9267 16.8939 27.4956 16.8955C27.0646 16.897 26.6378 16.8098 26.2417 16.6394C25.8456 16.4689 25.4884 16.2187 25.1924 15.9043C24.5664 15.22 24.2318 14.3172 24.2603 13.3886C24.2348 12.4796 24.5701 11.5977 25.1924 10.9368C25.4866 10.6195 25.8442 10.3681 26.2418 10.1991C26.6395 10.0302 27.0683 9.94735 27.5 9.95615C27.9297 9.945 28.3568 10.0268 28.7523 10.196C29.1477 10.3652 29.5023 10.6179 29.7918 10.9368C30.1001 11.264 30.341 11.6489 30.501 12.0696C30.6609 12.4903 30.7367 12.9385 30.724 13.3886C30.7416 14.3105 30.4082 15.2044 29.7918 15.888ZM4.26226 7.90895H0.52609C0.458783 7.9119 0.392775 7.92858 0.332096 7.95796C0.271416 7.98733 0.217331 8.0288 0.17313 8.07983C0.121899 8.1255 0.0805337 8.18121 0.05158 8.24354C0.0226264 8.30587 0.00669537 8.37349 0.00477998 8.44223V9.76943C0.00633338 9.83978 0.0220506 9.90908 0.0509816 9.97317C0.0799126 10.0373 0.121462 10.0948 0.17313 10.1424C0.218494 10.1912 0.273054 10.2304 0.333643 10.2578C0.394231 10.2853 0.459645 10.3004 0.52609 10.3022H2.42287V19.8581C2.42527 20.2849 2.27247 20.698 1.99309 21.0198C1.71372 21.3416 1.32696 21.5501 0.90535 21.6062H0.52609C0.386932 21.6103 0.25466 21.6679 0.15671 21.7672C0.0587606 21.8665 0.0026449 21.9998 0 22.1395V23.4667C0.000934374 23.6044 0.0519591 23.7371 0.14348 23.8397C0.1917 23.8919 0.250485 23.9332 0.315895 23.9607C0.381304 23.9883 0.451826 24.0015 0.52274 23.9995H0.70735C1.74494 23.9941 2.74148 23.5921 3.49408 22.8752C4.24667 22.1583 4.69874 21.1805 4.75822 20.1408C4.77373 20.0582 4.78078 19.9743 4.77926 19.8902V8.44175C4.77972 8.37206 4.76596 8.30302 4.73882 8.23887C4.71167 8.17473 4.67172 8.11684 4.62143 8.06879C4.57693 8.01732 4.52167 7.97631 4.4596 7.94869C4.39752 7.92106 4.33015 7.90749 4.26226 7.90895Z" fill="#0B1F35"/>
+											<path fill-rule="evenodd" clip-rule="evenodd" d="M0.0327476 0C-0.293905 6.2304 4.76322 7.11552 4.76322 7.11552C4.5107 0.2928 0.0327476 0 0.0327476 0Z" fill="#1BC339"/>
+										</g>
+										<defs>
+											<clipPath id="clip0_773_4915">
+												<rect width="33" height="24" fill="white"/>
+											</clipPath>
+										</defs>
+									</svg>
+								</i>
+							</a>
+						</div>
+						<div class="item-about__bg">
+							<img src="./img/dec2.svg" alt="">
+						</div>
+						<div class="item-about__image">
+							<img src="./img/hero/02.png" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><div id="popup" aria-hidden="true" class="popup">
 	<div class="popup__wrapper">
 		<div class="popup__content">
 			<div class="popup__header">
@@ -422,6 +516,7 @@
 		</div>
 	</div>
 </div><script src="js/swiper-bundle.min.js"></script>	
+<script src="js/fancybox.umd.js"></script>
 <script src="js/imask.js"></script>
 <script src="js/main.js"></script>		</body>
 </html>
