@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{TestTitle}}</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name=GENERATOR   content="VS BookEditor">
+  <meta name=keywords    content="{{TestKeywords}}">
+  <meta name=description content="{{TestDescription}}">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <!-- Стили CSS BEGIN -->
+  <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="../css/service.css"/>
+  <!-- Стили CSS END -->
+  
+</head>
+
+<body onload="onWindowLoadTestRes()" onunload="onWindowUnload()">
+
+  <div class="container-fluid">
+
+    <!-- Панель инструментов BEGIN -->
+    <div class="row mb-sm-3 bg-light my-serach-box">
+      <!-- Ночной режим BEGIN -->
+      <div class="col-sm-3">
+        <div class="form-check" id="night_mode">
+          <input class="form-check-input" id="night_mode_id" onclick="setNightMode()" type="checkbox" title="Включите, чтобы читать в темноте"/>
+          <label class="form-check-label" for="night_mode_id" title="Включите, чтобы читать в темноте">Ночной режим</label>
+        </div>
+      </div>
+      <!-- Ночной режим END -->
+
+      <div class="col-sm-9 text-right">
+        <button class="btn" style="margin:0;padding:0;" type="button" onclick="showPPS('{{JSppslink}}')"><img src="../img/consult.png" width=30 title="Записаться на консультацию" title="Нажмите, чтобы связаться с преподавателем"></button>
+      </div>
+    </div>
+    <!--  Панель инструментов END -->
+  
+    <!-- Заголовок результатов тестирования BEGIN -->
+    <div class="row mb-sm-3">
+      <div class="col-sm-12">
+        <h1>{{TestResTitle}}</h1>
+      </div>
+    </div>
+    <!-- Заголовок результатов тестирования END -->
+
+    <!-- Результаты тестирования row BEGIN -->
+    <div class="row mb-sm-3">
+
+      <!-- Результаты тестирования BEGIN -->
+      <div class="col-sm-12">
+        <table class="table table-striped table-bordered disable_no_night">
+          <tbody>
+            <tr>
+              <th scope="row">Имя теста</th>
+              <td>{{TestTitle}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Начат</th>
+              <td id="StartTimeId"></td>
+            </tr>
+            <tr>
+              <th scope="row">Продолжительность</th>
+              <td id="DurationId"></td>
+            </tr>
+            {{#FinalScore.listHelper}}
+            <tr>
+              <th scope="row">Балл по теме {{title}}</th>
+              <td id="{{themeID}}"></td>
+            </tr>
+            {{/FinalScore.listHelper}}
+            <tr>
+              <th scope="row">{{TotalScoreTitle}}</th>
+              <td id="ScoreId"></td>
+            </tr>
+            <tr>
+              <th scope="row">Процент верных ответов (с учетом веса (баллов) правильных ответов)</th>
+              <td id="OkAnswersPercentId"></td>
+            </tr>
+            {{#IsAssessment}}
+            <tr>
+              <th scope="row">Оценка</th>
+              <td id="AssessmentId"></td>
+            </tr>
+            {{/IsAssessment}}
+            <tr>
+              <th scope="row">Результат прохождения теста</th>
+              <td id="PassId"></td>
+            </tr>
+            {{#IsAddTestAgain}}
+            <tr>
+              <th scope="row">Рекомендации</th>
+              <td id="RecommendsId"></td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td><button class="btn btn-outline-primary" type="button" onClick="onTestAgain()" id="btnTestAgainId">Пройти тест заново</button></td>
+            </tr>
+            {{/IsAddTestAgain}}
+            <tr>
+              <th scope="row"></th>
+              <td><button class="btn btn-outline-primary" type="button" onClick="gotoTheory()" id="btnGotoTheory">Перейти к теории</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Результаты тестирования END -->
+
+    </div>
+    <!-- Результаты тестирования row END -->
+
+    {{#IsKurs}}
+    <!-- Заголовок результатов изучения курса BEGIN -->
+    <div class="row mb-sm-3">
+      <div class="col-sm-12">
+        <h1>Результаты изучения курса</h1>
+      </div>
+    </div>
+    <!-- Заголовок результатов изучения курса END -->
+
+    <!-- Результаты курса row BEGIN -->
+    <div class="row mb-sm-3">
+
+      <!-- Результаты курса BEGIN -->
+      <div class="col-sm-12">
+        <table class="table table-striped table-bordered disable_no_night">
+          <tbody>
+            <tr>
+              <th scope="row">Курс</th>
+              <td id="KursTitle">{{{KursTitle}}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Процент изучения курса</th>
+              <td id="KursPercentId"></td>
+            </tr>
+            <tr>
+              <th scope="row">Продолжительность изучения</th>
+              <td id="KursDurationId"></td>
+            </tr>
+            <tr>
+              <th scope="row">Результат изучения курса</th>
+              <td id="KursResultId"></td>
+            </tr>
+            <tr id="PassedTestsRowId">
+              <th scope="row">Пройденные тесты (оценки):</th>
+              <td></td>
+            </tr>
+            <tr>
+              <th scope="row">Рекомендации по итогам изучения курса</th>
+              <td id="KursRecommendsId"></td>
+            </tr>
+            <tr>
+              <th scope="row">Прогресс по результатам изучения курса</th>
+              <td><div style="max-width:30vw"><canvas height="170" id="KursProgressId" width="170"></canvas></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Результаты курса END -->
+
+    </div>
+    <!-- Результаты курса row END -->
+    {{/IsKurs}}
+
+  </div>
+  
+  <!-- Скрипты BEGIN -->
+  <SCRIPT>
+    var PPSLINK = "{{JSppslink}}";
+  </script>
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="../js/constants.js"></script>
+  <script src="../js/service.js"></script>
+  <script src="../js/testres.service.js"></script>
+  <script src="../js/senddata.js"></script>
+  <script src="../js/chart.min.js"></script>
+  <SCRIPT>
+    // Запрет отладки
+    loadModule({{JSNoDebug}}, '../js/nodebug_tools.js');
+  
+    // данные теста
+    var testData = {
+      testId : "{{testId}}",
+      testQuestionCount : {{testQuestionCount}},
+      questionQuantity : {{questionQuantity}},
+      firstQuestionId : "{{firstQuestionId}}",
+      destination : "{{destination}}"
+    };
+    isPreview = {{isPreview}};
+
+    // Обновление информации для результатов теста на странице
+    showTestResults(testData);
+    // Обновление состояния кнопки перехода к теории
+    updateGotoTheoryButton(true);
+
+    // Обработчик кнопки "Пройти тест заново"
+    function onTestAgain(event) {
+      if (!canStartTest(testData.testId)) {
+        return;
+      }
+      showTestingStartPageRepeat(testData.testId, testData.questionQuantity);
+    }
+  </script>
+  <!-- Скрипты END -->
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>{{TestTitle}}</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name=GENERATOR   content="VS BookEditor">
+  <meta name=keywords    content="{{TestKeywords}}">
+  <meta name=description content="{{TestDescription}}">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <!-- Стили CSS BEGIN -->
+  <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="../js/djvu/djvu_viewer.css"/>
+  <link rel="stylesheet" href="../css/service.css"/>
+  <link rel="stylesheet" href="../css/hint.css"/>
+  <link rel="stylesheet" href="../js/photo-sphere-viewer/photo-sphere-viewer.css"/>
+  <link rel="stylesheet" href="../js/photo-sphere-viewer/plugins/video.css"/>
+  <style>
+  </style>
+
+  <style>
+    {{{TestCSS}}}
+  </style>
+  <!-- Стили CSS END -->
+  
+</head>
+
+<body onload="onWindowLoadTest()" onunload="onWindowUnload()">
+
+  <div class="container-fluid" style="height: auto;">
+     
+    <!-- Панель инструментов BEGIN -->
+    <div class="row mb-sm-1 my-serach-box">
+      <!-- Ночной режим BEGIN -->
+      <div class="col-sm-3">
+        <div class="form-check" id="night_mode">
+          <input class="form-check-input" id="night_mode_id" onclick="setNightMode()" type="checkbox" title="Включите, чтобы читать в темноте"/>
+          <label class="form-check-label" for="night_mode_id" title="Включите, чтобы читать в темноте" title="Включите, чтобы читать в темноте">Ночной режим</label>
+        </div>
+      </div>
+      <!-- Ночной режим END -->
+
+      <div class="col-sm-9 text-right">
+        <button class="btn" style="margin:0;padding:0;" type="button" onclick="window.open('../doc/calc.html','_blank');"><img src="../img/calc.png" width=30 title="Нажмите для вызова калькулятора"></button>
+        <button class="btn" style="margin:0;padding:0;" type="button" onclick="showPPS('{{JSppslink}}')" title="Нажмите, чтобы связаться с преподавателем"><img src="../img/consult.png" width=30 title="Записаться на консультацию"></button>
+        <button class="btn" style="margin:0;padding:0;" type="button" onclick="showHelp()"><img src="../img/help.png" width=30 title="Справка"></button>
+      </div>
+    </div>
+    <!--  Панель инструментов END -->
+ 
+    <!-- Заголовок теста BEGIN -->
+    <div class="row mb-sm-3">
+      <div class="col-sm-12">
+        <h1>{{TestTitle}}</h1>
+      </div>
+    </div>
+    <!-- Заголовок теста END -->
+
+    <!-- Вопрос row BEGIN -->
+    <div class="row mb-sm-3" id="question">
+
+      <!-- Вопрос BEGIN -->
+      <div class="col-sm-12">
+        <div class="card border-info">
+          <div class="card-header">{{{QuestionTitle}}}</div>
+          <div class="card-body p-sm-1">{{{QuestionBody}}}</div>
+        </div>
+      </div>
+      <!-- Вопрос END -->
+
+    </div>
+    <!-- Вопрос row ND -->
+
+    <!-- Ответы row BEGIN -->
+    <div class="row mb-sm-3" id="answers">
+
+      <!-- Ответы BEGIN -->
+      <div class="col-sm-12">
+        <div class="card border-info">
+          <div class="card-header">{{{AnswersTitle}}}</div>
+          <div class="card-body h-100" id="answersId">
+
+            <!-- Ответы с единственным верным вариантом BEGIN -->
+            {{#SingleOptions.listHelper}}
+            <div class="custom-control custom-radio">
+              <input type="radio" class="custom-control-input" id="{{optionID}}" name="radio-stacked">
+              <label class="custom-control-label" for="{{optionID}}">{{{hTML}}}</label>
+            </div>
+            {{/SingleOptions.listHelper}}
+            <!-- Ответы с единственным верным вариантом END -->
+
+            <!-- Ответы с несколькими верными вариантами BEGIN -->
+            {{#MultiOptions.listHelper}}
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="{{optionID}}">
+              <label class="custom-control-label" for="{{optionID}}">{{{hTML}}}</label>
+            </div>
+            {{/MultiOptions.listHelper}}
+            <!-- Ответы с несколькими верными вариантами END -->
+
+            <!-- Вопрос для проверки навыков программирования BEGIN -->
+            {{#IsProgrammingTest}}
+            <div class="form-group">
+              <h5 class="card-header">Код</h5>
+              <div class="jumbotron" id="codeEditorID"></div>
+              <h5 class="card-header">Результат</h5>
+              <textarea class="w-100" autocomplete="off" id="codeResultID" readonly="on" rows="1" style="resize: none;"></textarea>
+              <div>
+                <button class="btn btn-success" onclick="runCompilation()" style="float:right;">Выполнить</button>
+              </div>
+            </div>
+            {{/IsProgrammingTest}}
+            <!-- Вопрос для проверки навыков программирования END -->
+
+            <!-- Открытый вариант ответа BEGIN -->
+            {{#IsOpen}}
+            <input type="text" class="form-control" id="{{optionID}}">
+            {{/IsOpen}}
+            <!-- Открытый вариант ответа END -->
+
+            <!-- Вопрос на заполнение пропусков BEGIN -->
+            {{{SkipAnswers}}}
+            <!-- Вопрос на заполнение пропусков END -->
+
+            <!-- Ответы на упорядочивание списка BEGIN -->
+            {{#IsListOptions}}
+            <div class="row">
+              <div class="col-sm-12 pr-sm-1 h-100">
+                <div id="orderedList" class="list-group" sort="true" style="visibility:hidden">
+                  {{#ListOptions.listHelper}}
+                <div class="list-group-item list-group-item-warning" id="{{optionID}}" position="{{position}}" ondragend="onItemDragEnd()">{{{hTML}}}</div>
+                 {{/ListOptions.listHelper}}
+                </div>
+              </div>
+            </div>
+            {{/IsListOptions}}
+            <!-- Ответы на упорядочивание списка END -->
+
+            <!-- Ответы на установление соответствия BEGIN -->
+            {{#IsMatchedOptions}}
+            <div class="row">
+              <div class="col-sm-6 pr-sm-1 h-100">
+                <div id="matchedList1" class="list-group" sort="true">
+                  {{#MatchedOptions1.listHelper}}
+                  <div class="list-group-item list-group-item-warning" id="{{optionID}}" position="{{position}}" ondragend="onItemDragEnd()">{{{hTML}}}</div>
+                  {{/MatchedOptions1.listHelper}}
+                </div>
+              </div>
+              <div class="col-sm-6 pl-sm-2 h-100">
+                <div id="matchedList2" class="list-group" sort="true">
+                  {{#MatchedOptions2.listHelper}}
+                  <div class="list-group-item list-group-item-info" id="{{optionID}}" position="{{position}}" ondragend="onItemDragEnd()">{{{hTML}}}</div>
+                  {{/MatchedOptions2.listHelper}}
+                </div>
+              </div>
+            </div>
+            {{/IsMatchedOptions}}
+            <!-- Ответы на установление соответствия END -->
+
+          </div>
+        </div>
+      </div>
+      <!-- Ответы END -->
+
+    </div>
+    <!-- Ответы row END -->
+
+    <!-- Навигационная панель BEGIN -->
+      <div class="d-flex justify-content-start">
+        {{#btnGotoTheoryVisible}}
+        <button class="btn btn-outline-primary" type="button" onClick="gotoTheory()" id="btnGotoTheory">Вернуться к теории</button>
+        {{/btnGotoTheoryVisible}}
+        <button id="btnPrompt" class="btn btn-outline-primary" type="button" onClick="ShowQuestionPrompt(questionData)" data-placement="top" title="{{questionPrompt}}">Подсказка</button>
+        {{#btnPendVisible}}
+        <button id="btnPend" class="btn btn-outline-primary" type="button" onClick="putQuestion(questionData)">Отложить вопрос</button>
+        {{/btnPendVisible}}
+        <button id="btnNext" class="btn btn-outline-primary" type="button" onClick="nextQuestion(questionData)">Следующий вопрос</button>
+        <button class="btn btn-outline-primary" type="button" onClick="breakTest(questionData)">Завершить тест</button>
+      </div>
+    <!-- Навигационная панель END -->
+
+  </div>
+  
+  <!-- Скрипты BEGIN -->
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="../js/sortable.min.js"></script>
+  <script src="../js/three/three.min.js"></script>
+  <script src="../js/three/chevrotain.min.js"></script>
+  <script src="../js/three/inflate.min.js"></script>
+  <script src="../js/three/ColladaLoader.js"></script>
+  <script src="../js/three/FBXLoader.js"></script>
+  <script src="../js/three/OBJLoader.js"></script>
+  <script src="../js/three/TDSLoader.js"></script>
+  <script src="../js/three/VRMLLoader.js"></script>
+  <script src="../js/three/OrbitControls.js"></script>
+  <script src="../js/three/TrackballControls.js"></script>
+  <script src="../js/tiff.js"></script>
+  <script src="../js/pdf/pdf.min.js"></script>
+  <script src="../js/djvu/djvu.js"></script>
+  <script src="../js/djvu/djvu_viewer.js"></script>
+  <script src="../js/jsibox.js"></script>
+  <script src="../js/shumway/shuobject.js"></script>
+  <script src="../js/constants.js"></script>
+  <script src="../js/service.js"></script>
+  <script src="../js/testres.service.js"></script>
+  <script src="../js/senddata.js"></script>
+  <script src="../js/ace/ace.js"></script>
+  <script src="../js/brython/brython.js"></script>
+  <script src="../js/brython/brython_stdlib.js"></script>
+  <script src="../js/jquery.rwdImageMaps.min.js"></script>
+  <script src="../js/browser.js"></script>
+  <script src="../js/photo-sphere-viewer/photo-sphere-viewer.js"></script> 
+  <script src="../js/photo-sphere-viewer/adapters/equirectangular-video.js"></script>
+  <script src="../js/photo-sphere-viewer/plugins/video.js"></script>
+  <SCRIPT>
+    var PPSLINK = "{{JSppslink}}";
+    {{#IsPreview}}
+    isPreview = true;
+    {{/IsPreview}}
+    {{#IsNotPreview}}
+    isPreview = false;
+    {{/IsNotPreview}}
+    
+    // общие функции
+    function onItemDragEnd(event)
+    {
+      if (!event) event=window.event;
+      processingPageElements(event.target);
+    }
+
+    // Инициализация ответов на упорядочивание списка
+    {{#IsListOptions}}
+    function onload_handler() {
+      var val=orderedList.getAttribute("sort");
+      if (val == "false")
+        Sortable.create(orderedList, {
+          animation: 250,
+          ghostClass: 'blue-background-class',
+          sort: false
+        });
+      else
+        Sortable.create(orderedList, {
+          animation: 250,
+          ghostClass: 'blue-background-class'
+        });
+    }
+    window.addEventListener("load",onload_handler,false);
+    {{/IsListOptions}}
+
+    // Инициализация ответов на установление соответствия
+    {{#IsMatchedOptions}}
+    function initMatchedList(elemMatchedList) {
+      if (!elemMatchedList) return;
+      var val=elemMatchedList.getAttribute("sort");
+      if (val == "false")
+        Sortable.create(elemMatchedList, {
+          animation: 250,
+          ghostClass: 'blue-background-class',
+          sort: false
+        });
+      else
+        Sortable.create(elemMatchedList, {
+          animation: 250,
+          ghostClass: 'blue-background-class'
+        });
+      var parent=elemMatchedList.parentElement;
+      if (parent) parent.style.width="50%";
+    }
+    function onload_handler() {
+        initMatchedList(matchedList1);
+        initMatchedList(matchedList2);
+    }
+    window.addEventListener("load",onload_handler,false);
+    {{/IsMatchedOptions}}
+
+    // Инициализация проверки навыков программирования на Python
+    {{#IsProgrammingTest}}
+    const pythonImp = 'from browser import document'+'\r\n\r\n';  // базовый импорт, для работы в браузере
+    // настройка редактора исходного кода Ace
+    var pythonEditor=ace.edit("codeEditorID");  // создание редактора Ace
+    pythonEditor.setTheme("ace/theme/chrome");  // выбор темы
+    pythonEditor.getSession().setMode("ace/mode/python"); // подсветка кода Python
+    pythonEditor.setShowPrintMargin(false);     // убирает вертикальную полосу в 80 символов
+    // Компиляция Python кода
+    function runCompilation()
+    {
+      var elemCodeResult=document.getElementById("codeResultID");   // Результат компиляции
+      var elemPythonScript=document.getElementById("pythonScript"); // Python скрипт
+      var pythonSource=getSourcePython(); // Исходный код
+      elemCodeResult.textContent='';
+      elemPythonScript.textContent=pythonSource;
+      brython(); // Старт Python скрипта
+    }
+
+    // Вывод исходного кода для компиляции
+    function getSourcePython() {
+      var pythonCode=pythonImp+pythonEditor.getValue()
+      // изначально команда "print()" выводит в консоль браузера
+      return pythonCode.split("print").join("document['codeResultID'] <= ");
+    }
+    {{/IsProgrammingTest}}
+
+    function b64DecodeUnicodeJSON(str) {
+      let sss = decodeURIComponent(
+        atob(str)
+          .split("")
+          .map(function (c) {
+            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+          })
+          .join(""),
+      );
+      return sss;
+    }
+
+    // данные вопроса
+    var questionData = {
+      testId : "{{testId}}",
+      testQuestionCount : {{testQuestionCount}},
+      testResultFile : "{{testResultFile}}",
+      testTimeLimit : {{testTimeLimit}},
+      testPhaze : "{{testPhaze}}",
+      testTitle : "{{testTitle}}",
+      testRandomizeAnswers : {{testRandomizeAnswers}},
+      testStatusDisplayResultAnswer : {{testStatusDisplayResultAnswer}},
+      testPassValue : {{{testPassValue}}},
+      testPassType : {{{testPassType}}},
+      assessmentsArray : {{{assessmentsArray}}},
+      assessmentType : {{{assessmentType}}},
+      id : "{{questionId}}",
+      prevId : "{{prevQuestionId}}",
+      nextId : "{{nextQuestionId}}",
+      type : "{{questionType}}",
+      score : "{{questionScore}}",
+      answers : `{{{questionAnswers}}}`,
+      answers2 : `{{{questionAnswers2}}}`,
+      level : {{questionDataLevel}},
+      order : {{questionDataOrder}},
+      prompt : `{{questionPrompt}}`,
+      timeLimit : {{questionTimeLimit}},
+    };
+    questionData.order = getQuestionOrder(questionData.testId,questionData.id);
+    questionData.prevId = getQuestionID(questionData.testId, questionData.order, questionData.id, "prev");
+    questionData.nextId = getQuestionID(questionData.testId, questionData.order, questionData.id, "next");
+
+    // Инициализация вопроса
+    initQuestion(questionData);
+
+    // Обновление информации для текущего вопроса на странице
+    updateCurQuestionInfo(questionData);
+    questionData.answers = questionData.answers ? JSON.parse(b64DecodeUnicodeJSON(questionData.answers)): [];
+    questionData.answers2 = questionData.answers2 ? JSON.parse(b64DecodeUnicodeJSON(questionData.answers2)): [];
+
+    // области изображений
+    $(document).ready(function(e) {
+      $('img[usemap]').rwdImageMaps();
+    });
+
+    // Запрет отладки
+    loadModule({{JSNoDebug}}, '../js/nodebug_tools.js');
+  </script>
+  <script src="../js/test_handlers.js"></script>
+  <script src="../js/check_reopen.js"></script>
+  <!-- Python скрипт BEGIN -->
+  <script type="text/python" id="pythonScript"></script>
+  <!-- Python скрипт END -->
+  <!-- Скрипты END -->
+
+</body>
+</html>

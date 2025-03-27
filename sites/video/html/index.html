@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<link rel="stylesheet" href="../css/service.css"/>
+</head>
+<body>
+<script src="../js/constants.js"></script>
+<script src="../js/service.js"></script>
+<script src="../js/testres.service.js"></script>
+<SCRIPT>
+localStorage_removeItem(CSLASTTREEHIGHT);
+localStorage_removeItem(lastSearchString);
+localStorage_removeItem(AUTHORIZE);
+localStorage_removeItem(CSPENDINGQUESTIONS);
+
+// инициализация книги
+var InitData=
+{
+  title: "Проверка видео 360",
+  bookId: "0000783F0EE440EF83A76168F1DD21FB",
+  timestamp: "20250326112528",
+  chapters: [{"id":"0000783F0EE44882B41EFB81FF3E824E","parent":"#","text":"Заставка", "a_attr": {"href":"0000783F0EE44882B41EFB81FF3E824E.html","difficulty":"3","chapterType":"csScreen"},"type":"file","icon":"../img/icons/0.png"},{"id":"0000783F0EE449499F464B21A58BFBB2","parent":"#","text":"Основной титульный экран", "a_attr": {"href":"0000783F0EE449499F464B21A58BFBB2.html","difficulty":"3","chapterType":"csMain"},"type":"file","icon":"../img/icons/0.png"},{"id":"0000783F0EE445BCAD4978970CBDF745","parent":"#","text":"Дополнительный титульный экран-1", "a_attr": {"href":"0000783F0EE445BCAD4978970CBDF745.html","difficulty":"3","chapterType":"csDop1"},"type":"file","icon":"../img/icons/0.png"},{"id":"0000783F0EE44EA585CE520113DAE20C","parent":"#","text":"Дополнительный титульный экран-2", "a_attr": {"href":"0000783F0EE44EA585CE520113DAE20C.html","difficulty":"3","chapterType":"csDop2"},"type":"file","icon":"../img/icons/0.png"},{"id":"0000783F0EE447DBA0A7B3BF4127AD84","parent":"#","text":"Дополнительный титульный экран-3", "a_attr": {"href":"0000783F0EE447DBA0A7B3BF4127AD84.html","difficulty":"3","chapterType":"csDop3"},"type":"file","icon":"../img/icons/0.png"},{"id":"0000783F0EE44E26A8402308422AA403","parent":"#","text":"Проверка видео 360", "a_attr": {"href":"0000783F0EE44E26A8402308422AA403.html","difficulty":"3","chapterType":"csAutoChapter"},"type":"file","icon":"../img/icons/0.png"},{"id":"0000783F0EE4432BAB982EAC906923CA","parent":"#","text":"Литература", "a_attr": {"href":"0000783F0EE4432BAB982EAC906923CA.html","difficulty":"3","chapterType":"csLink"},"type":"file","icon":"../img/icons/0.png"}],
+  minTime: "{{JSMinTime}}",
+};
+initBook(InitData);
+// инициализация тестов
+var testList = {};
+initTestList(testList);
+
+// Переход к книге.
+// Определение адреса перехода.
+// (объекты из локального хранилища уже прочитаны и инициализированы)
+if (userGeneral.lastChapterId && userGeneral.lastChapterId in book.chapters) {
+  // переход на последнюю сохраненную главу
+  location.assign(userGeneral.lastChapterId + ".html");
+} else {
+  // переход на первую главу
+  var id = getFirstChapterId();
+  if (id) {
+    location.href = id + ".html"; // переход на первую главу
+  } else {
+    showMessage("Не найдена первая глава", mtError);
+  }
+}
+</SCRIPT>
+</body>
+</html>
