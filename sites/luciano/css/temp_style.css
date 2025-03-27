@@ -1,0 +1,220 @@
+.filter_top {
+    position: absolute;
+    display: block;
+    background: #fff;
+    padding: 20px;
+    left: 150px;
+    width: calc(100% - 550px);
+    z-index: 10;
+}
+
+.filter_top .filter_form_hor{
+    display: flex;
+    gap: 40px;
+	min-width: 200px;
+}
+
+.filter_top .filter_item--range{
+    flex-grow: 1;
+	min-width: 150px;
+}
+
+.filter_top .filter_item--checkbox{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.filter_top .filter_item--range .pole {
+    margin: 20px 10px 0;
+}
+
+.filter_top .filter_item {
+    margin-top: 0;
+}
+
+.plan__btn_close{
+	display: none;
+	position: absolute;
+	right: 0;
+	width: 35px;
+    height: 35px;
+    border: none;
+    padding: 0;
+    background: none;
+}
+
+.genPlanPageLeft{
+	min-height: 120px;
+	z-index: 100;
+}
+
+
+.genPlanPageLeft.active{
+    height: auto;
+}
+
+
+.genPlanPageLeft.active .smena_house {
+    width: 100%;
+    z-index: 3;
+    background: #f9f9f9;
+    padding: 20px;
+    top: 0;
+    right: 0;
+    height: auto;
+}
+
+.genPlanPageLeft.active .smena_house .smena_house_text {
+    display: block;
+	margin: 20px 0;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.genPlanPageLeft.active .smena_house .smena_house_zoom {
+    display: block;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.genPlanPageLeft.active .smena_house img {
+    height: auto;
+    width: 100%;
+}
+
+
+.appart_breadcrumbs{
+	width: 100%;
+	margin: 40px 0;
+}
+
+.appart_breadcrumbs__item{
+	text-wrap-mode: nowrap;
+}
+
+.appart_breadcrumbs__item:not(:last-child):after{
+	content: "›";
+	margin: 0 10px;
+	opaciti: .5;
+}
+
+.plan_this {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+	transform: none;
+}
+
+
+@media screen and (max-width: 1660px) {
+    .all_etaj{
+        top: 190px
+    }
+    
+    .typeView{
+        position: absolute;
+        top: 190px;
+        right: 0;
+    	z-index: 20;
+    }
+    
+    .filter_top{
+        left: 0;
+        width: 100%;
+    }
+    
+    .page_paln{
+        margin-top: 120px;
+    }
+}
+
+
+@media screen and (max-width: 780px) {
+	.all_etaj{
+        top: 40px;
+    }
+    
+    .typeView{
+        position: relative;
+        top: auto;
+       
+    }
+	
+	.page_paln{
+        margin-top: 0;
+    }
+	
+	.filter_top{
+        display: none;
+    }
+	
+	
+	.genPlanPageLeft.active .plan__btn_close{
+		display: block;
+	}
+	
+	.plan_this {
+		display: none;
+	}
+	
+	.plan_map{
+		display:none;
+	}
+	
+}
+
+@media screen and (max-width: 480px) {
+	
+	.appart_breadcrumbs {
+		font-size: 12px;
+	}
+	
+	.appart_breadcrumbs__item:not(:last-child):after{
+		margin: 0 5px;
+	}
+}
+
+@media screen and (min-width: 780px) {
+	
+
+	.smena_house {
+		width: 100%;
+		z-index: 3;
+		background: #f9f9f9;
+		padding: 20px;
+		top: 0;
+		right: 0;
+		height: 100%;
+	}
+
+	.smena_house .smena_house_text {
+		display: block;
+		margin: 20px 0;
+		font-size: 15px;
+		font-weight: 700;
+	}
+
+	.smena_house:hover .smena_house_text {
+		margin: 20px 0;
+	}
+
+	.smena_house .smena_house_zoom {
+		display: block;
+		margin-top: 10px;
+		font-size: 15px;
+	}
+
+	.smena_house img {
+		height: auto;
+		width: 100%;
+	}
+
+	.compas_gen {
+		right: 0;
+		left: auto;
+		top: 20px;
+	}
+	
+}
