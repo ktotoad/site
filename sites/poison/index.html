@@ -87,7 +87,7 @@
 						</svg>
 					</i>
 				</a>
-				<a href="./profile.html" class="header__button button-icon">
+				<a href="#profilepopup" class="header__button button-icon popup-link">
 					<i>
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M11.9998 12C14.7612 12 16.9998 9.76142 16.9998 7C16.9998 4.23858 14.7612 2 11.9998 2C9.23833 2 6.99976 4.23858 6.99976 7C6.99976 9.76142 9.23833 12 11.9998 12Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -743,52 +743,180 @@
 		</div>	
 	</div>
 </footer>		</div>
-<div id="popup" aria-hidden="true" class="popup">
+<div id="profilepopup" aria-hidden="true" class="popup">
 	<div class="popup__wrapper">
+		<div class="popup__errors">
+			<div class="popup__error error-block">
+				<div class="error-block__icon">
+					<i>
+						<svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M17.4998 32.0833C25.5207 32.0833 32.0832 25.5208 32.0832 17.5C32.0832 9.47913 25.5207 2.91663 17.4998 2.91663C9.479 2.91663 2.9165 9.47913 2.9165 17.5C2.9165 25.5208 9.479 32.0833 17.4998 32.0833Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M17.5 11.6666V18.9583" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M17.4922 23.3334H17.5053" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</i>
+				</div>
+				<div class="error-block__text text">
+					<p>Упс, неверный логин или пароль</p>
+				</div>
+			</div>
+		</div>
 		<div class="popup__content">
 			<div class="popup__header">
-				<h2 class="popup__title">Введите свои данные - мы вам перезвоним!</h2>
+				<h2 class="popup__title title-s">Привет, с возвращением!</h2>
 				<button data-close type="button" class="popup__close close-popup"><span></span></button>
 			</div>
 			<form class="popup__form" method="post">
-				<div class="form-body__input-block">
-					<label for="" class="count-block__label">Как к вам обращаться?</label>
-					<input id="" autocomplite="off" type="text" placeholder="Иван Иванов" class="count-block__input input">
+				<div class="popup__input-block input-block">
+					<label class="popup__label text-s">Электронная почта</label>
+					<input type="mail" placeholder="name@mail.com" required class="popup__input input">
+					<div class="popup__input-icon">
+						<i>
+							<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M14.1665 17.0833H5.83317C3.33317 17.0833 1.6665 15.8333 1.6665 12.9167V7.08332C1.6665 4.16666 3.33317 2.91666 5.83317 2.91666H14.1665C16.6665 2.91666 18.3332 4.16666 18.3332 7.08332V12.9167C18.3332 15.8333 16.6665 17.0833 14.1665 17.0833Z" stroke="#070707" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M14.1668 7.5L11.5585 9.58333C10.7002 10.2667 9.29182 10.2667 8.43349 9.58333L5.8335 7.5" stroke="#070707" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</i>
+					</div>
 				</div>
-				<div class="form-body__input-block">
-					<label for="" class="count-block__label">Ваш номер телефона</label>
-					<input id="" data-format="0 000 000 00 00" autocomplite="off" type="tel" data-error="Ошибка"placeholder="+7 (912) 000 78-14" class="count-block__input input">
-				</div>
-				<div class="form-body__input-block">
-					<label for="" class="count-block__label">Какой у Вас вопрос?</label>
-					<textarea id="" autocomplite="off" rows="2" type="text" data-error="Ошибка"placeholder="Меня интересует.." class="count-block__input input"></textarea>
+				<div class="popup__input-block input-block">
+					<label class="popup__label text-s">Пароль</label>
+					<input type="password" placeholder="• • • • • • • • • • • •" class="popup__input input">
+					<div class="popup__input-icon">
+						<i>
+							<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M14.1665 18.3333H5.83317C2.49984 18.3333 1.6665 17.5 1.6665 14.1667V12.5C1.6665 9.16668 2.49984 8.33334 5.83317 8.33334H14.1665C17.4998 8.33334 18.3332 9.16668 18.3332 12.5V14.1667C18.3332 17.5 17.4998 18.3333 14.1665 18.3333Z" stroke="#070707" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M5 8.33332V6.66666C5 3.90832 5.83333 1.66666 10 1.66666C13.75 1.66666 15 3.33332 15 5.83332" stroke="#070707" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M9.99984 15.4167C11.1504 15.4167 12.0832 14.4839 12.0832 13.3333C12.0832 12.1827 11.1504 11.25 9.99984 11.25C8.84924 11.25 7.9165 12.1827 7.9165 13.3333C7.9165 14.4839 8.84924 15.4167 9.99984 15.4167Z" stroke="#070707" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</i>
+					</div>
 				</div>
 				<div class="popup__buttons">
-					<button type="submit" class="form-body__button button-main">Оставить заявку</button>
-					<p class="form-body__text">Отправляя сообщение, я соглашаюсь <br> с<a href="" target="_blank" class="form-body__link">политикой конфиденциальности</a></p>
+					<a href="./profile.html" class="popup__button button-black">Войти</a>
+					<a href="#popuppassword" class="popup__link popup-link text-s">Восстановить пароль</a>
 				</div>
 			</form>
-			<div class="popup__logo">
-				<img src="./img/logod.png" alt="">
+			<div class="popup__footer">
+				<p class="popup__text text-s">Еще нет аккаунта?</p>
+				<a href="#popupreg" class="popup__button button-white popup-link">Зарегистрироваться</a>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div id="modalSuccess" aria-hidden="true" class="popup">
+<div id="popuppassword" aria-hidden="true" class="popup">
 	<div class="popup__wrapper">
-		<div class="popup__content_small">
-			<svg width="121" height="121" viewBox="0 0 121 121" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path d="M110.918 86.7165C110.918 91.254 109.657 95.5393 107.388 99.1693C103.204 106.177 95.5405 110.916 86.7176 110.916C77.8947 110.916 70.1809 106.177 66.0467 99.1693C63.8284 95.5393 62.5176 91.254 62.5176 86.7165C62.5176 73.3561 73.3572 62.5166 86.7176 62.5166C100.078 62.5166 110.918 73.3561 110.918 86.7165Z" stroke="#FDB933" stroke-width="4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-				<path d="M77.2891 86.7167L83.2382 92.6658L96.1449 80.7676" stroke="#FDB933" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-				<path d="M110.917 43.812C110.917 53.744 108.346 62.5164 104.313 70.1293C99.8761 65.4406 93.6244 62.5166 86.7173 62.5166C73.3569 62.5166 62.5173 73.3562 62.5173 86.7166C62.5173 92.9178 64.8869 98.5646 68.7186 102.85C66.8532 103.707 65.139 104.413 63.6265 104.917C61.9123 105.522 59.089 105.522 57.3748 104.917C42.754 99.9257 10.084 79.1036 10.084 43.812C10.084 28.2332 22.6377 15.6289 38.1157 15.6289C47.2411 15.6289 55.4086 20.0658 60.5007 26.872C65.5927 20.0658 73.7602 15.6289 82.8856 15.6289C98.3636 15.6289 110.917 28.2332 110.917 43.812Z" stroke="#FDB933" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-			</svg>
-			<h2 class="popup__title">Спасибо за заявку!</h2>
-			<p class="popup__subtitle">Совсем скоро мы свяжемся с вами!</p>
-			<button type="submit" class="close-popup button-main">Ок</button>
-			<div class="popup__logo">
-				<img src="./img/logod.png" alt="">
+		<div class="popup__content">
+			<div class="popup__header">
+				<h2 class="popup__title title-s">Восстановить пароль</h2>
+				<p class="popup__text text-m">Введите почту на который зарегистрирован ваш аккаунт</p>
+				<button data-close type="button" class="popup__close close-popup"><span></span></button>
 			</div>
+			<form class="popup__form" method="post">
+				<div class="popup__input-block input-block">
+					<label class="popup__label text-s">Электронная почта</label>
+					<input type="mail" placeholder="name@mail.com" required class="popup__input input">
+					<div class="popup__input-icon">
+						<i>
+							<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M14.1665 17.0833H5.83317C3.33317 17.0833 1.6665 15.8333 1.6665 12.9167V7.08332C1.6665 4.16666 3.33317 2.91666 5.83317 2.91666H14.1665C16.6665 2.91666 18.3332 4.16666 18.3332 7.08332V12.9167C18.3332 15.8333 16.6665 17.0833 14.1665 17.0833Z" stroke="#070707" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+								<path d="M14.1668 7.5L11.5585 9.58333C10.7002 10.2667 9.29182 10.2667 8.43349 9.58333L5.8335 7.5" stroke="#070707" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</i>
+					</div>
+				</div>
+				<button type="submit" class="popup__button button-white">запросить новый пароль</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div id="popupreg" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__errors">
+			<div class="popup__error error-block">
+				<div class="error-block__icon">
+					<i>
+						<svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M17.4998 32.0833C25.5207 32.0833 32.0832 25.5208 32.0832 17.5C32.0832 9.47913 25.5207 2.91663 17.4998 2.91663C9.479 2.91663 2.9165 9.47913 2.9165 17.5C2.9165 25.5208 9.479 32.0833 17.4998 32.0833Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M17.5 11.6666V18.9583" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M17.4922 23.3334H17.5053" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</i>
+				</div>
+				<div class="error-block__text text">
+					<p>Упс, вы забыли указать Имя</p>
+				</div>
+			</div>
+			<div class="popup__error error-block">
+				<div class="error-block__icon">
+					<i>
+						<svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M17.4998 32.0833C25.5207 32.0833 32.0832 25.5208 32.0832 17.5C32.0832 9.47913 25.5207 2.91663 17.4998 2.91663C9.479 2.91663 2.9165 9.47913 2.9165 17.5C2.9165 25.5208 9.479 32.0833 17.4998 32.0833Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M17.5 11.6666V18.9583" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+							<path d="M17.4922 23.3334H17.5053" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</i>
+				</div>
+				<div class="error-block__text text">
+					<p>Примите условия обработки данных</p>
+				</div>
+			</div>
+		</div>
+		<div class="popup__content">
+			<div class="popup__header">
+				<h2 class="popup__title title-s">Регистрация</h2>
+				<button data-close type="button" class="popup__close close-popup"><span></span></button>
+			</div>
+			<form class="popup__form" method="post">
+				<div class="popup__input-block input-block">
+					<label class="popup__label text-s">Ваше имя</label>
+					<input type="text" placeholder="Владимир" required class="popup__input input">
+				</div>
+				<div class="popup__input-block input-block">
+					<label class="popup__label text-s">Электронная почта</label>
+					<input type="mail" placeholder="name@mail.com" required class="popup__input input">
+				</div>
+				<div class="popup__input-block input-block">
+					<label class="popup__label text-s">Номер телефона</label>
+					<input type="tel" data-format="0 000 000 00 00" placeholder="+7 " required class="popup__input input">
+				</div>
+				<div class="popup__input-block input-block">
+					<label class="popup__label text-s">Придумайте пароль</label>
+					<input type="password" required placeholder="• • • • • • • • • • • •" class="popup__input input">
+				</div>
+				<a href="#popupcommit" class="popup__button-big button-white popup-link">подтвердить телефон и войти</a>
+				<div class="popup__checkboxes">
+					<div class="checkbox">
+						<input id="pc_1" type="checkbox" value="1" required class="checkbox__input">
+						<label for="pc_1" class="checkbox__label"><span class="checkbox__text text-xs">Принимаю <a href="" target="_blank">условия обработки</a> персональных данных</span></label>
+					</div>
+					<div class="checkbox">
+						<input id="pc_2" type="checkbox" value="1" required class="checkbox__input">
+						<label for="pc_2" class="checkbox__label"><span class="checkbox__text text-xs">Хочу получать скидки и персональные предложения</span></label>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div id="popupcommit" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__content">
+			<div class="popup__header">
+				<h2 class="popup__title title-s">Введите код из SMS</h2>
+				<p class="popup__text text-m">Отправили код, вот-вот должен прийти, подождите пожалуйста</p>
+				<button data-close type="button" class="popup__close close-popup"><span></span></button>
+			</div>
+			<form class="popup__form" method="post">
+				<div class="popup__input-block input-block">
+					<label class="popup__label text-s">Введите код</label>
+					<input type="password" required placeholder="• • • • • • • • • • • •" class="popup__input input">
+				</div>
+				<button type="submit" class="popup__button-big button-white">подтвердить телефон и войти</button>
+			</form>
 		</div>
 	</div>
 </div><script src="js/swiper-bundle.min.js"></script>	
