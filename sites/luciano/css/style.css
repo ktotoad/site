@@ -281,3 +281,43 @@ body {
   -o-object-fit: contain;
      object-fit: contain;
 }
+
+.smena_house__image-block {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+.smena_house__image-block svg {
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.smena_house__image-block svg polygon {
+  cursor: pointer;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease 0s;
+  transition: opacity 0.3s ease 0s;
+  stroke: rgb(129, 162, 169);
+  fill: rgba(129, 162, 169, 0.5);
+}
+@media (any-hover: hover) {
+  .smena_house__image-block svg polygon:hover {
+    opacity: 1;
+  }
+}
+.smena_house__image {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  width: inherit;
+  height: inherit;
+}
+.smena_house__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
