@@ -195,6 +195,27 @@ if (document.querySelector("#spollerbutton")){
 		});	
 	});
 }
+//header_menu=====================================================================================================================================================
+if (document.querySelector("#menubody")){
+	const menuBody = document.querySelector('#menubody');
+	const menuButton = document.querySelector('#menubutton');
+	document.addEventListener("click", (event) => {
+		const withinBoundaries = event.composedPath().includes(menuButton);
+
+		if (!withinBoundaries) {
+			menuButton.classList.remove('active');
+			menuBody.classList.remove('active');
+		}
+		else {
+			menuButton.classList.toggle('active');
+			menuBody.classList.toggle('active');
+		}
+		document.addEventListener("scroll", (event) => {
+			menuButton.classList.remove('active');
+			menuBody.classList.remove('active');
+		});	
+	});
+}
 //InputMask===============================================================================================================================================
 function inputElements() {
 	let inputPhones = document.querySelectorAll("input[data-format]");
@@ -317,6 +338,25 @@ function bodyUnLock() {
 	}, timeout);
 }
 
+//header_menu=====================================================================================================================================================
+if (document.querySelector("#searchbody")){
+	const searchBody = document.querySelector('#searchbody');
+	const searchButton = document.querySelector('#searchbutton');
+	document.addEventListener("click", (event) => {
+		const withinBoundaries = event.composedPath().includes(searchButton);
+
+		if (!withinBoundaries) {
+			searchButton.classList.remove('active');
+			searchBody.classList.remove('active');
+			body.classList.remove('lock');
+		}
+		else {
+			searchButton.classList.toggle('active');
+			searchBody.classList.toggle('active');
+			body.classList.toggle('lock');
+		}
+	});
+}
 // SPOLLERS========================================================================================================================================
 function spollers() {
 	//Проверка на наличие атрибута
