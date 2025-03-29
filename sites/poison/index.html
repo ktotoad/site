@@ -14,11 +14,22 @@
 	</head>
 	<body>
 		<div class="wrapper">
+<div class="popup-banner">
+	<p class="popup-banner__text text">🛠 <span>Сайт работает в тестовом режиме, приносим извинения за неудобства</span></p>
+	<button type="button" class="popup-banner__close"><span></span></button>
+</div>
+<script>
+	if (document.querySelector(".popup-banner")) {
+		let popupbaner = document.querySelector(".popup-banner");
+		let popupbannerbutton = popupbaner.querySelector(".popup-banner__close");
+		popupbaner.closest(".wrapper").classList.add("banner");
+		popupbannerbutton.addEventListener("click", function (e) {
+			popupbaner.style.display = 'none';
+			popupbaner.closest(".wrapper").classList.remove("banner");
+		});
+	}
+</script>
 <header class="header">
-	<div class="header__banner popup popup-banner open">
-		<p class="popup-banner__text text">🛠 <span>Сайт работает в тестовом режиме, приносим извинения за неудобства</span></p>
-		<button data-close type="button" class="popup-banner__close close-popup"><span></span></button>
-	</div>
 	<div class="header__container container">
 		<div class="header__row">
 			<nav class="header__body">
