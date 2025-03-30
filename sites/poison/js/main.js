@@ -720,7 +720,7 @@ function initSliders() {
 			spaceBetween: 10,
 			parallax: true,
 			autoplay: {
-				delay: 3000,
+				delay: 15000,
 				disableOnInteraction: false,
 			},
 			speed: 800,
