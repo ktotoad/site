@@ -342,19 +342,10 @@ function bodyUnLock() {
 if (document.querySelector("#searchbody")){
 	const searchBody = document.querySelector('#searchbody');
 	const searchButton = document.querySelector('#searchbutton');
-	document.addEventListener("click", (event) => {
-		const withinBoundaries = event.composedPath().includes(searchButton);
-
-		if (!withinBoundaries) {
-			searchButton.classList.remove('active');
-			searchBody.classList.remove('active');
-			body.classList.remove('lock');
-		}
-		else {
-			searchButton.classList.toggle('active');
-			searchBody.classList.toggle('active');
-			body.classList.toggle('lock');
-		}
+	searchButton.addEventListener("click", (event) => {
+		searchButton.classList.toggle('active');
+		searchBody.classList.toggle('active');
+		body.classList.toggle('lock');
 	});
 }
 // SPOLLERS========================================================================================================================================
@@ -693,6 +684,14 @@ if(document.querySelector("#gallery-wrap")) {
 	document.querySelectorAll("#gallery-wrap").forEach(galleryWrap => {
 		Fancybox.bind(galleryWrap, {options});
 	});
+}
+//toggle======================================================================================================================================================
+if(document.querySelector("#toggle")) {
+	document.querySelectorAll("#toggle").forEach(function (toggle) {
+		toggle.addEventListener("click", function () {
+        	toggle.classList.toggle("active");
+        });
+    });
 }
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
