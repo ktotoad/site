@@ -579,7 +579,36 @@ function initSliders() {
 		});
 	}
 
-
+	if (document.querySelector('.slider-investors')) {
+		new Swiper('.slider-investors', {
+			observer: true,
+			observeParents: true,
+			//grid: {
+			//	rows: 2,
+			//},
+			spaceBetween: 50,
+			slidesPerView: 2,
+			parallax: true,
+			//loop: true,
+			//autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			breakpoints: {
+				320: {
+					//slidesPerColumn: 1,
+					slidesPerView: 1,
+				},
+				768: {
+					//slidesPerColumn: 2,
+					slidesPerView: 2,
+				},
+			},
+			speed: 800,
+			//threshold: 2,
+		});
+	}
 	if (document.querySelector('.slider-catalog')) {
 		new Swiper('.slider-catalog', {
 			observer: true,
@@ -610,6 +639,4 @@ function initSliders() {
 		});
 	}
 }
-
-
 initSliders();
