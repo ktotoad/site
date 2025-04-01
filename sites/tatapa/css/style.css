@@ -928,7 +928,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 /*header*/
 .header {
-  position: fixed;
+  position: absolute;
   z-index: 100;
   width: 100%;
   margin: 0.5em auto 1em;
@@ -1031,7 +1031,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   }
 }
 .header__link, .header__link-phone {
-  color: var(--green);
+  color: var(--white);
   font-weight: 600;
   font-size: 1.4em;
   line-height: 120%;
@@ -1125,6 +1125,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .header__button {
   white-space: nowrap;
+  color: var(--white);
 }
 /*header submenu*/
 .submenu__body {
@@ -1593,7 +1594,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .page__history {
   margin-top: 4em;
-  margin-bottom: 8em;
+  margin-bottom: 14em;
 }
 .page__income {
   padding-bottom: 8em;
@@ -1644,17 +1645,17 @@ input[type=text], input[type=email], input[type=tel], textarea {
   position: absolute;
   z-index: 3;
   width: 100%;
-  height: 50%;
+  height: 100%;
   top: 0;
   left: 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(#F4F4F4), to(rgba(244, 244, 244, 0)));
-  background: linear-gradient(180deg, #F4F4F4 0%, rgba(244, 244, 244, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(19, 20, 17, 0.7)), to(rgba(19, 20, 17, 0.1)));
+  background: linear-gradient(180deg, rgba(19, 20, 17, 0.7) 0%, rgba(19, 20, 17, 0.1) 100%);
 }
 .main-page::after {
   content: "";
   position: absolute;
   width: 100%;
-  height: 50%;
+  height: 25%;
   bottom: 0;
   left: 0;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(24.88%, #453425), to(rgba(69, 52, 37, 0)));
@@ -1762,7 +1763,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .main-page__title {
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--white);
 }
 .main-page__text-block {
   color: var(--white);
@@ -1895,6 +1896,21 @@ input[type=text], input[type=email], input[type=tel], textarea {
   .history__right {
     width: 50%;
   }
+}
+
+.anim-block {
+  padding: 4em 0;
+}
+.anim-block__image {
+  overflow: hidden;
+  width: 55%;
+  height: auto;
+}
+.anim-block__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .left-history__items {
@@ -2064,8 +2080,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (min-width: 767.98px) {
   .right-history__images {
-    -webkit-transform: translateY(-20em);
-            transform: translateY(-20em);
     padding: 0 0 0 1rem;
     gap: 1rem;
   }
@@ -2388,8 +2402,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
   border-radius: 15em 0 0 15em;
 }
 .map__map-body [class*=ymaps][class*=-ground-pane] {
-  -webkit-filter: grayscale(100%) invert(1);
-          filter: grayscale(100%) invert(1);
+  -webkit-filter: grayscale(100%) invert(0);
+          filter: grayscale(100%) invert(0);
 }
 @media (min-width: 991.98px) {
   .map__map-body {
