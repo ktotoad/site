@@ -176,26 +176,24 @@ body.lock {
 }
 
 /*title text*/
-.title {
-  font-weight: 300;
-  font-size: 5em;
-  line-height: 120%;
-}
-
-.title-xl, .title-l, .title-m, .title-s {
+.title-xl, .title-l, .title-m, .title-s, .title {
   font-family: Vetrino;
   font-size: 6em;
   line-height: 110%;
 }
 @media (max-width: 991.98px) {
-  .title-xl, .title-l, .title-m, .title-s {
+  .title-xl, .title-l, .title-m, .title-s, .title {
     font-size: 4.2em;
   }
 }
 @media (max-width: 767.98px) {
-  .title-xl, .title-l, .title-m, .title-s {
+  .title-xl, .title-l, .title-m, .title-s, .title {
     font-size: 3.2em;
   }
+}
+
+.title {
+  font-size: 5em;
 }
 
 .title-l {
@@ -508,6 +506,42 @@ body.lock {
     color: var(--white);
     background: var(--dark-gray);
   }
+}
+
+.noUi-target {
+  width: 100%;
+  height: 3px;
+  position: relative;
+  background: var(--white);
+  overflow: visible;
+}
+
+.noUi-handle {
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: pointer;
+  height: 15px !important;
+  width: 15px !important;
+  top: 50% !important;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  pointer-events: auto;
+  background: var(--orange);
+  -webkit-transition: background 0.3s ease 0s;
+  transition: background 0.3s ease 0s;
+}
+@media (any-hover: hover) {
+  .noUi-handle:hover {
+    background: var(--orange);
+  }
+}
+.noUi-handle::before, .noUi-handle::after {
+  display: none;
+}
+
+.noUi-connect {
+  background: var(--orange);
 }
 
 /*Buttons*/
@@ -1599,6 +1633,10 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .page__income {
   padding-bottom: 8em;
 }
+.page__calculator {
+  padding-top: 8em;
+  padding-bottom: 8em;
+}
 .page__map {
   padding-top: 8em;
   padding-bottom: 8em;
@@ -2271,7 +2309,220 @@ input[type=text], input[type=email], input[type=tel], textarea {
      object-fit: cover;
 }
 
-/*form*/
+/*calculator*/
+.calculator {
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.calculator::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.7;
+  background: var(--green);
+}
+.calculator__bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.calculator__bg img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.calculator__container {
+  position: relative;
+  z-index: 5;
+}
+.calculator__wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+}
+.calculator__ui-slider {
+  margin-top: 5em;
+}
+.calculator__button {
+  margin-top: 3em;
+  color: var(--white);
+}
+.calculator__content {
+  padding-top: 4em;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 4em;
+}
+.calculator__content::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  border-radius: 27.5em 0 0 0;
+  width: 100vw;
+  height: 200%;
+  top: 0;
+  left: 4em;
+  opacity: 0.7;
+  background: var(--green);
+}
+@media (min-width: 991.98px) {
+  .calculator__content {
+    max-width: 96em;
+  }
+}
+.calculator__inputs-block {
+  position: relative;
+  z-index: 5;
+}
+.calculator__input-body, .calculator__input-body_result {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 2em;
+}
+.calculator__input-body:not(:last-child), .calculator__input-body_result:not(:last-child) {
+  margin-bottom: 3em;
+}
+@media (min-width: 767.98px) {
+  .calculator__input-body, .calculator__input-body_result {
+    max-width: 58em;
+  }
+}
+.calculator__input-body {
+  border-bottom: 1px solid var(--light);
+}
+.calculator__input {
+  background: transparent;
+  color: var(--orange);
+  font-size: 4.4em;
+  line-height: 120%;
+}
+.calculator__input::-webkit-input-placeholder {
+  color: var(--orange);
+}
+.calculator__input::-moz-placeholder {
+  color: var(--orange);
+}
+.calculator__input:-ms-input-placeholder {
+  color: var(--orange);
+}
+.calculator__input::-ms-input-placeholder {
+  color: var(--orange);
+}
+.calculator__input::placeholder {
+  color: var(--orange);
+}
+.calculator__input-body_result .calculator__input {
+  color: var(--white);
+  font-size: 7em;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+.calculator__input-body_result .calculator__input::-webkit-input-placeholder {
+  color: var(--white);
+}
+.calculator__input-body_result .calculator__input::-moz-placeholder {
+  color: var(--white);
+}
+.calculator__input-body_result .calculator__input:-ms-input-placeholder {
+  color: var(--white);
+}
+.calculator__input-body_result .calculator__input::-ms-input-placeholder {
+  color: var(--white);
+}
+.calculator__input-body_result .calculator__input::placeholder {
+  color: var(--white);
+}
+.calculator__decore {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  overflow: hidden;
+  width: 32em;
+  height: 32em;
+}
+.calculator__decore img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+@media (min-width: 767.98px) {
+  .ui-slider {
+    max-width: 58em;
+  }
+}
+.ui-slider__title {
+  color: var(--orange);
+}
+.ui-slider__body {
+  margin-top: 1em;
+}
+.ui-slider__input-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.ui-slider__input-body span {
+  font-size: 4.4em;
+  line-height: 110%;
+}
+.ui-slider__input {
+  width: 2em;
+  font-size: 4.4em;
+  line-height: 110%;
+  color: var(--white);
+  background: transparent;
+}
+
 /*map*/
 .map {
   color: var(--white);
