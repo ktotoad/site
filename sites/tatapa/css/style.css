@@ -511,9 +511,13 @@ body.lock {
 .noUi-target {
   width: 100%;
   height: 3px;
+  border: none;
+  border-radius: 0 !important;
   position: relative;
   background: var(--white);
   overflow: visible;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .noUi-handle {
@@ -523,17 +527,19 @@ body.lock {
   cursor: pointer;
   height: 15px !important;
   width: 15px !important;
+  border-radius: 0 !important;
   top: 50% !important;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   pointer-events: auto;
-  background: var(--orange);
+  background: var(--green);
+  border: 5px solid var(--orange);
   -webkit-transition: background 0.3s ease 0s;
   transition: background 0.3s ease 0s;
 }
 @media (any-hover: hover) {
   .noUi-handle:hover {
-    background: var(--orange);
+    background: var(--primary);
   }
 }
 .noUi-handle::before, .noUi-handle::after {
@@ -541,6 +547,7 @@ body.lock {
 }
 
 .noUi-connect {
+  height: 100%;
   background: var(--orange);
 }
 

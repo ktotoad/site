@@ -673,20 +673,18 @@ if (document.querySelector("#range-slider-square")) {
     var slider = rangeBody.querySelector("#slider-square");
     var inputMin = rangeBody.querySelector("#input-min-s");
 
-    const inputs = [inputMin]; 
-
     noUiSlider.create(slider, {
-        start: [27, 83],
-        connect: true,
+        start: [27],
+        connect: [true, false],
         step: 1,
         range: {
-            'min': 27,
-            'max': 83
+            min: [1],
+            max: [183]
         }
     });
 
     slider.noUiSlider.on('update', function (values, handle) {
-        inputs[handle].value = parseInt(values[handle]);
+        inputMin.value = parseInt(values[handle]);
     });
 
     inputMin.addEventListener('change', function () {
