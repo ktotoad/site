@@ -244,7 +244,7 @@ if(document.querySelector("[data-gsap-slider]")) {
 				scrub: true,
 				pin: true
 			},
-			yPercent: -100 * (items.length - 1)
+			yPercent: -100 * (items.length / 2)
 		})
 	});
 }
