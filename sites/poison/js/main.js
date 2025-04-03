@@ -482,6 +482,9 @@ let _slideUp = (target, duration = 500) => {
 		target.style.paddingBottom = 0;
 		target.style.marginTop = 0;
 		target.style.marginBottom = 0;
+		if (target.classList.contains('absolute')) {
+			target.style.opacity = 0;
+		}
 		window.setTimeout(() => {
 			target.hidden = true;
 			target.style.removeProperty('height');
@@ -493,6 +496,7 @@ let _slideUp = (target, duration = 500) => {
 			target.style.removeProperty('overflow');
 			target.style.removeProperty('transition-duration');
 			target.style.removeProperty('transition-property');
+			target.style.removeProperty('opacity');
 			target.classList.remove('spoller-slide');
 		}, duration);
 	}
