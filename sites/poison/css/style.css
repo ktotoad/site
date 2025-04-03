@@ -445,7 +445,7 @@ body.lock {
   z-index: 3;
   padding: 0.75em;
   cursor: pointer;
-  font-size: 1.6em;
+  font-size: 2em;
   line-height: 120%;
   width: 100%;
 }
@@ -494,7 +494,7 @@ body.lock {
 .select__item {
   width: 100%;
   padding: 0.75em;
-  font-size: 1.4em;
+  font-size: 1.6em;
   line-height: 110%;
 }
 .select__item.active {
@@ -2696,13 +2696,26 @@ textarea.input {
   width: 100%;
   text-align: left;
 }
-.mobile-spoller__title.spoller-active::before, .mobile-spoller__title.spoller-active::after {
+.mobile-spoller__title::before, .mobile-spoller__title::after {
   content: "";
+  top: 50%;
   right: 0;
   border-radius: 2px;
   position: absolute;
-  width: 1.2em;
+  width: 0.6em;
   height: 2px;
+  background: var(--primary);
+}
+.mobile-spoller__title::before {
+  -webkit-transform: rotate(-135deg) translateX(50%);
+          transform: rotate(-135deg) translateX(50%);
+}
+.mobile-spoller__title::after {
+  -webkit-transform: rotate(-45deg) translateX(50%);
+          transform: rotate(-45deg) translateX(50%);
+}
+.mobile-spoller__title.spoller-active::before, .mobile-spoller__title.spoller-active::after {
+  width: 1.2em;
   background: var(--red);
 }
 .mobile-spoller__title.spoller-active::before {
@@ -2713,6 +2726,7 @@ textarea.input {
 .mobile-spoller__title.spoller-active::after {
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
+  top: auto;
   bottom: calc(50% - 1px);
 }
 @media (min-width: 767.98px) {
@@ -2736,6 +2750,7 @@ textarea.input {
   .filter {
     width: 100%;
     margin-bottom: 3em;
+    padding: 1.5em;
   }
 }
 @media (max-width: 767.98px) {
