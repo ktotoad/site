@@ -511,6 +511,21 @@ function initSliders() {
 		});
 	}
 
+	if (document.querySelector('.slider-people')) {
+		new Swiper('.slider-people', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			spaceBetween: 50,
+			parallax: true,
+			speed: 800,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+		});
+	}
+
 	if (document.querySelector('.content-question__slider')) {
 		var swiper = new Swiper('.question-page__slider-thumb', {
 			slidesPerView: 6,
