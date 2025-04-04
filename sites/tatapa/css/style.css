@@ -2196,10 +2196,109 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-box-shadow: inset 0 -30em 0 0 var(--light-orange);
           box-shadow: inset 0 -30em 0 0 var(--light-orange);
 }
+.company__wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+}
+.company__text-block {
+  padding: 6em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 4em;
+  margin-bottom: 8em;
+}
+@media (max-width: 991.98px) {
+  .company__text-block {
+    padding: 2em;
+  }
+}
+.company__items-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 6em;
+}
+.company__items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 4em;
+}
 .company__title span {
   color: var(--orange);
 }
+.company__image-block {
+  position: relative;
+}
+.company__image-block::before {
+  content: "";
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  top: -3em;
+  left: -3em;
+  border-radius: 40em 40em 0 0;
+  border: 1px solid var(--orange);
+}
+.company__image, .company__image_small {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  overflow: hidden;
+  border-radius: 40em 40em 0 0;
+  width: 72em;
+  height: 92em;
+}
+.company__image img, .company__image_small img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.company__image_small {
+  width: 42em;
+  height: 81em;
+  border-radius: 0 0 27.5em 27.5em;
+}
 
+.item-company {
+  max-width: 29em;
+}
+.item-company__title {
+  color: var(--orange);
+}
 /*income*/
 .income {
   overflow: clip;
