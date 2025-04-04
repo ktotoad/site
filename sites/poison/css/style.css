@@ -898,12 +898,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .input-block:focus-within {
   border: 1px solid var(--dark);
 }
-@media (min-width: 767.98px) {
-  .input-block {
-    width: 29em;
-  }
-}
-
 .input {
   font-size: 1.4em;
   line-height: 110%;
@@ -4075,6 +4069,7 @@ textarea.input {
   color: var(--primary);
   font-size: 1.6em;
   line-height: 110%;
+  background: transparent;
 }
 .form-profile__input::-webkit-input-placeholder {
   color: var(--primary);
@@ -4090,6 +4085,19 @@ textarea.input {
 }
 .form-profile__input::placeholder {
   color: var(--primary);
+}
+.form-profile__input[type=date] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: block;
+  height: 100%;
+  min-height: 2.4em;
+  min-width: 90%;
+  background: url("../img/icons/date.svg") 90%/1.6em no-repeat, var(--white);
+}
+.form-profile__input[type=date]::-webkit-calendar-picker-indicator {
+  opacity: 0;
 }
 .form-profile__button {
   width: 15.625em;
