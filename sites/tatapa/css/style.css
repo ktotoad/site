@@ -875,7 +875,33 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .popup__content {
   position: relative;
-  background: #fff;
+  padding: 4em;
+  background: var(--white);
+}
+.popup__content .input-body svg path {
+  stroke: var(--green);
+  fill: var(--green);
+}
+.popup__content .input-body input {
+  color: var(--green);
+}
+.popup__content .input-body input::-webkit-input-placeholder {
+  color: var(--light);
+}
+.popup__content .input-body input::-moz-placeholder {
+  color: var(--light);
+}
+.popup__content .input-body input:-ms-input-placeholder {
+  color: var(--light);
+}
+.popup__content .input-body input::-ms-input-placeholder {
+  color: var(--light);
+}
+.popup__content .input-body input::placeholder {
+  color: var(--light);
+}
+.popup__content .input-body:focus-within {
+  border: 1px solid var(--green);
 }
 .popup__close {
   -webkit-box-flex: 0;
@@ -891,16 +917,16 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 5.75em;
-  height: 5.75em;
+  width: 4.5em;
+  height: 4.5em;
   border-radius: 50%;
-  border: 1px solid var(--brown);
+  border: 1px solid var(--green);
   -webkit-transition: background 0.3s ease 0s;
   transition: background 0.3s ease 0s;
 }
 @media (any-hover: hover) {
   .popup__close:hover {
-    background: var(--white);
+    background: var(--light-orange2);
   }
 }
 .popup__close span {
@@ -912,7 +938,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .popup__close span::before, .popup__close span::after {
   content: "";
   position: absolute;
-  width: 2.5em;
+  width: 2em;
   height: 2px;
   top: 50%;
   left: 50%;
@@ -920,7 +946,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   transition: -webkit-transform 0.9s ease 0s;
   transition: transform 0.9s ease 0s;
   transition: transform 0.9s ease 0s, -webkit-transform 0.9s ease 0s;
-  background: #000;
+  background: var(--green);
 }
 .popup__close span::before {
   -webkit-transform: translate(-50%, -50%) rotate(-45deg);
@@ -940,33 +966,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
             transform: translate(-50%, -50%) rotate(135deg);
   }
 }
-.popup__form {
-  position: relative;
-  z-index: 5;
-}
-@media (max-width: 991.98px) {
-  .popup__form {
-    width: 50%;
-  }
-}
-@media (max-width: 767.98px) {
-  .popup__form {
-    width: 100%;
-  }
-}
-.popup__input-block {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 1rem;
-}
-.popup__input-block:not(:last-child) {
-  margin-bottom: 2em;
-}
+
 /*header*/
 .header {
   position: absolute;
@@ -1452,19 +1452,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
     display: none;
   }
 }
-.footer__logo {
-  overflow: hidden;
-  position: relative;
-  z-index: 5;
-  width: 24em;
-  height: 6.6em;
-}
-.footer__logo img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
-}
 .footer__bg {
   position: absolute;
   width: 100%;
@@ -1615,7 +1602,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .footer__logo {
   overflow: hidden;
-  width: 15em;
+  position: relative;
+  z-index: 5;
+  width: 32em;
   height: auto;
 }
 .footer__logo img {
@@ -2876,9 +2865,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
     left: auto;
     bottom: 10em;
     right: 110%;
-  }
-  .neighbour__column:last-child .item-neighbour .item-neighbour__text-block .item-neighbour__text {
-    color: var(--primary);
   }
 }
 .item-neighbour {
