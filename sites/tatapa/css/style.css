@@ -551,6 +551,18 @@ body.lock {
   background: var(--orange);
 }
 
+.scrollbar {
+  height: 2px;
+  background: var(--white);
+}
+.scrollbar .swiper-scrollbar-drag {
+  height: 2em;
+  border-radius: 2em;
+  background: var(--orange);
+  top: calc(50% - 1em);
+  position: relative;
+}
+
 /*Buttons*/
 .button-main, .button-white, .button-orange {
   white-space: nowrap;
@@ -1627,6 +1639,10 @@ input[type=text], input[type=email], input[type=tel], textarea {
   margin-top: 4em;
   padding-bottom: 14em;
 }
+.page__company {
+  padding-top: 4em;
+  padding-bottom: 8em;
+}
 .page__income {
   padding-bottom: 8em;
 }
@@ -1718,28 +1734,42 @@ input[type=text], input[type=email], input[type=tel], textarea {
   height: 100%;
 }
 .main-page__content {
-  position: absolute;
-  width: calc(100% - 30px);
-  height: 100%;
-  top: 0;
-  left: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
   gap: 1rem;
-  margin: 0 15px;
+}
+@media (min-width: 767.98px) {
+  .main-page__content {
+    position: absolute;
+    width: calc(100% - 30px);
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    gap: 1rem;
+    margin: 0 15px;
+  }
 }
 .main-page__slider {
+  position: relative;
+  z-index: 5;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1749,6 +1779,13 @@ input[type=text], input[type=email], input[type=tel], textarea {
           flex-direction: column;
   gap: 1rem;
   width: 43em;
+}
+@media (max-width: 991.98px) {
+  .main-page__slider {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+  }
 }
 @media (max-width: 767.98px) {
   .main-page__slider {
@@ -1818,7 +1855,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .main-page__text-block {
   color: var(--white);
-  width: 83em;
+}
+@media (min-width: 991.98px) {
+  .main-page__text-block {
+    width: 83em;
+  }
 }
 .slide-main {
   position: relative;
@@ -1897,7 +1938,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .slide-main__button {
   color: var(--white);
-  width: 100%;
+}
+@media (max-width: 479.98px) {
+  .slide-main__button {
+    width: 100%;
+  }
 }
 
 /*history*/
@@ -2156,7 +2201,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
             transform: translateY(40em);
   }
 }
-@media (max-width: 767.98px) {
+@media (max-width: 991.98px) {
   .right-history__image-block {
     -webkit-transform: translateY(0) !important;
             transform: translateY(0) !important;
@@ -2191,6 +2236,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 
 /*company*/
 .company {
+  overflow: hidden;
   color: var(--white);
   background: var(--green);
   -webkit-box-shadow: inset 0 -30em 0 0 var(--light-orange);
@@ -2211,6 +2257,13 @@ input[type=text], input[type=email], input[type=tel], textarea {
       -ms-flex-direction: row;
           flex-direction: row;
   gap: 1rem;
+}
+@media (max-width: 767.98px) {
+  .company__wrap {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: start;
+  }
 }
 .company__text-block {
   padding: 6em;
@@ -2254,12 +2307,18 @@ input[type=text], input[type=email], input[type=tel], textarea {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 4em;
+  padding: 2em;
 }
 .company__title span {
   color: var(--orange);
 }
 .company__image-block {
   position: relative;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  width: 72em;
+  width: 92em;
 }
 .company__image-block::before {
   content: "";
@@ -2272,33 +2331,107 @@ input[type=text], input[type=email], input[type=tel], textarea {
   border-radius: 40em 40em 0 0;
   border: 1px solid var(--orange);
 }
-.company__image, .company__image_small {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 auto;
-          flex: 0 0 auto;
+@media (max-width: 991.98px) {
+  .company__image-block {
+    width: 50%;
+    height: auto;
+  }
+}
+@media (max-width: 767.98px) {
+  .company__image-block {
+    width: 33%;
+  }
+}
+.company__image {
   overflow: hidden;
   border-radius: 40em 40em 0 0;
-  width: 72em;
-  height: 92em;
+  width: 100%;
+  height: 100%;
 }
-.company__image img, .company__image_small img {
+.company__image img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.company__image_small {
-  width: 42em;
-  height: 81em;
-  border-radius: 0 0 27.5em 27.5em;
+.company__images {
+  margin-left: auto;
+  width: 70vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
 }
 
 .item-company {
-  max-width: 29em;
+  max-width: 27em;
 }
 .item-company__title {
   color: var(--orange);
 }
+.slider-company {
+  padding-top: 2em;
+}
+.slider-company__swiper {
+  margin-top: 6em;
+}
+.slider-company__slide {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+@media (max-width: 991.98px) {
+  .slider-company__slide {
+    -webkit-transform: translateY(0) !important;
+            transform: translateY(0) !important;
+  }
+}
+.slider-company__image, .slider-company__image_main {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  overflow: hidden;
+  width: 42em;
+  height: 81em;
+  border-radius: 0 0 27.5em 27.5em;
+}
+.slider-company__image img, .slider-company__image_main img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (max-width: 767.98px) {
+  .slider-company__image, .slider-company__image_main {
+    width: 100%;
+  }
+}
+.slider-company__image_main {
+  width: 90%;
+  border-radius: 0;
+}
+@media (max-width: 767.98px) {
+  .slider-company__image, .slider-company__image_main {
+    width: 38em;
+    height: 64em;
+  }
+}
+@media (max-width: 479.98px) {
+  .slider-company__image, .slider-company__image_main {
+    width: 100%;
+  }
+}
+
 /*income*/
 .income {
   overflow: clip;
@@ -2343,6 +2476,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+@media (max-width: 767.98px) {
+  .main-income__image {
+    border-radius: 0;
+    height: 42em;
+  }
 }
 .main-income__content {
   padding: 10em;
@@ -3040,17 +3179,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .slider-neighbour {
   padding-top: 2em;
 }
-.slider-neighbour__scrollbar {
-  height: 2px;
-  background: var(--white);
-}
-.slider-neighbour__scrollbar .swiper-scrollbar-drag {
-  height: 2em;
-  border-radius: 2em;
-  background: var(--orange);
-  top: calc(50% - 1em);
-  position: relative;
-}
 .slider-neighbour__swiper {
   margin-top: 6em;
 }
@@ -3478,7 +3606,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 6em;
+  padding: 2em;
   padding-right: calc((100vw - 1435px) / 2);
 }
 @media (max-width: 1435px) {
@@ -3490,6 +3618,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   .right-mkgroup__content {
     background: var(--white);
     position: relative;
+    padding: 6em;
   }
   .right-mkgroup__content::before {
     content: "";
@@ -3587,6 +3716,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .item-mkgroup__text {
   text-transform: uppercase;
   color: var(--orange);
+}
+@media (max-width: 991.98px) {
+  .item-mkgroup__text {
+    font-size: 1.8em;
+  }
 }
 
 /*investors*/

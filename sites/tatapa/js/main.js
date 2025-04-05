@@ -576,6 +576,33 @@ function buildSliders() {
 function initSliders() {
 	buildSliders();
 
+	if (document.querySelector('.slider-company')) {
+		new Swiper('.slider-company', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			spaceBetween: 30,
+			parallax: true,
+			speed: 800,
+			scrollbar: {
+				el: ".slider-company__scrollbar",
+				hide: false,
+		        draggable: true,
+		        dragSize: 50
+			},
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 10,
+				},
+				768: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
+			},
+		});
+	}
+
 	if (document.querySelector('.slider-neighbour')) {
 		new Swiper('.slider-neighbour', {
 			observer: true,
