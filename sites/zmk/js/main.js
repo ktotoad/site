@@ -362,67 +362,23 @@ function initSliders() {
 			}
 		});
 	}
-	if (document.querySelector('.content-question__slider')) {
-		var swiper = new Swiper('.question-page__slider-thumb', {
-			slidesPerView: 6,
-			spaceBetween: 30,
-			parallax: true,
-			//autoHeight: true,
-			//freeMode: true,
-			watchSlidesProgress: true,
-			speed: 800,
-			autoplay: {
-				delay: 3000,
-				disableOnInteraction: false,
-			},
-			breakpoints: {
-				320: {
-					spaceBetween: 10,
-					slidesPerView: 1,
-					autoHeight: true,
-				},
-				768: {
-					slidesPerView: 6,
-    				direction: "vertical",
-					spaceBetween: 10,
-				},
-				992: {
-					slidesPerView: 6,
-    				direction: "vertical",
-					spaceBetween: 30,
-				},
-			},
-		});
-		new Swiper('.content-question__slider', {
+
+	if (document.querySelector('.slider-about')) {
+		new Swiper('.slider-about', {
 			observer: true,
 			observeParents: true,
 			slidesPerView: 1,
-			spaceBetween: 20,
+			spaceBetween: 0,
 			parallax: true,
-			speed: 800,
 			autoplay: {
 				delay: 3000,
 				disableOnInteraction: false,
 			},
-			breakpoints: {
-				320: {
-					autoHeight: true,
-				},
-				992: {
-					autoHeight: false,
-    				effect: "fade",
-				},
-			},
-			navigation: {
-				nextEl: ".content-question__next",
-				prevEl: ".content-question__prev",
-			},
+			speed: 800,
 			pagination: {
-				el: '.content-question__pagination',
+				el: '.slider-about__dots',
 				clickable: true,
-			},
-			thumbs: {
-				swiper: swiper,
+				dynamicBullets: false,
 			},
 		});
 	}
