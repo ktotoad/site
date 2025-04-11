@@ -306,60 +306,23 @@ function buildSliders() {
 function initSliders() {
 	buildSliders();
 
-	if (document.querySelector('.main__slider')) {
-		new Swiper('.main__slider', {
+	if (document.querySelector('.slider-main')) {
+		new Swiper('.slider-main', {
 			observer: true,
 			observeParents: true,
 			slidesPerView: 1,
-			spaceBetween: 50,
+			spaceBetween: 30,
 			parallax: true,
-			//loop: true,
-			autoHeight: true,
 			autoplay: {
 				delay: 3000,
 				disableOnInteraction: false,
 			},
 			speed: 800,
-			breakpoints: {
-				320: {
-					slidesPerView: 1,
-					spaceBetween: 0,
-					autoHeight: true,
-				},
-				768: {
-					slidesPerView: 2,
-					spaceBetween: 20,
-				},
-				992: {
-					slidesPerView: 3,
-					spaceBetween: 20,
-				},
-				1268: {
-					slidesPerView: 4,
-					spaceBetween: 30,
-				}
-			},
 			pagination: {
-				el: '.control-main-block__dots',
+				el: '.slider-main__dots',
 				clickable: true,
-				dynamicBullets: true,
+				dynamicBullets: false,
 			},
-			//подсчет фракций
-			on: {
-				//все
-				init: function (swiper) {
-					const allSlides = document.querySelector('.fraction-control__all');
-					//если loop: true
-					//const allSlidesItems = document.querySelector('.slide-main-block:not(.swiper-slide-duplicate)');
-					allSlides.innerHTML = swiper.slides.length;
-				},
-				//текущая
-				slideChange: function (swiper) {
-					const currentSlide = document.querySelector('.fraction-control__current');
-					currentSlide.innerHTML = swiper.activeIndex + 1 < 10 ? `0${swiper.activeIndex + 1}` : swiper.activeIndex + 1;
-					//realIndex если loop: true
-				}
-			}
 		});
 	}
 

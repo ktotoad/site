@@ -8,13 +8,14 @@
   --blue-light: #11528B99;
   --blue-light1: #D7E8EE;
   --blue1: #004B84;
-  --blue2: #0F4C81;
+  --blue2: #83ABCD;
   --gray-light: #EBEEF3;
   --gray-light1: #EBEEF39C;
   --gray-light2: #D7E8EEA3;
   --gray1: #8A979F;
   --gray2: #636E74;
   --gray3: #9E9E9E;
+  --gray4: #B0B5BB;
   --green: #B3C997;
   --red: #F13636;
 }
@@ -300,6 +301,7 @@ body.lock {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  min-height: 100%;
   gap: 2em;
   width: 100%;
 }
@@ -308,6 +310,43 @@ body.lock {
     max-width: 35em;
   }
 }
+.form__file-block {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+.file-block {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+  border: 1px dashed var(--blue1);
+}
+.file-block__label {
+  color: var(--gray4);
+  font-size: 1.6em;
+  line-height: 140%;
+}
+.file-block__input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
 /*Buttons*/
 .button-blue, .button-white, .button-blue-tr, .button-white-tr {
   position: relative;
@@ -547,11 +586,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
   opacity: 1;
 }
 .input-body input:focus ~ label, .input-body input:valid ~ label {
-  top: -0.5em;
+  top: -0.75em;
   left: 1em;
   color: var(--blue1);
-  -webkit-transform: scale(0.8);
-          transform: scale(0.8);
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
   padding: 0.1em;
   background: var(--white);
 }
@@ -1312,6 +1351,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
      object-fit: contain;
 }
 
+.page__main {
+  margin-bottom: 12em;
+}
 .page__products {
   margin-top: 8em;
   margin-bottom: 8em;
@@ -1342,6 +1384,183 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 
 /*home*/
+.main-page {
+  background: var(--light);
+}
+.main-page__container {
+  position: relative;
+}
+.main-page__slider-block {
+  position: relative;
+}
+.slider-main__slide {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 6em;
+}
+.slider-main__slide:first-child .slider-main__image::before {
+  background: var(--gray1);
+}
+.slider-main__slide:last-child .slider-main__image::before {
+  background: var(--blue-light1);
+}
+.slider-main__content {
+  padding-top: 8em;
+  padding-bottom: 12em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 3em;
+}
+.slider-main__title {
+  font-weight: 600;
+  font-size: 3.6em;
+  line-height: 100%;
+  color: var(--blue1);
+}
+@media (max-width: 767.98px) {
+  .slider-main__text {
+    display: none;
+  }
+}
+.slider-main__image-block {
+  overflow-x: visible;
+  position: relative;
+  width: 50%;
+  height: 100%;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+}
+.slider-main__image-block::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 14.5em;
+  height: 14.5em;
+  top: 3em;
+  left: 5em;
+  background: url("../img/dots2.png") center no-repeat, transparent;
+}
+.slider-main__image {
+  position: relative;
+  -webkit-clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
+          clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%);
+  overflow: hidden;
+  width: 100%;
+  height: 56em;
+}
+.slider-main__image img {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: bottom right;
+     object-position: bottom right;
+}
+.slider-main__image::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: var(--blue2);
+  -webkit-clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+          clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+}
+@media (max-width: 991.98px) {
+  .slider-main__image {
+    height: auto;
+  }
+}
+.slider-main__dots {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.block-main {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  -webkit-transform: translateY(50%);
+          transform: translateY(50%);
+  background: var(--white);
+  border: 1px solid var(--gray-light);
+}
+.block-main__body {
+  padding: 3em 5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 6em;
+}
+.block-main__column {
+  max-width: 32em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1em;
+}
+.block-main__column:first-child {
+  position: relative;
+}
+.block-main__column:first-child::before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  right: -3em;
+  background: var(--gray-light);
+}
+.block-main__number {
+  font-weight: 600;
+  font-size: 1.6em;
+  line-height: 100%;
+  color: var(--blue1);
+}
+.block-main__number span {
+  font-size: 2.5em;
+}
+.block-main__text {
+  font-size: 1.6em;
+  line-height: 100%;
+  color: var(--gray2);
+}
+
 /*products*/
 .products__wrap {
   margin-top: 4em;
