@@ -256,7 +256,7 @@ body.lock {
   width: 6em;
 }
 .slider-controls__dots .swiper-pagination-bullet-active::before {
-  background: var(--blue2);
+  background: var(--blue1);
   width: 100%;
   -webkit-transition: width 3s linear 0s;
   transition: width 3s linear 0s;
@@ -2588,4 +2588,109 @@ input[type=text], input[type=email], input[type=tel], textarea {
   margin-top: 2rem;
   font-size: 1.4em;
   color: var(--blue1);
+}
+
+/*about page*/
+.about-page {
+  padding: 0;
+  margin-top: 4em;
+}
+/*cert*/
+.page__cert {
+  margin-top: 8em;
+}
+
+.cert__wrap {
+  margin-top: 4em;
+  padding: 3em 0;
+  background: var(--light);
+  position: relative;
+}
+.cert__wrap::before {
+  content: "";
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background: var(--light);
+}
+.slider-cert__image {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+}
+.slider-cert__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-transition: -webkit-transform 0.3s ease 0s;
+  transition: -webkit-transform 0.3s ease 0s;
+  transition: transform 0.3s ease 0s;
+  transition: transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+}
+@media (any-hover: hover) {
+  .slider-cert__image img:hover {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+}
+.slider-cert__dots {
+  margin-top: 3em;
+}
+
+/*details*/
+.page__details {
+  margin-top: 8em;
+}
+
+.details__wrap {
+  margin-top: 4em;
+}
+.details__button {
+  margin-left: auto;
+  margin-top: 2em;
+}
+
+.table-block {
+  width: 100%;
+  padding: 5em 3em;
+  background: var(--light);
+}
+@media (max-width: 767.98px) {
+  .table-block {
+    padding: 2em 1em;
+  }
+}
+.table-block__stroke {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+  padding: 1em 0;
+  border-bottom: 1px solid var(--blue-light1);
+}
+.table-block__name, .table-block__info {
+  color: var(--gray2);
+  font-weight: 500;
+  font-size: 1.4em;
+  line-height: 120%;
+  text-transform: uppercase;
+}
+.table-block__info {
+  text-align: right;
 }

@@ -377,6 +377,39 @@ function initSliders() {
 			},
 		});
 	}
+
+	if (document.querySelector('.slider-cert')) {
+		new Swiper('.slider-cert', {
+			observer: true,
+			observeParents: true,
+			spaceBetween: 10,
+			parallax: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+				},
+				480: {
+					slidesPerView: 2,
+				},
+				768: {
+					slidesPerView: 3,
+				},
+				992: {
+					slidesPerView: 4,
+				},
+			},
+			pagination: {
+				el: '.slider-cert__dots',
+				clickable: true,
+				dynamicBullets: false,
+			},
+		});
+	}
 }
 
 
@@ -412,5 +445,28 @@ if(document.querySelector('.filter-list')) {
 				}
 			});
 		}
+	});
+}
+//Image_modal=====================================================================================================================================================
+const options = {
+	contentClick: "toggleCover",
+	Images: {
+		Panzoom: {
+			panMode: "mousemove",
+			mouseMoveFactor: 1.1,
+			mouseMoveFriction: 0.12,
+		},
+	},
+};
+
+if(document.querySelector("#picture-wrap")) {
+	document.querySelectorAll("#picture-wrap").forEach(pictureWrap => {
+		Fancybox.bind(pictureWrap, {options});
+	});
+}
+
+if(document.querySelector("#gallery-wrap")) {
+	document.querySelectorAll("#gallery-wrap").forEach(galleryWrap => {
+		Fancybox.bind(galleryWrap, {options});
 	});
 }
