@@ -381,3 +381,36 @@ function initSliders() {
 
 
 initSliders();
+//Filter=====================================================================================================================================================
+const tabsItems = document.querySelectorAll('.filter-item');
+const tabButtons = document.querySelectorAll('.filter-button');
+
+if(document.querySelector('.filter-list')) {
+
+	tabButtons.forEach(elem => { if(elem.classList.contains('active')) {
+			let filter = elem.dataset['filter'];
+			tabsItems.forEach( elem => {
+				elem.classList.remove('hide');
+				if(!elem.classList.contains(filter) && filter != "all") {
+					elem.classList.add('hide');
+				}
+			});
+		}
+	});
+
+	document.querySelector('.filter-list').addEventListener('click', e => {
+
+		if(e.target.classList.contains('filter-button') || e.target.closest('.filter-button')) {
+			let filterClass = e.target.closest('.filter-button').dataset['filter'];
+			tabButtons.forEach(elem => elem.classList.remove('active'));
+			e.target.classList.add('active');
+
+			tabsItems.forEach( elem => {
+				elem.classList.remove('hide');
+				if(!elem.classList.contains(filterClass) && filterClass != "all") {
+					elem.classList.add('hide');
+				}
+			});
+		}
+	});
+}
