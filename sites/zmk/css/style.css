@@ -348,7 +348,7 @@ body.lock {
 }
 
 /*filter*/
-.filter-list {
+.filter-list, .filter-tabs {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -393,11 +393,11 @@ body.lock {
   transition: color 0.3s, background 0.3s ease 0s;
   opacity: 0.5;
 }
-.filter-button.active {
+.filter-button.active, .filter-button._tab-active {
   opacity: 1;
 }
 @media (any-hover: hover) {
-  .filter-button:not(.active):hover {
+  .filter-button:not(.active):hover, .filter-button:not(._tab-active):hover {
     color: var(--white);
     background: var(--blue1);
   }
@@ -1256,7 +1256,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   position: relative;
   padding-top: 14em;
   padding-bottom: 8em;
-  background: var(--gray-light1);
+  background: var(--light);
 }
 .footer__decore::before {
   content: "";
@@ -2365,6 +2365,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 /*form*/
 .form {
   position: relative;
+  background: var(--light);
 }
 .form__bg {
   overflow: hidden;
@@ -2387,8 +2388,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
   height: 100%;
   top: 0;
   left: 0;
-  background: -webkit-gradient(linear, right top, left top, from(rgba(247, 251, 252, 0)), color-stop(93.77%, #Fff));
-  background: linear-gradient(-90deg, rgba(247, 251, 252, 0) 0%, #Fff 93.77%);
+  background: -webkit-gradient(linear, right top, left top, from(rgba(247, 251, 252, 0)), color-stop(93.77%, var(--light)));
+  background: linear-gradient(-90deg, rgba(247, 251, 252, 0) 0%, var(--light) 93.77%);
 }
 @media (max-width: 767.98px) {
   .form__bg {
@@ -2694,3 +2695,17 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .table-block__info {
   text-align: right;
 }
+
+/*contacts page*/
+.contacts-page {
+  margin-top: 4em;
+  margin-bottom: 8em;
+}
+.contacts-page__filter {
+  margin-top: 4em;
+}
+.contacts-page__wrap {
+  margin-top: 4em;
+}
+
+/**/
