@@ -455,3 +455,28 @@ if (animItems.length > 0) {
 		animOnScroll();
 	}, 300);
 }
+//Paralax=====================================================================================================================================================
+if(document.querySelector("[data-paralax]")) {
+	document.querySelectorAll("[data-paralax]").forEach((paralaxelement) => {
+		let paralaxBody = paralaxelement.closest('section');
+		const data = paralaxelement.dataset.paralax.trim();
+		const dataArray = data.split(",");
+		const turn = dataArray[0].trim();
+		const step = dataArray[1].trim();
+
+		document.addEventListener("scroll", function (e) {
+			let s;
+			switch(turn) {
+				case 'top':
+					s = 0 + paralaxBody.getBoundingClientRect().top / step;
+					break;
+				case 'bottom':
+					s = 0 - paralaxBody.getBoundingClientRect().top / step;
+					break;
+				default:
+					s = 0 + paralaxBody.getBoundingClientRect().top / step;
+			}
+			paralaxelement.style.transform  = `translateY(${s}px)`;
+		});		
+	});
+}
