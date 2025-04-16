@@ -358,6 +358,7 @@ body.lock {
 
 /*filter*/
 .filter-list, .filter-tabs {
+  overflow-x: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -389,6 +390,7 @@ body.lock {
       -ms-flex-pack: center;
           justify-content: center;
   text-align: center;
+  white-space: nowrap;
   gap: 1em;
   padding: 0.75em 1em;
   text-transform: uppercase;
@@ -844,6 +846,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 /*header*/
 .header {
   position: relative;
+  z-index: 10;
 }
 @media (max-width: 767.98px) {
   .header::before {
@@ -2414,6 +2417,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .form__form-wrap {
   margin-top: 4em;
+}
+.form__form-wrap input:focus ~ label, .form__form-wrap input:valid ~ label {
+  background: var(--light);
 }
 
 /*catalogs pages*/
