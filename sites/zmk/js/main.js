@@ -288,6 +288,16 @@ if(document.querySelector('.popup-link')) {
 		}, timeout);
 	}
 }
+//prices===================================================================================================================================
+if (document.querySelectorAll(".js_price")) {
+  function numberWithSpaces(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  }
+  let js_prices = document.querySelectorAll(".js_price");
+  js_prices.forEach((js_price) => {
+      js_price.textContent = numberWithSpaces(js_price.textContent);
+  })
+}
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');

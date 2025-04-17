@@ -3262,6 +3262,240 @@ input[type=text], input[type=email], input[type=tel], textarea {
   list-style-type: disc;
 }
 
+/*detail store*/
+.page__detail-store {
+  padding-bottom: 8em;
+}
+
+.detail-store {
+  overflow: clip;
+}
+.detail-store__wrap {
+  margin-top: 4em;
+}
+.detail-store__content {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -ms-grid-columns: 2fr 1rem 2fr 1rem 1fr;
+  grid-template-columns: 2fr 2fr 1fr;
+  gap: 1rem;
+}
+@media (max-width: 767.98px) {
+  .detail-store__content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 1rem;
+  }
+}
+.detail-store__image-block {
+  padding: 3em;
+  border: 1px solid var(--gray-light2);
+  margin-bottom: 3em;
+}
+.detail-store__image {
+  width: 100%;
+  height: auto;
+}
+.detail-store__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contein;
+     object-fit: contein;
+}
+.detail-store__main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+}
+.detail-store__variants {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1em;
+}
+.detail-store__variants .item-color.chosen .item-color__ral {
+  position: relative;
+  border: 1px solid var(--blue1);
+}
+.detail-store__variants .item-color.chosen .item-color__ral::before {
+  content: "✔";
+  position: absolute;
+  font-size: 1.6em;
+  line-height: 100%;
+  color: var(--white);
+  width: 1.4em;
+  height: 1.4em;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: var(--blue1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+@media (any-hover: hover) {
+  .detail-store__variants .item-color:hover .item-color__title {
+    color: var(--blue1);
+  }
+  .detail-store__variants .item-color:hover .item-color__ral {
+    cursor: pointer;
+    border: 1px solid var(--blue1);
+  }
+}
+.detail-store__variants .item-color__title {
+  -webkit-transition: color 0.3s ease 0s;
+  transition: color 0.3s ease 0s;
+}
+.detail-store__variants .item-color__ral {
+  -webkit-transition: border 0.3s ease 0s;
+  transition: border 0.3s ease 0s;
+}
+.detail-store__variant-title {
+  color: var(--gray2);
+  font-weight: 600;
+  font-size: 1.4em;
+  line-height: 100%;
+}
+.detail-store__variants-body {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1em 1fr 1em 1fr 1em 1fr 1em 1fr;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1em;
+  margin-bottom: 3em;
+}
+@media (max-width: 991.98px) {
+  .detail-store__variants-body {
+    -ms-grid-columns: (1fr)[4];
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 479.98px) {
+  .detail-store__variants-body {
+    -ms-grid-columns: (1fr)[2];
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.price-block {
+  padding: 1em 3em;
+  border: 1px solid var(--gray-light2);
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+.price-block__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 2em;
+}
+.price-block__text-block {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid var(--gray-light2);
+}
+.price-block__price {
+  color: var(--blue1);
+  font-weight: 500;
+  font-size: 3.6em;
+  line-height: 100%;
+}
+.price-block__button svg path {
+  -webkit-transition: stroke 0.3s ease 0s;
+  transition: stroke 0.3s ease 0s;
+}
+@media (any-hover: hover) {
+  .price-block__button:hover svg path {
+    stroke: var(--blue1);
+  }
+}
+
+.variants-store {
+  color: var(--gray2);
+  border: 1px solid var(--gray-light2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  padding: 1em 2em;
+  -webkit-transition: background 0.3s, color 0.3s ease 0s;
+  transition: background 0.3s, color 0.3s ease 0s;
+}
+.variants-store.chosen {
+  border: 1px solid var(--blue1);
+}
+.variants-store.disabled {
+  opacity: 0.7;
+}
+@media (any-hover: hover) {
+  .variants-store:not(.disabled):hover {
+    cursor: pointer;
+    color: var(--white);
+    background: var(--blue1);
+  }
+}
+.variants-store__text {
+  font-weight: 600;
+  font-size: 0.8em;
+  line-height: 100%;
+  text-transform: uppercase;
+}
+
 /*news pages*/
 .news-page {
   overflow: hidden;
@@ -3688,6 +3922,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
   .item-contacts__link-block, .item-contacts-full__link-block {
     display: none;
   }
+}
+.item-contacts__button, .item-contacts-full__button {
+  border: 1px solid var(--white);
 }
 .item-contacts__image, .item-contacts-full__image {
   -webkit-box-flex: 0;
