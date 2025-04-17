@@ -27,18 +27,6 @@ if (document.querySelector('.icon-menu')) {
 				body.classList.remove('lock');
 			});
 	});
-
-	$('.submenu__nav li').on('mouseenter',function(){
-		$(this).siblings().addClass('notactive');
-		$('.submenu__image[data-link="'+$(this).data('link')+'"]').addClass('active');
-	});
-	$('.submenu__nav li').on('mouseleave',function(){
-		$(this).siblings().removeClass('notactive');
-		$('.submenu__image[data-link="'+$(this).data('link')+'"]').removeClass('active');
-		if(!$('.submenu__image.active').length){
-			$('.submenu__image:first').addClass('active');
-		}
-	});
 }
 //fixed_main==================================================================================================================================================================================================================
 let header = document.querySelector("header");
