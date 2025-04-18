@@ -3283,6 +3283,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
   grid-template-columns: 2fr 2fr 1fr;
   gap: 1rem;
 }
+@media (max-width: 991.98px) {
+  .detail-store__content {
+    -ms-grid-columns: 4fr 1fr;
+    grid-template-columns: 4fr 1fr;
+  }
+}
 @media (max-width: 767.98px) {
   .detail-store__content {
     display: -webkit-box;
@@ -3358,10 +3364,10 @@ input[type=text], input[type=email], input[type=tel], textarea {
           justify-content: center;
 }
 @media (any-hover: hover) {
-  .detail-store__variants .item-color:hover .item-color__title {
+  .detail-store__variants .item-color:not(.chosen):hover .item-color__title {
     color: var(--blue1);
   }
-  .detail-store__variants .item-color:hover .item-color__ral {
+  .detail-store__variants .item-color:not(.chosen):hover .item-color__ral {
     cursor: pointer;
     border: 1px solid var(--blue1);
   }
@@ -3400,6 +3406,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+.detail-store__price-block {
+  position: sticky;
+  top: 8em;
+}
+
 .price-block {
   padding: 1em 3em;
   border: 1px solid var(--gray-light2);
@@ -3483,7 +3494,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   opacity: 0.7;
 }
 @media (any-hover: hover) {
-  .variants-store:not(.disabled):hover {
+  .variants-store:not(.disabled, .chosen):hover {
     cursor: pointer;
     color: var(--white);
     background: var(--blue1);
