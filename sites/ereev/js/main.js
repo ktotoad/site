@@ -468,3 +468,68 @@ if(document.querySelector("[data-paralax]")) {
 		});		
 	});
 }
+
+//gsap============================================================================================================================================================
+gsap.registerPlugin(ScrollTrigger);
+
+if(document.querySelector("[data-gsap-image]")) {
+	let image = document.querySelector("[data-gsap-image]").querySelector("#image");
+	gsap.from(image, {
+		paused: true,
+		scrollTrigger: {
+			trigger: image,
+			start: '-75% top',
+			end: 'top top',
+			scrub: true,
+			pin: false,
+		},
+		'width': '50%'
+	})
+}
+
+if(document.querySelector("[data-gsap-slider]")) {
+	let panels = gsap.utils.toArray(document.querySelector("[data-gsap-slider]").querySelectorAll("#panel"));
+
+	panels.forEach((panel) => {
+		gsap.to(panel, {
+			paused: true,
+			scrollTrigger: {
+				trigger: panel,
+				start: 'top top',
+				end: 'bottom center',
+				scrub: true,
+				pin: false,
+    		},
+			'transform': 'scale(0.9)'
+		})
+	})
+}
+//number_anim=====================================================================================================================================================
+if(document.querySelector("[data-number]")) {
+	const time = 1000;
+	const step = 1;
+
+	document.querySelectorAll("[data-number]").forEach((numberelement) => {
+		const data = numberelement.dataset.number.trim();
+		const numberTop = numberelement.getBoundingClientRect().top;
+
+		window.addEventListener('scroll', function onScroll() {
+			if(window.pageYOffset > numberTop - window.innerHeight / 2) {
+				outNum(data, numberelement);
+				this.removeEventListener('scroll', onScroll);
+			}
+		});
+	});
+
+	function outNum(num, elem) {
+		n = 0;
+		let t = Math.round(time / (num / step));
+		let interval = setInterval(() => {
+			n = n + step;
+			if (n == num) {
+				clearInterval(interval);
+			}
+			elem.innerHTML = n;
+		}, t);
+	}
+}
