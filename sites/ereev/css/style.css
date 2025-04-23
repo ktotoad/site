@@ -3542,12 +3542,20 @@ textarea {
 @media (max-width: 767.98px) {
   .house__center, .house__item {
     background: var(--primary);
+    position: sticky;
+    top: 4em;
+  }
+  .house__center:not(:last-child), .house__item:not(:last-child) {
+    padding-bottom: 3em;
   }
 }
 @media (max-width: 767.98px) {
   .house__item {
     -webkit-transform: translate(0, 0) !important;
             transform: translate(0, 0) !important;
+  }
+  .house__item .house__image:last-child {
+    display: none;
   }
 }
 @media (min-width: 767.98px) {
@@ -3566,8 +3574,18 @@ textarea {
   -o-object-fit: cover;
      object-fit: cover;
 }
+@media (max-width: 767.98px) {
+  .house__image {
+    height: 56em;
+  }
+}
 .house__text {
   color: var(--gray1);
+}
+@media (max-width: 767.98px) {
+  .house__text {
+    margin-top: 1em;
+  }
 }
 /*person*/
 .person {
