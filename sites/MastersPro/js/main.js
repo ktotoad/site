@@ -506,37 +506,38 @@ if(document.querySelector('#radiobuttons')) {
 }
 //Filter=====================================================================================================================================================
 if(document.querySelector('.filter')) {
-	document.querySelectorAll('.filter').forEach((catalogFilter) => {
-		const catalogSliderSlides = catalogFilter.closest("section").querySelectorAll('.catalog-slider__slide');
-		const filterItems = catalogFilter.closest("section").querySelectorAll('.filter__item');
+	document.querySelectorAll('.filter').forEach((filter) => {
+		const filterItems = filter.closest("section").querySelectorAll("[data-filter-item]");
+		const filterButtons = filter.closest("section").querySelectorAll('.filter__button');
 
-		filterItems.forEach(elem => { if(elem.classList.contains('active')) {
-			let filter = elem.dataset['filter'];
-			catalogSliderSlides.forEach( elem => {
-				elem.classList.remove('hide');
-				if(!elem.classList.contains(filter)) {
-					elem.classList.add('hide');
+		filterButtons.forEach(filterButton => { 
+			if(filterButton.classList.contains('active')) {
+				let filter = filterButton.dataset['filter'];
+				filterItemsFunc(filter);
+			}
+		});
+		filter.addEventListener('click', e => {
+			if(e.target.classList.contains('filter__button') || e.target.closest('.filter__button')) {
+				let filter = e.target.closest('.filter__button').dataset['filter'];
+				filterButtons.forEach(filterButton => filterButton.classList.remove('active'));
+				e.target.closest('.filter__button').classList.add('active');
+				filterItemsFunc(filter);
+			}
+		});
+		function filterItemsFunc(filter) {
+			filterItems.forEach( filterItem => {
+				filterItem.classList.remove('hide');
+				const valuesArray = filterItem.getAttribute('data-filter-item').split(',').map(value => value.trim());
+				let check = 0;
+				for (let i = 0; i < valuesArray.length; i++) {
+					if(valuesArray[i] == filter) {
+						check++;
+					}
+				}
+				if(check == 0) {
+					filterItem.classList.add('hide');
 				}
 			});
 		}
-		catalogFilter.addEventListener('click', e => {
-			if(e.target.classList.contains('filter__item') || e.target.closest('.filter__item')) {
-				let filterClass = e.target.closest('.filter__item').dataset['filter'];
-				filterItems.forEach(elem => elem.classList.remove('active'));
-				e.target.closest('.filter__item').classList.add('active');
-
-				catalogSliderSlides.forEach( elem => {
-					elem.classList.remove('hide');
-					if(!elem.classList.contains(filterClass)) {
-						elem.classList.add('hide');
-					}
-				});
-					
-				let mySwiper = catalogFilter.closest("section").querySelector('.catalog-slider').swiper;
-				mySwiper.update();
-				}
-			});
-		});
 	});
 }
-
