@@ -506,34 +506,39 @@ function initSliders() {
 initSliders();
 //RANGE========================================================================================================================================
 //Площадь
-if (document.querySelector("#range-slider-price")) {
-    var rangeBody = document.querySelector("#range-slider-price");
-    var slider = rangeBody.querySelector("#slider-price");
-    var inputMin = rangeBody.querySelector("#input-min-p");
-    var inputMax = rangeBody.querySelector("#input-max-p");
+if (document.querySelector("#range-slider")) {
+    document.querySelectorAll("#range-slider").forEach((rangeSlider) => {
+        const valuesArray = rangeSlider.getAttribute('data-range').split(',').map(value => value.trim());
+        var inputMinValue = Number(valuesArray[0]);
+        var inputMaxValue = Number(valuesArray[1]);
+        console.log(inputMinValue);
+        var slider = rangeSlider.querySelector("#slider");
+        var inputMin = rangeSlider.querySelector("#input-min");
+        var inputMax = rangeSlider.querySelector("#input-max");
 
-    const inputs = [inputMin, inputMax]; 
+        const inputs = [inputMin, inputMax]; 
 
-    noUiSlider.create(slider, {
-        start: [2000, 20000],
-        connect: true,
-        step: 50,
-        range: {
-            min: [100],
-            max: [50000]
-        }
-    });
+        noUiSlider.create(slider, {
+            start: [inputMinValue, inputMaxValue],
+            connect: true,
+            step: 50,
+            range: {
+                min: [inputMinValue],
+                max: [inputMaxValue]
+            }
+        });
 
-    slider.noUiSlider.on('update', function (values, handle) {
-        inputs[handle].value = parseInt(values[handle]);
-    });
+        slider.noUiSlider.on('update', function (values, handle) {
+            inputs[handle].value = parseInt(values[handle]);
+        });
 
-    inputMin.addEventListener('change', function () {
-        slider.noUiSlider.set([this.value, null]);
-    });
+        inputMin.addEventListener('change', function () {
+            slider.noUiSlider.set([this.value, null]);
+        });
 
-    inputMax.addEventListener('change', function () {
-        slider.noUiSlider.set([this.value, null]);
+        inputMax.addEventListener('change', function () {
+            slider.noUiSlider.set([this.value, null]);
+        });
     });
 }
 

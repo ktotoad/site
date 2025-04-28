@@ -7,6 +7,7 @@
 		<link rel="icon" href="/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" href="css/fonts.css" />
 		<link rel="stylesheet" href="css/swiper-bundle.min.css" />
+		<link rel="stylesheet" href="css/nouislider.css" />
 		<link rel="stylesheet" href="css/style.css?v=1" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<!-- прячем от поисковиков -->
@@ -218,8 +219,8 @@
 											<div class="registration-page__form-buttons">
 												<button type="submit" class="registration-page__button button-green">Следующий шаг</button>
 												<div class="registration-page__checkbox">
-													<input id="c_1" type="checkbox" value="1" class="checkbox__input">
-													<label for="c_1" class="checkbox__label"><span class="checkbox__text">Согласие с <a href="" target="_blank">политикой <br>конфиденциальности</a></span></label>
+													<input id="rm_1" type="checkbox" value="1" class="checkbox__input">
+													<label for="rm_1" class="checkbox__label"><span class="checkbox__text">Согласие с <a href="" target="_blank">политикой <br>конфиденциальности</a></span></label>
 												</div>
 												<a href="" class="registration-page__button button-green-tr">Прочитать правила использования сервиса</a>
 											</div>
@@ -229,7 +230,150 @@
 								<div data-tabs-item class="tregistration-page__tabs-body">
 									<div class="registration-page__wrap">
 										<form action="" class="registration-page__form master-inputs">
+											<h2 class="registration-page__subtitle text">Основная информация</h2>
+											<div class="registration-page__textarea-body input-body">
+												<label for="about" class="form__label">Описание на сайте</label>
+												<textarea name="about" rows="4" placeholder="Здесь описание от своего лица специалиста" class="registration-page__input"></textarea>
+											</div>
+											<h2 class="registration-page__subtitle text">Кратко о вас</h2>
 
+											<div class="registration-page__master-block">
+												<div class="registration-page__master-items">
+													<h2 class="registration-page__subtitle text">Сервисно-ремонтные работы</h2>
+													<div class="registration-page__master-item master-registration-item">
+														<div class="master-registration-item__body">
+															<div class="master-registration-item__checkbox checkbox-big">
+																<input id="sr_1" type="checkbox" value="1" class="checkbox-big__input">
+																<label for="sr_1" class="checkbox-big__label"><span class="checkbox-big__text text-s">Сантехника</span></label>
+															</div>
+															<div id="range-slider" data-range="250,2000" class="master-registration-item__ui-slider ui-slider">
+																<div class="ui-slider__body">
+																	<div class="ui-slider__input-body">
+																		<span>от</span>
+																		<input id="input-min" type="number" name="min_price"  class="ui-slider__input">
+																		<span>₽</span>
+																	</div>
+																	<div id="slider"></div>
+																	<div class="ui-slider__input-body">
+																		<span>до</span>
+																		<input id="input-max" type="number" name="max_price"  class="ui-slider__input">
+																		<span>₽</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="registration-page__master-item master-registration-item">
+														<div class="master-registration-item__body">
+															<div class="master-registration-item__checkbox checkbox-big">
+																<input id="sr_2" type="checkbox" value="1" class="checkbox-big__input">
+																<label for="sr_2" class="checkbox-big__label"><span class="checkbox-big__text text-s">Сантехника или длинное название</span></label>
+															</div>
+															<div id="range-slider" data-range="300,5000" class="master-registration-item__ui-slider ui-slider">
+																<div class="ui-slider__body">
+																	<div class="ui-slider__input-body">
+																		<span>от</span>
+																		<input id="input-min" type="number" name="min_price"  class="ui-slider__input">
+																		<span>₽</span>
+																	</div>
+																	<div id="slider"></div>
+																	<div class="ui-slider__input-body">
+																		<span>до</span>
+																		<input id="input-max" type="number" name="max_price"  class="ui-slider__input">
+																		<span>₽</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="registration-page__master-item master-registration-item">
+														<div class="master-registration-item__body">
+															<div class="master-registration-item__checkbox checkbox-big">
+																<input id="sr_3" type="checkbox" value="1" class="checkbox-big__input">
+																<label for="sr_3" class="checkbox-big__label"><span class="checkbox-big__text text-s">Сантехника или длинное название</span></label>
+															</div>
+															<div id="range-slider" data-range="300,5000" class="master-registration-item__ui-slider ui-slider">
+																<div class="ui-slider__body">
+																	<div class="ui-slider__input-body">
+																		<span>от</span>
+																		<input id="input-min" type="number" name="min_price"  class="ui-slider__input">
+																		<span>₽</span>
+																	</div>
+																	<div id="slider"></div>
+																	<div class="ui-slider__input-body">
+																		<span>до</span>
+																		<input id="input-max" type="number" name="max_price"  class="ui-slider__input">
+																		<span>₽</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+
+												</div>
+												<div class="registration-page__master-items">
+													<h2 class="registration-page__subtitle text">Комплексный монтаж</h2>
+													<div class="registration-page__master-item master-registration-item">
+														<div class="master-registration-item__body">
+															<div class="master-registration-item__checkbox checkbox-big">
+																<input id="km_1" type="checkbox" value="1" class="checkbox-big__input">
+																<label for="km_1" class="checkbox-big__label"><span class="checkbox-big__text text-s">Сантехника или длинное название</span></label>
+															</div>
+															<div id="range-slider" data-range="300,5000" class="master-registration-item__ui-slider ui-slider">
+																<div class="ui-slider__body">
+																	<div class="ui-slider__input-body">
+																		<span>от</span>
+																		<input id="input-min" type="number" name="min_price"  class="ui-slider__input">
+																		<span>₽</span>
+																	</div>
+																	<div id="slider"></div>
+																	<div class="ui-slider__input-body">
+																		<span>до</span>
+																		<input id="input-max" type="number" name="max_price"  class="ui-slider__input">
+																		<span>₽</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="registration-page__master-item master-registration-item">
+														<div class="master-registration-item__body">
+															<div class="master-registration-item__checkbox checkbox-big">
+																<input id="km_2" type="checkbox" value="1" class="checkbox-big__input">
+																<label for="km_2" class="checkbox-big__label"><span class="checkbox-big__text text-s">Сантехника или длинное название</span></label>
+															</div>
+															<div id="range-slider" data-range="300,5000" class="master-registration-item__ui-slider ui-slider">
+																<div class="ui-slider__body">
+																	<div class="ui-slider__input-body">
+																		<span>от</span>
+																		<input id="input-min" type="number" name="min_price"  class="ui-slider__input">
+																		<span>₽</span>
+																	</div>
+																	<div id="slider"></div>
+																	<div class="ui-slider__input-body">
+																		<span>до</span>
+																		<input id="input-max" type="number" name="max_price"  class="ui-slider__input">
+																		<span>₽</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													
+												</div>
+											</div>
+
+
+											<h2 class="registration-page__subtitle text">Мое портфолио</h2>
+
+
+											<div class="registration-page__form-buttons">
+												<button type="submit" class="registration-page__button button-green">Завершить регистрацию</button>
+												<div class="registration-page__checkbox">
+													<input id="rm_2" type="checkbox" value="1" class="checkbox__input">
+													<label for="rm_2" class="checkbox__label"><span class="checkbox__text">Согласие с <a href="" target="_blank">политикой <br>конфиденциальности</a></span></label>
+												</div>
+											</div>
 										</form>
 									</div>	
 								</div>

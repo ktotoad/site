@@ -541,6 +541,7 @@ body.lock {
 
 .noUi-target {
   width: 100%;
+  min-width: 8em;
   height: 3px;
   border: none;
   border-radius: 0 !important;
@@ -630,7 +631,7 @@ body.lock {
 }
 .ui-slider__input {
   text-align: right;
-  width: 7ch;
+  width: 6ch;
   font-size: 1.4em;
   line-height: 110%;
   color: var(--black);
@@ -817,6 +818,59 @@ body.lock {
   opacity: 0.7;
 }
 
+.checkbox-big__input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.checkbox-big__input:checked + .checkbox-big__label:before {
+  border: 2px solid var(--green);
+  background: var(--green);
+}
+.checkbox-big__input:checked + .checkbox-big__label:after {
+  left: 1.9em;
+}
+.checkbox-big__label {
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  gap: 1em;
+  font-size: 1em;
+  line-height: 120%;
+}
+.checkbox-big__label:before {
+  content: "";
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  border-radius: 1.2em;
+  width: 3.6em;
+  height: 2em;
+  border: 0.3em solid var(--gray-light2);
+  background: var(--gray-light2);
+}
+.checkbox-big__label::after {
+  content: "";
+  position: absolute;
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  left: 0.3em;
+  background: var(--white);
+}
+.checkbox-big__text {
+  font-weight: 500;
+}
+
 /*input*/
 input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-appearance: none;
@@ -854,7 +908,7 @@ input[type=time]::-webkit-calendar-picker-indicator {
   font-size: 1.2em;
   line-height: 120%;
 }
-.input-body input, .input-file-body input {
+.input-body input, .input-body textarea, .input-file-body input, .input-file-body textarea {
   width: 100%;
   margin-top: 0.625em;
   background: transparent;
@@ -862,20 +916,27 @@ input[type=time]::-webkit-calendar-picker-indicator {
   font-size: 1.6em;
   line-height: 110%;
 }
-.input-body input::-webkit-input-placeholder, .input-file-body input::-webkit-input-placeholder {
+.input-body input::-webkit-input-placeholder, .input-body textarea::-webkit-input-placeholder, .input-file-body input::-webkit-input-placeholder, .input-file-body textarea::-webkit-input-placeholder {
   color: var(--gray-light1);
 }
-.input-body input::-moz-placeholder, .input-file-body input::-moz-placeholder {
+.input-body input::-moz-placeholder, .input-body textarea::-moz-placeholder, .input-file-body input::-moz-placeholder, .input-file-body textarea::-moz-placeholder {
   color: var(--gray-light1);
 }
-.input-body input:-ms-input-placeholder, .input-file-body input:-ms-input-placeholder {
+.input-body input:-ms-input-placeholder, .input-body textarea:-ms-input-placeholder, .input-file-body input:-ms-input-placeholder, .input-file-body textarea:-ms-input-placeholder {
   color: var(--gray-light1);
 }
-.input-body input::-ms-input-placeholder, .input-file-body input::-ms-input-placeholder {
+.input-body input::-ms-input-placeholder, .input-body textarea::-ms-input-placeholder, .input-file-body input::-ms-input-placeholder, .input-file-body textarea::-ms-input-placeholder {
   color: var(--gray-light1);
 }
-.input-body input::placeholder, .input-file-body input::placeholder {
+.input-body input::placeholder, .input-body textarea::placeholder, .input-file-body input::placeholder, .input-file-body textarea::placeholder {
   color: var(--gray-light1);
+}
+.input-body textarea, .input-file-body textarea {
+  width: 100%;
+  resize: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 .input-body:focus-within, .input-file-body:focus-within {
   border: 1px solid var(--blue);
@@ -2640,10 +2701,10 @@ input[type=time]::-webkit-calendar-picker-indicator {
       -ms-flex-direction: row;
           flex-direction: row;
   gap: 1rem;
-  padding-bottom: 2em;
   border-bottom: 1px solid var(--light3);
 }
 .registration-page__tabs-title {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2662,6 +2723,7 @@ input[type=time]::-webkit-calendar-picker-indicator {
   line-height: 120%;
   -webkit-transition: color 0.3s ease 0s;
   transition: color 0.3s ease 0s;
+  padding-bottom: 1em;
 }
 .registration-page__tabs-title svg {
   width: 1.2em;
@@ -2677,6 +2739,15 @@ input[type=time]::-webkit-calendar-picker-indicator {
 }
 .registration-page__tabs-title._tab-active svg path {
   stroke: var(--green);
+}
+.registration-page__tabs-title._tab-active::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background: var(--green);
 }
 @media (any-hover: hover) {
   .registration-page__tabs-title:not(._tab-active):hover {
@@ -2709,6 +2780,82 @@ input[type=time]::-webkit-calendar-picker-indicator {
   width: 2.4em;
   height: 2.4em;
 }
+.registration-page__master-block {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1rem 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 991.98px) {
+  .registration-page__master-block {
+    grid-template-columns: repeat(auto-fit, minmax(54em, 1fr));
+  }
+}
+.registration-page__master-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+}
+.master-registration-item {
+  background: var(--light2);
+  padding: 1em 2em;
+  border-radius: 1em;
+}
+.master-registration-item .ui-slider__body {
+  margin-top: 0;
+}
+.master-registration-item__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+}
+@media (max-width: 479.98px) {
+  .master-registration-item__body {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: start;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+.master-registration-item__ui-slider {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+}
+@media (min-width: 479.98px) {
+  .master-registration-item__ui-slider {
+    max-width: 32em !important;
+  }
+}
+@media (max-width: 479.98px) {
+  .master-registration-item__ui-slider {
+    width: 100%;
+  }
+}
+
 /*lk-page*/
 .lk-page__wrap {
   display: -webkit-box;
