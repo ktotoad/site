@@ -2518,12 +2518,27 @@ input[type=time]::-webkit-calendar-picker-indicator {
 }
 @media (max-width: 479.98px) {
   .registration-page__form.master-inputs .registration-page__inputs {
-    grid-template-columns: repeat(auto-fit, minmax(29em, 1fr));
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 }
 @media (min-width: 767.98px) {
-  .registration-page__form.master-inputs .registration-page__input-body {
+  .registration-page__form.master-inputs .registration-page__input-body, .registration-page__form.master-inputs .registration-page__info-block {
     max-width: 32em;
+  }
+}
+@media (max-width: 991.98px) {
+  .registration-page__form.master-inputs .registration-page__info-block {
+    -ms-grid-column-span: 2;
+    grid-column: span 2;
   }
 }
 .registration-page__form.master-inputs .registration-page__subtitle {
@@ -2598,6 +2613,12 @@ input[type=time]::-webkit-calendar-picker-indicator {
           flex-direction: row;
   gap: 1rem;
 }
+@media (max-width: 991.98px) {
+  .registration-page__form-buttons {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
 .registration-page__button {
   padding: 2em;
 }
@@ -2664,6 +2685,29 @@ input[type=time]::-webkit-calendar-picker-indicator {
   .registration-page__tabs-title:not(._tab-active):hover svg path {
     stroke: var(--blue-dark);
   }
+}
+.registration-page__info-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+}
+.registration-page__info-block svg {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  width: 2.4em;
+  height: 2.4em;
 }
 /*lk-page*/
 .lk-page__wrap {
