@@ -7,6 +7,7 @@
 		<link rel="icon" href="/favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" href="css/fonts.css" />
 		<link rel="stylesheet" href="css/swiper-bundle.min.css" />
+		<link rel="stylesheet" href="css/nouislider.css" />
 		<link rel="stylesheet" href="css/style.css?v=1" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<!-- прячем от поисковиков -->
@@ -532,7 +533,52 @@
 		<div class="popup__request-body">
 			<p class="popup__text text-m">Опишите все ваши задачи, дату и адрес выполнения</p>
 			<form action="" class="popup__request-form">
-				
+				<div class="popup__input-body input-file-body">
+					<label for="task" class="popup__label">Ваша задача</label>
+					<input required type="text" id="task" name="task" placeholder="Необходимо починить туалет в ванной" class="popup__input">
+					<div id="inputfile" class="input-file">
+						<div class="label">Прикрепить фото</div>
+						<input type="file" id="photo" name="photo" class="popup__input">
+					</div>
+				</div>
+				<div class="popup__input-body input-body">
+					<label for="jobtitle" class="popup__label">Специализация</label>
+					<input required type="text" id="jobtitle" name="jobtitle" placeholder="Например электрика" class="popup__input">
+				</div>
+				<div class="popup__date-inputs">
+					<div class="popup__input-body input-body">
+						<label for="date" class="popup__label">Дата</label>
+						<input required type="date" id="date" name="date" placeholder="Например электрика" class="popup__input">
+					</div>
+					<div class="popup__input-body input-body">
+						<label for="time1" class="popup__label">Время</label>
+						<div class="popup__time-inputs">
+							<input required type="time" id="time1" name="time1" placeholder="Например электрика" class="popup__input">
+							<input type="time" id="time2" name="time2" placeholder="Например электрика" class="popup__input">
+						</div>
+					</div>
+				</div>
+				<div class="popup__input-body input-body">
+					<label for="address" class="popup__label">Адрес</label>
+					<input required type="text" id="address" name="address"placeholder="ул. Профсоюзная, дом 23" class="popup__input">
+				</div>
+				<div id="range-slider-price" class="popup__ui-slider ui-slider">
+					<h3 class="ui-slider__title">Желаемая стоимость</h3>
+					<div class="ui-slider__body">
+						<div class="ui-slider__input-body">
+							<span>от</span>
+							<input id="input-min-p" type="number" name="min_price"  class="ui-slider__input">
+							<span>₽</span>
+						</div>
+						<div id="slider-price"></div>
+						<div class="ui-slider__input-body">
+							<span>до</span>
+							<input id="input-max-p" type="number" name="max_price"  class="ui-slider__input">
+							<span>₽</span>
+						</div>
+					</div>
+				</div>
+				<button type="submit" class="popup__request-button button-green">Создать заявку</button>
 			</form>
 		</div>
 	</div>
@@ -586,7 +632,9 @@
         	<p class="popup__text text-m">Ваша заявка принята.<br>Наши менеджеры свяжутся с Вами в ближайшее время.</p>
 		</div>
 	</div>
-</div><script src="js/swiper-bundle.min.js"></script>		
-<script src="js/imask.js"></script>
-<script src="js/main.js"></script>		</body>
+</div><script src="js/swiper-bundle.min.js"></script>
+<script src="js/imask.js"></script>	
+<script src="js/nouislider.min.js"></script>
+<script src="js/main.js"></script>
+	</body>
 </html>

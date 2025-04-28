@@ -542,9 +542,13 @@ body.lock {
 .noUi-target {
   width: 100%;
   height: 3px;
+  border: none;
+  border-radius: 0 !important;
   position: relative;
-  background: var(--dark-gray);
+  background: var(--gray1);
   overflow: visible;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .noUi-handle {
@@ -552,20 +556,20 @@ body.lock {
   -webkit-box-shadow: none;
           box-shadow: none;
   cursor: pointer;
-  height: 15px !important;
-  width: 15px !important;
-  border-radius: 50%;
+  height: 1.25em !important;
+  width: 1.25em !important;
+  border-radius: 50% !important;
   top: 50% !important;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   pointer-events: auto;
-  background: var(--gray5);
+  background: var(--red);
   -webkit-transition: background 0.3s ease 0s;
   transition: background 0.3s ease 0s;
 }
 @media (any-hover: hover) {
   .noUi-handle:hover {
-    background: var(--gray2);
+    background: var(--primary);
   }
 }
 .noUi-handle::before, .noUi-handle::after {
@@ -573,7 +577,64 @@ body.lock {
 }
 
 .noUi-connect {
-  background: var(--dark-gray);
+  height: 100%;
+  background: var(--green);
+}
+
+@media (min-width: 767.98px) {
+  .ui-slider {
+    max-width: 42em;
+  }
+}
+.ui-slider__title {
+  color: var(--black);
+  font-size: 1.2em;
+  line-height: 120%;
+}
+.ui-slider__body {
+  margin-top: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 3em;
+}
+.ui-slider__input-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 0.25rem;
+}
+.ui-slider__input-body span {
+  font-size: 1.4em;
+  line-height: 110%;
+}
+.ui-slider__input {
+  text-align: right;
+  width: 7ch;
+  font-size: 1.4em;
+  line-height: 110%;
+  color: var(--black);
+  background: transparent;
 }
 
 /*Buttons*/
@@ -763,6 +824,10 @@ input[type=text], input[type=email], input[type=tel], textarea {
   appearance: none;
 }
 
+input[type=time]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
 .input-body, .input-file-body {
   width: 100%;
   display: -webkit-box;
@@ -834,6 +899,48 @@ input[type=text], input[type=email], input[type=tel], textarea {
   color: var(--red);
 }
 
+.input-body#passwordInput {
+  position: relative;
+}
+.input-body#passwordInput i {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  top: 50%;
+  right: 2em;
+  border-radius: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-transition: background 0.3s ease 0s, -webkit-box-shadow 0.3s;
+  transition: background 0.3s ease 0s, -webkit-box-shadow 0.3s;
+  transition: box-shadow 0.3s, background 0.3s ease 0s;
+  transition: box-shadow 0.3s, background 0.3s ease 0s, -webkit-box-shadow 0.3s;
+}
+.input-body#passwordInput i svg {
+  width: 100%;
+  height: 100%;
+}
+@media (any-hover: hover) {
+  .input-body#passwordInput i:hover {
+    background: var(--light3);
+    -webkit-box-shadow: 1px 1px 1em 1px var(--light3);
+            box-shadow: 1px 1px 1em 1px var(--light3);
+  }
+}
+.input-body#passwordInput.view::before {
+  content: "";
+  position: absolute;
+  width: 2em;
+  height: 2px;
+  top: 50%;
+  right: 2em;
+  -webkit-transform: translateY(-50%) rotate(-45deg);
+          transform: translateY(-50%) rotate(-45deg);
+  background: var(--gray-light2);
+}
+
 .input-file-body {
   position: relative;
 }
@@ -865,7 +972,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .input-file-body .input-file .label {
   white-space: nowrap;
-  color: var(--red);
+  color: var(--green);
   font-size: 1.6em;
   line-height: 120%;
   overflow: hidden;
@@ -1296,6 +1403,71 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .popup__input-block:not(:last-child) {
   margin-bottom: 2em;
 }
+.popup__request-body {
+  margin-top: 2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+}
+.popup__request-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+}
+.popup__request-form .input-body {
+  width: auto;
+}
+.popup__request-form .input-file {
+  position: relative;
+}
+.popup__request-button {
+  padding: 2em;
+}
+.popup__label {
+  color: var(--dark) !important;
+}
+.popup__date-inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+}
+.popup__time-inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
 /*header*/
 .header {
   position: relative;
@@ -2163,12 +2335,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1326px) {
   .slide-reviews__image {
-    width: calc(30px + 14 * (100vw - 320px) / (1006));
+    width: calc(30px + 14 * ((100vw - 320px) / (1006)));
   }
 }
 @media (max-width: 1326px) {
   .slide-reviews__image {
-    height: calc(30px + 14 * (100vw - 320px) / (1006));
+    height: calc(30px + 14 * ((100vw - 320px) / (1006)));
   }
 }
 .slide-reviews__image img {
@@ -2191,7 +2363,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1326px) {
   .slide-reviews__date {
-    font-size: calc(8px + 4 * (100vw - 320px) / (1006));
+    font-size: calc(8px + 4 * ((100vw - 320px) / (1006)));
   }
 }
 .slide-reviews__rating {
@@ -2213,7 +2385,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1326px) {
   .slide-reviews__rating {
-    margin-top: calc(15px + 9 * (100vw - 320px) / (1006));
+    margin-top: calc(15px + 9 * ((100vw - 320px) / (1006)));
   }
 }
 .slide-reviews__source svg {
@@ -2222,12 +2394,12 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1326px) {
   .slide-reviews__source svg {
-    width: calc(35px + 11 * (100vw - 320px) / (1006));
+    width: calc(35px + 11 * ((100vw - 320px) / (1006)));
   }
 }
 @media (max-width: 1326px) {
   .slide-reviews__source svg {
-    height: calc(9px + 4 * (100vw - 320px) / (1006));
+    height: calc(9px + 4 * ((100vw - 320px) / (1006)));
   }
 }
 .slide-reviews__text-block {
@@ -2235,7 +2407,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1326px) {
   .slide-reviews__text-block {
-    margin-top: calc(15px + 9 * (100vw - 320px) / (1006));
+    margin-top: calc(15px + 9 * ((100vw - 320px) / (1006)));
   }
 }
 .slide-reviews__text {
@@ -2251,7 +2423,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1326px) {
   .slide-reviews__text {
-    font-size: calc(12px + 4 * (100vw - 320px) / (1006));
+    font-size: calc(12px + 4 * ((100vw - 320px) / (1006)));
   }
 }
 .slide-reviews__text_full {
@@ -2269,7 +2441,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 1326px) {
   .slide-reviews__link {
-    font-size: calc(8px + 4 * (100vw - 320px) / (1006));
+    font-size: calc(8px + 4 * ((100vw - 320px) / (1006)));
   }
 }
 @media (any-hover: hover) {
@@ -2315,6 +2487,50 @@ input[type=text], input[type=email], input[type=tel], textarea {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 5em;
+}
+.registration-page__form.master-inputs {
+  gap: 1em;
+}
+.registration-page__form.master-inputs .registration-page__inputs {
+  margin-top: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+}
+@media (max-width: 767.98px) {
+  .registration-page__form.master-inputs .registration-page__inputs {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr)[2];
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 479.98px) {
+  .registration-page__form.master-inputs .registration-page__inputs {
+    grid-template-columns: repeat(auto-fit, minmax(29em, 1fr));
+  }
+}
+@media (min-width: 767.98px) {
+  .registration-page__form.master-inputs .registration-page__input-body {
+    max-width: 32em;
+  }
+}
+.registration-page__form.master-inputs .registration-page__subtitle {
+  margin-top: 2em;
+}
+.registration-page__form.master-inputs .registration-page__form-buttons {
+  margin-top: 3em;
 }
 .registration-page__inputs {
   margin-top: 2em;
@@ -2364,7 +2580,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   background: var(--light2);
   font-size: 1.4em;
   line-height: 120%;
-  color: var(--red);
+  color: var(--green);
 }
 .registration-page__form-buttons {
   display: -webkit-box;
@@ -2385,7 +2601,70 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .registration-page__button {
   padding: 2em;
 }
-
+.registration-page__tabs {
+  margin-top: 4em;
+}
+.registration-page__tabs-navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+  padding-bottom: 2em;
+  border-bottom: 1px solid var(--light3);
+}
+.registration-page__tabs-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 0.5em;
+  font-size: 1.8em;
+  line-height: 120%;
+  -webkit-transition: color 0.3s ease 0s;
+  transition: color 0.3s ease 0s;
+}
+.registration-page__tabs-title svg {
+  width: 1.2em;
+  height: 1.2em;
+}
+.registration-page__tabs-title svg path {
+  stroke: var(--primary);
+  -webkit-transition: stroke 0.3s ease 0s;
+  transition: stroke 0.3s ease 0s;
+}
+.registration-page__tabs-title._tab-active {
+  color: var(--green);
+}
+.registration-page__tabs-title._tab-active svg path {
+  stroke: var(--green);
+}
+@media (any-hover: hover) {
+  .registration-page__tabs-title:not(._tab-active):hover {
+    color: var(--blue-dark);
+  }
+  .registration-page__tabs-title:not(._tab-active):hover svg path {
+    stroke: var(--blue-dark);
+  }
+}
 /*lk-page*/
 .lk-page__wrap {
   display: -webkit-box;
@@ -2456,9 +2735,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .lk-page__content .input-body input, .lk-page__content .input-body input::placeholder, .lk-page__content .input-file-body input, .lk-page__content .input-file-body input::placeholder {
   color: var(--primary);
-}
-.lk-page__content .input-body .label, .lk-page__content .input-file-body .label {
-  color: var(--green);
 }
 .lk-page__info {
   display: -webkit-box;
