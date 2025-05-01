@@ -559,8 +559,151 @@
 		<div class="popup__request-body">
 			<p class="popup__text text-m">Опишите все ваши задачи, дату и адрес выполнения</p>
 			<form action="" class="popup__request-form">
-				
+				<div class="popup__input-body input-file-body">
+					<label for="task" class="popup__label">Ваша задача</label>
+					<input required type="text" id="task" name="task" placeholder="Необходимо починить туалет в ванной" class="popup__input">
+					<div id="inputfile" class="input-file">
+						<div class="label">Прикрепить фото</div>
+						<input type="file" id="photo" name="photo" class="popup__input">
+					</div>
+				</div>
+				<div class="popup__input-body input-body">
+					<label for="jobtitle" class="popup__label">Специализация</label>
+					<input required type="text" id="jobtitle" name="jobtitle" placeholder="Например электрика" class="popup__input">
+				</div>
+				<div class="popup__date-inputs">
+					<div class="popup__input-body input-body">
+						<label for="date" class="popup__label">Дата</label>
+						<input required type="date" id="date" name="date" placeholder="Например электрика" class="popup__input input-date">
+					</div>
+					<div class="popup__input-body input-body">
+						<label for="time1" class="popup__label">Время</label>
+						<div class="popup__time-inputs">
+							<input required type="time" id="time1" name="time1" placeholder="Например электрика" class="popup__input">
+							<input type="time" id="time2" name="time2" placeholder="Например электрика" class="popup__input">
+						</div>
+					</div>
+				</div>
+				<div class="popup__input-body input-body">
+					<label for="address" class="popup__label">Адрес</label>
+					<input required type="text" id="address" name="address" placeholder="ул. Профсоюзная, дом 23" class="popup__input">
+				</div>
+				<div data-range="250,20000" class="popup__ui-slider ui-slider">
+					<h3 class="ui-slider__title">Желаемая стоимость</h3>
+					<div class="ui-slider__body">
+						<div class="ui-slider__input-body">
+							<span>от</span>
+							<input type="number" class="ui-slider__input input-min">
+							<span>₽</span>
+						</div>
+						<div id="slider"></div>
+						<div class="ui-slider__input-body">
+							<span>до</span>
+							<input type="number" class="ui-slider__input input-max">
+							<span>₽</span>
+						</div>
+					</div>
+				</div>
+				<button type="submit" class="popup__request-button button-green">Создать заявку</button>
 			</form>
+		</div>
+	</div>
+</div>
+
+<div id="popupTakeRequest" class="popup">
+	<div id="content" class="popup__lk-content">	
+		<div class="popup__header">
+			<h2 id="popuptitle" class="form-page__title title-m">Берем заявку в работу</h2>
+			<button data-close type="button" class="popup__close close-popup"><span></span></button>
+		</div>
+		<div class="popup__request-body">
+			<p class="popup__text text-m">Напишите в какой день вы готовы прийти</p>
+			<form action="" class="popup__request-form">
+				<div class="popup__request-block request-block-popup">
+					<div class="request-block-popup__header">
+						<div class="request-block-popup__title-block">
+							<p class="request-block-popup__address">улица Мусина, 61Б, Казань</p>
+							<div class="request-block-popup__date-block">
+								<div class="date-block__dates">
+									<p class="date-block__text">24 февраля</p>
+									<p class="date-block__text">25 февраля</p>
+								</div>
+							</div>
+						</div>
+						<div class="request-block-popup__time-block">
+							<p class="time-block__desc">Время</p>
+							<div class="time-block__times">
+								<p class="time-block__text">12:00</p>
+								<p class="time-block__text">15:00</p>
+							</div>
+						</div>
+					</div>
+					<div class="request-block-popup__body">
+						<p class="request-lk__info">Необходимо починить туалет в ванной и еще другие задачи</p>
+						<div class="request-lk__images">
+							<div class="request-lk__image">
+								<img src="./img/request/01.webp" alt="">
+							</div>
+							<div class="request-lk__image">
+								<img src="./img/request/01.webp" alt="">
+							</div>
+							<div class="request-lk__image">
+								<img src="./img/request/01.webp" alt="">
+							</div>
+						</div>
+					</div>
+				</div>	
+				<div class="popup__date-inputs">
+					<div class="popup__input-body input-body">
+						<label for="date" class="popup__label">Дата</label>
+						<input required type="date" id="date" name="date" placeholder="Например электрика" class="popup__input input-date">
+					</div>
+					<div class="popup__input-body input-body">
+						<label for="time1" class="popup__label">Время</label>
+						<div class="popup__time-inputs">
+							<input required type="time" id="time1" name="time1" placeholder="Например электрика" class="popup__input">
+							<input type="time" id="time2" name="time2" placeholder="Например электрика" class="popup__input">
+						</div>
+					</div>
+				</div>
+				<div class="popup__input-body input-file-body">
+					<label for="task" class="popup__label">Ваш комментарий</label>
+					<input required type="text" id="task" name="task" placeholder="Я могу предложить сделать это очень быстро" class="popup__input">
+					<div id="inputfile" class="input-file">
+						<div class="label">Прикрепить фото</div>
+						<input type="file" id="photo" name="photo" class="popup__input">
+					</div>
+				</div>
+				<div data-range="250,20000" class="popup__ui-slider ui-slider">
+					<h3 class="ui-slider__title">Желаемая стоимость</h3>
+					<div class="ui-slider__body">
+						<div class="ui-slider__input-body">
+							<span>от</span>
+							<input type="number" name="min_price"  class="ui-slider__input input-min">
+							<span>₽</span>
+						</div>
+						<div id="slider"></div>
+						<div class="ui-slider__input-body">
+							<span>до</span>
+							<input type="number" name="max_price"  class="ui-slider__input input-max">
+							<span>₽</span>
+						</div>
+					</div>
+				</div>
+				<button type="submit" class="popup__request-button button-green">Создать заявку</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div id="popupTarifGot" class="popup">
+	<div id="content" class="popup__lk-content">	
+		<div class="popup__header">
+			<h2 id="popuptitle" class="form-page__title title-m">Ура! Вы оплатили тариф и можете пользоваться сервисом!</h2>
+			<button data-close type="button" class="popup__close close-popup"><span></span></button>
+		</div>
+		<div class="popup__lk-body">
+			<a href="./lk_master.html" class="popup__request-button button-green">В личный кабинет</a>
 		</div>
 	</div>
 </div><div id="popup" class="popup">
@@ -613,7 +756,9 @@
         	<p class="popup__text text-m">Ваша заявка принята.<br>Наши менеджеры свяжутся с Вами в ближайшее время.</p>
 		</div>
 	</div>
-</div><script src="js/swiper-bundle.min.js"></script>		
-<script src="js/imask.js"></script>
-<script src="js/main.js"></script>		</body>
+</div><script src="js/swiper-bundle.min.js"></script>
+<script src="js/imask.js"></script>	
+<script src="js/nouislider.min.js"></script>
+<script src="js/main.js"></script>
+	</body>
 </html>

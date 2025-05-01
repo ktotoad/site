@@ -535,15 +535,15 @@ function initSliders() {
 
 initSliders();
 //RANGE========================================================================================================================================
-//Площадь
-if (document.querySelector("#range-slider")) {
-    document.querySelectorAll("#range-slider").forEach((rangeSlider) => {
+if (document.querySelector("[data-range]")) {
+    console.log(document.querySelector("[data-range]"));
+    document.querySelectorAll("[data-range]").forEach((rangeSlider) => {
         const valuesArray = rangeSlider.getAttribute('data-range').split(',').map(value => value.trim());
         var inputMinValue = Number(valuesArray[0]);
         var inputMaxValue = Number(valuesArray[1]);
         var slider = rangeSlider.querySelector("#slider");
-        var inputMin = rangeSlider.querySelector("#input-min");
-        var inputMax = rangeSlider.querySelector("#input-max");
+        var inputMin = rangeSlider.querySelector(".input-min");
+        var inputMax = rangeSlider.querySelector(".input-max");
 
         const inputs = [inputMin, inputMax]; 
 
@@ -566,7 +566,7 @@ if (document.querySelector("#range-slider")) {
         });
 
         inputMax.addEventListener('change', function () {
-            slider.noUiSlider.set([this.value, null]);
+            slider.noUiSlider.set([null, this.value]);
         });
     });
 }
