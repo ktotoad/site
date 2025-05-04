@@ -466,6 +466,7 @@ function initSliders() {
 			}
 		});
 	}
+
 	if (document.querySelector('.content-question__slider')) {
 		var swiper = new Swiper('.question-page__slider-thumb', {
 			slidesPerView: 6,
@@ -527,6 +528,80 @@ function initSliders() {
 			},
 			thumbs: {
 				swiper: swiper,
+			},
+		});
+	}
+
+	if (document.querySelector('.slider-members')) {
+		new Swiper('.slider-members', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 5,
+			spaceBetween: 30,
+			parallax: true,			
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 10,
+					autoHeight: true,
+				},
+				480: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
+				768: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+				992: {
+					slidesPerView: 4,
+					spaceBetween: 30,
+				},
+				1350: {
+					slidesPerView: 5,
+				}
+			},
+			navigation: {
+			    nextEl: '.slider-members__next',
+			    prevEl: '.slider-members__prev',
+			},
+		});
+	}
+	
+	if (document.querySelector('.slider-documents')) {
+		new Swiper('.slider-documents', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 5,
+			spaceBetween: 30,
+			parallax: true,			
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 10,
+					autoHeight: true,
+				},
+				480: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
+				768: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+				992: {
+					slidesPerView: 4,
+					spaceBetween: 30,
+				},
+				1350: {
+					slidesPerView: 5,
+				}
+			},
+			navigation: {
+			    nextEl: '.slider-documents__next',
+			    prevEl: '.slider-documents__prev',
 			},
 		});
 	}
@@ -751,6 +826,29 @@ function tabs() {
 	}
 }
 tabs();
+//Image_modal=====================================================================================================================================================
+const options = {
+	contentClick: "toggleCover",
+	Images: {
+		Panzoom: {
+			panMode: "mousemove",
+			mouseMoveFactor: 1.1,
+			mouseMoveFriction: 0.12,
+		},
+	},
+};
+
+if(document.querySelector("#picture-wrap")) {
+	document.querySelectorAll("#picture-wrap").forEach(pictureWrap => {
+		Fancybox.bind(pictureWrap, {options});
+	});
+}
+
+if(document.querySelector("#gallery-wrap")) {
+	document.querySelectorAll("#gallery-wrap").forEach(galleryWrap => {
+		Fancybox.bind(galleryWrap, {options});
+	});
+}
 // SPOLLERS========================================================================================================================================
 function spollers() {
 	//Проверка на наличие атрибута
