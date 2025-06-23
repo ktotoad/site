@@ -3,36 +3,35 @@
 let wrapper = document.querySelector('.wrapper');
 
 if (document.querySelector(".preloader")) {
-    let loader = document.querySelector('.preloader'),
+    let tl = gsap.timeline(),
+        loader = document.querySelector('.preloader'),
         body = document.querySelector("body");
     
     body.classList.add("lock");
 
     setTimeout(() => {
         body.classList.remove("lock");
-    }, 1500),
+    }, 2e3),
     setTimeout(() => {
         loader.classList.add("hidden");
-    }, 1500),
+        tl.to(".preloader-body__logo-light", { clipPath: "polygon(0 0, 100% 0%, 100% 100%, 0% 100%)", duration: 0.1, delay: 0 });
+    }, 1e3),
     (function (body, loader) {
         let loading = 0,
         i = setInterval(() => {
-            (document.querySelector(".preloader-body__decore").style.width = ++loading + "%"),
+            (document.querySelector(".preloader-body__logo-light").style.width = ++loading + "%"),
             (document.querySelector(".preloader-body__percents").innerHTML = ++loading + "%"), 100 === loading && clearInterval(i);
         }, 20);
     })();
 
     wrapper.classList.add('loaded');
 
-    setTimeout(function(){
-        wrapper.classList.add('loaded');
-        animateall();
-    }, 1500);
+    animateall();
 } else {
-    setTimeout(function(){
+    window.addEventListener('load', function () {
         wrapper.classList.add('loaded');
         animateall();
-    }, 500);
+    });
 }
 //fixed_main==================================================================================================================================================================================================================
 let header = document.querySelector("header");
