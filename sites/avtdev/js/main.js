@@ -910,26 +910,27 @@ if(document.querySelector("#zoomimage")) {
 }
 
 //Image_modal=====================================================================================================================================================
-const options = {
-	contentClick: "toggleCover",
-	Images: {
-		Panzoom: {
-			panMode: "mousemove",
-			mouseMoveFactor: 1.1,
-			mouseMoveFriction: 0.12,
-		},
-	},
-};
-
 if(document.querySelector("#picture-wrap")) {
 	document.querySelectorAll("#picture-wrap").forEach(pictureWrap => {
-		Fancybox.bind(pictureWrap, {options});
+		Fancybox.bind(pictureWrap, {
+		  // Your custom options
+		});
 	});
 }
 
 if(document.querySelector("#gallery-wrap")) {
 	document.querySelectorAll("#gallery-wrap").forEach(galleryWrap => {
-		Fancybox.bind(galleryWrap, {options});
+		Fancybox.bind(galleryWrap, {
+		  // Your custom options
+		});
+	});
+}
+
+if(document.querySelector("#video-gallery")) {
+	document.querySelectorAll("#video-gallery").forEach(videoGallery => {
+		Fancybox.bind(videoGallery, {
+		  // Your custom options
+		});
 	});
 }
 //toggle======================================================================================================================================================
@@ -1142,35 +1143,20 @@ function initSliders() {
 			},
 		});
 	}
-	if (document.querySelector('.slider-neighbour')) {
-		new Swiper('.slider-neighbour', {
+	if (document.querySelector('.slider-news')) {
+		new Swiper('.slider-news', {
 			observer: true,
 			observeParents: true,
 			slidesPerView: "auto",
-			spaceBetween: 20,
+			spaceBetween: 30,
 			parallax: true,
 			speed: 800,
-			autoplay: {
-				delay: 3000,
-				disableOnInteraction: false,
-			},
-			scrollbar: {
-				el: ".slider-neighbour__scrollbar",
-				hide: false,
-		        draggable: true,
-		        dragSize: 42
-			},
-			breakpoints: {
-				320: {
-					spaceBetween: 0,
-				},
-				470: {
-					spaceBetween: 10,
-				},
+			navigation: {
+				nextEl: ".slider-news__next",
+				prevEl: ".slider-news__prev",
 			},
 		});
 	}
-
 	if (document.querySelector('.catalog-slider')) {
 		new Swiper('.catalog-slider', {
 			observer: true,
