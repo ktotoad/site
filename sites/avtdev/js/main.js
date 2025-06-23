@@ -1142,6 +1142,28 @@ function initSliders() {
 			},
 		});
 	}
+	if (document.querySelector('.slider-principses')) {
+		new Swiper('.slider-principses', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			spaceBetween: 70,
+			parallax: true,
+			speed: 800,
+			navigation: {
+				nextEl: ".slider-principses__next",
+				prevEl: ".slider-principses__prev",
+			},
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+				},
+				768: {
+					slidesPerView: "auto",
+				},
+			},
+		});
+	}
 	if (document.querySelector('.slider-news')) {
 		new Swiper('.slider-news', {
 			observer: true,
