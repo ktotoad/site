@@ -2508,9 +2508,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .page__principses {
   padding-top: 14em;
+  padding-bottom: 10em;
 }
 .page__history {
-  padding-top: 14em;
   padding-bottom: 14em;
 }
 .page__form {
@@ -2982,8 +2982,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
 /*principses*/
 .principses {
   overflow: hidden;
-  position: relative;
-  z-index: 5;
   color: var(--white);
   background: var(--primary);
 }
@@ -3023,22 +3021,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .principses__wrap {
   margin-top: 4em;
 }
-.principses__icon {
-  margin: 0 auto;
-  margin-top: 4em;
-  overflow: hidden;
-  width: 30em;
-  height: 10em;
-  -webkit-transform: translateY(1em);
-          transform: translateY(1em);
-}
-.principses__icon img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-
 .slider-principses {
   overflow: visible;
   opacity: 0;
@@ -3178,6 +3160,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .history {
   color: var(--white);
   background: var(--dark-gray2);
+  position: relative;
+  z-index: 5;
 }
 .history__header {
   display: -webkit-box;
@@ -3194,7 +3178,127 @@ input[type=text], input[type=email], input[type=tel], textarea {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 1rem;
+  padding-top: 6em;
 }
+.history__slider-thumb {
+  margin-top: 4em;
+}
+.history__slider {
+  margin-top: 4em;
+}
+.history__icon {
+  margin: 0 auto;
+  overflow: hidden;
+  width: 30em;
+  height: 10em;
+  -webkit-transform: translateY(-9em);
+          transform: translateY(-9em);
+}
+.history__icon img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.slider-history-thumb {
+  position: relative;
+}
+.slider-history-thumb::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  top: 50%;
+  left: 0;
+  background: var(--white);
+}
+.slider-history-thumb__slide {
+  cursor: pointer;
+  width: 17em;
+  height: 17em;
+  border-radius: 50%;
+  border: 1px solid var(--white);
+  background: var(--dark-gray2);
+  -webkit-transition: -webkit-transform 0.3s ease 0s;
+  transition: -webkit-transform 0.3s ease 0s;
+  transition: transform 0.3s ease 0s;
+  transition: transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+}
+.slider-history-thumb__slide:not(.swiper-slide-thumb-active) {
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+}
+.slider-history-thumb__slide:not(.swiper-slide-thumb-active) .slider-history-thumb__body {
+  opacity: 0.7;
+}
+@media (any-hover: hover) {
+  .slider-history-thumb__slide:not(.swiper-slide-thumb-active):hover {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+  .slider-history-thumb__slide:not(.swiper-slide-thumb-active):hover .slider-history-thumb__body {
+    opacity: 0.8;
+  }
+}
+.slider-history-thumb__body {
+  padding: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  -webkit-transition: opacity 0.3s ease 0s;
+  transition: opacity 0.3s ease 0s;
+}
+.slider-history-thumb__date {
+  font-weight: 500;
+  font-size: 5.4em;
+  line-height: 40%;
+  font-family: "Cormorant Unicase", sans-serif;
+}
+
+.slider-history {
+  position: relative;
+}
+.slider-history__body {
+  background: var(--dark-gray);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 4em;
+  padding: 2em 10em;
+}
+.slider-history__prev, .slider-history__next {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.slider-history__prev {
+  left: 0;
+}
+.slider-history__next {
+  right: 0;
+}
+
 /*form*/
 .form {
   overflow: hidden;
