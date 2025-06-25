@@ -1420,21 +1420,21 @@ if (document.querySelector("#map")) {
 function mapInit() {
     // Создаем карту
     var myMap = new ymaps.Map("map",{
-        center: [55.788157, 49.114736],
+        center: [55.787705, 49.143407],
         zoom: 15,
         controls: ['zoomControl']
     }), 
     myIcon = ymaps.templateLayoutFactory.createClass("<div>$[properties.iconContent]</div>"),
-    myPlacemark = new ymaps.Placemark([55.788157, 49.114736],
+    myPlacemark = new ymaps.Placemark([55.787705, 49.143407],
     {
-        balloonContent: '<div class="popup-map__body"><p class="text">Моменты — 12 элегантных таунхаусов</p></div>',
+        balloonContent: '<div class="popup-map__body"><p class="text">улица Волкова, 61, Казань</p></div>',
         balloonContentFooter: '<div class="popup-map__footer"><a href="#catalog" class="popup-map__link"><span>Подробнее</span></a></div>'
     },
     {
         iconLayout: "default#imageWithContent",
-        iconImageHref: "../img/icons/logomap.svg",
-        iconImageSize: [60, 60],
-        iconImageOffset: [-24, -24],
+        iconImageHref: "../img/icons/logomap.png",
+        iconImageSize: [64, 72],
+        iconImageOffset: [-32, -36],
         iconContentOffset: [15, 15],
         iconContentLayout: myIcon,
         hideIconOnBalloonOpen: !1,
@@ -1451,33 +1451,23 @@ function mapInit() {
     myCollection = new ymaps.GeoObjectCollection(),
     // Создаем массив с данными.
     myPoints = {
-        learnPoints : [
-            { coords: [55.789609, 49.112580], text: 'Школа танцев', link: 'https://yandex.ru/maps/-/CHFAaV5v' },
-            { coords: [55.793655, 49.104845], text: 'Школа №1', link: 'https://yandex.ru/maps/-/CHFAaZ6a' },
-            { coords: [55.796709, 49.112604], text: 'Лицей им.Лобачевского', link: 'https://yandex.ru/maps/-/CHFAaCno' },
-            { coords: [55.792222, 49.121855], text: 'КФУ', link: 'https://yandex.ru/maps/-/CHFAaG92' },
+        all : [
+            { coords: [55.788143, 49.114728], text: 'Авторы на Астрономической', link: 'https://yandex.ru/maps/-/CHchYS0e' },
+            { coords: [55.783718, 49.130394], text: 'Авторы на Петербургской', link: 'https://yandex.ru/maps/-/CHchaNKr' },
+            { coords: [55.861984, 49.096856], text: 'Авторы на Годовикова', link: 'https://yandex.ru/maps/-/CHchaKoC' },
+            { coords: [55.796461, 49.058097], text: 'Авторы на Большой', link: 'https://yandex.ru/maps/-/CHcha03D' },
+            { coords: [55.872772, 48.875660], text: 'Дом у Озера', link: 'https://yandex.ru/maps/-/CHcheJmI' },
         ],
-        culturePoints : [
-            { coords: [55.793468, 49.107464], text: 'Театр на Булаке: 800 м (10 минут)', link: 'https://yandex.ru/maps/-/CHFAaHm~' },
-            { coords: [55.770705, 49.129464], text: 'Новое здание Театра Камала: 2,3 км (28 минут)', link: 'https://yandex.ru/maps/-/CHFAa-ks' },
-            { coords: [55.795530, 49.135989], text: 'Галерея современного искусства: 2 км (24 минуты)', link: 'https://yandex.ru/maps/-/CHFAeE08' },
-            { coords: [55.795735, 49.109635], text: 'Национальный музей Республики Татарстан: 1,2 км (14 минут)', link: 'https://yandex.ru/maps/-/CHFAeQmL' },
-            { coords: [55.798760, 49.100544], text: 'Цирк Казани: 1,7 км (20 минут)', link: 'https://yandex.ru/maps/-/CHFAeY4J' },
+        done : [
+            { coords: [55.796461, 49.058097], text: 'Авторы на Большой', link: 'https://yandex.ru/maps/-/CHcha03D' },
+            { coords: [55.872772, 48.875660], text: 'Дом у Озера', link: 'https://yandex.ru/maps/-/CHcheJmI' },
         ],
-        tcPoints : [
-            { coords: [55.785465, 49.126462], text: 'ТЦ Республика: 1,2 км (14 минут)', link: 'https://yandex.ru/maps/-/CHFAeKi9' },
-            { coords: [55.786574, 49.124078], text: 'ТЦ Кольцо: 800 м (10 минут)', link: 'https://yandex.ru/maps/-/CHFAeWZX' },
-            { coords: [55.783242, 49.116186], text: 'Бизнес-центр «Татнефть»: 1,3 км (16 минут)', link: 'https://yandex.ru/maps/-/CHFAeD3r' },
+        work : [
+            { coords: [55.788143, 49.114728], text: 'Авторы на Астрономической', link: 'https://yandex.ru/maps/-/CHchYS0e' },
+            { coords: [55.783718, 49.130394], text: 'Авторы на Петербургской', link: 'https://yandex.ru/maps/-/CHchaNKr' },
+            { coords: [55.861984, 49.096856], text: 'Авторы на Годовикова', link: 'https://yandex.ru/maps/-/CHchaKoC' },
         ],
-        cafePoints : [
-            { coords: [55.780986, 49.116709], text: 'Татарская усадьба', link: 'https://yandex.ru/maps/-/CHFAeLky' },
-            { coords: [55.789217, 49.116044], text: 'Бирхоф', link: 'https://yandex.ru/maps/-/CHFAePl8' },
-            { coords: [55.789923, 49.116140], text: 'Угар', link: 'https://yandex.ru/maps/-/CHFAeXZI' },
-        ],
-        sportPoints : [
-            { coords: [55.786923, 49.110068], text: 'Альфа-фитнес', link: 'https://yandex.ru/maps/-/CHFAe-4o' },
-            { coords: [55.787181, 49.117865], text: 'Лучано', link: 'https://yandex.ru/maps/-/CHFAiEM0' },
-            { coords: [55.786335, 49.121568], text: 'DDX фитнес', link: 'https://yandex.ru/maps/-/CHFAiI59' },
+        plan : [
         ],
     };
 
@@ -1512,26 +1502,7 @@ function mapInit() {
         // Удаляем "старую" коллекцию меток на карту.
         myCollection.removeAll();
         // Выбираем иконку
-        let logo;
-        switch (filter) {
-            case "learnPoints":
-                logo = '../img/icons/maple.svg';
-                break;
-            case "culturePoints":
-                logo = '../img/icons/mapcu.svg';
-                break;
-            case "tcPoints":
-                logo = '../img/icons/maptc.svg';
-                break;
-            case "cafePoints":
-                logo = '../img/icons/mapca.svg';
-                break;
-            case "sportPoints":
-                logo = '../img/icons/mapsp.svg';
-                break;
-            default:
-                logo = '../img/icons/mapicon.svg';
-        }
+        let logo = '../img/icons/map.svg';
         // Заполняем коллекцию данными.
         for (var i = 0, l = result.length; i < l; i++) {
             var point = result[i];
@@ -1546,10 +1517,10 @@ function mapInit() {
                     // Своё изображение иконки метки.
                     iconImageHref: logo,
                     // Размеры метки.
-                    iconImageSize: [42, 42],
+                    iconImageSize: [44, 44],
                     // Смещение левого верхнего угла иконки относительно
                     // её "ножки" (точки привязки).
-                    iconImageOffset: [-21, -21]
+                    iconImageOffset: [-22, -22]
                 }
             ));
         }
