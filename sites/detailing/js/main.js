@@ -191,18 +191,50 @@ function buildSliders() {
 function initSliders() {
 	buildSliders();
 
+	if (document.querySelector('.slider-thumb-main')) {
+		var mainthumbs = new Swiper('.slider-thumb-main', {
+  			slidesPerView: 4,
+			spaceBetween: 0,
+			parallax: true,
+			autoHeight: true,
+			autoplay: {
+				delay: 1000,
+				disableOnInteraction: false,
+			},
+			breakpoints: {
+				320: {
+					slidesPerView: 1.5,
+				},
+				470: {
+					slidesPerView: 2,
+				},
+				767: {
+					slidesPerView: 3,
+				},
+				992: {
+					slidesPerView: 4,
+				},
+			},
+			watchSlidesProgress: true,
+			speed: 800,
+		});
+	}
 	if (document.querySelector('.slider-main')) {
 		new Swiper('.slider-main', {
-			observer: true,
+  			observer: true,
 			observeParents: true,
+  			effect: "fade",
 			slidesPerView: 1,
 			spaceBetween: 0,
+			speed: 800,
 			parallax: true,
 			autoplay: {
 				delay: 3000,
 				disableOnInteraction: false,
 			},
-			speed: 800,
+			thumbs: {
+				swiper: mainthumbs,
+			},
 		});
 	}
 
