@@ -296,10 +296,6 @@ function initSliders() {
   			slidesPerView: 4,
 			spaceBetween: 0,
 			parallax: true,
-			autoplay: {
-				delay: 1000,
-				disableOnInteraction: false,
-			},
 			breakpoints: {
 				320: {
 					slidesPerView: 1.5,
