@@ -232,10 +232,47 @@ function initSliders() {
 			},
 		});
 	}
-
+	if (document.querySelector('.slider-special')) {
+		new Swiper('.slider-special', {
+  			observer: true,
+			observeParents: true,
+			slidesPerView: 4,
+			spaceBetween: 20,
+			parallax: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1.5,
+					spaceBetween: 10,
+				},
+				470: {
+					slidesPerView: 2,
+					spaceBetween: 10,
+				},
+				767: {
+					slidesPerView: 3,
+				},
+				1024: {
+					slidesPerView: 4,
+				}
+			},
+			pagination: {
+				el: ".slider-special__fractions",
+				type: "fraction",
+			},
+			navigation: {
+				nextEl: ".slider-special__next",
+				prevEl: ".slider-special__prev",
+			},
+		});
+	}
 	if (document.querySelector('.slider-clients')) {
 		new Swiper('.slider-clients', {
-  		observer: true,
+  			observer: true,
 			observeParents: true,
 			slidesPerView: 3,
 			spaceBetween: 30,
