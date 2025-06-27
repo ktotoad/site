@@ -1219,12 +1219,6 @@ textarea.input {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -1235,13 +1229,11 @@ textarea.input {
 }
 .services__title span:not(.line):first-child {
   text-align: right;
-  width: 50%;
-  margin-right: auto;
+  margin-right: 50%;
 }
 .services__title span:not(.line):last-child {
   text-align: left;
-  width: 50%;
-  margin-left: auto;
+  margin-left: 50%;
 }
 .services__title span.line::after {
   content: attr(data-text);
@@ -1256,13 +1248,9 @@ textarea.input {
 }
 @media (max-width: 479.98px) {
   .services__title span:not(.line):first-child {
-    text-align: right;
-    width: auto;
     margin-right: auto;
   }
   .services__title span:not(.line):last-child {
-    text-align: left;
-    width: auto;
     margin-left: auto;
   }
 }
@@ -1900,32 +1888,29 @@ textarea.input {
     color: var(--orange);
   }
 }
-.map__image {
+.map__body {
   position: relative;
   overflow: hidden;
   max-width: 58em;
-  min-height: 100%;
-}
-.map__image img {
   width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  min-height: 100%;
+  height: auto;
 }
-.map__image::before {
+.map__body::before {
   content: "";
   position: absolute;
-  width: 100%;
+  z-index: 5;
+  width: 10%;
   height: 100%;
   top: 0;
   left: 0;
   background: linear-gradient(270.55deg, rgba(255, 255, 255, 0) 49.89%, #FFFFFF 99.51%);
 }
 @media (max-width: 767.98px) {
-  .map__image {
+  .map__body {
     max-width: 100%;
   }
-  .map__image::before {
+  .map__body::before {
     background: -webkit-gradient(linear, left bottom, left top, color-stop(49.89%, rgba(255, 255, 255, 0)), color-stop(99.51%, #FFFFFF));
     background: linear-gradient(0deg, rgba(255, 255, 255, 0) 49.89%, #FFFFFF 99.51%);
   }
