@@ -1130,6 +1130,7 @@ function initSliders() {
 			observeParents: true,
 			slidesPerView: 1,
 			spaceBetween: 0,
+	  		effect: "fade",
 			parallax: true,
 			speed: 1800,
 			autoplay: {
@@ -1420,31 +1421,12 @@ if (document.querySelector("#map")) {
 function mapInit() {
     // Создаем карту
     var myMap = new ymaps.Map("map",{
-        center: [55.787705, 49.143407],
-        zoom: 15,
+        center: [55.823583, 49.092338],
+        zoom: 12,
         controls: ['zoomControl']
-    }), 
-    myIcon = ymaps.templateLayoutFactory.createClass("<div>$[properties.iconContent]</div>"),
-    myPlacemark = new ymaps.Placemark([55.787705, 49.143407],
-    {
-        balloonContent: '<div class="popup-map__body"><p class="text">улица Волкова, 61, Казань</p></div>',
-        balloonContentFooter: '<div class="popup-map__footer"><a href="#catalog" class="popup-map__link"><span>Подробнее</span></a></div>'
-    },
-    {
-        iconLayout: "default#imageWithContent",
-        iconImageHref: "../img/icons/logomap.png",
-        iconImageSize: [64, 72],
-        iconImageOffset: [-32, -36],
-        iconContentOffset: [15, 15],
-        iconContentLayout: myIcon,
-        hideIconOnBalloonOpen: !1,
-        balloonCloseButton: !1,
-        balloonOffset: [0, -20]
     });
     //убираем скрол
     myMap.behaviors.disable('scrollZoom');
-    //добавляем точку
-    myMap.geoObjects.add(myPlacemark);
 
     //добавляем точки
     // Создаем коллекцию.
@@ -1459,15 +1441,15 @@ function mapInit() {
             { coords: [55.872772, 48.875660], text: 'Дом у Озера', link: 'https://yandex.ru/maps/-/CHcheJmI' },
         ],
         done : [
-            { coords: [55.796461, 49.058097], text: 'Авторы на Большой', link: 'https://yandex.ru/maps/-/CHcha03D' },
             { coords: [55.872772, 48.875660], text: 'Дом у Озера', link: 'https://yandex.ru/maps/-/CHcheJmI' },
         ],
         work : [
-            { coords: [55.788143, 49.114728], text: 'Авторы на Астрономической', link: 'https://yandex.ru/maps/-/CHchYS0e' },
             { coords: [55.783718, 49.130394], text: 'Авторы на Петербургской', link: 'https://yandex.ru/maps/-/CHchaNKr' },
             { coords: [55.861984, 49.096856], text: 'Авторы на Годовикова', link: 'https://yandex.ru/maps/-/CHchaKoC' },
+            { coords: [55.796461, 49.058097], text: 'Авторы на Большой', link: 'https://yandex.ru/maps/-/CHcha03D' },
         ],
         plan : [
+            { coords: [55.788143, 49.114728], text: 'Авторы на Астрономической', link: 'https://yandex.ru/maps/-/CHchYS0e' },
         ],
     };
 
@@ -1503,14 +1485,14 @@ function mapInit() {
         myCollection.removeAll();
         // Выбираем иконку
         let logo = '../img/icons/map.svg';
+        let logoactive = '../img/icons/logomap.png';
+        let myCircle;
         // Заполняем коллекцию данными.
         for (var i = 0, l = result.length; i < l; i++) {
             var point = result[i];
-            myCollection.add(new ymaps.Placemark(
+            myCollection.add(myCircle = new ymaps.Placemark(
                 point.coords, {
-                    balloonContentBody: [
-                        '<address><strong>' + point.text + '</strong><br/><a href=' + point.link + ' target="_blank">Адрес: ' + point.coords + '<a></address>'                        
-                    ]
+                    hintContent: point.text,
                 }, {
                     // Необходимо указать данный тип макета.
                     iconLayout: 'default#image',
@@ -1519,12 +1501,25 @@ function mapInit() {
                     // Размеры метки.
                     iconImageSize: [44, 44],
                     // Смещение левого верхнего угла иконки относительно
-                    // её "ножки" (точки привязки).
                     iconImageOffset: [-22, -22]
-                }
+                },
             ));
+            //модалка карты
+            myCircle.events.add('click', function (e) {
+                //меняем иконку на активную
+                var target = e.get('target');
+                target.options.set('iconImageHref', logoactive);
+                target.options.set('iconImageSize', [64, 72]);
+                target.options.set('iconImageOffset', [-32, -72]);
+
+                //вызываем модалку
+                let popupMap = document.getElementById('popupMap');
+                popupOpen(popupMap);
+                body.classList.remove("lock");
+            });
         }
         // Добавляем коллекцию меток на карту.
         myMap.geoObjects.add(myCollection);
     }
 }
+
