@@ -1419,6 +1419,7 @@ if (document.querySelector("#map")) {
     ymaps.ready(mapInit);
 }
 function mapInit() {
+    let popupMap = document.getElementById('popupMap');
     // Создаем карту
     var myMap = new ymaps.Map("map",{
         center: [55.823583, 49.092338],
@@ -1462,6 +1463,7 @@ function mapInit() {
             }
         });
         document.querySelector('#mapfilter').addEventListener('click', e => {
+            popupClose(popupMap, true);
             if(e.target.classList.contains('filter__item') || e.target.closest('.filter__item')) {
                 let filter = e.target.closest('.filter__item').dataset['filter'];
                 tabButtons.forEach(elem => elem.classList.remove('active'));
@@ -1513,9 +1515,8 @@ function mapInit() {
                 target.options.set('iconImageOffset', [-32, -72]);
 
                 //вызываем модалку
-                let popupMap = document.getElementById('popupMap');
                 popupOpen(popupMap);
-                body.classList.remove("lock");
+                bodyUnLock();
             });
         }
         // Добавляем коллекцию меток на карту.
