@@ -173,6 +173,35 @@ function inputElements() {
 	});
 }
 inputElements();
+//map======================================================================================================================================================================
+if (document.querySelector("#map")) {
+    ymaps.ready(mapInit);
+}
+function mapInit() {
+    var myMap = new ymaps.Map("map",{
+        center: [50.532051, 36.571242],
+        zoom: 13,
+        controls: ['zoomControl']
+    }),
+    myIcon = ymaps.templateLayoutFactory.createClass("<div>$[properties.iconContent]</div>"),
+    myPlacemark = new ymaps.Placemark([50.532051, 36.571242],
+    {
+        hintContent: 'Ультра детейлинг',
+    },
+    {
+        iconLayout: "default#imageWithContent",
+        iconImageHref: "../img/icons/iconmap.svg",
+        iconImageSize: [40, 40],
+        iconImageOffset: [-20, -40],
+        iconContentOffset: [15, 15],
+        iconContentLayout: myIcon,
+        hideIconOnBalloonOpen: !1,
+        balloonCloseButton: !1,
+        balloonOffset: [0, -20]
+    });
+    myMap.geoObjects.add(myPlacemark);
+}
+
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
