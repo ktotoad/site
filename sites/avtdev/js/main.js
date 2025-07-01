@@ -1418,6 +1418,38 @@ if (document.querySelectorAll(".js_price")) {
 if (document.querySelector("#map")) {
     ymaps.ready(mapInit);
 }
+
+if (document.querySelector("#mapcontacts")) {
+    ymaps.ready(mapInitCon);
+}
+
+function mapInitCon() {
+    var myMap = new ymaps.Map("mapcontacts",{
+        center: [55.787705, 49.143407],
+        zoom: 13,
+        controls: ['zoomControl']
+    }),
+    myIcon = ymaps.templateLayoutFactory.createClass("<div>$[properties.iconContent]</div>"),
+    myPlacemark = new ymaps.Placemark([55.787705, 49.143407],
+    {
+        hintContent: 'Авторы',
+    },
+    {
+        iconLayout: "default#imageWithContent",
+        iconImageHref: "../img/icons/map.svg",
+        iconImageSize: [40, 40],
+        iconImageOffset: [-20, -20],
+        iconContentOffset: [15, 15],
+        iconContentLayout: myIcon,
+        hideIconOnBalloonOpen: !1,
+        balloonCloseButton: !1,
+        balloonOffset: [0, -20]
+    });
+    //убираем скрол
+    myMap.behaviors.disable('scrollZoom');
+    myMap.geoObjects.add(myPlacemark);
+}
+
 function mapInit() {
     //модалка карты
     let popupMap = document.getElementById('popupMap');
