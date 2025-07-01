@@ -1419,6 +1419,7 @@ if (document.querySelector("#map")) {
     ymaps.ready(mapInit);
 }
 function mapInit() {
+    //модалка карты
     let popupMap = document.getElementById('popupMap');
     // Создаем карту
     var myMap = new ymaps.Map("map",{
@@ -1454,6 +1455,7 @@ function mapInit() {
         ],
     };
 
+    //фильтр
     if(document.querySelector('#mapfilter')) {
         const tabButtons = document.querySelectorAll('.filter__item');
         tabButtons.forEach(elem => { 
@@ -1463,6 +1465,7 @@ function mapInit() {
             }
         });
         document.querySelector('#mapfilter').addEventListener('click', e => {
+            //закрываем модалку при нажатии фильтра
             popupClose(popupMap, true);
             if(e.target.classList.contains('filter__item') || e.target.closest('.filter__item')) {
                 let filter = e.target.closest('.filter__item').dataset['filter'];
