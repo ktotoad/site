@@ -85,23 +85,6 @@ function animateall() {
 		}
 	}
 };
-//Video_delay=================================================================================================================================
-if(document.querySelector('#background-video')) {
-	let videos = document.querySelectorAll('#background-video');
-	let bgs = document.querySelectorAll("#fullscreenimage");
-
-	bgs.forEach( image => {
-		setTimeout(function(){
-		    image.classList.add('hide');
-		}, 3000);
-	});
-
-	videos.forEach( video => {
-		setTimeout(function(){
-		    video.play();
-		}, 3000);
-	});
-}
 //Buttons_Form==================================================================================================================================================
 if(document.querySelector("#buttonsFormBody")) {
 	const buttonsFormBody = document.querySelector("#buttonsFormBody");
@@ -742,172 +725,6 @@ function tabs() {
 }
 tabs(); 
 
-//Cards_Filter=====================================================================================================================================================
-if(document.querySelector('#optionsblock')) {
-    const optionsBlock = document.querySelector('#optionsblock');
-    const closeButton = optionsBlock.querySelector('.button-close');
-    const cards = document.querySelectorAll('.item-options');
-    const cardsInfo = document.querySelectorAll('.info-options__body');
-
-    optionsBlock.addEventListener("click", (e) => {
-        if(e.target != closeButton) {
-            optionsBlock.classList.add('active');
-            let index;
-            let currentCard = e.target.closest('.item-options');
-            if (currentCard){
-                currentCard.classList.add('active');
-                index = currentCard.getAttribute('data-circle-index');
-
-                cardsInfo.forEach(function (cardInfo) {
-                    if(cardInfo.getAttribute('data-circle-content-index') == index) {
-                        cardInfo.classList.add('active');
-                    }
-                });
-            }
-        } else {
-            optionsBlock.classList.remove('active');
-            cards.forEach(function (card) {
-                card.classList.remove('active');
-            });
-            cardsInfo.forEach(function (cardInfo) {
-                cardInfo.classList.remove('active');
-            });
-        }
-    });
-}
-//SVG_script==========================================================================================================================
-if(document.querySelector("#zoomimage")) {
-	const svgBody = document.querySelector("#zoomimage svg");
-	let filterBody = document.querySelector("#filterbody");
-	const parkingPopup = document.querySelector("#parkingpopup");
-	const parkingOrder = document.querySelector("#parkingorder");
-	const parkingPopupDis = document.querySelector("#parkingpopupdisable"); 
-	let areaPaths = new Array();
-
-	filterBody.addEventListener("click", (e) => {
-
-		//радио площади
-		if(e.target.closest("#area")) {
-			//выбран ли уже фильтр площади
-			if(e.target.closest("#area").querySelector(".active")) {
-				svgBody.querySelectorAll("path").forEach(function (path) {
-					if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
-						path.setAttribute("data-filter", "filtered");
-					} else {
-						path.setAttribute("data-filter", "disabled");
-					}
-				});
-			} else {
-				svgBody.querySelectorAll("path").forEach(function (path) {
-					if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
-						path.setAttribute("data-filter", "filtered");
-					} else {
-						path.setAttribute("data-filter", "disabled");
-					}
-				});
-			}
-		} else if(e.target.closest("#clear")){
-			filterBody.querySelectorAll(".active").forEach((active) => {
-				active.classList.remove("active");
-			});
-			svgBody.querySelectorAll("path").forEach(function (path) {
-				path.removeAttribute("data-filter");
-			});
-		}
-
-		function svgBodyFilter() {
-			svgBody.querySelectorAll("path").forEach(function (path) {
-				if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
-					areaPaths.push(path);
-				}
-			});
-		}
-
-	});
-
-	svgBody.addEventListener("mouseover", (event) => {
-		if(event.target.tagName == "path") {
-			if (event.target.dataset.status == "AVAILABLE") {
-				if (event.target.dataset.filter != "disabled") {
-					const area = event.target.dataset.area;
-					let size;
-
-					switch (area) {
-						case "21.6":
-							size = "4,07 м х 5,3 м";
-							break;
-						case "13.25":
-							size = "2,3 м х 5,3 м";
-					}
-					parkingPopupActive(event, area, size);
-
-					event.target.setAttribute("data-engage", "mouseover");
-
-					event.target.addEventListener("mouseout", (event) => {
-						event.target.removeAttribute("data-engage");
-						parkingPopupNotActive();
-					});
-
-					event.target.addEventListener("mousewheel", (event) => {
-						event.target.removeAttribute("data-engage");
-						parkingPopupNotActive();
-					});
-
-					event.target.addEventListener("click", (event) => {
-						popupOpen(parkingOrder);
-
-				  		parkingOrder.querySelector("#popupumber").innerText = "№" + event.target.dataset.number;
-				  		parkingOrder.querySelector("#popupprice").innerText = numberWithSpaces(event.target.dataset.price) + " ₽";
-				  		parkingOrder.querySelector("#popuparea").innerText = area + " м²";
-				  		parkingOrder.querySelector("#popupsize").innerText = size;
-  						parkingOrder.querySelector("#popupimage img").src = event.target.dataset.photo;
-					});
-				} else {
-					event.target.setAttribute("data-status-enable", "disabled");
-				}
-			} else {
-				event.target.setAttribute("data-status-enable", "disabled");
-				parkingPopupDisabled(event);
-
-				event.target.addEventListener("mouseout", (event) => {
-					parkingPopupDis.classList.remove("active");
-				});
-
-				event.target.addEventListener("mousewheel", (event) => {
-					parkingPopupDis.classList.remove("active");
-				});
-			}
-		}
-	});
-
-	function parkingPopupDisabled(event) {
-		const x = event.clientX;
-  		const y = event.clientY;
-
-  		parkingPopupDis.style.left = x + "px";
-  		parkingPopupDis.style.top = y + "px";
-		parkingPopupDis.classList.add("active");
-	}
-
-	function parkingPopupActive(event, area, size) {
-		const x = event.clientX;
-  		const y = event.clientY;
-
-  		parkingPopup.querySelector("#popupumber").innerText = "№" + event.target.dataset.number;
-  		parkingPopup.querySelector("#popupprice").innerText = numberWithSpaces(event.target.dataset.price) + " ₽";
-  		parkingPopup.querySelector("#popuparea").innerText = area + " м²";
-  		parkingPopup.querySelector("#popupsize").innerText = size;
-
-  		parkingPopup.style.left = x + "px";
-  		parkingPopup.style.top = y + "px";
-		parkingPopup.classList.add("active");
-	}
-
-	function parkingPopupNotActive() {
-		parkingPopup.classList.remove("active");
-	}
-}
-
 //Image_modal=====================================================================================================================================================
 if(document.querySelector("#picture-wrap")) {
 	document.querySelectorAll("#picture-wrap").forEach(pictureWrap => {
@@ -945,167 +762,6 @@ if(document.querySelector("#sunway")) {
         });
     });
 }
-//Zoom_Image============================================================================================================================================
-if(document.querySelector("#zoombody")) {
-	document.querySelectorAll("#zoombody").forEach(function (zoomBody, index) {
-		const zoomImage = zoomBody.querySelector('#zoomimage');
-		const zoomImageBody = zoomImage.closest('#zoomimagebody');
-		const zoomPlus = zoomBody.querySelector('#zoomplus');
-		const zoomMinus = zoomBody.querySelector('#zoomminus');
-		let zoomid = 1;
-		
-		zoomBody.setAttribute('data-zoom-index', index);
-		
-		zoomPlus.addEventListener("click", function () {
-			zoomPlusIn();
-        });
-
-	    zoomMinus.addEventListener("click", function () {
-	    	zoomMinusOut();
-        });
-
-		function removeEvent(event) {
-			const index = evCache.findIndex(
-				(cachedEv) => cachedEv.pointerId === event.pointerId,
-			);
-			evCache.splice(index, 1);
-		}
-
-	    function zoomPlusIn() {
-	    	if(zoomid < 4) {
-	        	zoomid = zoomid + 0.5;
-	        	zoomImage.style.transform = `scale(${zoomid})`;
-	        	zoomImageBody.classList.add('active');
-	        }
-	    }
-
-	    function zoomMinusOut() {
-	    	if(zoomid > 1) {
-	        	zoomid = zoomid - 0.5;
-	        	zoomImage.style.transform = `scale(${zoomid})`;
-	        	if(zoomid == 1) {
-        			zoomImageBody.classList.remove('active');
-        			zoomImage.style.removeProperty('left');
-					zoomImage.style.removeProperty('top');
-	        	}
-        	} 
-	    }
-
-	    /*zoomImageBody.onmousedown = function(e) {
-	    	if(zoomImageBody.classList.contains('active')) {
-				imageMove(e);
-			}
-		}
-
-		function imageMove(e) {
-			const rect = zoomImageBody.getBoundingClientRect();
-			let mouseX = e.clientX - rect.left;
-			let mouseY = e.clientY - rect.top;
-
-			zoomImageBody.onmousemove = function(e) {
-				moveAt(e);
-			}
-
-			zoomImage.ondragstart = function() {
-				return false;
-			}
-
-			zoomImage.onmouseup = function() {
-				moveEnd();
-			}
-
-			zoomImage.onmousewheel = function() {
-				moveEnd();
-			} 
-
-			function moveAt(e) {
-				zoomImage.style.left = e.clientX - rect.left - mouseX + 'px';
-				zoomImage.style.top = e.clientY - rect.top - mouseY + 'px';
-
-				//console.log(e.clientX + " " + rect.left + " " + rect.right + " " + zoomImage.style.left + " " + index);
-			}
-
-			function moveEnd() {
-				zoomImageBody.onmousemove = null;
-				zoomImage.onmouseup = null;
-			}
-		}*/
-	});
-}
-//Mobile_Zoom=============================================================================================================================================================================================================================
-if(document.querySelector("#zoombody")) {
-	document.querySelectorAll("#zoombody").forEach(function (zoomBody, index) {
-		const scaleElement = zoomBody.querySelector('#zoomimage');
-		const gestureArea = scaleElement.closest('#gesture-area');
-		var scale = 1;
-		var resetTimeout;
-
-		interact(gestureArea)
-			.gesturable({
-				listeners: {
-					move (event) {
-				    	var currentScale = event.scale * scale;
-
-				    	scaleElement.style.transform = 'scale(' + currentScale + ')';
-
-				    	dragMoveListener(event);
-				  	},
-				  	end (event) {
-					    scale = scale * event.scale;
-				  	}
-				}
-			})
-			.draggable({
-				listeners: { move: dragMoveListener }
-		});
-
-		function dragMoveListener (event) {
-			var target = event.target;
-			var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
-			var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-
-			target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
-
-			target.setAttribute('data-x', x);
-			target.setAttribute('data-y', y);
-		}
-	});
-}
-
-
-//Cards_Before-After=====================================================================================================================================================
-if(document.querySelector('#cardbefore')) {
-    const container = document.querySelector('#cardbefore');
-    container.querySelector('#sliderbefore').addEventListener('input', (e) => {
-        container.style.setProperty('--position', `${e.target.value}%`);
-    })
-}
-//SVG_hover==========================================================================================================================
-if(document.querySelector("#hoveritemsbody")) {
-	document.querySelectorAll("#hoveritemsbody").forEach((hoveritemsbody) => {
-		const hoverimagesbody = hoveritemsbody.querySelector("#hoverimagesbody");
-		const hoverimages = hoverimagesbody.querySelectorAll("[data-image]")
-		const hoveritems = hoveritemsbody.querySelectorAll("[data-item]");		
-
-		hoveritems.forEach((hoveritem) => {
-			hoveritem.addEventListener("mouseover", (event) => {
-				let number = hoveritem.dataset.item;
-				console.log(number);
-				showImage(number);
-			});
-		});
-
-		function showImage(number) {
-			hoverimages.forEach((hoverimage) => {
-				hoverimage.classList.remove('show');
-				if (hoverimage.dataset.image == number) {
-					hoverimage.classList.add('show');
-				}
-			});
-		}
-	});
-}
-
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
@@ -1559,3 +1215,35 @@ function mapInit() {
     }
 }
 
+
+//select=====================================================================================================================================================
+if (document.querySelector("[data-select]")){
+	document.querySelectorAll("[data-select]").forEach((select) => {
+		let spollerbutton = select.querySelector("[data-select-body]");
+		document.addEventListener("click", (event) => {
+			const withinBoundaries = event.composedPath().includes(spollerbutton);
+
+			if (!withinBoundaries) {
+				spollerbutton.classList.remove('active');
+			}
+			else {
+				spollerbutton.classList.toggle('active');
+				if(select.querySelector("[data-select-body]")) {
+					let options = spollerbutton.querySelectorAll(".select__item");
+					if(event.target.classList.contains("select__item")) {
+						options.forEach((option) => {
+							option.classList.remove("active");
+						});
+						let optionText = event.target.innerText;
+						let buttonSpoller = select.querySelector("[data-select-button] span");
+						buttonSpoller.textContent = optionText;
+						event.target.classList.add("active");
+					}	
+				}
+			}
+		});
+		document.addEventListener("scroll", (event) => {
+			spollerbutton.classList.remove('active');
+		});	
+	});
+}
