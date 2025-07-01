@@ -1460,7 +1460,7 @@ body.lock {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
-  gap: 1rem;
+  gap: 1em;
 }
 .checkbox__label:before {
   content: "";
@@ -1469,17 +1469,14 @@ body.lock {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
-  border-radius: 0.4em;
-  width: 1.1em;
-  height: 1.1em;
+  width: 1.4em;
+  height: 1.4em;
   border: 1px solid var(--primary);
 }
 .checkbox__text {
-  font-weight: 700;
-  color: var(--gray);
-  font-size: 1em;
+  color: var(--gray3);
+  font-size: 1.2em;
   line-height: 120%;
-  opacity: 0.3;
 }
 .checkbox__link {
   text-decoration: underline;
@@ -1592,6 +1589,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .input-body.err {
   border: 1px solid red;
+}
+
+textarea {
+  resize: none;
+  background: transparent;
 }
 
 /*header*/
@@ -6507,8 +6509,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
 
 /*map page*/
 .map-page {
-  margin-top: 18em;
-  margin-bottom: 8em;
+  margin-top: 8em;
+  margin-bottom: 6em;
   position: relative;
 }
 .map-page__wrap {
@@ -6553,6 +6555,29 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .map-page__social {
   margin-top: 3em;
 }
+@media (min-width: 767.98px) {
+  .map-page__form-block {
+    position: absolute;
+    z-index: 10;
+    bottom: 0;
+    right: 0;
+    -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px);
+    background: rgba(217, 217, 217, 0.4901960784);
+    padding: 3em;
+    right: calc((100vw - 1555px) / 2);
+  }
+}
+@media (max-width: 1555px) {
+  .map-page__form-block {
+    right: 1rem;
+  }
+}
+@media (max-width: 767.98px) {
+  .map-page__form-block {
+    margin-top: 4em;
+  }
+}
 .map-page .map__map-body {
   height: 81em;
   position: relative;
@@ -6569,7 +6594,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 @media (max-width: 767.98px) {
   .map-page .map__map-body {
-    height: 56em;
+    height: 64em;
   }
 }
 
@@ -6615,4 +6640,48 @@ input[type=text], input[type=email], input[type=tel], textarea {
   .social-map-page__link {
     font-size: 1.2em;
   }
+}
+
+.form-map__checkbox {
+  margin-top: 2em;
+}
+.form-map__input-block {
+  margin-top: 2em;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+  padding: 1em 1.5em;
+  border: 1px solid var(--primary);
+}
+.form-map__input-block button {
+  width: 3em;
+  height: 3em;
+  -webkit-transition: opacity 0.3s ease 0s;
+  transition: opacity 0.3s ease 0s;
+}
+.form-map__input-block button svg {
+  width: 100%;
+  height: 100%;
+}
+@media (any-hover: hover) {
+  .form-map__input-block button:hover {
+    opacity: 0.5;
+  }
+}
+.form-map__input {
+  font-size: 1.6em;
+  line-height: 120%;
+  width: 100%;
 }
