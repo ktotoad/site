@@ -892,7 +892,7 @@ function initSliders() {
 		});
 
 		historymain.controller.control = historythumbs;
-		historythumbs.controller.control = mainSwiper;
+		historythumbs.controller.control = historythumbs;
 
 		historymain.on('slideChange', function () {
 			const index = historymain.realIndex;
