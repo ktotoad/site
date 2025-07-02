@@ -1624,6 +1624,12 @@ textarea {
 .header.main .header__link-phone svg path {
   stroke: var(--white);
 }
+.header.main.fixed .header__logo {
+  background: url("../img/logob.svg") center/contain no-repeat;
+}
+.header.main.fixed .header__logo img {
+  opacity: 0;
+}
 @media (max-width: 767.98px) {
   .header.main .header__link-phone i {
     border: 1px solid var(--primary);
@@ -1631,9 +1637,18 @@ textarea {
   .header.main .header__link-phone svg path {
     stroke: var(--primary);
   }
+  .header.main .header__logo {
+    background: url("../img/logob.svg") center/contain no-repeat;
+  }
+  .header.main .header__logo img {
+    opacity: 0;
+  }
 }
 .header.fixed {
   top: 0;
+  /*.header__logo {
+  	display: none;
+  }*/
 }
 .header.fixed .header__container {
   padding: 0.75em;
@@ -1644,9 +1659,6 @@ textarea {
 .header.fixed .header__list {
   -ms-flex-pack: distribute;
       justify-content: space-around;
-}
-.header.fixed .header__logo {
-  display: none;
 }
 .header.fixed .header__link, .header.fixed .header__link_b, .header.fixed .header__link-phone {
   color: var(--primary);
