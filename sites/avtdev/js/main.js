@@ -1217,8 +1217,8 @@ function mapInit() {
         // Удаляем "старую" коллекцию меток на карту.
         myCollection.removeAll();
         // Выбираем иконку
-        let logo = '../img/icons/map.svg';
-        let logoactive = '../img/icons/logomap.png';
+        let logo = './img/icons/map.svg';
+        let logoactive = './img/icons/logomap.png';
         let myCircle;
         // Заполняем коллекцию данными.
         for (var i = 0, l = result.length; i < l; i++) {
