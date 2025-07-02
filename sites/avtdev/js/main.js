@@ -958,6 +958,34 @@ function initSliders() {
 			},
 		});
 	}
+	if (document.querySelector('.news-slider')) {
+		new Swiper('.news-slider', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 3,
+			spaceBetween: 30,
+			parallax: true,
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 0,
+				},
+				767: {
+					slidesPerView: 2,
+					spaceBetween: 10,
+				},
+				992: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+			},
+			navigation: {
+				nextEl: ".news-slider__next",
+				prevEl: ".news-slider__prev",
+			},
+		});
+	}
 }
 initSliders();
 //InputMask===============================================================================================================================================
