@@ -1132,7 +1132,7 @@ function mapInitCon() {
     },
     {
         iconLayout: "default#imageWithContent",
-        iconImageHref: "../img/icons/map.svg",
+        iconImageHref: "./img/icons/map.svg",
         iconImageSize: [40, 40],
         iconImageOffset: [-20, -20],
         iconContentOffset: [15, 15],
