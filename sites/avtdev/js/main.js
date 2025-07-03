@@ -555,6 +555,60 @@ function initSliders() {
 	}
 }
 initSliders();
+//RANGE========================================================================================================================================
+if (document.querySelector("[data-range]")) {
+    rangeSliderInit();
+}
+
+function rangeSliderInit() {
+    document.querySelectorAll("[data-range]").forEach((rangeSlider) => {
+        const valuesArray = rangeSlider.getAttribute('data-range').split(',').map(value => value.trim());
+        var inputMinValue = Number(valuesArray[0]);
+        var inputMaxValue = Number(valuesArray[1]);
+        if (Number(valuesArray[2])) {
+            var inputMinStart = Number(valuesArray[2]);
+        } else {
+            var inputMinStart = inputMinValue;
+        }
+        if (Number(valuesArray[3])) {
+            var inputMaxStart = Number(valuesArray[3]);
+        } else {
+            var inputMaxStart = inputMaxValue;
+        }
+        if (rangeSlider.hasAttribute('data-range-step')) {
+            var valueStep = Number(rangeSlider.getAttribute('data-range-step'));
+        } else {
+            var valueStep = 50;
+        }
+        var slider = rangeSlider.querySelector("#slider");
+        var inputMin = rangeSlider.querySelector(".input-min");
+        var inputMax = rangeSlider.querySelector(".input-max");
+
+        const inputs = [inputMin, inputMax]; 
+
+        noUiSlider.create(slider, {
+            start: [inputMinStart, inputMaxStart],
+            connect: true,
+            step: valueStep,
+            range: {
+                min: [inputMinValue],
+                max: [inputMaxValue]
+            }
+        });
+
+        slider.noUiSlider.on('update', function (values, handle) {
+            inputs[handle].value = parseInt(values[handle]);
+        });
+
+        inputMin.addEventListener('change', function () {
+            slider.noUiSlider.set([this.value, null]);
+        });
+
+        inputMax.addEventListener('change', function () {
+            slider.noUiSlider.set([null, this.value]);
+        });
+    });
+}
 // SPOLLERS========================================================================================================================================
 function spollers() {
 	//Проверка на наличие атрибута
@@ -1141,8 +1195,54 @@ function mapInit() {
     var myMap = new ymaps.Map("map",{
         center: [55.823583, 49.092338],
         zoom: 12,
-        controls: ['zoomControl']
-    });
+        controls: []
+    }),
+    // Создадим пользовательский макет ползунка масштаба.
+    ZoomLayout = ymaps.templateLayoutFactory.createClass("<div class='map__controls-zoom'>" +
+        "<div id='zoom-in' class='map__zoom-btn'>+</div>" +
+        "<div id='zoom-out' class='map__zoom-btn'>-</div>" +
+        "</div>", {
+
+        // Переопределяем методы макета, чтобы выполнять дополнительные действия
+        // при построении и очистке макета.
+        build: function () {
+            // Вызываем родительский метод build.
+            ZoomLayout.superclass.build.call(this);
+
+            // Привязываем функции-обработчики к контексту и сохраняем ссылки
+            // на них, чтобы потом отписаться от событий.
+            this.zoomInCallback = ymaps.util.bind(this.zoomIn, this);
+            this.zoomOutCallback = ymaps.util.bind(this.zoomOut, this);
+
+            // Начинаем слушать клики на кнопках макета.
+            $('#zoom-in').bind('click', this.zoomInCallback);
+            $('#zoom-out').bind('click', this.zoomOutCallback);
+        },
+
+        clear: function () {
+            // Снимаем обработчики кликов.
+            $('#zoom-in').unbind('click', this.zoomInCallback);
+            $('#zoom-out').unbind('click', this.zoomOutCallback);
+
+            // Вызываем родительский метод clear.
+            ZoomLayout.superclass.clear.call(this);
+        },
+
+        zoomIn: function () {
+            var map = this.getData().control.getMap();
+            map.setZoom(map.getZoom() + 1, {checkZoomRange: true});
+            myMap.behaviors.enable('scrollZoom');
+        },
+
+        zoomOut: function () {
+            var map = this.getData().control.getMap();
+            map.setZoom(map.getZoom() - 1, {checkZoomRange: true});
+            myMap.behaviors.enable('scrollZoom');
+        }
+    }),
+    zoomControl = new ymaps.control.ZoomControl({options: {layout: ZoomLayout}});
+
+    myMap.controls.add(zoomControl);
     //убираем скрол
     myMap.behaviors.disable('scrollZoom');
 
@@ -1169,7 +1269,7 @@ function mapInit() {
         plan : [
             { coords: [55.788143, 49.114728], text: 'Авторы на Астрономической', link: 'https://yandex.ru/maps/-/CHchYS0e' },
         ],
-    };
+    };        
 
     //фильтр
     if(document.querySelector('#mapfilter')) {
@@ -1226,12 +1326,23 @@ function mapInit() {
                 },
             ));
             //модалка карты
-            myCircle.events.add('click', function (e) {
+            myCircle.events
+            .add('mouseenter', function (e) {
                 //меняем иконку на активную
                 var target = e.get('target');
+                target.options.set('preset');
                 target.options.set('iconImageHref', logoactive);
                 target.options.set('iconImageSize', [64, 72]);
-                target.options.set('iconImageOffset', [-32, -72]);
+                target.options.set('iconImageOffset', [-32, -51]);
+            })
+            .add('mouseleave', function (e) {
+                var target = e.get('target');
+                target.options.unset('preset');
+                target.options.set('iconImageHref', logo);
+                target.options.set('iconImageSize', [44, 44]);
+                target.options.set('iconImageOffset', [-22, -22]);
+            })
+            .add('click', function (e) {
 
                 //вызываем модалку
                 popupOpen(popupMap);
