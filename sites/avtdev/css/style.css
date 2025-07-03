@@ -787,18 +787,19 @@ body.lock {
   cursor: pointer;
   height: 1.25em !important;
   width: 1.25em !important;
-  border-radius: 50% !important;
+  border-radius: 0% !important;
   top: 50% !important;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  -webkit-transform: translate(-100%, -50%);
+          transform: translate(-100%, -50%);
   pointer-events: auto;
-  background: var(--primary);
+  background: transparent;
+  border: 0.5em solid var(--primary);
   -webkit-transition: background 0.3s ease 0s;
   transition: background 0.3s ease 0s;
 }
 @media (any-hover: hover) {
   .noUi-handle:hover {
-    background: var(--gray2);
+    background: var(--primary);
   }
 }
 .noUi-handle::before, .noUi-handle::after {
@@ -825,7 +826,7 @@ body.lock {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  gap: 3em;
+  gap: 2em;
 }
 .ui-slider__input-body {
   display: -webkit-box;
@@ -841,16 +842,12 @@ body.lock {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  gap: 0.25rem;
-}
-.ui-slider__input-body span {
-  font-size: 1.2em;
-  line-height: 110%;
+  gap: 0.1rem;
 }
 .ui-slider__input {
-  text-align: right;
-  width: 6ch;
-  font-size: 1.4em;
+  text-align: center;
+  max-width: 5.5em;
+  font-size: 1.2em;
   line-height: 110%;
   background: transparent;
   -moz-appearance: textfield;
