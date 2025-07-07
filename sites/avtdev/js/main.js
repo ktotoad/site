@@ -1366,11 +1366,8 @@ document.addEventListener('click', function(event) {
 	if (event.target.matches('[data-select]') || event.target.closest("[data-select]")) {
 		let select = event.target.closest("[data-select]");
 		let spollerbutton = event.target.closest("[data-select-body]");
-
-		if(event.target.matches('[data-select-body]')) {
-			event.target.classList.add('active');
-			currentSelect = event.target;
-		}
+		select.classList.add('active');
+		currentSelect = select;
 		
 		if(select.querySelector("[data-select-body]")) {
 			if(event.target.classList.contains("select__item")) {
@@ -1383,12 +1380,30 @@ document.addEventListener('click', function(event) {
 
 				buttonSpoller.textContent = optionText;
 				event.target.classList.add("active");
-				spollerbutton.classList.remove('active');
+				select.classList.remove('active');
 			}
 		}
 
 		document.addEventListener("scroll", (event) => {
-			spollerbutton.classList.remove('active');
+			select.classList.remove('active');
 		});	
 	}
 });
+//Buttons_Form==================================================================================================================================================
+if(document.querySelector("#buttonsForm")) {
+	const buttonsForm = document.querySelector("#buttonsForm");
+	const buttonsFormBody = buttonsForm.closest("section");
+
+	document.body.onscroll = (e) => {
+		var bounds = buttonsForm.getBoundingClientRect();
+		const centerTop = buttonsFormBody.offsetTop - (window.innerHeight - buttonsFormBody.clientHeight);
+		const centerBottom = buttonsFormBody.offsetTop - (window.innerHeight - buttonsFormBody.clientHeight) + bounds.height;
+
+		if(window.scrollY >= centerTop) {
+			buttonsForm.classList.add("change");
+		}
+		if(window.scrollY <= centerTop) {
+			buttonsForm.classList.remove("change");
+		}
+	}
+}
