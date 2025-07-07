@@ -1148,7 +1148,8 @@ if (document.querySelectorAll(".js_price")) {
   }
   let js_prices = document.querySelectorAll(".js_price");
   js_prices.forEach((js_price) => {
-      let price = Math.round(js_price.textContent);
+      //let price = Math.round(js_price.textContent);
+      let price = js_price.textContent;
       js_price.textContent = numberWithSpaces(price);
   })
 }
