@@ -1018,18 +1018,11 @@ if(document.querySelector("#video-gallery")) {
 	});
 }
 //toggle======================================================================================================================================================
-if(document.querySelector("#sunway")) {
-	document.querySelectorAll("#sunway").forEach(function (sunway) {
-		const toggle = sunway.querySelector('#toggle');
-		if(sunway.querySelector('#svgway')) {
-			const svgway = sunway.querySelector('#svgway');
-		}
-
-		toggle.addEventListener("click", function () {
-        	sunway.classList.toggle("active");
-        });
-    });
-}
+document.addEventListener('click', function(event) {
+	if (event.target.matches('[data-toggle]') || event.target.closest("[data-toggle]")) {
+		event.target.closest("[data-toggle]").classList.toggle("active");
+	}
+});
 //InputMask===============================================================================================================================================
 function inputElements() {
 	let inputPhones = document.querySelectorAll("input[data-format]");
