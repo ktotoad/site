@@ -609,6 +609,390 @@ function rangeSliderInit() {
         });
     });
 }
+//toggle======================================================================================================================================================
+document.addEventListener('click', function(event) {
+	if (event.target.matches('[data-toggle]') || event.target.closest("[data-toggle]")) {
+		event.target.closest("[data-toggle]").classList.toggle("active");
+	}
+});
+//InputMask===============================================================================================================================================
+function inputElements() {
+	let inputPhones = document.querySelectorAll("input[data-format]");
+	inputPhones.forEach(inputPhone => {
+		let phoneMask = new IMask(inputPhone, {
+			mask: inputPhone.getAttribute("data-format")
+		});
+	});
+}
+inputElements();
+//POPUP========================================================================================================================================
+const popupLinks = document.querySelectorAll('.popup-link');
+const lockPadding = document.querySelectorAll(".lock-padding");
+
+let unlock = true;
+
+const timeout = 800;
+
+if (popupLinks.length > 0) {
+	for (let index = 0; index < popupLinks.length; index++ ) {
+		const popupLink = popupLinks[index];
+		popupLink.addEventListener("click", function (e) {
+			const popupName = popupLink.getAttribute('href').replace('#', '');
+			const curentPopup = document.getElementById(popupName);
+			popupOpen(curentPopup);
+			e.preventDefault();
+		});
+	}
+}
+
+const popupCloseIcon = document.querySelectorAll('.close-popup');
+if (popupCloseIcon.length > 0) {
+	for (let index = 0; index < popupCloseIcon.length; index++) {
+		const el = popupCloseIcon[index];
+		el.addEventListener("click", function (e) {
+			popupClose(el.closest('.popup'));
+			e.preventDefault();
+		});
+	}
+}
+
+function popupOpen(curentPopup) {
+	if (curentPopup && unlock) {
+		const popupActive = document.querySelector('.popup.open');
+		if(popupActive) {
+			popupClose(popupActive, false);
+		} else {
+			bodyLock();
+		}
+		curentPopup.classList.add('open');
+		curentPopup.addEventListener("click", function (e) {
+			if (!e.target.closest('.popup__content')) {
+				popupClose(e.target.closest('.popup'));
+			}
+		});	
+	}
+}
+
+function popupClose(popupActive, doUnlock = true) {
+	if (unlock) {
+		popupActive.classList.remove('open');
+		if (doUnlock) {
+			bodyUnLock();
+		}
+	}
+}
+
+function bodyLock() {
+	const lockPaddingValue = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px';
+	if (lockPadding.length > 0) {	
+		for (let index = 0; index < lockPadding.length; index++) {
+			const el = lockPadding[index];
+			el.style.paddingRight = lockPaddingValue;
+		}
+	}
+	body.style.paddingRight = lockPaddingValue;
+	body.classList.add('lock');
+
+	unlock = false;
+	setTimeout(function () {
+		unlock = true;
+	}, timeout);
+}
+
+function bodyUnLock() {
+	setTimeout(function () {
+		if (lockPadding.length > 0) {	
+			for (let index = 0; index < lockPadding.length; index++) {
+				const el = lockPadding[index];
+				el.style.paddingRight = '0px';
+			}
+		}
+		body.style.paddingRight = '0px';
+		body.classList.remove('lock');
+	}, timeout);
+
+	unlock = false;
+	setTimeout(function () {
+		unlock = true;
+	}, timeout);
+}
+//poputext====================================================================================================================================
+function popupTextBook() {
+	document.querySelector("#popup").querySelector("#popuptitle span").innerText = 'подтверждение бронирования';
+	document.querySelector("#popup").querySelector("#popuptext").innerHTML = 'Оставьте свои контактные данные <br> и мы свяжемся для уточнения деталей бронирования';
+}
+function popupTextMain() {
+	document.querySelector("#popup").querySelector("#popuptitle span").innerText = 'Остались вопросы?';
+	document.querySelector("#popup").querySelector("#popuptext").innerHTML = 'Оставьте свои контактные данные <br>и мы подробно ответим на все. И расскажем еще больше!';
+}
+
+//price_spaces================================================================================================================================
+if (document.querySelectorAll(".js_price")) {
+  function numberWithSpaces(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "  ");
+  }
+  let js_prices = document.querySelectorAll(".js_price");
+  js_prices.forEach((js_price) => {
+      //let price = Math.round(js_price.textContent);
+      let price = js_price.textContent;
+      js_price.textContent = numberWithSpaces(price);
+  })
+}
+//map======================================================================================================================================================================
+if (document.querySelector("#map")) {
+    ymaps.ready(mapInit);
+}
+
+if (document.querySelector("#mapcontacts")) {
+    ymaps.ready(mapInitCon);
+}
+
+function mapInitCon() {
+    var myMap = new ymaps.Map("mapcontacts",{
+        center: [55.787705, 49.143407],
+        zoom: 13,
+        controls: ['zoomControl']
+    }),
+    myIcon = ymaps.templateLayoutFactory.createClass("<div>$[properties.iconContent]</div>"),
+    myPlacemark = new ymaps.Placemark([55.787705, 49.143407],
+    {
+        hintContent: 'Авторы',
+    },
+    {
+        iconLayout: "default#imageWithContent",
+        iconImageHref: "./img/icons/map.svg",
+        iconImageSize: [40, 40],
+        iconImageOffset: [-20, -20],
+        iconContentOffset: [15, 15],
+        iconContentLayout: myIcon,
+        hideIconOnBalloonOpen: !1,
+        balloonCloseButton: !1,
+        balloonOffset: [0, -20]
+    });
+    //убираем скрол
+    myMap.behaviors.disable('scrollZoom');
+    myMap.geoObjects.add(myPlacemark);
+}
+
+function mapInit() {
+    //модалка карты
+    let popupMap = document.getElementById('popupMap');
+    // Создаем карту
+    var myMap = new ymaps.Map("map",{
+        center: [55.823583, 49.092338],
+        zoom: 12,
+        controls: []
+    }),
+    // Создадим пользовательский макет ползунка масштаба.
+    ZoomLayout = ymaps.templateLayoutFactory.createClass("<div class='map__controls-zoom'>" +
+        "<div id='zoom-in' class='map__zoom-btn'>+</div>" +
+        "<div id='zoom-out' class='map__zoom-btn'>-</div>" +
+        "</div>", {
+
+        // Переопределяем методы макета, чтобы выполнять дополнительные действия
+        // при построении и очистке макета.
+        build: function () {
+            // Вызываем родительский метод build.
+            ZoomLayout.superclass.build.call(this);
+
+            // Привязываем функции-обработчики к контексту и сохраняем ссылки
+            // на них, чтобы потом отписаться от событий.
+            this.zoomInCallback = ymaps.util.bind(this.zoomIn, this);
+            this.zoomOutCallback = ymaps.util.bind(this.zoomOut, this);
+
+            // Начинаем слушать клики на кнопках макета.
+            $('#zoom-in').bind('click', this.zoomInCallback);
+            $('#zoom-out').bind('click', this.zoomOutCallback);
+        },
+
+        clear: function () {
+            // Снимаем обработчики кликов.
+            $('#zoom-in').unbind('click', this.zoomInCallback);
+            $('#zoom-out').unbind('click', this.zoomOutCallback);
+
+            // Вызываем родительский метод clear.
+            ZoomLayout.superclass.clear.call(this);
+        },
+
+        zoomIn: function () {
+            var map = this.getData().control.getMap();
+            map.setZoom(map.getZoom() + 1, {checkZoomRange: true});
+            myMap.behaviors.enable('scrollZoom');
+        },
+
+        zoomOut: function () {
+            var map = this.getData().control.getMap();
+            map.setZoom(map.getZoom() - 1, {checkZoomRange: true});
+            myMap.behaviors.enable('scrollZoom');
+        }
+    }),
+    zoomControl = new ymaps.control.ZoomControl({options: {layout: ZoomLayout}});
+
+    myMap.controls.add(zoomControl);
+    //убираем скрол
+    myMap.behaviors.disable('scrollZoom');
+
+    //добавляем точки
+    // Создаем коллекцию.
+    myCollection = new ymaps.GeoObjectCollection(),
+    // Создаем массив с данными.
+    myPoints = {
+        all : [
+            { coords: [55.788143, 49.114728], text: 'Авторы на Астрономической', link: 'https://yandex.ru/maps/-/CHchYS0e' },
+            { coords: [55.783718, 49.130394], text: 'Авторы на Петербургской', link: 'https://yandex.ru/maps/-/CHchaNKr' },
+            { coords: [55.861984, 49.096856], text: 'Авторы на Годовикова', link: 'https://yandex.ru/maps/-/CHchaKoC' },
+            { coords: [55.796461, 49.058097], text: 'Авторы на Большой', link: 'https://yandex.ru/maps/-/CHcha03D' },
+            { coords: [55.872772, 48.875660], text: 'Дом у Озера', link: 'https://yandex.ru/maps/-/CHcheJmI' },
+        ],
+        done : [
+            { coords: [55.872772, 48.875660], text: 'Дом у Озера', link: 'https://yandex.ru/maps/-/CHcheJmI' },
+        ],
+        work : [
+            { coords: [55.783718, 49.130394], text: 'Авторы на Петербургской', link: 'https://yandex.ru/maps/-/CHchaNKr' },
+            { coords: [55.861984, 49.096856], text: 'Авторы на Годовикова', link: 'https://yandex.ru/maps/-/CHchaKoC' },
+            { coords: [55.796461, 49.058097], text: 'Авторы на Большой', link: 'https://yandex.ru/maps/-/CHcha03D' },
+        ],
+        plan : [
+            { coords: [55.788143, 49.114728], text: 'Авторы на Астрономической', link: 'https://yandex.ru/maps/-/CHchYS0e' },
+        ],
+    };        
+
+    //фильтр
+    if(document.querySelector('#mapfilter')) {
+        const tabButtons = document.querySelectorAll('.filter__item');
+        tabButtons.forEach(elem => { 
+            if(elem.classList.contains('active')) {
+                let filter = elem.dataset['filter'];
+                mapSearchPoints(filter);
+            }
+        });
+        document.querySelector('#mapfilter').addEventListener('click', e => {
+            //закрываем модалку при нажатии фильтра
+            popupClose(popupMap, true);
+            if(e.target.classList.contains('filter__item') || e.target.closest('.filter__item')) {
+                let filter = e.target.closest('.filter__item').dataset['filter'];
+                tabButtons.forEach(elem => elem.classList.remove('active'));
+                e.target.classList.add('active');
+                mapSearchPoints(filter);
+            }
+        });
+    }
+
+    function mapSearchPoints(filter) {
+        for (const [key, value] of Object.entries(myPoints)) {
+            if(key == filter) {
+                let result = value;
+                mapAddPoints(result, filter);
+            }
+        }
+    }
+
+    function mapAddPoints(result, filter) {
+        // Удаляем "старую" коллекцию меток на карту.
+        myCollection.removeAll();
+        // Выбираем иконку
+        let logo = './img/icons/map.svg';
+        let logoactive = './img/icons/logomap.png';
+        let myCircle;
+        // Заполняем коллекцию данными.
+        for (var i = 0, l = result.length; i < l; i++) {
+            var point = result[i];
+            myCollection.add(myCircle = new ymaps.Placemark(
+                point.coords, {
+                    hintContent: point.text,
+                }, {
+                    // Необходимо указать данный тип макета.
+                    iconLayout: 'default#image',
+                    // Своё изображение иконки метки.
+                    iconImageHref: logo,
+                    // Размеры метки.
+                    iconImageSize: [44, 44],
+                    // Смещение левого верхнего угла иконки относительно
+                    iconImageOffset: [-22, -22]
+                },
+            ));
+            //модалка карты
+            myCircle.events
+            .add('mouseenter', function (e) {
+                //меняем иконку на активную
+                var target = e.get('target');
+                target.options.set('preset');
+                target.options.set('iconImageHref', logoactive);
+                target.options.set('iconImageSize', [64, 72]);
+                target.options.set('iconImageOffset', [-32, -51]);
+            })
+            .add('mouseleave', function (e) {
+                var target = e.get('target');
+                target.options.unset('preset');
+                target.options.set('iconImageHref', logo);
+                target.options.set('iconImageSize', [44, 44]);
+                target.options.set('iconImageOffset', [-22, -22]);
+            })
+            .add('click', function (e) {
+
+                //вызываем модалку
+                popupOpen(popupMap);
+                bodyUnLock();
+            });
+        }
+        // Добавляем коллекцию меток на карту.
+        myMap.geoObjects.add(myCollection);
+    }
+}
+
+
+//select=====================================================================================================================================================
+let currentSelect = null;
+
+document.addEventListener('click', function(event) {
+	if (currentSelect) {
+		currentSelect.classList.remove('active');
+	}
+
+	if (event.target.matches('[data-select]') || event.target.closest("[data-select]")) {
+		let select = event.target.closest("[data-select]");
+		let spollerbutton = event.target.closest("[data-select-body]");
+		select.classList.add('active');
+		currentSelect = select;
+		
+		if(select.querySelector("[data-select-body]")) {
+			if(event.target.classList.contains("select__item")) {
+				spollerbutton.querySelectorAll(".select__item").forEach((option) => {
+					option.classList.remove("active");
+				});
+
+				let optionText = event.target.innerText;
+				let buttonSpoller = select.querySelector("[data-select-button] span");
+
+				buttonSpoller.textContent = optionText;
+				event.target.classList.add("active");
+				select.classList.remove('active');
+			}
+		}
+
+		document.addEventListener("scroll", (event) => {
+			select.classList.remove('active');
+		});	
+	}
+});
+//Buttons_Form==================================================================================================================================================
+if(document.querySelector("#buttonsForm")) {
+	const buttonsForm = document.querySelector("#buttonsForm");
+	const buttonsFormBody = buttonsForm.closest("section");
+
+	document.body.onscroll = (e) => {
+		var bounds = buttonsForm.getBoundingClientRect();
+		const centerTop = buttonsFormBody.offsetTop - (window.innerHeight - buttonsFormBody.clientHeight);
+		const centerBottom = buttonsFormBody.offsetTop - (window.innerHeight - buttonsFormBody.clientHeight) + bounds.height;
+
+		if(window.scrollY >= centerTop) {
+			buttonsForm.classList.add("change");
+		}
+		if(window.scrollY <= centerTop) {
+			buttonsForm.classList.remove("change");
+		}
+	}
+}
 // SPOLLERS========================================================================================================================================
 function spollers() {
 	//Проверка на наличие атрибута
@@ -1017,387 +1401,11 @@ if(document.querySelector("#video-gallery")) {
 		});
 	});
 }
-//toggle======================================================================================================================================================
-document.addEventListener('click', function(event) {
-	if (event.target.matches('[data-toggle]') || event.target.closest("[data-toggle]")) {
-		event.target.closest("[data-toggle]").classList.toggle("active");
-	}
-});
-//InputMask===============================================================================================================================================
-function inputElements() {
-	let inputPhones = document.querySelectorAll("input[data-format]");
-	inputPhones.forEach(inputPhone => {
-		let phoneMask = new IMask(inputPhone, {
-			mask: inputPhone.getAttribute("data-format")
-		});
-	});
-}
-inputElements();
-//POPUP========================================================================================================================================
-const popupLinks = document.querySelectorAll('.popup-link');
-const lockPadding = document.querySelectorAll(".lock-padding");
-
-let unlock = true;
-
-const timeout = 800;
-
-if (popupLinks.length > 0) {
-	for (let index = 0; index < popupLinks.length; index++ ) {
-		const popupLink = popupLinks[index];
-		popupLink.addEventListener("click", function (e) {
-			const popupName = popupLink.getAttribute('href').replace('#', '');
-			const curentPopup = document.getElementById(popupName);
-			popupOpen(curentPopup);
-			e.preventDefault();
-		});
-	}
-}
-
-const popupCloseIcon = document.querySelectorAll('.close-popup');
-if (popupCloseIcon.length > 0) {
-	for (let index = 0; index < popupCloseIcon.length; index++) {
-		const el = popupCloseIcon[index];
-		el.addEventListener("click", function (e) {
-			popupClose(el.closest('.popup'));
-			e.preventDefault();
-		});
-	}
-}
-
-function popupOpen(curentPopup) {
-	if (curentPopup && unlock) {
-		const popupActive = document.querySelector('.popup.open');
-		if(popupActive) {
-			popupClose(popupActive, false);
-		} else {
-			bodyLock();
-		}
-		curentPopup.classList.add('open');
-		curentPopup.addEventListener("click", function (e) {
-			if (!e.target.closest('.popup__content')) {
-				popupClose(e.target.closest('.popup'));
-			}
-		});	
-	}
-}
-
-function popupClose(popupActive, doUnlock = true) {
-	if (unlock) {
-		popupActive.classList.remove('open');
-		if (doUnlock) {
-			bodyUnLock();
-		}
-	}
-}
-
-function bodyLock() {
-	const lockPaddingValue = window.innerWidth - document.querySelector('.wrapper').offsetWidth + 'px';
-	if (lockPadding.length > 0) {	
-		for (let index = 0; index < lockPadding.length; index++) {
-			const el = lockPadding[index];
-			el.style.paddingRight = lockPaddingValue;
-		}
-	}
-	body.style.paddingRight = lockPaddingValue;
-	body.classList.add('lock');
-
-	unlock = false;
-	setTimeout(function () {
-		unlock = true;
-	}, timeout);
-}
-
-function bodyUnLock() {
-	setTimeout(function () {
-		if (lockPadding.length > 0) {	
-			for (let index = 0; index < lockPadding.length; index++) {
-				const el = lockPadding[index];
-				el.style.paddingRight = '0px';
-			}
-		}
-		body.style.paddingRight = '0px';
-		body.classList.remove('lock');
-	}, timeout);
-
-	unlock = false;
-	setTimeout(function () {
-		unlock = true;
-	}, timeout);
-}
-//poputext====================================================================================================================================
-function popupTextBook() {
-	document.querySelector("#popup").querySelector("#popuptitle span").innerText = 'подтверждение бронирования';
-	document.querySelector("#popup").querySelector("#popuptext").innerHTML = 'Оставьте свои контактные данные <br> и мы свяжемся для уточнения деталей бронирования';
-}
-function popupTextMain() {
-	document.querySelector("#popup").querySelector("#popuptitle span").innerText = 'Остались вопросы?';
-	document.querySelector("#popup").querySelector("#popuptext").innerHTML = 'Оставьте свои контактные данные <br>и мы подробно ответим на все. И расскажем еще больше!';
-}
-
-//price_spaces================================================================================================================================
-if (document.querySelectorAll(".js_price")) {
-  function numberWithSpaces(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "  ");
-  }
-  let js_prices = document.querySelectorAll(".js_price");
-  js_prices.forEach((js_price) => {
-      //let price = Math.round(js_price.textContent);
-      let price = js_price.textContent;
-      js_price.textContent = numberWithSpaces(price);
-  })
-}
-//map======================================================================================================================================================================
-if (document.querySelector("#map")) {
-    ymaps.ready(mapInit);
-}
-
-if (document.querySelector("#mapcontacts")) {
-    ymaps.ready(mapInitCon);
-}
-
-function mapInitCon() {
-    var myMap = new ymaps.Map("mapcontacts",{
-        center: [55.787705, 49.143407],
-        zoom: 13,
-        controls: ['zoomControl']
-    }),
-    myIcon = ymaps.templateLayoutFactory.createClass("<div>$[properties.iconContent]</div>"),
-    myPlacemark = new ymaps.Placemark([55.787705, 49.143407],
-    {
-        hintContent: 'Авторы',
-    },
-    {
-        iconLayout: "default#imageWithContent",
-        iconImageHref: "./img/icons/map.svg",
-        iconImageSize: [40, 40],
-        iconImageOffset: [-20, -20],
-        iconContentOffset: [15, 15],
-        iconContentLayout: myIcon,
-        hideIconOnBalloonOpen: !1,
-        balloonCloseButton: !1,
-        balloonOffset: [0, -20]
+//sunway========================================================================================================================================
+if (document.querySelector("#sunway")) {
+	let sunway = document.querySelector("#sunway");
+	let toggle = sunway.querySelector('[data-toggle="sunway"]');
+	toggle.addEventListener('click', (e) => {
+		sunway.classList.toggle('active');
     });
-    //убираем скрол
-    myMap.behaviors.disable('scrollZoom');
-    myMap.geoObjects.add(myPlacemark);
-}
-
-function mapInit() {
-    //модалка карты
-    let popupMap = document.getElementById('popupMap');
-    // Создаем карту
-    var myMap = new ymaps.Map("map",{
-        center: [55.823583, 49.092338],
-        zoom: 12,
-        controls: []
-    }),
-    // Создадим пользовательский макет ползунка масштаба.
-    ZoomLayout = ymaps.templateLayoutFactory.createClass("<div class='map__controls-zoom'>" +
-        "<div id='zoom-in' class='map__zoom-btn'>+</div>" +
-        "<div id='zoom-out' class='map__zoom-btn'>-</div>" +
-        "</div>", {
-
-        // Переопределяем методы макета, чтобы выполнять дополнительные действия
-        // при построении и очистке макета.
-        build: function () {
-            // Вызываем родительский метод build.
-            ZoomLayout.superclass.build.call(this);
-
-            // Привязываем функции-обработчики к контексту и сохраняем ссылки
-            // на них, чтобы потом отписаться от событий.
-            this.zoomInCallback = ymaps.util.bind(this.zoomIn, this);
-            this.zoomOutCallback = ymaps.util.bind(this.zoomOut, this);
-
-            // Начинаем слушать клики на кнопках макета.
-            $('#zoom-in').bind('click', this.zoomInCallback);
-            $('#zoom-out').bind('click', this.zoomOutCallback);
-        },
-
-        clear: function () {
-            // Снимаем обработчики кликов.
-            $('#zoom-in').unbind('click', this.zoomInCallback);
-            $('#zoom-out').unbind('click', this.zoomOutCallback);
-
-            // Вызываем родительский метод clear.
-            ZoomLayout.superclass.clear.call(this);
-        },
-
-        zoomIn: function () {
-            var map = this.getData().control.getMap();
-            map.setZoom(map.getZoom() + 1, {checkZoomRange: true});
-            myMap.behaviors.enable('scrollZoom');
-        },
-
-        zoomOut: function () {
-            var map = this.getData().control.getMap();
-            map.setZoom(map.getZoom() - 1, {checkZoomRange: true});
-            myMap.behaviors.enable('scrollZoom');
-        }
-    }),
-    zoomControl = new ymaps.control.ZoomControl({options: {layout: ZoomLayout}});
-
-    myMap.controls.add(zoomControl);
-    //убираем скрол
-    myMap.behaviors.disable('scrollZoom');
-
-    //добавляем точки
-    // Создаем коллекцию.
-    myCollection = new ymaps.GeoObjectCollection(),
-    // Создаем массив с данными.
-    myPoints = {
-        all : [
-            { coords: [55.788143, 49.114728], text: 'Авторы на Астрономической', link: 'https://yandex.ru/maps/-/CHchYS0e' },
-            { coords: [55.783718, 49.130394], text: 'Авторы на Петербургской', link: 'https://yandex.ru/maps/-/CHchaNKr' },
-            { coords: [55.861984, 49.096856], text: 'Авторы на Годовикова', link: 'https://yandex.ru/maps/-/CHchaKoC' },
-            { coords: [55.796461, 49.058097], text: 'Авторы на Большой', link: 'https://yandex.ru/maps/-/CHcha03D' },
-            { coords: [55.872772, 48.875660], text: 'Дом у Озера', link: 'https://yandex.ru/maps/-/CHcheJmI' },
-        ],
-        done : [
-            { coords: [55.872772, 48.875660], text: 'Дом у Озера', link: 'https://yandex.ru/maps/-/CHcheJmI' },
-        ],
-        work : [
-            { coords: [55.783718, 49.130394], text: 'Авторы на Петербургской', link: 'https://yandex.ru/maps/-/CHchaNKr' },
-            { coords: [55.861984, 49.096856], text: 'Авторы на Годовикова', link: 'https://yandex.ru/maps/-/CHchaKoC' },
-            { coords: [55.796461, 49.058097], text: 'Авторы на Большой', link: 'https://yandex.ru/maps/-/CHcha03D' },
-        ],
-        plan : [
-            { coords: [55.788143, 49.114728], text: 'Авторы на Астрономической', link: 'https://yandex.ru/maps/-/CHchYS0e' },
-        ],
-    };        
-
-    //фильтр
-    if(document.querySelector('#mapfilter')) {
-        const tabButtons = document.querySelectorAll('.filter__item');
-        tabButtons.forEach(elem => { 
-            if(elem.classList.contains('active')) {
-                let filter = elem.dataset['filter'];
-                mapSearchPoints(filter);
-            }
-        });
-        document.querySelector('#mapfilter').addEventListener('click', e => {
-            //закрываем модалку при нажатии фильтра
-            popupClose(popupMap, true);
-            if(e.target.classList.contains('filter__item') || e.target.closest('.filter__item')) {
-                let filter = e.target.closest('.filter__item').dataset['filter'];
-                tabButtons.forEach(elem => elem.classList.remove('active'));
-                e.target.classList.add('active');
-                mapSearchPoints(filter);
-            }
-        });
-    }
-
-    function mapSearchPoints(filter) {
-        for (const [key, value] of Object.entries(myPoints)) {
-            if(key == filter) {
-                let result = value;
-                mapAddPoints(result, filter);
-            }
-        }
-    }
-
-    function mapAddPoints(result, filter) {
-        // Удаляем "старую" коллекцию меток на карту.
-        myCollection.removeAll();
-        // Выбираем иконку
-        let logo = './img/icons/map.svg';
-        let logoactive = './img/icons/logomap.png';
-        let myCircle;
-        // Заполняем коллекцию данными.
-        for (var i = 0, l = result.length; i < l; i++) {
-            var point = result[i];
-            myCollection.add(myCircle = new ymaps.Placemark(
-                point.coords, {
-                    hintContent: point.text,
-                }, {
-                    // Необходимо указать данный тип макета.
-                    iconLayout: 'default#image',
-                    // Своё изображение иконки метки.
-                    iconImageHref: logo,
-                    // Размеры метки.
-                    iconImageSize: [44, 44],
-                    // Смещение левого верхнего угла иконки относительно
-                    iconImageOffset: [-22, -22]
-                },
-            ));
-            //модалка карты
-            myCircle.events
-            .add('mouseenter', function (e) {
-                //меняем иконку на активную
-                var target = e.get('target');
-                target.options.set('preset');
-                target.options.set('iconImageHref', logoactive);
-                target.options.set('iconImageSize', [64, 72]);
-                target.options.set('iconImageOffset', [-32, -51]);
-            })
-            .add('mouseleave', function (e) {
-                var target = e.get('target');
-                target.options.unset('preset');
-                target.options.set('iconImageHref', logo);
-                target.options.set('iconImageSize', [44, 44]);
-                target.options.set('iconImageOffset', [-22, -22]);
-            })
-            .add('click', function (e) {
-
-                //вызываем модалку
-                popupOpen(popupMap);
-                bodyUnLock();
-            });
-        }
-        // Добавляем коллекцию меток на карту.
-        myMap.geoObjects.add(myCollection);
-    }
-}
-
-
-//select=====================================================================================================================================================
-let currentSelect = null;
-
-document.addEventListener('click', function(event) {
-	if (currentSelect) {
-		currentSelect.classList.remove('active');
-	}
-
-	if (event.target.matches('[data-select]') || event.target.closest("[data-select]")) {
-		let select = event.target.closest("[data-select]");
-		let spollerbutton = event.target.closest("[data-select-body]");
-		select.classList.add('active');
-		currentSelect = select;
-		
-		if(select.querySelector("[data-select-body]")) {
-			if(event.target.classList.contains("select__item")) {
-				spollerbutton.querySelectorAll(".select__item").forEach((option) => {
-					option.classList.remove("active");
-				});
-
-				let optionText = event.target.innerText;
-				let buttonSpoller = select.querySelector("[data-select-button] span");
-
-				buttonSpoller.textContent = optionText;
-				event.target.classList.add("active");
-				select.classList.remove('active');
-			}
-		}
-
-		document.addEventListener("scroll", (event) => {
-			select.classList.remove('active');
-		});	
-	}
-});
-//Buttons_Form==================================================================================================================================================
-if(document.querySelector("#buttonsForm")) {
-	const buttonsForm = document.querySelector("#buttonsForm");
-	const buttonsFormBody = buttonsForm.closest("section");
-
-	document.body.onscroll = (e) => {
-		var bounds = buttonsForm.getBoundingClientRect();
-		const centerTop = buttonsFormBody.offsetTop - (window.innerHeight - buttonsFormBody.clientHeight);
-		const centerBottom = buttonsFormBody.offsetTop - (window.innerHeight - buttonsFormBody.clientHeight) + bounds.height;
-
-		if(window.scrollY >= centerTop) {
-			buttonsForm.classList.add("change");
-		}
-		if(window.scrollY <= centerTop) {
-			buttonsForm.classList.remove("change");
-		}
-	}
 }

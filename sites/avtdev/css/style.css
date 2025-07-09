@@ -6048,6 +6048,9 @@ textarea {
 .catalog-detail__checbox .checkbox__text {
   font-size: 2em;
 }
+.catalog-detail__checbox .checkbox__input:checked + .checkbox__label:before {
+  background: url(../img/icons/check.svg) center/80% no-repeat, var(--primary);
+}
 
 .information-detail {
   margin-right: auto;
@@ -6248,6 +6251,57 @@ textarea {
     top: 5em;
   }
 }
+.scheme-detail.active .tabs__content {
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+  aspect-ratio: 1/1;
+}
+.scheme-detail.active .circle__svg {
+  opacity: 1;
+}
+.scheme-detail.active .circle__start {
+  opacity: 1;
+  -webkit-transition: opacity 0.3s ease 0s;
+  transition: opacity 0.3s ease 0s;
+}
+.scheme-detail.active .circle__finish {
+  opacity: 1;
+  -webkit-transition: opacity 3.3s ease-in 0s;
+  transition: opacity 3.3s ease-in 0s;
+}
+.scheme-detail.active .circle__progress {
+  stroke-dashoffset: 45em;
+  opacity: 1;
+  -webkit-transition: stroke-dashoffset 3.3s ease 0s;
+  transition: stroke-dashoffset 3.3s ease 0s;
+}
+.scheme-detail.active .circle__way {
+  -webkit-transform: translate(-50%, -50%) rotate(42deg);
+          transform: translate(-50%, -50%) rotate(42deg);
+}
+.scheme-detail.active .circle__start {
+  -webkit-transform: translate(50%, -50%) rotate(-42deg);
+          transform: translate(50%, -50%) rotate(-42deg);
+}
+.scheme-detail.active .circle__finish {
+  -webkit-transform: translate(-50%, -50%) rotate(-42deg);
+          transform: translate(-50%, -50%) rotate(-42deg);
+}
+.scheme-detail .tabs__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: -webkit-transform 0.8s ease 0s;
+  transition: -webkit-transform 0.8s ease 0s;
+  transition: transform 0.8s ease 0s;
+  transition: transform 0.8s ease 0s, -webkit-transform 0.8s ease 0s;
+}
 .scheme-detail__tabs {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -6434,6 +6488,113 @@ textarea {
       -ms-flex-direction: row;
           flex-direction: row;
   gap: 1em;
+}
+.circle {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+@media (max-width: 767.98px) {
+  .circle {
+    margin-top: 3em;
+  }
+}
+.circle__way {
+  position: absolute;
+  z-index: 5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.circle__start, .circle__finish {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: absolute;
+  text-transform: uppercase;
+  color: var(--black);
+  font-size: 1em;
+  line-height: 120%;
+  opacity: 0;
+}
+.circle__start {
+  bottom: 50%;
+  right: 0;
+  -webkit-transform: translate(50%, -50%);
+          transform: translate(50%, -50%);
+}
+.circle__finish {
+  top: 0;
+  left: 50%;
+  -webkit-transform: translate(50%, -50%);
+          transform: translate(50%, -50%);
+}
+.circle__svg {
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+.circle__svg circle {
+  width: 100%;
+  height: 100%;
+  fill: transparent;
+  stroke-width: 3;
+  r: 49%;
+  cx: 50%;
+  cy: 50%;
+}
+.circle__main {
+  stroke: var(--primary);
+  stroke-opacity: 0.3;
+  stroke-dasharray: 1.5em, 1em;
+}
+.circle__progress {
+  stroke: var(--primary);
+  stroke-width: 3;
+  stroke-dasharray: 275%;
+  stroke-dashoffset: 0;
 }
 
 .page__parking {
