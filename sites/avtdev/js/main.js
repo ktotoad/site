@@ -553,6 +553,68 @@ function initSliders() {
 			},
 		});
 	}
+	if (document.querySelector('.slider-values')) {
+		new Swiper('.slider-values', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			spaceBetween: 60,
+			parallax: true,
+			speed: 800,
+			scrollbar: {
+				el: ".slider-values__scrollbar",
+				hide: false,
+		        draggable: true,
+		        dragSize: 42
+			},
+			breakpoints: {
+				320: {
+					spaceBetween: 20,
+				},
+				470: {
+					spaceBetween: 40,
+				},
+				992: {
+					spaceBetween: 60,
+				},
+			},
+		});
+	}
+
+	if (document.querySelector('.slider-reasons')) {
+		var reasonsthumbs = new Swiper('.slider-thumb-reasons', {
+			spaceBetween: 60,
+		    slidesPerView: 5,
+		    centeredSlides: getCenteredSlides(),
+			parallax: true,
+			watchSlidesProgress: true,
+			speed: 800,
+		});
+		var reasonsmain = new Swiper('.slider-reasons', {
+	  		observer: true,
+			observeParents: true,
+	  		effect: "fade",
+			autoHeight: true,
+			spaceBetween: 0,
+			speed: 800,
+			parallax: true,
+			thumbs: {
+				swiper: reasonsthumbs,
+			},
+		});
+
+		reasonsmain.controller.control = reasonsthumbs;
+		reasonsthumbs.controller.control = reasonsthumbs;
+
+		reasonsmain.on('slideChange', function () {
+			const index = reasonsmain.realIndex;
+			reasonsthumbs.slideToLoop(index, 300);
+		});
+
+		function getCenteredSlides() {
+			return window.innerWidth < 767;
+		}
+	}
 }
 initSliders();
 //RANGE========================================================================================================================================
