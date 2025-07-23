@@ -561,6 +561,10 @@ function initSliders() {
 			spaceBetween: 60,
 			parallax: true,
 			speed: 800,
+			navigation: {
+				nextEl: ".slider-values__next",
+				prevEl: ".slider-values__prev",
+			},
 			scrollbar: {
 				el: ".slider-values__scrollbar",
 				hide: false,
