@@ -628,13 +628,13 @@ body.lock {
   display: block;
   cursor: pointer;
   white-space: nowrap;
-  font-weight: 600;
-  text-transform: uppercase;
+  font-weight: 500;
+  text-transform: lowercase;
   background: var(--primary);
   border: 1px solid var(--primary);
-  font-size: 1.4em;
+  font-size: 1.8em;
   line-height: 120%;
-  padding: 1.2em;
+  padding: 1em;
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
   display: -webkit-box;
@@ -722,11 +722,11 @@ body.lock {
   display: block;
   cursor: pointer;
   white-space: nowrap;
-  text-transform: uppercase;
+  text-transform: lowercase;
   font-weight: 500;
-  font-size: 1.2em;
+  font-size: 1.8em;
   line-height: 120%;
-  padding: 1.5em;
+  padding: 0.5em 1em;
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
   -webkit-backdrop-filter: blur(12px);
@@ -1208,10 +1208,10 @@ body.lock {
           justify-content: center;
   text-align: center;
   gap: 1rem;
-  padding: 0.75em 1.75em;
-  text-transform: uppercase;
+  padding: 0.5em 1.5em;
+  text-transform: lowercase;
   font-weight: 500;
-  font-size: 1.4em;
+  font-size: 1.8em;
   line-height: 110%;
   color: var(--white);
   background: var(--primary);
@@ -1860,75 +1860,27 @@ textarea {
 /*header*/
 .header {
   position: fixed;
-  top: 2em;
+  top: 0;
   z-index: 100;
   width: 100%;
-  margin: 0.5em auto 1em;
+  margin: 0 auto;
+  padding: 2.5em 0 1em;
   color: var(--primary);
 }
-.header.main {
-  color: var(--white);
-}
-.header.main .header__link-phone i {
-  border: 1px solid var(--white);
-}
-.header.main .header__link-phone svg path {
-  stroke: var(--white);
-}
-.header.main.fixed .header__logo {
-  background: url("../img/logob.svg") center/contain no-repeat;
-}
-.header.main.fixed .header__logo img {
-  opacity: 0;
-}
-@media (max-width: 767.98px) {
-  .header.main .header__link-phone i {
-    border: 1px solid var(--primary);
-  }
-  .header.main .header__link-phone svg path {
-    stroke: var(--primary);
-  }
-  .header.main .header__logo {
-    background: url("../img/logob.svg") center/contain no-repeat;
-  }
-  .header.main .header__logo img {
-    opacity: 0;
-  }
-}
 .header.fixed {
-  top: 0;
+  background: var(--white);
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 .header.fixed .header__container {
-  padding: 0.75em;
-  -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
-  background: rgba(217, 217, 217, 0.5);
+  border-bottom: none;
 }
 .header.fixed .header__list {
   -ms-flex-pack: distribute;
       justify-content: space-around;
 }
 .header.fixed .header__logo {
-  /*display: none;*/
   width: 16em;
-}
-.header.fixed .header__link, .header.fixed .header__link_b, .header.fixed .header__link-phone {
-  color: var(--primary);
-}
-.header.fixed .header__button {
-  color: var(--primary);
-  border: 1px solid var(--primary);
-}
-@media (any-hover: hover) {
-  .header.fixed .header__button:hover {
-    background: var(--white);
-  }
-}
-.header.fixed .header__link-phone i {
-  border: 1px solid var(--primary);
-}
-.header.fixed .header__link-phone svg path {
-  stroke: var(--primary);
 }
 @media (max-width: 767.98px) {
   .header.fixed .header__button {
@@ -1956,6 +1908,8 @@ textarea {
   gap: 2rem;
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
+  padding-bottom: 1em;
+  border-bottom: 1px solid var(--gray);
 }
 @media (max-width: 1279.98px) {
   .header__container {
@@ -2022,9 +1976,9 @@ textarea {
 }
 .header__link, .header__link-phone, .header__link_b {
   font-weight: 500;
-  font-size: 1.4em;
+  font-size: 1.8em;
   line-height: 120%;
-  text-transform: uppercase;
+  text-transform: lowercase;
   -webkit-transition: opacity 0.3s ease 0s;
   transition: opacity 0.3s ease 0s;
 }
@@ -2113,7 +2067,8 @@ textarea {
 }
 .header__button {
   white-space: nowrap;
-  padding: 0.75em;
+  padding: 0.5em;
+  border: 1px solid var(--primary);
 }
 /*header submenu*/
 .submenu__body {
@@ -3297,7 +3252,7 @@ textarea {
   background: var(--light);
 }
 .item-slider-projects__info {
-  text-transform: uppercase;
+  text-transform: lowercase;
 }
 .item-slider-projects__info_p {
   color: var(--white);
@@ -3454,7 +3409,7 @@ textarea {
   gap: 0.5rem;
 }
 .slider-building__subtext {
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: var(--white);
   background: var(--primary);
   padding: 0.5em 1em;
@@ -7018,6 +6973,7 @@ textarea {
   margin-bottom: 2em;
 }
 .item-map-page__title {
+  text-transform: uppercase;
   color: var(--gray2);
 }
 .item-map-page__text a {
