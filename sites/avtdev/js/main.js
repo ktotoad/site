@@ -366,6 +366,21 @@ function initSliders() {
 			},
 		});
 	}
+	if (document.querySelector('.slider-popup')) {
+		new Swiper('.slider-popup', {
+  		observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 20,
+			autoHeight: true,
+			parallax: true,
+			speed: 1800,
+			navigation: {
+				nextEl: ".slider-popup__next",
+				prevEl: ".slider-popup__prev",
+			},
+		});
+	}
 	if (document.querySelector('.slider-projects')) {
 		new Swiper('.slider-projects', {
 			observer: true,
