@@ -374,7 +374,7 @@ function initSliders() {
 			spaceBetween: 20,
 			autoHeight: true,
 			parallax: true,
-			speed: 1800,
+			speed: 800,
 			navigation: {
 				nextEl: ".slider-popup__next",
 				prevEl: ".slider-popup__prev",
