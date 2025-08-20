@@ -173,6 +173,29 @@ DynamicAdapt.prototype.arraySort = function (arr) {
 };
 const da = new DynamicAdapt("max");
 da.init();
+//Image_modal=====================================================================================================================================================
+const options = {
+	contentClick: "toggleCover",
+	Images: {
+		Panzoom: {
+			panMode: "mousemove",
+			mouseMoveFactor: 1.1,
+			mouseMoveFriction: 0.12,
+		},
+	},
+};
+
+if(document.querySelector("[data-fancybox]")) {
+	document.querySelectorAll("[data-fancybox]").forEach(pictureWrap => {
+		Fancybox.bind(pictureWrap, {options});
+	});
+}
+
+if(document.querySelector("#gallery-wrap")) {
+	document.querySelectorAll("#gallery-wrap").forEach(galleryWrap => {
+		Fancybox.bind(galleryWrap, {options});
+	});
+}
 //InputMask===============================================================================================================================================
 function inputElements() {
 	let inputPhones = document.querySelectorAll("input[data-format]");
@@ -183,3 +206,146 @@ function inputElements() {
 	});
 }
 inputElements();
+//BuildSlider======================================================================================================================================================
+function buildSliders() {
+	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
+	if (sliders) {
+		sliders.forEach(slider => {
+			slider.parentElement.classList.add('swiper');
+			slider.classList.add('swiper-wrapper');
+			for(const slide of slider.children) {
+				slide.classList.add('swiper-slide');
+			}
+		});
+	}
+}
+
+//Инициализация_Swiper===============================================================================================================================================
+function initSliders() {
+	buildSliders();
+
+	if (document.querySelector('.slider-works')) {
+		new Swiper('.slider-works', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 3,
+			spaceBetween: 30,
+			parallax: true,
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 0,
+					autoHeight: true,
+				},
+				768: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
+				992: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+			},
+			navigation: {
+			    nextEl: '.slider-works__next',
+			    prevEl: '.slider-works__prev',
+			},
+		});
+	}
+	if (document.querySelector('.slider-reviews')) {
+		new Swiper('.slider-reviews', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 4,
+			spaceBetween: 30,
+			parallax: true,
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 0,
+				},
+				480: {
+					slidesPerView: 2,
+				},
+				768: {
+					slidesPerView: 3,
+				},
+				992: {
+					slidesPerView: 4,
+					spaceBetween: 20,
+				},
+			},
+			navigation: {
+			    nextEl: '.slider-reviews__next',
+			    prevEl: '.slider-reviews__prev',
+			},
+		});
+	}
+	if (document.querySelector('.content-question__slider')) {
+		var swiper = new Swiper('.question-page__slider-thumb', {
+			slidesPerView: 6,
+			spaceBetween: 30,
+			parallax: true,
+			//autoHeight: true,
+			//freeMode: true,
+			watchSlidesProgress: true,
+			speed: 800,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			breakpoints: {
+				320: {
+					spaceBetween: 10,
+					slidesPerView: 1,
+					autoHeight: true,
+				},
+				768: {
+					slidesPerView: 6,
+    				direction: "vertical",
+					spaceBetween: 10,
+				},
+				992: {
+					slidesPerView: 6,
+    				direction: "vertical",
+					spaceBetween: 30,
+				},
+			},
+		});
+		new Swiper('.content-question__slider', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 20,
+			parallax: true,
+			speed: 800,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			breakpoints: {
+				320: {
+					autoHeight: true,
+				},
+				992: {
+					autoHeight: false,
+    				effect: "fade",
+				},
+			},
+			navigation: {
+				nextEl: ".content-question__next",
+				prevEl: ".content-question__prev",
+			},
+			pagination: {
+				el: '.content-question__pagination',
+				clickable: true,
+			},
+			thumbs: {
+				swiper: swiper,
+			},
+		});
+	}
+}
+initSliders();
