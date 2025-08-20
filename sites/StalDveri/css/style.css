@@ -212,9 +212,17 @@ body.lock {
   font-size: 2.8em;
 }
 
-.text-main {
+.text-main, .text-xl, .text-m {
   font-size: 2em;
   line-height: 120%;
+}
+
+.text-xl {
+  font-size: 2.4em;
+}
+
+.text-m {
+  font-size: 1.6em;
 }
 
 /*contacts block*/
@@ -1253,6 +1261,154 @@ textarea.input {
      object-fit: cover;
 }
 
+/*faq*/
+.faq__wrap {
+  border-radius: 4em;
+  margin-top: 3em;
+  padding: 4em;
+  background: var(--white);
+}
+.faq__spollers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+}
+.faq__spoller {
+  position: relative;
+  border-radius: 1em;
+  padding: 2em;
+  border: 1.2px solid var(--op-gray);
+  margin-right: 9em;
+}
+@media (max-width: 767.98px) {
+  .faq__spoller {
+    margin-right: 7em;
+  }
+}
+.faq__spoller-button {
+  text-align: left;
+  width: 100%;
+}
+.faq__spoller-button i {
+  position: absolute;
+  top: 0;
+  right: -3.75em;
+  width: 3em;
+  height: 3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 0.4em;
+  border: 1.2px solid var(--op-gray);
+  -webkit-transition: background 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+  transition: background 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+  transition: transform 0.3s ease 0s, background 0.3s ease 0s;
+  transition: transform 0.3s ease 0s, background 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+}
+.faq__spoller-button i svg {
+  width: 0.8em;
+  height: 1em;
+}
+.faq__spoller-button i svg path {
+  -webkit-transition: stroke 0.3s ease 0s;
+  transition: stroke 0.3s ease 0s;
+}
+.faq__spoller-button.spoller-active i {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  background: var(--red);
+  border: 1.2px solid var(--red);
+}
+.faq__spoller-button.spoller-active i svg path {
+  stroke: var(--white);
+}
+@media (any-hover: hover) {
+  .faq__spoller-button:not(.spoller-active):hover i {
+    background: var(--op-gray);
+  }
+}
+@media (max-width: 767.98px) {
+  .faq__spoller-button i {
+    position: absolute;
+    top: 0;
+    right: -2.75em;
+    width: 2em;
+    height: 2em;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    border-radius: 0.4em;
+    border: 1.2px solid var(--op-gray);
+    -webkit-transition: background 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+    transition: background 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+    transition: transform 0.3s ease 0s, background 0.3s ease 0s;
+    transition: transform 0.3s ease 0s, background 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+  }
+  .faq__spoller-button i svg {
+    width: 0.6em;
+    height: 0.8em;
+  }
+}
+.faq__spoller-body {
+  margin-top: 5em;
+}
+.faq__spoller-text {
+  color: var(--gray);
+}
+.faq__bottom {
+  margin-top: 3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+}
+@media (max-width: 767.98px) {
+  .faq__bottom {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+}
+.faq__text {
+  color: var(--light);
+}
+@media (min-width: 767.98px) {
+  .faq__text {
+    max-width: 18em;
+  }
+}
+
 .page__works {
   margin-top: 8em;
 }
@@ -1260,5 +1416,8 @@ textarea.input {
   margin-top: 8em;
 }
 .page__company {
+  margin-top: 8em;
+}
+.page__faq {
   margin-top: 8em;
 }
