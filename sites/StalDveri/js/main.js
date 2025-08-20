@@ -173,6 +173,16 @@ DynamicAdapt.prototype.arraySort = function (arr) {
 };
 const da = new DynamicAdapt("max");
 da.init();
+//fixed_main==================================================================================================================================================================================================================
+let header = document.querySelector("header");
+window.addEventListener("scroll", function(){
+	if(window.scrollY > 100){
+    	header.classList.add('fixed');
+	}
+	else{
+	    header.classList.remove('fixed');
+	}
+});
 //Image_modal=====================================================================================================================================================
 const options = {
 	contentClick: "toggleCover",
@@ -516,8 +526,7 @@ function initSliders() {
 			breakpoints: {
 				320: {
 					slidesPerView: 1,
-					spaceBetween: 0,
-					autoHeight: true,
+					spaceBetween: 10, 
 				},
 				768: {
 					slidesPerView: 2,
@@ -525,7 +534,6 @@ function initSliders() {
 				},
 				992: {
 					slidesPerView: 3,
-					spaceBetween: 20,
 				},
 			},
 			navigation: {
@@ -545,17 +553,17 @@ function initSliders() {
 			breakpoints: {
 				320: {
 					slidesPerView: 1,
-					spaceBetween: 0,
+					spaceBetween: 10,
 				},
 				480: {
 					slidesPerView: 2,
+					spaceBetween: 20,
 				},
 				768: {
 					slidesPerView: 3,
 				},
 				992: {
 					slidesPerView: 4,
-					spaceBetween: 20,
 				},
 			},
 			navigation: {
