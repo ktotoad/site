@@ -11,11 +11,11 @@ const menuBody = document.querySelector('.header__body');
 const body = document.querySelector('body');
 
 if (iconMenu) {
-	iconMenu.addEventListener('click', function clickButtonBurger(event) {
+	iconMenu.addEventListener('click', function(e) {
 		burgerFunc();
 	});
-	menuBody.addEventListener('click', function clickButtonBurger(event) {
-		if(menuBody.querySelector("a")) {
+	menuBody.addEventListener('click', function(e) {
+		if(menuBody.classList.contains("active")){
 			burgerFunc();
 		}
 	});
