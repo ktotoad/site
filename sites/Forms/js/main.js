@@ -47,6 +47,131 @@ if (document.querySelector("[drop-block]")){
 		}
 	});
 }
+//TABS==================================================================================================================================================
+// Получение хеша в адресе сайта
+function getHash() {
+	if (location.hash) { return location.hash.replace('#', ''); }
+}
+// Указание хеша в адресе сайта
+function setHash(hash) {
+	hash = hash ? `#${hash}` : window.location.href.split('#')[0];
+	history.pushState('', '', hash);
+}
+function tabs() {
+	const tabs = document.querySelectorAll('[data-tabs]');
+	let tabsActiveHash = [];
+
+	if (tabs.length > 0) {
+		const hash = getHash();
+		if (hash && hash.startsWith('tab-')) {
+			tabsActiveHash = hash.replace('tab-', '').split('-');
+		}
+		tabs.forEach((tabsBlock, index) => {
+			tabsBlock.classList.add('_tab-init');
+			tabsBlock.setAttribute('data-tabs-index', index);
+			tabsBlock.addEventListener("click", setTabsAction);
+			initTabs(tabsBlock);
+		});
+
+	}
+	// Установка позиций заголовков
+	function setTitlePosition(tabsMediaArray, matchMedia) {
+		tabsMediaArray.forEach(tabsMediaItem => {
+			tabsMediaItem = tabsMediaItem.item;
+			let tabsTitles = tabsMediaItem.querySelector('[data-tabs-titles]');
+			let tabsTitleItems = tabsMediaItem.querySelectorAll('[data-tabs-title]');
+			let tabsContent = tabsMediaItem.querySelector('[data-tabs-body]');
+			let tabsContentItems = tabsMediaItem.querySelectorAll('[data-tabs-item]');
+			tabsTitleItems = Array.from(tabsTitleItems).filter(item => item.closest('[data-tabs]') === tabsMediaItem);
+			tabsContentItems = Array.from(tabsContentItems).filter(item => item.closest('[data-tabs]') === tabsMediaItem);
+			tabsContentItems.forEach((tabsContentItem, index) => {
+				if (matchMedia.matches) {
+					tabsContent.append(tabsTitleItems[index]);
+					tabsContent.append(tabsContentItem);
+					tabsMediaItem.classList.add('_tab-spoller');
+				} else {
+					tabsTitles.append(tabsTitleItems[index]);
+					tabsMediaItem.classList.remove('_tab-spoller');
+				}
+			});
+		});
+	}
+	// Работа с контентом
+	function initTabs(tabsBlock) {
+		let tabsTitles = tabsBlock.querySelectorAll('[data-tabs-titles]>*');
+		let tabsContent = tabsBlock.querySelectorAll('[data-tabs-body]>*');
+		const tabsBlockIndex = tabsBlock.dataset.tabsIndex;
+		const tabsActiveHashBlock = tabsActiveHash[0] == tabsBlockIndex;
+
+		if (tabsActiveHashBlock) {
+			const tabsActiveTitle = tabsBlock.querySelector('[data-tabs-titles]>._tab-active');
+			tabsActiveTitle ? tabsActiveTitle.classList.remove('_tab-active') : null;
+		}
+		if (tabsContent.length) {
+			tabsContent = Array.from(tabsContent).filter(item => item.closest('[data-tabs]') === tabsBlock);
+			tabsTitles = Array.from(tabsTitles).filter(item => item.closest('[data-tabs]') === tabsBlock);
+			tabsContent.forEach((tabsContentItem, index) => {
+				tabsTitles[index].setAttribute('data-tabs-title', '');
+				tabsContentItem.setAttribute('data-tabs-item', '');
+
+				if (tabsActiveHashBlock && index == tabsActiveHash[1]) {
+					tabsTitles[index].classList.add('_tab-active');
+				}
+				tabsContentItem.hidden = !tabsTitles[index].classList.contains('_tab-active');
+			});
+		}
+	}
+	function setTabsStatus(tabsBlock) {
+		let tabsTitles = tabsBlock.querySelectorAll('[data-tabs-title]');
+		let tabsContent = tabsBlock.querySelectorAll('[data-tabs-item]');
+		const tabsBlockIndex = tabsBlock.dataset.tabsIndex;
+		function isTabsAnamate(tabsBlock) {
+			if (tabsBlock.hasAttribute('data-tabs-animate')) {
+				return tabsBlock.dataset.tabsAnimate > 0 ? Number(tabsBlock.dataset.tabsAnimate) : 500;
+			}
+		}
+		const tabsBlockAnimate = isTabsAnamate(tabsBlock);
+		if (tabsContent.length > 0) {
+			const isHash = tabsBlock.hasAttribute('data-tabs-hash');
+			tabsContent = Array.from(tabsContent).filter(item => item.closest('[data-tabs]') === tabsBlock);
+			tabsTitles = Array.from(tabsTitles).filter(item => item.closest('[data-tabs]') === tabsBlock);
+			tabsContent.forEach((tabsContentItem, index) => {
+				if (tabsTitles[index].classList.contains('_tab-active')) {
+					if (tabsBlockAnimate) {
+						_slideDown(tabsContentItem, tabsBlockAnimate);
+					} else {
+						tabsContentItem.hidden = false;
+					}
+					if (isHash && !tabsContentItem.closest('.popup')) {
+						setHash(`tab-${tabsBlockIndex}-${index}`);
+					}
+				} else {
+					if (tabsBlockAnimate) {
+						_slideUp(tabsContentItem, tabsBlockAnimate);
+					} else {
+						tabsContentItem.hidden = true;
+					}
+				}
+			});
+		}
+	}
+	function setTabsAction(e) {
+		const el = e.target;
+		if (el.closest('[data-tabs-title]')) {
+			const tabTitle = el.closest('[data-tabs-title]');
+			const tabsBlock = tabTitle.closest('[data-tabs]');
+			if (!tabTitle.classList.contains('_tab-active') && !tabsBlock.querySelector('._slide')) {
+				let tabActiveTitle = tabsBlock.querySelectorAll('[data-tabs-title]._tab-active');
+				tabActiveTitle.length ? tabActiveTitle = Array.from(tabActiveTitle).filter(item => item.closest('[data-tabs]') === tabsBlock) : null;
+				tabActiveTitle.length ? tabActiveTitle[0].classList.remove('_tab-active') : null;
+				tabTitle.classList.add('_tab-active');
+				setTabsStatus(tabsBlock);
+			}
+			e.preventDefault();
+		}
+	}
+}
+tabs();
 //InputMask===============================================================================================================================================
 function inputElements() {
 	let inputPhones = document.querySelectorAll("input[data-format]");
@@ -122,6 +247,7 @@ if (document.querySelector(".counter-block")){
     const instances = [];
 
 	counters.forEach((counter) => {
+		let formBlock = counter.closest(".form__block");
 		let valueEl = counter.querySelector(".value");
 		let decreaseBtn = counter.querySelector(".decrease");
 		let increaseBtn = counter.querySelector(".increase");
@@ -180,6 +306,7 @@ if (document.querySelector(".counter-block")){
 				instance.count++;
 				instance.update();
 			}
+			countAll(formBlock);
 		});
 
 		decreaseBtn.addEventListener('click', () => {
@@ -189,6 +316,7 @@ if (document.querySelector(".counter-block")){
 				// Если этот счётчик — лимит для других, обновляем их
 				instances.forEach(c => c.maxSourceId && c.update());
 			}
+			countAll(formBlock);
 		});
 
 		// Сохраняем экземпляр
@@ -197,4 +325,83 @@ if (document.querySelector(".counter-block")){
 		// Инициализируем отображение
 		instance.update();
     });
+}
+
+function countAll(formBlock) {
+	let summary = 0;
+	let counterValues = formBlock.querySelectorAll(".value");
+
+	counterValues.forEach((counterValue) => {
+		summary = summary + Number(counterValue.textContent);
+	});
+
+	formBlock.querySelector("#counted span").textContent = summary;
+}
+//FORMS====================================================================================================================================================================================
+function formValidate(input){
+	var er = 0;
+	var form = input.closest('form');
+	if(input.attr('name')=='email' || input.hasClass('email')){
+		if(input.val()!=input.attr('data-value')){
+			var em=input.val().replace(" ","");
+			input.val(em);
+		}
+		if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.val())) || input.val()==input.attr('data-value')){
+			er++;
+			addError(input);
+		}else{
+			removeError(input);
+		}
+	}else{
+		if(input.val()=='' || input.attr('data-value')){
+			er++;
+			addError(input);
+		}else{
+			removeError(input);
+		}
+	}
+	if(input.attr('type')=='checkbox'){
+		if(input.checked){
+			input.removeClass('err').parent().removeClass('err');
+		}else{
+			er++;
+			input.addClass('err').parent().addClass('err');
+		}
+	}
+	if(input.hasClass('name')){
+		if(!(/^[А-Яа-яa-zA-Z-]+( [А-Яа-яa-zA-Z-]+)$/.test(input.val()))){
+			er++;
+			addError(input);
+		}
+	}
+	return er;
+}
+
+function addError(input) {
+	input.addClass('err');
+	input.parent().addClass('err');
+	input.parent().find('.form__error').remove();
+	if(input.hasClass('email')){
+		var error='';
+		if(input.val()=='' || input.val()==input.attr('data-value')){
+			error=input.data('error');
+		}else{
+			error=input.data('error');
+		}
+		if(error!=null){
+			input.parent().append('<div class="form__error">'+error+'</div>');
+		}
+	}else{
+		if(input.data('error')!=null && input.parent().find('.form__error').lenght==0){
+			input.parent().append('<div class="form__error">'+input.data('error')+'</div>');
+		}
+	}
+	if(input.parents('.select-block').lenght>0){
+		input.parents('.select-block').parent().addClass('err');
+		input.parents('.select-block').find('.select').addClass('err');
+	}
+}
+
+function removeError(input) {
+
 }
