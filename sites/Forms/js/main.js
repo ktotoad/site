@@ -337,6 +337,39 @@ function countAll(formBlock) {
 
 	formBlock.querySelector("#counted span").textContent = summary;
 }
+//datepicker===================================================================================================================================
+$( function() {
+    var dateFormat = "mm/dd/yy",
+    	from = $( "#datefrom" )
+	        .datepicker({
+				minDate: 0,
+	        	defaultDate: "+1w",
+	        	changeMonth: true,
+	        	numberOfMonths: 2
+	        })
+	        .on( "change", function() {
+	        	to.datepicker( "option", "minDate", getDate( this ) );
+	        }),
+    	to = $( "#dateto" ).datepicker({
+			minDate: 0,
+	        defaultDate: "+1w",
+	        changeMonth: true,
+	        numberOfMonths: 2
+    	})
+    	.on( "change", function() {
+        	from.datepicker( "option", "maxDate", getDate( this ) );
+    	});
+ 
+    function getDate( element ) {
+    	var date;
+    	try {
+        	date = $.datepicker.parseDate( dateFormat, element.value );
+    	} catch( error ) {
+        	date = null;
+    	} 
+    	return date;
+    }
+});
 //FORMS====================================================================================================================================================================================
 function formValidate(input){
 	var er = 0;
