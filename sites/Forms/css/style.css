@@ -329,6 +329,22 @@ textarea {
           flex-direction: row;
   gap: 1rem;
 }
+.form__toggle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+}
 .form__block {
   position: relative;
   width: -webkit-max-content;
@@ -451,29 +467,6 @@ textarea {
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
 }
-.form__drop-body {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 1rem;
-  opacity: 0;
-  visibility: hidden;
-  -webkit-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
-  background: var(--white);
-  border: 1px solid var(--light);
-  border-radius: 1em;
-  padding: 1em;
-  -webkit-box-shadow: 0px 2em 2em 0px rgba(0, 0, 0, 0.0509803922);
-          box-shadow: 0px 2em 2em 0px rgba(0, 0, 0, 0.0509803922);
-}
 .form__checkboxes {
   display: -ms-grid;
   display: grid;
@@ -481,7 +474,7 @@ textarea {
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
-.form__checkbox, .form__button {
+.form__checkbox, .form .drop-body__tabs-button {
   cursor: pointer;
   width: 100%;
   position: relative;
@@ -491,11 +484,11 @@ textarea {
   -webkit-transition: border 0.3s ease 0s;
   transition: border 0.3s ease 0s;
 }
-.form__checkbox label, .form__button label {
+.form__checkbox label, .form .drop-body__tabs-button label {
   font-size: 1.4em;
   line-height: 110%;
 }
-.form__checkbox input, .form__button input {
+.form__checkbox input, .form .drop-body__tabs-button input {
   cursor: pointer;
   position: absolute;
   width: 100%;
@@ -505,53 +498,16 @@ textarea {
   opacity: 0;
 }
 @media (any-hover: hover) {
-  .form__checkbox:not(.active):hover, .form__button:not(.active):hover {
+  .form__checkbox:not(.active):hover, .form .drop-body__tabs-button:not(.active):hover {
     border: 1px solid var(--gray);
   }
 }
-.form__checkbox.active, .form__checkbox._tab-active, .form__button.active, .form__button._tab-active {
+.form__checkbox.active, .form__checkbox._tab-active, .form .drop-body__tabs-button.active, .form .drop-body__tabs-button._tab-active {
   border: 1px solid var(--gray);
   background: var(--gray);
 }
-.form__checkbox.active label, .form__checkbox._tab-active label, .form__button.active label, .form__button._tab-active label {
+.form__checkbox.active label, .form__checkbox._tab-active label, .form .drop-body__tabs-button.active label, .form .drop-body__tabs-button._tab-active label {
   color: var(--white);
-}
-.form__tabs {
-  font-size: 1.4em;
-  line-height: 110%;
-}
-.form__tabs .tabs__navigation {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1rem 1fr 1rem 1fr;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-}
-.form__list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 1rem;
-}
-.form__item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  gap: 1rem;
 }
 .form__item-title {
   font-size: 1.8em;
@@ -583,20 +539,22 @@ textarea {
 .toggle__button span {
   display: block;
   position: relative;
-  height: 2em;
-  width: 7em;
-  background: var(--light-gray);
+  height: 2.5em;
+  width: 5em;
+  background: var(--light);
+  border-radius: 1.5em;
 }
 .toggle__button span::before {
   content: "";
   position: absolute;
-  width: 3.5em;
+  width: 2.5em;
   height: 100%;
   top: 0;
   left: 0;
   background: var(--primary);
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
+  border-radius: 1.5em;
 }
 .toggle__button.active span::before {
   left: auto;
@@ -608,7 +566,7 @@ textarea {
   }
 }
 .toggle__text {
-  color: var(--gray3);
+  color: var(--gray);
   font-size: 1.4em;
   line-height: 110%;
   white-space: nowrap;
@@ -618,7 +576,7 @@ textarea {
   width: 1.5em;
   height: 1.5em;
 }
-.toggle__icon img {
+.toggle__icon img, .toggle__icon svg {
   width: 100%;
   height: 100%;
   -o-object-fit: contain;
@@ -773,6 +731,71 @@ textarea {
   line-height: 100%;
 }
 
+/*drop body*/
+.drop-body {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  background: var(--white);
+  border: 1px solid var(--light);
+  border-radius: 1em;
+  padding: 1em;
+  -webkit-box-shadow: 0px 2em 2em 0px rgba(0, 0, 0, 0.0509803922);
+          box-shadow: 0px 2em 2em 0px rgba(0, 0, 0, 0.0509803922);
+}
+.drop-body__title {
+  font-size: 1.8em;
+  line-height: 110%;
+}
+.drop-body__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+}
+.drop-body__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+}
+.drop-body__tabs {
+  font-size: 1.4em;
+  line-height: 110%;
+}
+.drop-body__tabs-navigation {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1rem 1fr 1rem 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
 .page__main {
   margin-top: 6em;
 }

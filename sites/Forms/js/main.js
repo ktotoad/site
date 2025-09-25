@@ -35,16 +35,16 @@ function burgerFunc() {
 }
 //spollerbutton=====================================================================================================================================================
 if (document.querySelector("[drop-block]")){
-	const dropBlock = document.querySelector('[drop-block]');
-	document.addEventListener("click", (event) => {
-		const withinBoundaries = event.composedPath().includes(dropBlock);
-
-		if (!withinBoundaries) {
-			dropBlock.classList.remove('active');
-		}
-		else {
-			dropBlock.classList.add('active');
-		}
+	const dropBlocks = document.querySelectorAll('[drop-block]');
+	document.addEventListener('click', (event) => {
+		dropBlocks.forEach(dropBlock => {
+			const isClickInside = event.composedPath().includes(dropBlock);
+			if (isClickInside) {
+				dropBlock.classList.add('active');
+			} else {
+				dropBlock.classList.remove('active');
+			}
+		});
 	});
 }
 //TABS==================================================================================================================================================
@@ -370,6 +370,16 @@ $( function() {
     	return date;
     }
 });
+//toggle======================================================================================================================================================
+document.addEventListener("click", function (e) {
+	if(e.target.matches("[data-toggle-id]") || e.target.closest("[data-toggle-id]")) {
+		let toggleButton = e.target.closest("[data-toggle-id]");
+		let itemID = toggleButton.dataset.toggleId;
+		toggleButton.classList.toggle("active");
+		document.getElementById(itemID).classList.toggle("active");
+	}
+});
+
 //FORMS====================================================================================================================================================================================
 function formValidate(input){
 	var er = 0;
