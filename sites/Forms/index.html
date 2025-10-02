@@ -215,18 +215,19 @@
 												<div class="form__input-body">
 													<label class="form__label">Туда</label>
 													<div class="form__input-row">
-														<input type="text" id="datefrom" name="from" class="form__input input">
+														<input id="datefrom" name="datefrom" placeholder="Выберите дату" data-validate="text" data-required="true"class="form__input input">
 													</div>
 												</div>
 												<div class="form__input-icon"></div>
 											</div>
+											<div class="error-message" data-for="datefrom"></div>
 										</div>
 										<div class="form__block">
 											<div class="form__input-block">
 												<div class="form__input-body">
 													<label class="form__label">Обратно</label>
 													<div class="form__input-row">
-														<input type="text" id="dateto" name="from" class="form__input input">
+														<input type="text" id="dateto" name="dateto" class="form__input input">
 													</div>
 												</div>
 												<div class="form__input-icon"></div>
@@ -244,32 +245,44 @@
 												<div class="form__input-body">
 													<label class="form__label">Имя</label>
 													<div class="form__input-row">
-														<input type="text" name="name" placeholder="Ваше имя" class="form__input input">
+														<input type="text" id="name" name="name" placeholder="Введите имя" data-validate="text" data-required="true" class="form__input input">
 													</div>
 												</div>
 											</div>
+											<div class="error-message" data-for="name"></div>
 										</div>
 										<div class="form__block">
 											<div class="form__input-block">
 												<div class="form__input-body">
 													<label class="form__label">Почта</label>
 													<div class="form__input-row">
-														<input id="email" type="email" name="email" placeholder="example@mail.ru" class="form__input input">
+														<input type="email" id="email" name="email" placeholder="Введите email" data-validate="email" data-required="true" class="form__input input">
 													</div>
 												</div>
 											</div>
-											<div class="error-message" id="email-error">Введите корректный email (например: user@example.com)</div>
+											<div class="error-message" data-for="email"></div>
 										</div>
 										<div class="form__block">
 											<div class="form__input-block">
 												<div class="form__input-body">
 													<label class="form__label">Телефон</label>
 													<div class="form__input-row">
-														<input id="phone" type="tel" name="tel" data-format="+7 000 000-00-00" placeholder="+7" class="form__input input">
+														<input type="tel" id="phone" name="phone" data-validate="phone" data-required="true" data-format="+7 000 000-00-00" placeholder="+7" class="form__input input">
 													</div>
 												</div>
 											</div>
-											<div class="error-message" id="phone-error">Введите корректный номер (например: +79991234567)</div>
+											<div class="error-message" data-for="phone"></div>
+										</div>
+									</div>
+									<div class="form__block">
+										<div class="form__input-block">
+											<div class="form__input-body">
+												<label class="form__label">Сообщение</label>
+												<div class="form__input-row">
+													<textarea id="message" name="message" placeholder="Введите сообщение" data-required="false" class="form__input input"></textarea>
+												</div>
+											</div>
+											<div class="error-message" data-for="message"></div>
 										</div>
 									</div>
 								</div>
@@ -303,7 +316,7 @@
 
 								<div class="info-column">
 									<p class="info-text">Кнопка проверки валидации форм</p>
-									<button type="button" onclick="validateForm()" class="button-main">Отправить</button>
+									<button type="button" onclick="validateOnSubmit()" class="button-main">Отправить</button>
 								</div>
 							</form>
 						</div>

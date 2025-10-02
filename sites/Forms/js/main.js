@@ -355,6 +355,26 @@ function countAll(formBlock) {
 	formBlock.querySelector("#counted span").textContent = summary;
 }
 //datepicker===================================================================================================================================
+/* Локализация datepicker */
+$.datepicker.regional['ru'] = {
+	closeText: 'Закрыть',
+	prevText: 'Предыдущий',
+	nextText: 'Следующий',
+	currentText: 'Сегодня',
+	monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+	monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'],
+	dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
+	dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
+	dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+	weekHeader: 'Не',
+	dateFormat: 'dd.mm.yy',
+	firstDay: 1,
+	isRTL: false,
+	showMonthAfterYear: false,
+	yearSuffix: ''
+};
+$.datepicker.setDefaults($.datepicker.regional['ru']);
+
 $( function() {
     var dateFormat = "mm/dd/yy",
     	from = $( "#datefrom" )
@@ -398,45 +418,103 @@ document.addEventListener("click", function (e) {
 });
 
 //FORMS====================================================================================================================================================================================
-function validateForm() {
-	const phoneInput = document.getElementById('phone');
-	const emailInput = document.getElementById('email');
-	const phoneError = document.getElementById('phone-error');
-	const emailError = document.getElementById('email-error');
-
-	// Убираем старые ошибки
-	phoneInput.closest(".form__input-block").classList.remove('error');
-	emailInput.closest(".form__input-block").classList.remove('error');
-	phoneError.classList.remove('active');
-	emailError.classList.remove('active');
-
-	let isValid = true;
-
-	// Валидация телефона: простая проверка — начинается с +7 или 8, затем 10 цифр
-	const phoneRegex = /^(\+7|8)\d{10}$/;
-	if (!phoneRegex.test(phoneInput.value.trim().replace(/[\s\-\(\)]/g, ''))) {
-		phoneInput.closest(".form__input-block").classList.add('error');
-        phoneError.classList.add('active');
-		isValid = false;
+//Валидация
+const validators = {
+	phone(value) {
+		const clean = value.trim().replace(/[\s\-\(\)]/g, '');
+		return /^(\+7|8)\d{10}$/.test(clean);
+	},
+	email(value) {
+		return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+	},
+	text(value) {
+		return value.trim().length > 0;
 	}
+};
 
-	// Валидация email
-	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	if (!emailRegex.test(emailInput.value.trim())) {
-		emailInput.closest(".form__input-block").classList.add('error');
-        emailError.classList.add('active');
-		isValid = false;
-	}
+//Ошибки
+const errorMessages = {
+	required: "Это поле обязательно для заполнения.",
+	phone: "Введите корректный номер (например: +79991234567).",
+	email: "Введите корректный email (например: user@example.com).",
+	text: "Поле не может быть пустым.",
+	minLength: (min) => `Минимальная длина — ${min} символов.`
+};
 
-	// Если ок отправляем
-	if (isValid) {
-		console.log("Форма успешно отправлена!");
-		// Здесь можно добавить отправку данных, например через fetch()
+// --- Универсальная функция проверки одного поля ---
+function validateField(input) {
+	const value = input.value;
+	const fieldType = input.dataset.validate;
+	const isRequired = input.dataset.required === 'true';
+	const minLength = input.dataset.minLength ? parseInt(input.dataset.minLength) : null;
+
+	const errorDiv = document.querySelector(`.error-message[data-for="${input.id}"]`);
+	let errorMessage = '';
+
+	// Сброс
+	input.closest(".form__input-block").classList.remove('error');
+	errorDiv.classList.remove('active');
+	errorDiv.textContent = '';
+
+	// Проверка: пустое ли поле
+	if (!value.trim()) {
+		if (isRequired) {
+			errorMessage = errorMessages.required;
+		}
 	} else {
-		alert("Проверьте правильность заполнения полей.");
+	// Поле не пустое — проверяем по типу
+		if (fieldType && !validators[fieldType](value)) {
+			errorMessage = errorMessages[fieldType] || "Неверный формат.";
+		}
+
+		// Проверка длины (для текстов)
+		if (minLength && value.trim().length < minLength) {
+			errorMessage = errorMessages.minLength(minLength);
+		}
 	}
+	// Если есть ошибка — показываем
+	if (errorMessage) {
+		input.closest(".form__input-block").classList.add('error');
+		errorDiv.textContent = errorMessage;
+		errorDiv.classList.add('active');
+		return false;
+	}
+
+	return true;
 }
 
+// --- Привязка событий ко всем полям формы ---
+document.querySelectorAll('input[data-validate], textarea[data-validate]').forEach(input => {
+	// При потере фокуса — проверяем
+	input.addEventListener('blur', () => validateField(input));
+
+	// При вводе — убираем ошибку (чтобы не мешало)
+	input.addEventListener('input', () => {
+		input.classList.remove('error');
+		const errorDiv = document.querySelector(`.error-message[data-for="${input.id}"]`);
+		errorDiv.classList.remove('active');
+	});
+});
+
+//проверка при нажатии отпраивть
+function validateOnSubmit() {
+	let isFormValid = true;
+	const inputs = document.querySelectorAll('input[data-validate], textarea[data-validate]');
+
+	inputs.forEach(input => {
+		const isValid = validateField(input);
+		if (!isValid) isFormValid = false;
+	});
+
+	if (isFormValid) {
+		alert("Форма успешно отправлена!");
+		// Здесь можно: myForm.submit(); или fetch(...)
+	} else {
+		alert("Исправьте ошибки перед отправкой.");
+	}
+
+	return isFormValid;
+}
 //RANGE========================================================================================================================================
 if (document.querySelector("[data-range]")) {
     rangeSliderInit();
