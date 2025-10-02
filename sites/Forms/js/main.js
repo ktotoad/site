@@ -376,8 +376,7 @@ $.datepicker.regional['ru'] = {
 $.datepicker.setDefaults($.datepicker.regional['ru']);
 
 $( function() {
-    var dateFormat = "mm/dd/yy",
-    	from = $( "#datefrom" )
+    var from = $( "#datefrom" )
 	        .datepicker({
 				minDate: 0,
 	        	defaultDate: "+1w",
@@ -386,17 +385,28 @@ $( function() {
 	        })
 	        .on( "change", function() {
 	        	to.datepicker( "option", "minDate", getDate( this ) );
+	        	$(this).trigger('input');
 	        }),
-    	to = $( "#dateto" ).datepicker({
-			minDate: 0,
-	        defaultDate: "+1w",
-	        changeMonth: true,
-	        numberOfMonths: 2
-    	})
-    	.on( "change", function() {
-        	from.datepicker( "option", "maxDate", getDate( this ) );
-    	});
- 
+    	to = $( "#dateto" )
+	    	.datepicker({
+				minDate: 0,
+		        defaultDate: "+1w",
+		        changeMonth: true,
+		        numberOfMonths: 2
+	    	})
+	    	.on( "change", function() {
+	        	from.datepicker( "option", "maxDate", getDate( this ) );
+	            $(this).trigger('input');
+	    	});
+
+ 	$("#datefrom").datepicker("option", "onSelect", function(dateText) {
+	    validateField(this);
+    });
+
+    $("#dateto").datepicker("option", "onSelect", function(dateText) {
+    	validateField(this);
+    });
+
     function getDate( element ) {
     	var date;
     	try {
@@ -429,7 +439,18 @@ const validators = {
 	},
 	text(value) {
 		return value.trim().length > 0;
-	}
+	},
+	date(value) {
+        const regex = /^(\d{2})\.(\d{2})\.(\d{4})$/;
+        if (!value || !regex.test(value)) return false;
+
+        const [day, month, year] = value.split('.').map(Number);
+        const date = new Date(year, month - 1, day);
+
+        return date.getFullYear() === year &&
+               date.getMonth() === month - 1 &&
+               date.getDate() === day;
+    }
 };
 
 //Ошибки
@@ -485,15 +506,13 @@ function validateField(input) {
 
 // --- Привязка событий ко всем полям формы ---
 document.querySelectorAll('input[data-validate], textarea[data-validate]').forEach(input => {
-	// При потере фокуса — проверяем
-	input.addEventListener('blur', () => validateField(input));
-
-	// При вводе — убираем ошибку (чтобы не мешало)
 	input.addEventListener('input', () => {
 		input.classList.remove('error');
 		const errorDiv = document.querySelector(`.error-message[data-for="${input.id}"]`);
-		errorDiv.classList.remove('active');
+		if (errorDiv) errorDiv.classList.remove('active');
 	});
+	// При потере фокуса
+	input.addEventListener('blur', () => validateField(input));
 });
 
 //проверка при нажатии отпраивть
