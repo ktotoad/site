@@ -193,11 +193,8 @@ document.addEventListener('click', function(event) {
 	if (event.target.matches('[data-select]') || event.target.closest("[data-select]")) {
 		let select = event.target.closest("[data-select]");
 		let spollerbutton = event.target.closest("[data-select-body]");
-
-		if(event.target.matches('[data-select-body]')) {
-			event.target.classList.add('active');
-			currentSelect = event.target;
-		}
+		select.classList.add('active');
+		currentSelect = select;
 		
 		if(select.querySelector("[data-select-body]")) {
 			if(event.target.classList.contains("select__item")) {
@@ -210,12 +207,12 @@ document.addEventListener('click', function(event) {
 
 				buttonSpoller.textContent = optionText;
 				event.target.classList.add("active");
-				spollerbutton.classList.remove('active');
+				select.classList.remove('active');
 			}
 		}
 
 		document.addEventListener("scroll", (event) => {
-			spollerbutton.classList.remove('active');
+			select.classList.remove('active');
 		});	
 	}
 });
@@ -241,6 +238,26 @@ if(document.querySelector('[radio-buttons]')) {
         });
     });
 }
+//Checkbox==========================================================================================================================
+if (document.querySelector('[checkbox-buttons]')) { 
+    let checkBoxBodies = document.querySelectorAll('[checkbox-buttons]');
+
+    checkBoxBodies.forEach(function (checkBoxBody) {
+        checkBoxBody.querySelectorAll('.checkbox').forEach(function (checkbox) {
+            if (checkbox.classList.contains('disabled')) {
+                checkbox.querySelector('input').disabled = true;
+            }
+        });
+        checkBoxBody.addEventListener('click', (e) => {
+
+            if(e.target.closest('.checkbox:not(.disabled)')) {
+                e.target.closest('.checkbox').classList.toggle('active'); 
+            } 
+
+        });
+    });
+}
+
 //counter=====================================================================================================================================================
 if (document.querySelector(".counter-block")){
     const counters = document.querySelectorAll('.counter-block');
@@ -381,73 +398,45 @@ document.addEventListener("click", function (e) {
 });
 
 //FORMS====================================================================================================================================================================================
-function formValidate(input){
-	var er = 0;
-	var form = input.closest('form');
-	if(input.attr('name')=='email' || input.hasClass('email')){
-		if(input.val()!=input.attr('data-value')){
-			var em=input.val().replace(" ","");
-			input.val(em);
-		}
-		if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(input.val())) || input.val()==input.attr('data-value')){
-			er++;
-			addError(input);
-		}else{
-			removeError(input);
-		}
-	}else{
-		if(input.val()=='' || input.attr('data-value')){
-			er++;
-			addError(input);
-		}else{
-			removeError(input);
-		}
-	}
-	if(input.attr('type')=='checkbox'){
-		if(input.checked){
-			input.removeClass('err').parent().removeClass('err');
-		}else{
-			er++;
-			input.addClass('err').parent().addClass('err');
-		}
-	}
-	if(input.hasClass('name')){
-		if(!(/^[А-Яа-яa-zA-Z-]+( [А-Яа-яa-zA-Z-]+)$/.test(input.val()))){
-			er++;
-			addError(input);
-		}
-	}
-	return er;
-}
+function validateForm() {
+	const phoneInput = document.getElementById('phone');
+	const emailInput = document.getElementById('email');
+	const phoneError = document.getElementById('phone-error');
+	const emailError = document.getElementById('email-error');
 
-function addError(input) {
-	input.addClass('err');
-	input.parent().addClass('err');
-	input.parent().find('.form__error').remove();
-	if(input.hasClass('email')){
-		var error='';
-		if(input.val()=='' || input.val()==input.attr('data-value')){
-			error=input.data('error');
-		}else{
-			error=input.data('error');
-		}
-		if(error!=null){
-			input.parent().append('<div class="form__error">'+error+'</div>');
-		}
-	}else{
-		if(input.data('error')!=null && input.parent().find('.form__error').lenght==0){
-			input.parent().append('<div class="form__error">'+input.data('error')+'</div>');
-		}
+	// Убираем старые ошибки
+	phoneInput.closest(".form__input-block").classList.remove('error');
+	emailInput.closest(".form__input-block").classList.remove('error');
+	phoneError.classList.remove('active');
+	emailError.classList.remove('active');
+
+	let isValid = true;
+
+	// Валидация телефона: простая проверка — начинается с +7 или 8, затем 10 цифр
+	const phoneRegex = /^(\+7|8)\d{10}$/;
+	if (!phoneRegex.test(phoneInput.value.trim().replace(/[\s\-\(\)]/g, ''))) {
+		phoneInput.closest(".form__input-block").classList.add('error');
+        phoneError.classList.add('active');
+		isValid = false;
 	}
-	if(input.parents('.select-block').lenght>0){
-		input.parents('.select-block').parent().addClass('err');
-		input.parents('.select-block').find('.select').addClass('err');
+
+	// Валидация email
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	if (!emailRegex.test(emailInput.value.trim())) {
+		emailInput.closest(".form__input-block").classList.add('error');
+        emailError.classList.add('active');
+		isValid = false;
+	}
+
+	// Если ок отправляем
+	if (isValid) {
+		console.log("Форма успешно отправлена!");
+		// Здесь можно добавить отправку данных, например через fetch()
+	} else {
+		alert("Проверьте правильность заполнения полей.");
 	}
 }
 
-function removeError(input) {
-
-}
 //RANGE========================================================================================================================================
 if (document.querySelector("[data-range]")) {
     rangeSliderInit();

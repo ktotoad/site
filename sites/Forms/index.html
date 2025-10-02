@@ -21,235 +21,290 @@
 						<div class="main__wrap">
 							<form action="" class="form">
 								<!-- toggle -->
-								<div class="form__toggle toggle">
-									<div data-toggle-id="item" class="toggle__button"><span></span></div>
-									<div class="toggle__icon">
-										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-											<path fill="currentColor" fill-rule="evenodd" d="M9.335 9.518h-.002v1.183H6.667v-.972c0-1.762.685-2.092 1.445-2.46l.18-.084c.335-.154.675-.311.97-.656 1.106-1.085.271-2.8-1.128-2.79a1.66 1.66 0 0 0-1.796 1.652l-2.671-.006A4.37 4.37 0 0 1 6.04 1.53a4.33 4.33 0 0 1 2.307-.454c2.216.179 4.034 2.075 4.052 4.32.015 1.827-1.378 3.576-3.065 4.122Zm-2.668 5.149H8.4a.933.933 0 0 0 .933-.934V12H7.6a.933.933 0 0 0-.933.933z" clip-rule="evenodd"></path>
-										</svg>
-									</div>
-									<p class="toggle__text text-m">Открыть отели в новой вкладке</p>
-								</div>
-
-								<!-- passengers -->
-								<div data-tabs drop-block class="form__block">
-									<div class="form__input-block">
-										<div class="form__input-body">
-											<label data-select-button for="passengers" class="form__label">Пассажиры</label>
-											<div class="form__input-row">
-												<div class="form__chosen-text">
-													<div id="counted"><span>1</span><span> пасс,</span></div> 
-													<div data-tabs-body id="classtype" class="tabs__content">
-														<div data-tabs-item  class="tabs__body">эконом</div>
-														<div data-tabs-item  class="tabs__body">бизнес</div>
-														<div data-tabs-item  class="tabs__body">первый</div>
-													</div>
-												</div>
-											</div>
+								<div class="info-column">
+									<h2 class="info-title">Переключатель</h2>
+									<div class="form__toggle toggle">
+										<div data-toggle-id="item" class="toggle__button"><span></span></div>
+										<div class="toggle__icon">
+											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+												<path fill="currentColor" fill-rule="evenodd" d="M9.335 9.518h-.002v1.183H6.667v-.972c0-1.762.685-2.092 1.445-2.46l.18-.084c.335-.154.675-.311.97-.656 1.106-1.085.271-2.8-1.128-2.79a1.66 1.66 0 0 0-1.796 1.652l-2.671-.006A4.37 4.37 0 0 1 6.04 1.53a4.33 4.33 0 0 1 2.307-.454c2.216.179 4.034 2.075 4.052 4.32.015 1.827-1.378 3.576-3.065 4.122Zm-2.668 5.149H8.4a.933.933 0 0 0 .933-.934V12H7.6a.933.933 0 0 0-.933.933z" clip-rule="evenodd"></path>
+											</svg>
 										</div>
-										<div class="form__input-icon"><span></span></div>
-									</div>
-									<div class="form__drop-body drop-body">
-										<div class="drop-body__list">
-											<div class="drop-body__item">
-												<div class="form__item-label">
-													<div class="form__item-title">Взрослые</div>
-													<div class="form__item-info">старше 12 лет</div>
-												</div>
-												<div class="form__counter counter-block" data-id="total-adults" data-counter="1">
-													<button type="button" class="counter-block__button decrease">-</button>
-													<div class="counter-block__text value"></div>
-													<button type="button" class="counter-block__button increase">+</button>
-												</div>
-											</div>
-											<div class="drop-body__item">
-												<div class="form__item-label">
-													<div class="form__item-title">Дети</div>
-													<div class="form__item-info">от 2 до 12 лет</div>
-												</div>
-												<div class="form__counter counter-block" data-counter="0">
-													<button type="button" class="counter-block__button decrease">-</button>
-													<div class="counter-block__text value"></div>
-													<button type="button" class="counter-block__button increase">+</button>
-												</div>
-											</div>
-											<div class="drop-body__item">
-												<div class="form__item-label">
-													<div class="form__item-title">Младенцы</div>
-													<div class="form__item-info">до 2 лет, без места</div>
-												</div>
-												<div class="form__counter counter-block" data-max-source="total-adults" data-counter="0">
-													<button type="button" class="counter-block__button decrease">-</button>
-													<div class="counter-block__text value"></div>
-													<button type="button" class="counter-block__button increase">+</button>
-												</div>
-											</div>
-										</div>
-										<div radio-buttons class="drop-body__tabs">
-											<nav data-tabs-titles class="drop-body__tabs-navigation">
-												<div data-tabs-title class="drop-body__tabs-button _tab-active">Эконом</div>
-												<div data-tabs-title class="drop-body__tabs-button">Бизнес</div>
-												<div data-tabs-title class="drop-body__tabs-button">Первый</div>
-											</nav>
-										</div>
+										<p class="toggle__text text-m">Открыть отели в новой вкладке</p>
 									</div>
 								</div>
 
-								<!-- filter -->
-								<div data-select class="form__block">
-									<div data-select-button class="form__input-block">
-										<div class="form__input-body">
-											<label class="form__label"><span>Сортировка</span></label>
-										</div>
-										<div class="form__input-icon">
-											<span></span>
-										</div>
-									</div>
-									<div data-select-body class="form__drop-body drop-body">
-										<nav class="select__list tabs__navigation">
-											<button type="button" class="select__item tabs__title">По популярности</button>
-											<button type="button" class="select__item tabs__title">Дешевле</button>
-											<button type="button" class="select__item tabs__title">Дороже</button>
-											<button type="button" class="select__item tabs__title">Выше рейтинг</button>
+								<!-- radio buttons -->
+								<div class="info-column">
+									<h2 class="info-title">Радио кнопки</h2>
+									<div radio-buttons class="form__block">
+										<nav class="form__checkboxes">
+											<div class="form__checkbox radio">Завтрак</div>
+											<div class="form__checkbox radio">Отели</div>
+											<div class="form__checkbox radio">Хостел</div>
 										</nav>
 									</div>
 								</div>
 
-								<!-- price -->
-								<div drop-block class="form__block">
-									<div class="form__input-block">
-										<div class="form__input-body">
-											<label class="form__label">Цена</label>
-										</div>
-										<div class="form__input-icon">
-											<span></span>
-										</div>
-									</div>
-									<div class="form__drop-body drop-body">
-										<h3 class="drop-body__title">За 1 ночь</h3>
-										<div data-range="1000,200000" data-range-step="1000" class="filter-body-select__ui-slider ui-slider">
-											<div class="ui-slider__body">
-												<div class="ui-slider__input-body">
-													<span>от</span>
-													<input type="number" id="fromprice" hidden>
-													<input type="text" class="ui-slider__input input-min js_price">
-													<span>₽</span>
-												</div>
-												<div id="slider"></div>
-												<div class="ui-slider__input-body">
-													<span>по</span>
-													<input type="number" id="toprice" hidden>
-													<input type="text" class="ui-slider__input input-max js_price">
-													<span>₽</span>
-												</div>
-											</div>
-										</div>
-										<button type="button" class="button-main">Применить</button>
+								<!-- checkboxes -->
+								<div class="info-column">
+									<h2 class="info-title">Чекбоксы</h2>
+									<div checkbox-buttons class="form__block">
+										<nav class="form__checkboxes">
+											<div class="form__checkbox checkbox">Завтрак</div>
+											<div class="form__checkbox checkbox">Отели</div>
+											<div class="form__checkbox checkbox">Обед</div>
+										</nav>
 									</div>
 								</div>
+
+
+								<!-- passengers -->
+								<div class="info-column">
+									<h2 class="info-title">Выбор пассажиров</h2>
+									<p class="info-text">Выбор количество пассажиров (взрослые и дети) и вид класса</p>
+									<div data-tabs drop-block class="form__block">
+										<div class="form__input-block">
+											<div class="form__input-body">
+												<label data-select-button for="passengers" class="form__label">Пассажиры</label>
+												<div class="form__input-row">
+													<div class="form__chosen-text">
+														<div id="counted"><span>1</span><span> пасс,</span></div> 
+														<div data-tabs-body id="classtype" class="tabs__content">
+															<div data-tabs-item  class="tabs__body">эконом</div>
+															<div data-tabs-item  class="tabs__body">бизнес</div>
+															<div data-tabs-item  class="tabs__body">первый</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="form__input-icon"><i></i></div>
+										</div>
+										<div class="form__drop-body drop-body">
+											<div class="drop-body__list">
+												<div class="drop-body__item">
+													<div class="form__item-label">
+														<div class="form__item-title">Взрослые</div>
+														<div class="form__item-info">старше 12 лет</div>
+													</div>
+													<div class="form__counter counter-block" data-id="total-adults" data-counter="1">
+														<button type="button" class="counter-block__button decrease">-</button>
+														<div class="counter-block__text value"></div>
+														<button type="button" class="counter-block__button increase">+</button>
+													</div>
+												</div>
+												<div class="drop-body__item">
+													<div class="form__item-label">
+														<div class="form__item-title">Дети</div>
+														<div class="form__item-info">от 2 до 12 лет</div>
+													</div>
+													<div class="form__counter counter-block" data-counter="0">
+														<button type="button" class="counter-block__button decrease">-</button>
+														<div class="counter-block__text value"></div>
+														<button type="button" class="counter-block__button increase">+</button>
+													</div>
+												</div>
+												<div class="drop-body__item">
+													<div class="form__item-label">
+														<div class="form__item-title">Младенцы</div>
+														<div class="form__item-info">до 2 лет, без места</div>
+													</div>
+													<div class="form__counter counter-block" data-max-source="total-adults" data-counter="0">
+														<button type="button" class="counter-block__button decrease">-</button>
+														<div class="counter-block__text value"></div>
+														<button type="button" class="counter-block__button increase">+</button>
+													</div>
+												</div>
+											</div>
+											<div class="drop-body__tabs">
+												<nav data-tabs-titles class="drop-body__tabs-navigation">
+													<div data-tabs-title class="drop-body__tabs-button _tab-active">Эконом</div>
+													<div data-tabs-title class="drop-body__tabs-button">Бизнес</div>
+													<div data-tabs-title class="drop-body__tabs-button">Первый</div>
+												</nav>
+											</div>
+										</div>
+									</div>	
+								</div>				
+
+								<!-- filter -->
+								<div class="info-column">
+									<h2 class="info-title">Сортировка</h2>
+									<div data-select class="form__block">
+										<div data-select-button class="form__input-block">
+											<div class="form__input-body">
+												<label class="form__label"><span>Сортировка</span></label>
+											</div>
+											<div class="form__input-icon"><i></i></div>
+										</div>
+										<div data-select-body class="form__drop-body select">
+											<nav class="select__list">
+												<button type="button" class="select__item">По популярности</button>
+												<button type="button" class="select__item">Дешевле</button>
+												<button type="button" class="select__item">Дороже</button>
+												<button type="button" class="select__item">Выше рейтинг</button>
+											</nav>
+										</div>
+									</div>
+								</div>		
+
+								<!-- price -->
+								<div class="info-column">
+									<h2 class="info-title">Выбор цены</h2>
+									<div drop-block class="form__block">
+										<div class="form__input-block">
+											<div class="form__input-body">
+												<label class="form__label">Цена</label>
+											</div>
+											<div class="form__input-icon">
+												<i></i>
+											</div>
+										</div>
+										<div class="form__drop-body drop-body">
+											<h3 class="drop-body__title">За 1 ночь</h3>
+											<div data-range="1000,200000" data-range-step="1000" class="filter-body-select__ui-slider ui-slider">
+												<div class="ui-slider__body">
+													<div class="ui-slider__input-body">
+														<span>от</span>
+														<input type="number" id="fromprice" hidden>
+														<input type="text" class="ui-slider__input input-min js_price">
+														<span>₽</span>
+													</div>
+													<div id="slider"></div>
+													<div class="ui-slider__input-body">
+														<span>по</span>
+														<input type="number" id="toprice" hidden>
+														<input type="text" class="ui-slider__input input-max js_price">
+														<span>₽</span>
+													</div>
+												</div>
+											</div>
+											<button type="button" class="button-main">Применить</button>
+										</div>
+									</div>
+								</div>	
 
 								<!-- destination -->
-								<div drop-block class="form__block">
-									<div class="form__input-block">
-										<div class="form__input-body">
-											<label class="form__label">Откуда</label>
-											<div class="form__input-row">
-												<input type="text" name="from" placeholder="Москва" class="form__input input">
+								<div class="info-column">
+									<h2 class="info-title">Пункт назначения</h2>
+									<div drop-block class="form__block">
+										<div class="form__input-block">
+											<div class="form__input-body">
+												<label class="form__label">Откуда</label>
+												<div class="form__input-row">
+													<input type="text" name="from" placeholder="Москва" class="form__input input">
+												</div>
 											</div>
+											<div class="form__input-info">MOW</div>
 										</div>
-										<div class="form__input-info">MOW</div>
+										<div class="form__drop-body drop-body">
+											<h3 class="drop-body__title">Города и аэропорты</h3>
+											<ul class="drop-body__list">
+												<li></li>
+											</ul>
+										</div>
 									</div>
-									<div class="form__drop-body drop-body">
-										<h3 class="drop-body__title">Города и аэропорты</h3>
-										<ul class="drop-body__list">
-											<li></li>
-										</ul>
-									</div>
-								</div>
+								</div>	
 
 								<!-- date -->
-								<div class="form__block-row">
-									<div class="form__block">
-										<div class="form__input-block">
-											<div class="form__input-body">
-												<label class="form__label">Туда</label>
-												<div class="form__input-row">
-													<input type="text" id="datefrom" name="from" class="form__input input">
+								<div class="info-column">
+									<h2 class="info-title">Выбор дат</h2>
+									<div class="form__block-row">
+										<div class="form__block">
+											<div class="form__input-block">
+												<div class="form__input-body">
+													<label class="form__label">Туда</label>
+													<div class="form__input-row">
+														<input type="text" id="datefrom" name="from" class="form__input input">
+													</div>
 												</div>
+												<div class="form__input-icon"></div>
 											</div>
-											<div class="form__input-icon"></div>
+										</div>
+										<div class="form__block">
+											<div class="form__input-block">
+												<div class="form__input-body">
+													<label class="form__label">Обратно</label>
+													<div class="form__input-row">
+														<input type="text" id="dateto" name="from" class="form__input input">
+													</div>
+												</div>
+												<div class="form__input-icon"></div>
+											</div>
 										</div>
 									</div>
-									<div class="form__block">
-										<div class="form__input-block">
-											<div class="form__input-body">
-												<label class="form__label">Обратно</label>
-												<div class="form__input-row">
-													<input type="text" id="dateto" name="from" class="form__input input">
-												</div>
-											</div>
-											<div class="form__input-icon"></div>
-										</div>
-									</div>
-								</div>
+								</div>	
 
 								<!-- regular inputs -->
-								<div class="form__block">
-									<div class="form__input-block err">
-										<div class="form__input-body">
-											<label class="form__label">Форма с ошибкой</label>
-											<div class="form__input-row">
-												<input type="text" name="name" placeholder="Форма с ошибкой" class="form__input input">
+								<div class="info-column">
+									<h2 class="info-title">Простые блоки ввода</h2>
+									<div class="info-row">
+										<div class="form__block">
+											<div class="form__input-block">
+												<div class="form__input-body">
+													<label class="form__label">Имя</label>
+													<div class="form__input-row">
+														<input type="text" name="name" placeholder="Ваше имя" class="form__input input">
+													</div>
+												</div>
 											</div>
 										</div>
-									</div>
-								</div>	
-
-								<div class="form__block">
-									<div class="form__input-block disabled">
-										<div class="form__input-body">
-											<label class="form__label">Форма отключена</label>
-											<div class="form__input-row">
-												<input type="text" name="name" disabled placeholder="Форма отключена" class="form__input input">
+										<div class="form__block">
+											<div class="form__input-block">
+												<div class="form__input-body">
+													<label class="form__label">Почта</label>
+													<div class="form__input-row">
+														<input id="email" type="email" name="email" placeholder="example@mail.ru" class="form__input input">
+													</div>
+												</div>
 											</div>
+											<div class="error-message" id="email-error">Введите корректный email (например: user@example.com)</div>
+										</div>
+										<div class="form__block">
+											<div class="form__input-block">
+												<div class="form__input-body">
+													<label class="form__label">Телефон</label>
+													<div class="form__input-row">
+														<input id="phone" type="tel" name="tel" data-format="+7 000 000-00-00" placeholder="+7" class="form__input input">
+													</div>
+												</div>
+											</div>
+											<div class="error-message" id="phone-error">Введите корректный номер (например: +79991234567)</div>
 										</div>
 									</div>
-								</div>	
+								</div>
 
-								<div class="form__block">
-									<div class="form__input-block">
-										<div class="form__input-body">
-											<label class="form__label">Имя</label>
-											<div class="form__input-row">
-												<input type="text" name="name" placeholder="Ваше имя" class="form__input input">
+								<div class="info-column">
+									<h2 class="info-title">Состояния блоков ввода</h2>
+									<div class="info-row">
+										<div class="form__block">
+											<div class="form__input-block error">
+												<div class="form__input-body">
+													<label class="form__label">Форма с ошибкой</label>
+													<div class="form__input-row">
+														<input type="text" name="name" placeholder="Форма с ошибкой" class="form__input input">
+													</div>
+												</div>
 											</div>
+											<div class="error-message active" id="error">Информация об ошибке</div>
 										</div>
-									</div>
-								</div>	
-
-								<div class="form__block">
-									<div class="form__input-block">
-										<div class="form__input-body">
-											<label class="form__label">Почта</label>
-											<div class="form__input-row">
-												<input type="email" name="email" placeholder="example@mail.ru" class="form__input input">
+										<div class="form__block">
+											<div class="form__input-block disabled">
+												<div class="form__input-body">
+													<label class="form__label">Форма отключена</label>
+													<div class="form__input-row">
+														<input type="text" name="name" disabled placeholder="Форма отключена" class="form__input input">
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 
-								<div class="form__block">
-									<div class="form__input-block">
-										<div class="form__input-body">
-											<label class="form__label">Телефон</label>
-											<div class="form__input-row">
-												<input type="tel" name="tel" data-format="+7 000 000-00-00" placeholder="+7" class="form__input input">
-											</div>
-										</div>
-									</div>
+								<div class="info-column">
+									<p class="info-text">Кнопка проверки валидации форм</p>
+									<button type="button" onclick="validateForm()" class="button-main">Отправить</button>
 								</div>
-
-								<button type="submit" class="button-main">Отправить</button>
 							</form>
 						</div>
 					</div>
