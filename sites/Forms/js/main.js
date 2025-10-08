@@ -182,6 +182,43 @@ function inputElements() {
 	});
 }
 inputElements();
+
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('date-range');
+    if (!input) return;
+
+    // Создаём маску
+    const mask = IMask(input, {
+        mask: [
+            // Вариант 1: одна дата
+            {
+                mask: 'd{2}.m{2}.Y{4}',
+                lazy: false,
+                blocks: {
+                    d: {mask: IMask.MaskedRange, from: 1, to: 31, maxLength: 2},
+                    m: {mask: IMask.MaskedRange, from: 1, to: 12, maxLength: 2},
+                    Y: {mask: IMask.MaskedRange, from: 2020, to: 2030, maxLength: 4}
+                }
+            },
+            // Вариант 2: диапазон дат
+            {
+                mask: 'd1{2}.m1{2}.Y1{4} - d2{2}.m2{2}.Y2{4}',
+                lazy: false,
+                blocks: {
+                    d1: {mask: IMask.MaskedRange, from: 1, to: 31, maxLength: 2},
+                    m1: {mask: IMask.MaskedRange, from: 1, to: 12, maxLength: 2},
+                    Y1: {mask: IMask.MaskedRange, from: 2020, to: 2030, maxLength: 4},
+                    d2: {mask: IMask.MaskedRange, from: 1, to: 31, maxLength: 2},
+                    m2: {mask: IMask.MaskedRange, from: 1, to: 12, maxLength: 2},
+                    Y2: {mask: IMask.MaskedRange, from: 2020, to: 2030, maxLength: 4}
+                }
+            }
+        ]
+    });
+
+    // Сохраняем экземпляр маски, чтобы можно было управлять ею
+    input.imaskInstance = mask;
+});
 //select=====================================================================================================================================================
 let currentSelect = null;
 
@@ -355,75 +392,121 @@ function countAll(formBlock) {
 	formBlock.querySelector("#counted span").textContent = summary;
 }
 //datepicker===================================================================================================================================
-/* Локализация datepicker */
-$.datepicker.regional['ru'] = {
-	closeText: 'Закрыть',
-	prevText: 'Предыдущий',
-	nextText: 'Следующий',
-	currentText: 'Сегодня',
-	monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
-	monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'],
-	dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
-	dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
-	dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
-	weekHeader: 'Не',
-	dateFormat: 'dd.mm.yy',
-	firstDay: 1,
-	isRTL: false,
-	showMonthAfterYear: false,
-	yearSuffix: ''
-};
-$.datepicker.setDefaults($.datepicker.regional['ru']);
+let datepickerInstance = null;
+let isRangeMode = true; // по умолчанию диапазон
 
-$( function() {
-    var from = $( "#datefrom" )
-	        .datepicker({
-				minDate: 0,
-	        	defaultDate: "+1w",
-	        	changeMonth: true,
-	        	numberOfMonths: 2
-	        })
-	        .on( "change", function() {
-	        	to.datepicker( "option", "minDate", getDate( this ) );
-	        	$(this).trigger('input');
-	        }),
-    	to = $( "#dateto" )
-	    	.datepicker({
-				minDate: 0,
-		        defaultDate: "+1w",
-		        changeMonth: true,
-		        numberOfMonths: 2
-	    	})
-	    	.on( "change", function() {
-	        	from.datepicker( "option", "maxDate", getDate( this ) );
-	            $(this).trigger('input');
-	    	});
-
- 	$("#datefrom").datepicker("option", "onSelect", function(dateText) {
-	    validateField(this);
-    });
-
-    $("#dateto").datepicker("option", "onSelect", function(dateText) {
-    	validateField(this);
-    });
-
-    function getDate( element ) {
-    	var date;
-    	try {
-        	date = $.datepicker.parseDate( dateFormat, element.value );
-    	} catch( error ) {
-        	date = null;
-    	} 
-    	return date;
+function initDatepicker(isRange) {
+    isRangeMode = isRange; // сохраняем режим
+    const input = document.getElementById('date-range');
+    if (!input) {
+        return;
     }
+
+    // Уничтожаем предыдущий экземпляр
+    if (datepickerInstance) {
+        datepickerInstance.destroy();
+        datepickerInstance = null;
+    }
+
+    datepickerInstance = new AirDatepicker('#date-range', {
+        range: isRange,
+        multipleDatesSeparator: ' - ',
+        dateFormat: 'dd.mm.yyyy',
+        minDate: new Date(),
+        onSelect: function (data) {
+            console.log('📅 onSelect вызван. Данные:', data);
+
+            const input = document.getElementById('date-range');
+            if (!input) return;
+
+            // Извлекаем значение
+		    const valueToSet = extractValueFromData(data);
+
+		    if (valueToSet) {
+		        input.value = valueToSet;
+		        if (input.imaskInstance) {
+		            input.imaskInstance.updateValue(); // перерисовывает с учётом маски
+		        }
+		        console.log('✅ Установлено значение:', valueToSet);
+		    } else {
+		        console.warn('⚠️ Не удалось извлечь значение из данных');
+		    }
+
+            if (typeof validateField === 'function') {
+                validateField(input);
+            }
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    initDatepicker(true); // по умолчанию — диапазон
 });
+
+function extractValueFromData(data) {
+    if (!data) return '';
+
+    // Если formattedDate — массив строк
+    if (Array.isArray(data.formattedDate)) {
+        if (data.formattedDate.length === 1) {
+            return data.formattedDate[0];
+        } else if (data.formattedDate.length === 2) {
+            return `${data.formattedDate[0]} - ${data.formattedDate[1]}`;
+        }
+    }
+
+    // Если formattedDate — строка
+    if (typeof data.formattedDate === 'string') {
+        return data.formattedDate;
+    }
+
+    // Если formattedDate — объект Date
+    if (data.formattedDate instanceof Date) {
+        const day = String(data.formattedDate.getDate()).padStart(2, '0');
+        const month = String(data.formattedDate.getMonth() + 1).padStart(2, '0');
+        const year = data.formattedDate.getFullYear();
+        return `${day}.${month}.${year}`;
+    }
+
+    // Если ничего не подошло — попробуем извлечь из data.date
+    if (Array.isArray(data.date) && data.date.length > 0) {
+        const formatDate = (d) => {
+            const day = String(d.getDate()).padStart(2, '0');
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const year = d.getFullYear();
+            return `${day}.${month}.${year}`;
+        };
+
+        if (data.date.length === 1) {
+            return formatDate(data.date[0]);
+        } else if (data.date.length === 2) {
+            return `${formatDate(data.date[0])} - ${formatDate(data.date[1])}`;
+        }
+    }
+
+    return '';
+}
 //toggle======================================================================================================================================================
 document.addEventListener("click", function (e) {
 	if(e.target.matches("[data-toggle-id]") || e.target.closest("[data-toggle-id]")) {
-		let toggleButton = e.target.closest("[data-toggle-id]");
-		let itemID = toggleButton.dataset.toggleId;
+		const toggleButton = e.target.closest("[data-toggle-id]");
+		const itemID = toggleButton.dataset.toggleId;
+    	const targetElement = document.getElementById(itemID);
+
 		toggleButton.classList.toggle("active");
-		document.getElementById(itemID).classList.toggle("active");
+		targetElement.classList.toggle("toggle-active");
+
+		if (itemID === "date-range") {
+	        const isRangeMode = !toggleButton.classList.contains("active"); // active → не нужен обратный билет → !range
+	        initDatepicker(isRangeMode);
+
+	        // Опционально: очищаем значение, если переключились в режим одной даты
+	        if (!isRangeMode && targetElement.value.includes(' - ')) {
+	            const firstDate = targetElement.value.split(' - ')[0];
+	            targetElement.value = firstDate;
+	            validateField(targetElement);
+	        }
+	    }
 	}
 });
 
@@ -440,16 +523,44 @@ const validators = {
 	text(value) {
 		return value.trim().length > 0;
 	},
-	date(value) {
-        const regex = /^(\d{2})\.(\d{2})\.(\d{4})$/;
-        if (!value || !regex.test(value)) return false;
+	'date-range'(value) {
+        if (!value || !value.trim()) return false;
 
-        const [day, month, year] = value.split('.').map(Number);
-        const date = new Date(year, month - 1, day);
+        // Универсальная очистка: заменяем любые пробелы/тире на " - "
+        const cleanValue = value.trim().replace(/\s*[-—–]\s*/g, ' - ');
 
-        return date.getFullYear() === year &&
-               date.getMonth() === month - 1 &&
-               date.getDate() === day;
+        // Разделяем по разделителю
+        const dates = cleanValue.split(' - ').filter(Boolean); // убираем пустые
+
+        // Должно быть 1 или 2 даты
+        if (dates.length < 1 || dates.length > 2) return false;
+
+        // Функция проверки формата одной даты (dd.mm.yyyy)
+        const isValidDate = (dateStr) => {
+            const regex = /^(\d{2})\.(\d{2})\.(\d{4})$/;
+            if (!regex.test(dateStr)) return false;
+
+            const [day, month, year] = dateStr.split('.').map(Number);
+            const date = new Date(year, month - 1, day);
+
+            // Проверяем, что дата реальна (например, не 32.13.2025)
+            return date.getFullYear() === year &&
+                   date.getMonth() === month - 1 &&
+                   date.getDate() === day;
+        };
+
+        // Проверяем все даты
+        const allDatesValid = dates.every(isValidDate);
+
+        // Если две даты — проверяем порядок: начало ≤ конец
+        if (dates.length === 2) {
+            const start = new Date(dates[0].split('.').reverse().join('-'));
+            const end = new Date(dates[1].split('.').reverse().join('-'));
+            return allDatesValid && end >= start;
+        }
+
+        // Если одна дата — достаточно её корректности
+        return allDatesValid;
     }
 };
 
@@ -458,6 +569,7 @@ const errorMessages = {
 	required: "Это поле обязательно для заполнения.",
 	phone: "Введите корректный номер (например: +79991234567).",
 	email: "Введите корректный email (например: user@example.com).",
+    'date-range': "Введите корректный диапазон дат (например: 01.01.2025 — 10.01.2025).",
 	text: "Поле не может быть пустым.",
 	minLength: (min) => `Минимальная длина — ${min} символов.`
 };
