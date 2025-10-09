@@ -183,42 +183,6 @@ function inputElements() {
 }
 inputElements();
 
-document.addEventListener('DOMContentLoaded', function () {
-    const input = document.getElementById('date-range');
-    if (!input) return;
-
-    // Создаём маску
-    const mask = IMask(input, {
-        mask: [
-            // Вариант 1: одна дата
-            {
-                mask: 'd{2}.m{2}.Y{4}',
-                lazy: false,
-                blocks: {
-                    d: {mask: IMask.MaskedRange, from: 1, to: 31, maxLength: 2},
-                    m: {mask: IMask.MaskedRange, from: 1, to: 12, maxLength: 2},
-                    Y: {mask: IMask.MaskedRange, from: 2020, to: 2030, maxLength: 4}
-                }
-            },
-            // Вариант 2: диапазон дат
-            {
-                mask: 'd1{2}.m1{2}.Y1{4} - d2{2}.m2{2}.Y2{4}',
-                lazy: false,
-                blocks: {
-                    d1: {mask: IMask.MaskedRange, from: 1, to: 31, maxLength: 2},
-                    m1: {mask: IMask.MaskedRange, from: 1, to: 12, maxLength: 2},
-                    Y1: {mask: IMask.MaskedRange, from: 2020, to: 2030, maxLength: 4},
-                    d2: {mask: IMask.MaskedRange, from: 1, to: 31, maxLength: 2},
-                    m2: {mask: IMask.MaskedRange, from: 1, to: 12, maxLength: 2},
-                    Y2: {mask: IMask.MaskedRange, from: 2020, to: 2030, maxLength: 4}
-                }
-            }
-        ]
-    });
-
-    // Сохраняем экземпляр маски, чтобы можно было управлять ею
-    input.imaskInstance = mask;
-});
 //select=====================================================================================================================================================
 let currentSelect = null;
 
@@ -411,11 +375,9 @@ function initDatepicker(isRange) {
     datepickerInstance = new AirDatepicker('#date-range', {
         range: isRange,
         multipleDatesSeparator: ' - ',
-        dateFormat: 'dd.mm.yyyy',
+        dateFormat: 'dd.MM.yyyy',
         minDate: new Date(),
         onSelect: function (data) {
-            console.log('📅 onSelect вызван. Данные:', data);
-
             const input = document.getElementById('date-range');
             if (!input) return;
 
@@ -424,9 +386,6 @@ function initDatepicker(isRange) {
 
 		    if (valueToSet) {
 		        input.value = valueToSet;
-		        if (input.imaskInstance) {
-		            input.imaskInstance.updateValue(); // перерисовывает с учётом маски
-		        }
 		        console.log('✅ Установлено значение:', valueToSet);
 		    } else {
 		        console.warn('⚠️ Не удалось извлечь значение из данных');
@@ -446,7 +405,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function extractValueFromData(data) {
     if (!data) return '';
 
-    // Если formattedDate — массив строк
+    // 1. Если formattedDate — массив строк
     if (Array.isArray(data.formattedDate)) {
         if (data.formattedDate.length === 1) {
             return data.formattedDate[0];
@@ -455,20 +414,12 @@ function extractValueFromData(data) {
         }
     }
 
-    // Если formattedDate — строка
+    // 2. Если formattedDate — строка
     if (typeof data.formattedDate === 'string') {
         return data.formattedDate;
     }
 
-    // Если formattedDate — объект Date
-    if (data.formattedDate instanceof Date) {
-        const day = String(data.formattedDate.getDate()).padStart(2, '0');
-        const month = String(data.formattedDate.getMonth() + 1).padStart(2, '0');
-        const year = data.formattedDate.getFullYear();
-        return `${day}.${month}.${year}`;
-    }
-
-    // Если ничего не подошло — попробуем извлечь из data.date
+    // 3. Если ничего не подошло — используем data.date (массив объектов Date)
     if (Array.isArray(data.date) && data.date.length > 0) {
         const formatDate = (d) => {
             const day = String(d.getDate()).padStart(2, '0');
@@ -526,16 +477,16 @@ const validators = {
 	'date-range'(value) {
         if (!value || !value.trim()) return false;
 
-        // Универсальная очистка: заменяем любые пробелы/тире на " - "
+        // Универсальная очистка: заменяем любые тире/пробелы на " - "
         const cleanValue = value.trim().replace(/\s*[-—–]\s*/g, ' - ');
 
         // Разделяем по разделителю
-        const dates = cleanValue.split(' - ').filter(Boolean); // убираем пустые
+        const dates = cleanValue.split(' - ').filter(Boolean); // filter уберёт пустые
 
-        // Должно быть 1 или 2 даты
+        // Должна быть 1 или 2 даты
         if (dates.length < 1 || dates.length > 2) return false;
 
-        // Функция проверки формата одной даты (dd.mm.yyyy)
+        // Функция проверки формата даты
         const isValidDate = (dateStr) => {
             const regex = /^(\d{2})\.(\d{2})\.(\d{4})$/;
             if (!regex.test(dateStr)) return false;
@@ -543,25 +494,56 @@ const validators = {
             const [day, month, year] = dateStr.split('.').map(Number);
             const date = new Date(year, month - 1, day);
 
-            // Проверяем, что дата реальна (например, не 32.13.2025)
             return date.getFullYear() === year &&
                    date.getMonth() === month - 1 &&
                    date.getDate() === day;
         };
 
-        // Проверяем все даты
-        const allDatesValid = dates.every(isValidDate);
+        // Проверяем все выбранные даты
+        const allValid = dates.every(isValidDate);
 
-        // Если две даты — проверяем порядок: начало ≤ конец
+        // Если две даты — проверяем порядок
         if (dates.length === 2) {
             const start = new Date(dates[0].split('.').reverse().join('-'));
             const end = new Date(dates[1].split('.').reverse().join('-'));
-            return allDatesValid && end >= start;
+            return allValid && end >= start;
         }
 
-        // Если одна дата — достаточно её корректности
-        return allDatesValid;
-    }
+        return allValid; // для одной даты достаточно её корректности
+    },
+    'passport'(value) {
+        if (!value || !value.trim()) return false;
+        
+        // Убираем всё, кроме цифр
+        const digits = value.replace(/\D/g, '');
+        
+        // Должно быть ровно 10 цифр
+        if (digits.length !== 10) return false;
+
+        // Можно дополнительно проверить серию: первые 4 цифры — не 00 00
+        const series = digits.slice(0, 4);
+        if (series === '0000') return false; // серия не может быть 00 00
+
+        return true;
+    },
+    'inn'(value) {
+        if (!value || !value.trim()) return false;
+
+        const digits = value.replace(/\D/g, '');
+
+        if (digits.length !== 10 && digits.length !== 12) return false;
+
+        return validateINN(digits);
+    },
+    'snils'(value) {
+        if (!value || !value.trim()) return false;
+
+        const digits = value.replace(/\D/g, '');
+
+        if (digits.length !== 11) return false;
+
+        return validateSNILS(digits);
+    },
 };
 
 //Ошибки
