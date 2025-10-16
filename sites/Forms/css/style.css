@@ -206,12 +206,8 @@ body.lock {
   height: 0;
   opacity: 0;
 }
-.checkbox__input:focus + .checkbox__label:before {
-  -webkit-box-shadow: 0 0 5px var(--black);
-          box-shadow: 0 0 5px var(--black);
-}
 .checkbox__input:checked + .checkbox__label:before {
-  background: url("../img/icons/check.svg") center no-repeat, transparent;
+  background: url("../img/icons/check.svg") center no-repeat, var(--primary);
 }
 .checkbox__label {
   cursor: pointer;
@@ -222,8 +218,8 @@ body.lock {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
-  gap: 1rem;
-  font-size: 1.2em;
+  gap: 1em;
+  font-size: 1.4em;
 }
 .checkbox__label:before {
   content: "";
@@ -233,21 +229,9 @@ body.lock {
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
   border-radius: 0.325em;
-  width: 2em;
-  height: 2em;
-  border: 1px solid var(--white);
-}
-.checkbox__label a {
-  text-decoration: underline;
-  -webkit-transition: -webkit-text-decoration 0.3s ease 0s;
-  transition: -webkit-text-decoration 0.3s ease 0s;
-  transition: text-decoration 0.3s ease 0s;
-  transition: text-decoration 0.3s ease 0s, -webkit-text-decoration 0.3s ease 0s;
-}
-@media (any-hover: hover) {
-  .checkbox__label a:hover {
-    text-decoration: none;
-  }
+  width: 1em;
+  height: 1em;
+  border: 1px solid var(--primary);
 }
 
 /*input*/
@@ -521,6 +505,38 @@ textarea {
 .form__item-info {
   font-size: 1.4em;
   line-height: 110%;
+}
+
+/*search*/
+.search-block {
+  border: 1px solid var(--light);
+  border-radius: 1em;
+  padding: 0.5em 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+}
+.search-block i {
+  width: 3.2em;
+  height: 3.2em;
+}
+.search-block i svg {
+  width: 100%;
+  height: 100%;
+}
+.search-block i svg path {
+  fill: currentColor;
 }
 
 /*toggle*/
@@ -829,6 +845,70 @@ textarea {
   .select__item:not(.active):hover {
     background: var(--light);
   }
+}
+
+.spollers__item:not(:last-child) {
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  border-bottom: 1px solid var(--light);
+}
+.spollers__button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+}
+.spollers__button.spoller-active button::before {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.spollers__button button {
+  position: relative;
+  border-radius: 0.5em;
+  width: 1.6em;
+  height: 1.6em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+  background: var(--light);
+}
+.spollers__button button::before {
+  content: "";
+  width: 0.5em;
+  height: 0.5em;
+  border-left: 2px solid var(--primary);
+  border-top: 2px solid var(--primary);
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+.spollers__list {
+  padding-left: 1em;
+}
+.spollers__list li:not(:last-child) {
+  margin-bottom: 0.5em;
 }
 
 .page__main {
