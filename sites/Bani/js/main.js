@@ -190,6 +190,33 @@ function inputElements() {
 	});
 }
 inputElements();
+//map======================================================================================================================================================================
+if (document.querySelector("#map")) {
+    ymaps.ready(mapInit);
+}
+function mapInit() {
+    // Создаем карту
+    var myMap = new ymaps.Map("map",{
+        center: [55.800848, 48.966205],
+        zoom: 12,
+    }), 
+    myIcon = ymaps.templateLayoutFactory.createClass("<div>$[properties.iconContent]</div>"),
+    myPlacemark = new ymaps.Placemark([55.800848, 48.966205],
+    {
+        balloonContent: '<div class="popup-map__body"><p class="title-s">2-я Старо-Аракчинская улица, 11к3, Казань, Республика Татарстан (Татарстан)</p></div>',
+        balloonContentFooter: '<div class="text-s"><a href="https://yandex.ru/maps/-/CLruQ2LB" target="_blank"><span>Подробнее</span></a></div>'
+    },
+    {
+        preset: "islands#blueBeachCircleIcon",
+        iconColor: "red",
+        hideIconOnBalloonOpen: !1,
+        balloonCloseButton: !1,
+        balloonOffset: [0, -20]
+    });
+    //добавляем точку
+    myMap.geoObjects.add(myPlacemark);
+}
+
 // SPOLLERS========================================================================================================================================
 function spollers() {
 	//Проверка на наличие атрибута
