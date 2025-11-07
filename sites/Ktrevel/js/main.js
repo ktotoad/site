@@ -237,6 +237,25 @@ function buildSliders() {
 function initSliders() {
 	buildSliders();
 
+	if (document.querySelector('.slider-main')) {
+		new Swiper('.slider-main', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 0,
+			speed: 800,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			effect: 'cards',
+			cardsEffect: {
+				perSlideOffset: 10,
+				perSlideRotate: 30
+			},
+		});
+	}
+
 	if (document.querySelector('.slider-examples')) {
 		new Swiper('.slider-examples', {
 			observer: true,
