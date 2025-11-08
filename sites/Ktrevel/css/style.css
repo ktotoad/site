@@ -456,9 +456,9 @@ body.lock {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -1131,7 +1131,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   background: transparent;
   width: 100%;
   display: block;
-  font-size: 1.8em;
+  font-size: 1.6em;
   line-height: 120%;
 }
 .input::-webkit-input-placeholder {
@@ -1683,8 +1683,8 @@ textarea {
 }
 
 .page__main {
-  padding-top: 4em;
-  padding-bottom: 6em;
+  padding-top: 2em;
+  padding-bottom: 4em;
 }
 .page__examples {
   margin-top: 8em;
@@ -1956,6 +1956,63 @@ textarea {
 }
 .form-block-main__buttons {
   margin-top: 2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+}
+.form-block-main__button-add {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1em;
+}
+.form-block-main__button-add svg {
+  width: 1.6em;
+  height: 1.6em;
+}
+.form-block-main__button-add svg path {
+  -webkit-transition: stroke 0.3s ease 0s;
+  transition: stroke 0.3s ease 0s;
+}
+.form-block-main__button-add span {
+  color: var(--white);
+  font-size: 1.4em;
+  line-height: 110%;
+  white-space: nowrap;
+  -webkit-transition: color 0.3s ease 0s;
+  transition: color 0.3s ease 0s;
+}
+@media (any-hover: hover) {
+  .form-block-main__button-add:hover svg path {
+    stroke: var(--blue);
+  }
+  .form-block-main__button-add:hover span {
+    color: var(--blue);
+  }
+}
+.form-block-main__toggle {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
