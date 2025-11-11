@@ -35,3 +35,33 @@ function initSliders() {
 }
 
 initSliders();
+//gsap_anim===================================================================================================================================
+if(document.querySelector("[data-gsap-slide-top]")) {
+	gsap.registerPlugin(ScrollTrigger);
+	ScrollTrigger.matchMedia({"(min-width: 768px)": () => {
+		const tlTop = gsap.timeline({
+			scrollTrigger: {
+				trigger: "[data-gsap-slide-top]",
+				start: "top +=600",
+				scrub: true,
+				markers: false,
+			}
+		});
+		tlTop.to("[data-gsap-slide-top]", {"y": "-50%"})
+	}});
+}
+
+if(document.querySelector("[data-gsap-slide-bottom]")) {
+	gsap.registerPlugin(ScrollTrigger);
+	ScrollTrigger.matchMedia({"(min-width: 768px)": () => {
+		const tlBottom = gsap.timeline({
+			scrollTrigger: {
+				trigger: "[data-gsap-slide-bottom]",
+				start: "top bottom",
+				scrub: true,
+				markers: false,
+			}
+		});
+		tlBottom.to("[data-gsap-slide-bottom]", {"y": "-150%"})
+	}});
+}
