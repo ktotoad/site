@@ -626,6 +626,91 @@ function extractValueFromData(data) {
 
     return '';
 }
+//timepicker===================================================================================================================================
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('time-range');
+    const modal = document.getElementById('timeModal');
+    const startInput = document.getElementById('modal-time-start');
+    const endInput = document.getElementById('modal-time-end');
+    const saveBtn = document.getElementById('saveTimeRange');
+    const closeBtn = document.getElementById('closeTimeModal');
+
+    // Функция валидации и форматирования
+    const formatTime = (timeStr) => {
+        if (!timeStr) return "";
+        let digits = timeStr.replace(/\D/g, '');
+        if (digits.length === 0) return "";
+
+        while (digits.length < 4) digits += '0';
+        if (digits.length > 4) digits = digits.slice(0, 4);
+
+        const hours = parseInt(digits.slice(0, 2));
+        const minutes = parseInt(digits.slice(2, 4));
+
+        if (hours > 23 || minutes > 59) return "";
+
+        return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+    };
+
+    // Валидация ввода: только цифры, максимум 4
+    [startInput, endInput].forEach(inp => {
+        inp.addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 4) value = value.slice(0, 4);
+            e.target.value = value;
+        });
+    });
+
+    // Открытие модалки
+    input.addEventListener('click', () => {
+        // Разбиваем текущее значение на начало и конец
+        const currentValue = input.value;
+        if (currentValue && currentValue.includes('–')) {
+            const [start, end] = currentValue.split('–').map(s => s.trim());
+            startInput.value = start;
+            endInput.value = end;
+        } else if (currentValue) {
+            startInput.value = currentValue;
+            endInput.value = '';
+        } else {
+            startInput.value = '';
+            endInput.value = '';
+        }
+
+        modal.style.display = 'flex';
+    });
+
+    // Сохранение
+    saveBtn.addEventListener('click', () => {
+        const startFormatted = formatTime(startInput.value);
+        const endFormatted = formatTime(endInput.value);
+
+        if (!startFormatted) {
+          alert('Введите время начала');
+          return;
+        }
+
+        if (endFormatted) {
+          input.value = `${startFormatted} – ${endFormatted}`;
+        } else {
+          input.value = startFormatted;
+        }
+
+        modal.style.display = 'none';
+    });
+
+    // Закрытие
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    // Закрытие по клику вне модалки
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
 //toggle======================================================================================================================================================
 document.addEventListener("click", function (e) {
 	if(e.target.matches("[data-toggle-id]") || e.target.closest("[data-toggle-id]")) {
