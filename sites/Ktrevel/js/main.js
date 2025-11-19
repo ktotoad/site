@@ -483,6 +483,16 @@ document.addEventListener("click", function (e) {
 	}
 });
 
+//prices===================================================================================================================================
+if (document.querySelectorAll(".js_price")) {
+  function numberWithSpaces(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  }
+  let js_prices = document.querySelectorAll(".js_price");
+  js_prices.forEach((js_price) => {
+      js_price.textContent = numberWithSpaces(js_price.textContent);
+  })
+}
 //FORMS====================================================================================================================================================================================
 //Валидация
 const validators = {
@@ -687,6 +697,20 @@ function buildSliders() {
 function initSliders() {
 	buildSliders();
 
+
+	if (document.querySelector('.slider-item-route')) {
+		new Swiper('.slider-item-route', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 2,
+			spaceBetween: 10,
+			speed: 800,
+			navigation: {
+				nextEl: ".slider-item-route__next",
+				prevEl: ".slider-item-route__prev",
+			},
+		});
+	}
 
 	if (document.querySelector('.slider-detail-page')) {
 		var swiper = new Swiper('.slider-thumb-detail-page', {
