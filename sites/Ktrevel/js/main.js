@@ -717,27 +717,9 @@ function initSliders() {
 			slidesPerView: 2,
 			spaceBetween: 10,
 			parallax: true,
-			//autoHeight: true,
-			//freeMode: true,
+    		direction: "vertical",
 			watchSlidesProgress: true,
 			speed: 800,
-			breakpoints: {
-				320: {
-					spaceBetween: 10,
-					slidesPerView: 1,
-					autoHeight: true,
-				},
-				768: {
-					slidesPerView: 2,
-    				direction: "vertical",
-					spaceBetween: 10,
-				},
-				992: {
-					slidesPerView: 2,
-    				direction: "vertical",
-					spaceBetween: 10,
-				},
-			},
 		});
 		new Swiper('.slider-detail-page', {
 			observer: true,
