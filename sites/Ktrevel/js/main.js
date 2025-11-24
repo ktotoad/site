@@ -881,6 +881,58 @@ function initFilteredSlider(containerSelector, itemsContainerSelector, options) 
 };
 
 initSliders();
+//RANGE========================================================================================================================================
+if (document.querySelector("[data-range]")) {
+    console.log(document.querySelector("[data-range]"));
+    document.querySelectorAll("[data-range]").forEach((rangeSlider) => {
+        const valuesArray = rangeSlider.getAttribute('data-range').split(',').map(value => value.trim());
+        var inputMinValue = Number(valuesArray[0]);
+        var inputMaxValue = Number(valuesArray[1]);
+        if (Number(valuesArray[2])) {
+            var inputMinStart = Number(valuesArray[2]);
+        } else {
+            var inputMinStart = inputMinValue;
+        }
+        if (Number(valuesArray[3])) {
+            var inputMaxStart = Number(valuesArray[3]);
+        } else {
+            var inputMaxStart = inputMaxValue;
+        }
+        if (rangeSlider.hasAttribute('data-range-step')) {
+            var valueStep = Number(rangeSlider.getAttribute('data-range-step'));
+        } else {
+            var valueStep = 50;
+        }
+        var slider = rangeSlider.querySelector("#slider");
+        var inputMin = rangeSlider.querySelector(".input-min");
+        var inputMax = rangeSlider.querySelector(".input-max");
+
+        const inputs = [inputMin, inputMax]; 
+
+        noUiSlider.create(slider, {
+            start: [inputMinStart, inputMaxStart],
+            connect: true,
+            step: valueStep,
+            range: {
+                min: [inputMinValue],
+                max: [inputMaxValue]
+            }
+        });
+
+        slider.noUiSlider.on('update', function (values, handle) {
+            inputs[handle].value = parseInt(values[handle]);
+        });
+
+        inputMin.addEventListener('change', function () {
+            slider.noUiSlider.set([this.value, null]);
+        });
+
+        inputMax.addEventListener('change', function () {
+            slider.noUiSlider.set([null, this.value]);
+        });
+    });
+}
+
 //TABS==================================================================================================================================================
 // Получение хеша в адресе сайта
 function getHash() {
