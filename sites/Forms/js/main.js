@@ -628,88 +628,188 @@ function extractValueFromData(data) {
 }
 //timepicker===================================================================================================================================
 document.addEventListener('DOMContentLoaded', function () {
-    const input = document.getElementById('time-range');
-    const modal = document.getElementById('timeModal');
-    const startInput = document.getElementById('modal-time-start');
-    const endInput = document.getElementById('modal-time-end');
-    const saveBtn = document.getElementById('saveTimeRange');
-    const closeBtn = document.getElementById('closeTimeModal');
+  // === ЭЛЕМЕНТЫ ===
+  const input = document.getElementById('time-range');
+  if (!input) return; // если инпута нет — выходим
 
-    // Функция валидации и форматирования
-    const formatTime = (timeStr) => {
-        if (!timeStr) return "";
-        let digits = timeStr.replace(/\D/g, '');
-        if (digits.length === 0) return "";
+  // === МОДАЛКА HTML (создаём динамически) ===
+  const modal = document.createElement('div');
+  modal.id = 'timeRangeModal';
+  modal.innerHTML = `
+    <div class="time-range-modal-overlay">
+      <div class="time-range-modal">
+        <div class="time-range-modal__content">
+            <h3 class="time-range-modal__title">Выберите время</h3>
+            <div class="time-range-modal__inputs">
+                <div>
+                  <div class="time-range-modal__subtitle">Начало:</div>
+                  <div id="startTimeWheel" class="time-wheel-container"></div>
+                </div>
+                <div>
+                  <div class="time-range-modal__subtitle">Конец <span>(опционально)</span>:</div>
+                  <div id="endTimeWheel" class="time-wheel-container"></div>
+                </div>
+            </div>
+            <div class="time-range-modal__buttons">
+              <button id="saveTimeRange" class="time-range-modal__button button-main">Сохранить</button>
+              <button id="cancelTimeRange" class="time-range-modal__button button-white">Отмена</button>
+            </div>
+          </div>
+        </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
 
-        while (digits.length < 4) digits += '0';
-        if (digits.length > 4) digits = digits.slice(0, 4);
+  const overlay = modal.querySelector('.time-range-modal-overlay');
+  const startTimeWheelEl = document.getElementById('startTimeWheel');
+  const endTimeWheelEl = document.getElementById('endTimeWheel');
+  const saveBtn = document.getElementById('saveTimeRange');
+  const cancelBtn = document.getElementById('cancelTimeRange');
 
-        const hours = parseInt(digits.slice(0, 2));
-        const minutes = parseInt(digits.slice(2, 4));
+  // === КОЛЁСИКИ ===
+  let startWheel, endWheel;
 
-        if (hours > 23 || minutes > 59) return "";
+  // ФУНКЦИЯ: создать колёсико
+  function createTimeWheel(container, onValueChange) {
+  container.innerHTML = `
+    <div class="time-wheel">
+      <div class="time-wheel__hours"></div>
+      <div class="time-wheel__line">:</div>
+      <div class="time-wheel__minutes"></div>
+      <div class="time-wheel__mask"></div>
+    </div>
+  `;
 
-        return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
-    };
+  const hoursEl = container.querySelector('.time-wheel__hours');
+  const minutesEl = container.querySelector('.time-wheel__minutes');
 
-    // Валидация ввода: только цифры, максимум 4
-    [startInput, endInput].forEach(inp => {
-        inp.addEventListener('input', function (e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 4) value = value.slice(0, 4);
-            e.target.value = value;
-        });
+  // Генерация часов (00–23)
+  const hoursList = document.createElement('div');
+  hoursList.style.position = 'relative';
+  hoursList.style.top = '36px'; // начальное положение
+  hoursList.style.transition = 'top 0.2s ease';
+
+  for (let i = 0; i < 24; i++) {
+    const el = document.createElement('div');
+    el.textContent = String(i).padStart(2, '0');
+    el.dataset.value = i;
+    el.addEventListener('click', () => {
+      selectedHour = i;
+      update();
+      if (onValueChange) onValueChange(getValue());
+    });
+    hoursList.appendChild(el);
+  }
+  hoursEl.appendChild(hoursList);
+
+  // Генерация минут (00–59)
+  const minutesList = document.createElement('div');
+  minutesList.style.position = 'relative';
+  minutesList.style.top = '36px';
+  minutesList.style.transition = 'top 0.2s ease';
+
+  for (let i = 0; i < 60; i++) {
+    const el = document.createElement('div');
+    el.textContent = String(i).padStart(2, '0');
+    el.dataset.value = i;
+    el.addEventListener('click', () => {
+      selectedMinute = i;
+      update();
+      if (onValueChange) onValueChange(getValue());
+    });
+    minutesList.appendChild(el);
+  }
+  minutesEl.appendChild(minutesList);
+
+  let selectedHour = 12;
+  let selectedMinute = 0;
+
+  const update = () => {
+    // обновляем выделение
+    hoursList.querySelectorAll('div').forEach(el => {
+      el.style.fontWeight = el.dataset.value == selectedHour ? 'bold' : 'normal';
+      el.style.color = el.dataset.value == selectedHour ? '#007bff' : '#333';
+    });
+    minutesList.querySelectorAll('div').forEach(el => {
+      el.style.fontWeight = el.dataset.value == selectedMinute ? 'bold' : 'normal';
+      el.style.color = el.dataset.value == selectedMinute ? '#007bff' : '#333';
     });
 
-    // Открытие модалки
-    input.addEventListener('click', () => {
-        // Разбиваем текущее значение на начало и конец
-        const currentValue = input.value;
-        if (currentValue && currentValue.includes('–')) {
-            const [start, end] = currentValue.split('–').map(s => s.trim());
-            startInput.value = start;
-            endInput.value = end;
-        } else if (currentValue) {
-            startInput.value = currentValue;
-            endInput.value = '';
-        } else {
-            startInput.value = '';
-            endInput.value = '';
-        }
+    // прокрутка
+    hoursList.style.top = `${36 - selectedHour * 36}px`;
+    minutesList.style.top = `${36 - selectedMinute * 36}px`;
+  };
 
-        modal.style.display = 'flex';
-    });
+  const getValue = () => `${String(selectedHour).padStart(2, '0')}:${String(selectedMinute).padStart(2, '0')}`;
+  const setValue = (timeStr) => {
+    const [h, m] = timeStr.split(':').map(Number);
+    if (!isNaN(h) && h >= 0 && h < 24) selectedHour = h;
+    if (!isNaN(m) && m >= 0 && m < 60) selectedMinute = m;
+    update();
+  };
 
-    // Сохранение
-    saveBtn.addEventListener('click', () => {
-        const startFormatted = formatTime(startInput.value);
-        const endFormatted = formatTime(endInput.value);
+  update();
+  return { getValue, setValue };
+}
 
-        if (!startFormatted) {
-          alert('Введите время начала');
-          return;
-        }
+  // === ИНИЦИАЛИЗАЦИЯ КОЛЁСИКОВ ===
+  startWheel = createTimeWheel(startTimeWheelEl);
+  endWheel = createTimeWheel(endTimeWheelEl);
 
-        if (endFormatted) {
-          input.value = `${startFormatted} – ${endFormatted}`;
-        } else {
-          input.value = startFormatted;
-        }
+  // === ОТКРЫТИЕ МОДАЛКИ ===
+  input.addEventListener('click', () => {
+    let startVal = '12:00';
+    let endVal = '';
 
-        modal.style.display = 'none';
-    });
+    const current = input.value.trim();
+    if (current.includes('–')) {
+      const [s, e] = current.split('–').map(x => x.trim());
+      startVal = s || '12:00';
+      endVal = e;
+    } else if (current) {
+      startVal = current;
+    }
 
-    // Закрытие
-    closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
+    startWheel.setValue(startVal);
+    endWheel.setValue(endVal);
 
-    // Закрытие по клику вне модалки
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
+    overlay.style.display = 'flex';
+  });
+
+  // === ЗАКРЫТИЕ ===
+  cancelBtn.addEventListener('click', () => {
+    overlay.style.display = 'none';
+  });
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      overlay.style.display = 'none';
+    }
+  });
+
+  // === СОХРАНЕНИЕ ===
+  saveBtn.addEventListener('click', () => {
+    const start = startWheel.getValue();
+    const end = endWheel.getValue();
+
+    if (!start) {
+      alert('Выберите время начала');
+      return;
+    }
+
+    // Проверка: если в конце "00:00", возможно, пользователь не выбрал — оставляем пустым
+    const isEmptyEnd = end === '00:00' && input.value.indexOf('–') === -1;
+
+    if (isEmptyEnd) {
+      input.value = start;
+    } else if (end) {
+      input.value = `${start} – ${end}`;
+    } else {
+      input.value = start;
+    }
+
+    overlay.style.display = 'none';
+  });
 });
 //toggle======================================================================================================================================================
 document.addEventListener("click", function (e) {
