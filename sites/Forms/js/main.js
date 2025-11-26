@@ -724,6 +724,75 @@ document.addEventListener('DOMContentLoaded', function () {
   let selectedHour = 12;
   let selectedMinute = 0;
 
+  // Для прокрутки
+  let startY = 0;
+  let startTop = 0;
+  let isDragging = false;
+
+  // Обработчик wheel (мышка)
+  hoursEl.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    if (e.deltaY > 0) {
+      selectedHour = (selectedHour + 1) % 24;
+    } else {
+      selectedHour = (selectedHour - 1 + 24) % 24;
+    }
+    update();
+    if (onValueChange) onValueChange(getValue());
+  });
+
+  minutesEl.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    if (e.deltaY > 0) {
+      selectedMinute = (selectedMinute + 1) % 60;
+    } else {
+      selectedMinute = (selectedMinute - 1 + 60) % 60;
+    }
+    update();
+    if (onValueChange) onValueChange(getValue());
+  });
+
+  // Обработчики touch (мобильные)
+  hoursEl.addEventListener('touchstart', (e) => {
+    startY = e.touches[0].clientY;
+    startTop = parseInt(hoursList.style.top) || 0;
+    isDragging = true;
+  });
+
+  hoursEl.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const deltaY = e.touches[0].clientY - startY;
+    const step = Math.round(deltaY / 36); // 36px — высота элемента
+    selectedHour = (selectedHour - step + 24) % 24;
+    update();
+  });
+
+  hoursEl.addEventListener('touchend', () => {
+    isDragging = false;
+    if (onValueChange) onValueChange(getValue());
+  });
+
+  minutesEl.addEventListener('touchstart', (e) => {
+    startY = e.touches[0].clientY;
+    startTop = parseInt(minutesList.style.top) || 0;
+    isDragging = true;
+  });
+
+  minutesEl.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const deltaY = e.touches[0].clientY - startY;
+    const step = Math.round(deltaY / 36);
+    selectedMinute = (selectedMinute - step + 60) % 60;
+    update();
+  });
+
+  minutesEl.addEventListener('touchend', () => {
+    isDragging = false;
+    if (onValueChange) onValueChange(getValue());
+  });
+  
   const update = () => {
     // обновляем выделение
     hoursList.querySelectorAll('div').forEach(el => {
