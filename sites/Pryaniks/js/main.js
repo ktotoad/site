@@ -243,3 +243,26 @@ function animateall() {
 		}
 	}
 };
+//Image_modal=====================================================================================================================================================
+const options = {
+	contentClick: "toggleCover",
+	Images: {
+		Panzoom: {
+			panMode: "mousemove",
+			mouseMoveFactor: 1.1,
+			mouseMoveFriction: 0.12,
+		},
+	},
+};
+
+if(document.querySelector("#picture-wrap")) {
+	document.querySelectorAll("#picture-wrap").forEach(pictureWrap => {
+		Fancybox.bind(pictureWrap, {options});
+	});
+}
+
+if(document.querySelector("#gallery-wrap")) {
+	document.querySelectorAll("#gallery-wrap").forEach(galleryWrap => {
+		Fancybox.bind(galleryWrap, {options});
+	});
+}
