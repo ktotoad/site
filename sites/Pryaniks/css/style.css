@@ -330,12 +330,13 @@ body.lock {
           flex-direction: row;
   gap: 1rem;
 }
-@media (max-width: 479.98px) {
+@media (max-width: 767.98px) {
   .form__row {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    width: 100%;
   }
   .form__row .input-body, .form__row .form__button {
     width: 100%;
@@ -684,6 +685,9 @@ textarea {
     -webkit-transform: translate(-50%, -50%) rotate(135deg);
             transform: translate(-50%, -50%) rotate(135deg);
   }
+}
+.popup__text {
+  margin-top: 2em;
 }
 .popup__form {
   position: relative;
@@ -1913,10 +1917,23 @@ textarea {
 }
 
 .item-achievements {
+  opacity: 0;
+  -webkit-transform: translate(1em, 1em);
+          transform: translate(1em, 1em);
   border-radius: 2em;
   padding: 2em;
   background: rgba(255, 255, 255, 0.1019607843);
-  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+          backdrop-filter: blur(30px);
+  -webkit-transition: opacity 1.3s ease 0s, -webkit-transform 1.3s ease 0s;
+  transition: opacity 1.3s ease 0s, -webkit-transform 1.3s ease 0s;
+  transition: opacity 1.3s ease 0s, transform 1.3s ease 0s;
+  transition: opacity 1.3s ease 0s, transform 1.3s ease 0s, -webkit-transform 1.3s ease 0s;
+}
+.item-achievements.active {
+  opacity: 1;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
 }
 .item-achievements__body {
   display: -webkit-box;
@@ -2022,6 +2039,7 @@ textarea {
   }
 }
 .person__image {
+  opacity: 0;
   -webkit-box-flex: 0;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
@@ -2029,6 +2047,11 @@ textarea {
   border-radius: 4em;
   width: 36em;
   aspect-ratio: 3/4;
+  -webkit-transition: opacity 1.3s ease 0s;
+  transition: opacity 1.3s ease 0s;
+}
+.person__image.active {
+  opacity: 1;
 }
 .person__image img {
   width: 100%;
@@ -2096,14 +2119,12 @@ textarea {
 .person__picture {
   position: absolute;
   z-index: 5;
-  bottom: 0;
-  right: 0;
+  bottom: 10em;
+  right: -10em;
   overflow: hidden;
   border-radius: 4em;
   width: 56em;
   aspect-ratio: 1/1;
-  -webkit-transform: translate(25%, 25%);
-          transform: translate(25%, 25%);
 }
 .person__picture img {
   width: 100%;
@@ -2163,12 +2184,23 @@ textarea {
           align-items: start;
   text-align: start;
 }
-.portfolio__items {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 3em 1fr;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 3em;
+@media (min-width: 479.98px) {
+  .portfolio__items {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 3em 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3em;
+  }
+}
+@media (max-width: 479.98px) {
+  .item-portfolio {
+    -webkit-transform: translate(0, 0) !important;
+            transform: translate(0, 0) !important;
+  }
+  .item-portfolio:not(:last-child) {
+    margin-bottom: 3em;
+  }
 }
 .item-portfolio__images {
   display: block;
