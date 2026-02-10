@@ -361,6 +361,36 @@ if(document.querySelector("[data-paralax]")) {
 	});
 }
 
+//Item_hover_animation========================================================================================================================
+document.addEventListener('click', function(e) {
+	if (e.target.matches('.hover-item') || e.target.closest('.hover-item')) {
+		const element = e.target.closest('.hover-item');
+		const rect = element.getBoundingClientRect();
+		const x = e.clientX - rect.left;
+		const y = e.clientY - rect.top;
+
+		if(!element.querySelector("span.item")) {
+			const circle = document.createElement('span');
+
+			circle.classList.add("item");
+			circle.style.left = x + 'px';
+			circle.style.top = y + 'px';
+			//circle.style.left = `calc(50% - ${x}px)`;
+			//circle.style.top = `calc(50% - ${y}px)`;
+
+			element.append(circle);
+			setTimeout(() => {
+	            element.classList.add("animate");
+	        }, 10);		
+
+			setTimeout(() => {
+				element.classList.remove("animate");
+				circle.remove();
+			}, 1300);
+		}
+	}
+});
+
 //Image_modal=====================================================================================================================================================
 const options = {
 	contentClick: "toggleCover",

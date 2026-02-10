@@ -352,6 +352,32 @@ body.lock {
   text-decoration: underline;
 }
 
+/*hover item*/
+.hover-item {
+  position: relative;
+  overflow: hidden;
+}
+.hover-item span.item {
+  display: block;
+  -webkit-transform: translate(-50%, -50%) scale(0.1);
+          transform: translate(-50%, -50%) scale(0.1);
+  position: absolute;
+  width: 100%;
+  aspect-ratio: 1/1;
+  background: var(--primary);
+  opacity: 0.1;
+  border-radius: 50%;
+  -webkit-transition: opacity 1.3s ease 0s, -webkit-transform 1s ease 0s;
+  transition: opacity 1.3s ease 0s, -webkit-transform 1s ease 0s;
+  transition: transform 1s ease 0s, opacity 1.3s ease 0s;
+  transition: transform 1s ease 0s, opacity 1.3s ease 0s, -webkit-transform 1s ease 0s;
+}
+.hover-item.animate span.item {
+  opacity: 0;
+  -webkit-transform: translate(-50%, -50%) scale(2);
+          transform: translate(-50%, -50%) scale(2);
+}
+
 /*Buttons*/
 .button-black, .button-white {
   display: -webkit-box;
@@ -1418,9 +1444,6 @@ textarea {
   transition: background 0.3s ease 0s;
 }
 @media (any-hover: hover) {
-  .main__button:hover {
-    background: var(--light);
-  }
   .main__button:hover img {
     -webkit-transform: scale(1.1);
             transform: scale(1.1);
