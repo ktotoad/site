@@ -16,7 +16,7 @@ if (iconMenu) {
 		burgerFunc();
 	});
 	menuBody.addEventListener('click', function clickButtonBurger(event) {
-		if(menuBody.querySelector("a")) {
+		if(event.target.closest("a")) {
 			burgerFunc();
 		}
 	});
@@ -174,6 +174,28 @@ DynamicAdapt.prototype.arraySort = function (arr) {
 };
 const da = new DynamicAdapt("max");
 da.init();
+//spollerbutton=====================================================================================================================================================
+if (document.querySelector("#spollerbutton")){
+	const spollerbutton = document.querySelector('#spollerbutton');
+	const spollerblock = document.querySelector('#spollerbody');
+	document.addEventListener("click", (event) => {
+		dropMenu(event);
+	});
+	document.addEventListener("mouseenter", (event) => {
+		dropMenu(event);
+	});
+
+	function dropMenu(event) {
+		const withinBoundaries = event.composedPath().includes(spollerbutton);
+
+		if (!withinBoundaries) {
+			spollerblock.classList.remove('active');
+		}
+		else {
+			spollerblock.classList.toggle('active');
+		}
+	}
+}
 //InputMask===============================================================================================================================================
 function inputElements() {
 	let inputPhones = document.querySelectorAll("input[data-format]");
