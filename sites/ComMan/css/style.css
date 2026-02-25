@@ -861,15 +861,15 @@ textarea.input {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    -webkit-transform: translate(0, -100%);
-            transform: translate(0, -100%);
+    -webkit-transform: translate(100%, 0);
+            transform: translate(100%, 0);
     position: fixed;
     width: 100%;
-    height: 100vh;
-    top: 0;
+    height: auto;
+    top: 12em;
     left: 0;
     overflow: auto;
-    padding: 12em 1em 3em 1em;
+    padding: 3em 1em;
     background: var(--white);
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
@@ -931,6 +931,23 @@ textarea.input {
             transform: translateX(10%);
   }
 }
+.header__spoller-button.active span::before {
+  -webkit-transform: translateX(-10%);
+          transform: translateX(-10%);
+}
+.header__spoller-button.active span::after {
+  -webkit-transform: translateX(10%);
+          transform: translateX(10%);
+}
+@media (max-width: 991.98px) {
+  .header__spoller-button {
+    color: var(--primary);
+    font-size: 2em;
+  }
+  .header__spoller-button span::before, .header__spoller-button span::after {
+    background: var(--primary);
+  }
+}
 .header__menu {
   position: relative;
 }
@@ -962,6 +979,12 @@ textarea.input {
   white-space: nowrap;
   font-size: 1.6em;
   line-height: 120%;
+}
+@media (max-width: 991.98px) {
+  .header__link {
+    color: var(--primary);
+    font-size: 2em;
+  }
 }
 .header__block {
   position: relative;
@@ -1024,7 +1047,26 @@ textarea.input {
         -ms-flex-pack: center;
             justify-content: center;
   }
+  .header__social .social__link {
+    background: transparent;
+    border: 1px solid var(--brown);
+    width: 5em;
+    height: 5em;
+  }
+  .header__social .social__link svg {
+    width: 3em;
+    height: 3em;
+  }
+  .header__social .social__link svg path {
+    fill: var(--brown);
+  }
 }
+@media (max-width: 767.98px) {
+  .header__button {
+    background: var(--brown);
+  }
+}
+
 /*burger*/
 .icon-menu {
   display: none;
@@ -1047,7 +1089,7 @@ textarea.input {
     position: absolute;
     width: 100%;
     height: 2px;
-    background: var(--black);
+    background: var(--sand);
   }
   .icon-menu::before {
     top: 0px;
@@ -1202,13 +1244,6 @@ textarea.input {
 
 /*spoller body*/
 .spoller-body {
-  cursor: pointer;
-  position: absolute;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  top: 150%;
-  left: 0;
   opacity: 0;
   visibility: hidden;
   -webkit-transition: all 0.3s ease 0s;
@@ -1217,14 +1252,22 @@ textarea.input {
 .spoller-body.active {
   opacity: 1;
   visibility: visible;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+@media (min-width: 991.98px) {
+  .spoller-body {
+    position: absolute;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    top: 150%;
+    left: 0;
+    -webkit-transform: translateY(10%);
+            transform: translateY(10%);
+  }
 }
 .spoller-body__content {
-  -webkit-backdrop-filter: blur(20px);
-          backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid var(--brown);
-  padding: 3.2em;
-  border-radius: 7em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1239,6 +1282,38 @@ textarea.input {
       -ms-flex-direction: row;
           flex-direction: row;
   gap: 3em;
+}
+@media (min-width: 991.98px) {
+  .spoller-body__content {
+    -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--brown);
+    padding: 3.2em;
+    border-radius: 7em;
+  }
+}
+@media (max-width: 991.98px) {
+  .spoller-body__content {
+    color: var(--primary);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 1rem;
+  }
+  .spoller-body__content span {
+    font-size: 2em;
+  }
 }
 .spoller-body__link {
   display: -webkit-box;

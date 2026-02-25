@@ -175,26 +175,52 @@ DynamicAdapt.prototype.arraySort = function (arr) {
 const da = new DynamicAdapt("max");
 da.init();
 //spollerbutton=====================================================================================================================================================
-if (document.querySelector("#spollerbutton")){
-	const spollerbutton = document.querySelector('#spollerbutton');
-	const spollerblock = document.querySelector('#spollerbody');
-	document.addEventListener("click", (event) => {
-		dropMenu(event);
-	});
-	document.addEventListener("mouseenter", (event) => {
-		dropMenu(event);
-	});
+if (document.querySelector("#dropbutton")){
+	const trigger = document.querySelector('#dropbutton');
+	const menu = document.querySelector('#dropbody');
+	let closeTimeout = null;
 
-	function dropMenu(event) {
-		const withinBoundaries = event.composedPath().includes(spollerbutton);
-
-		if (!withinBoundaries) {
-			spollerblock.classList.remove('active');
-		}
-		else {
-			spollerblock.classList.toggle('active');
-		}
+	function openMenu() {
+		clearTimeout(closeTimeout);
+		menu.classList.add('active');
+		menu.removeAttribute('hidden');
 	}
+
+	function closeMenu() {
+	    closeTimeout = setTimeout(() => {
+	    	menu.classList.remove('active');
+			setTimeout(() => {
+				if (!menu.classList.contains('active')) {
+					menu.setAttribute('hidden', '');
+				}
+			}, 200); 
+		}, 200);
+	}
+
+	trigger.addEventListener('mouseenter', openMenu);
+
+	trigger.addEventListener('mouseleave', closeMenu);
+
+	trigger.addEventListener('click', (e) => {
+		e.stopPropagation();
+		if (menu.classList.contains('active')) {
+			closeMenu();
+		} else {
+			openMenu();
+		}
+	});
+
+	menu.addEventListener('mouseenter', () => {
+		clearTimeout(closeTimeout);
+	});
+
+	menu.addEventListener('mouseleave', closeMenu);
+
+	document.addEventListener('click', (e) => {
+		if (!trigger.contains(e.target) && !menu.contains(e.target)) {
+			closeMenu();
+		}
+	});
 }
 //InputMask===============================================================================================================================================
 function inputElements() {
