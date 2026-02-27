@@ -2360,21 +2360,46 @@ textarea.input {
   }
 }
 .tab-body-services__image-block {
+  position: relative;
   overflow: hidden;
   border-radius: 9em;
   width: 100%;
   height: auto;
+  aspect-ratio: 1/1;
 }
-.tab-body-services__image-block img {
+@media (min-width: 991.98px) {
+  .tab-body-services__image-block {
+    position: sticky;
+    top: 6em;
+  }
+}
+.tab-body-services__image {
+  width: 100%;
+  height: 100%;
+}
+.tab-body-services__image img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
 @media (min-width: 991.98px) {
-  .tab-body-services__image-block {
-    position: sticky;
-    top: 6em;
+  .tab-body-services__image[data-index-change] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    -webkit-transition: opacity 1s ease 0s;
+    transition: opacity 1s ease 0s;
+  }
+  .tab-body-services__image[data-index-change="1"] {
+    z-index: 2;
+  }
+  .tab-body-services__image[data-index-change="2"] {
+    z-index: 3;
+  }
+  .tab-body-services__image[data-index-change="3"] {
+    z-index: 4;
   }
 }
 .tab-body-services__text-block {

@@ -742,3 +742,38 @@ let _slideToggle = (target, duration = 500) => {
 	}
 }
 spollers();
+//Change_Image========================================================================================================================================
+if(document.querySelector('[data-block-change]')) {
+	const blocksChange = document.querySelectorAll('[data-block-change]');
+	if (blocksChange.length > 0) {
+
+		window.addEventListener('scroll', changeOnScroll);
+
+		function changeOnScroll(params) {
+			for (let index = 0; index < blocksChange.length; index++) {
+				const blockChange = blocksChange[index];
+				const blockChangeHeight = blockChange.offsetHeight;
+				const blockChangeOffset = blockChange.offsetTop;
+				let imagesChange = blocksChange[index].querySelector('[data-image-change]');
+				const step = blockChangeHeight / 4;
+
+				imagesChange.querySelectorAll("[data-index-change]").forEach(indexImage => {
+					let index = indexImage.getAttribute("data-index-change");
+					let height;
+
+					if(step > imagesChange.offsetHeight) {
+						height = blockChangeOffset + step * index;
+					} else {
+						height = blockChangeOffset + (imagesChange.offsetHeight - step) * index;
+					}
+
+					if(imagesChange.offsetTop >= height) {
+						indexImage.style.opacity = "1";
+					} else {
+						indexImage.style.opacity = "0";
+					}
+				});
+			}		
+		}
+	}
+}
