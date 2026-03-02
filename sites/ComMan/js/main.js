@@ -352,6 +352,35 @@ function bodyUnLock() {
 	}, timeout);
 }
 
+//map======================================================================================================================================================================
+if (document.querySelector("#map")) {
+    ymaps.ready(mapInit);
+}
+function mapInit() {
+    // Создаем карту
+    var myMap = new ymaps.Map("map",{
+        center: [55.662435, 37.285456],
+        zoom: 13,
+        controls: ['zoomControl']
+    }),
+    myIcon = ymaps.templateLayoutFactory.createClass("<div>$[properties.iconContent]</div>"),
+    myPlacemark = new ymaps.Placemark([55.662435, 37.285456],
+    {
+        balloonContent: '<div class="popup-map__body"><p class="text">ул. Маковского, д. 26, помещ. 2/089</p></div>',
+        balloonContentFooter: '<div class="popup-map__footer"><a target="_blank" href="https://yandex.ru/maps/-/CPqfQXkZ" class="popup-map__link"><span>Подробнее</span></a></div>'
+    },
+    {
+        iconLayout: "default#imageWithContent",
+        iconImageHref: "../img/icons/map.svg",
+        iconImageSize: [22, 22],
+        iconImageOffset: [-11, -11],
+        iconContentOffset: [11, 11],
+        iconContentLayout: myIcon,
+    });
+    //добавляем точку
+    myMap.geoObjects.add(myPlacemark);
+}
+
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
