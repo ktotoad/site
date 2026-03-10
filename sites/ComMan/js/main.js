@@ -512,6 +512,14 @@ function tabs() {
 		const tabsBlockIndex = tabsBlock.dataset.tabsIndex;
 		const tabsActiveHashBlock = tabsActiveHash[0] == tabsBlockIndex;
 
+		if (tabsActiveHash) {
+			tabsTitles.forEach((dataTabsTitle) => {
+				dataTabsTitle.classList.remove('_tab-active');
+				if(dataTabsTitle.dataset.tabsHash == tabsActiveHash[0]) {
+					dataTabsTitle.classList.add('_tab-active');
+				}
+			})
+		}
 		if (tabsActiveHashBlock) {
 			const tabsActiveTitle = tabsBlock.querySelector('[data-tabs-titles]>._tab-active');
 			tabsActiveTitle ? tabsActiveTitle.classList.remove('_tab-active') : null;
@@ -534,12 +542,12 @@ function tabs() {
 		let tabsTitles = tabsBlock.querySelectorAll('[data-tabs-title]');
 		let tabsContent = tabsBlock.querySelectorAll('[data-tabs-item]');
 		const tabsBlockIndex = tabsBlock.dataset.tabsIndex;
-		function isTabsAnamate(tabsBlock) {
+		function isTabsAnimate(tabsBlock) {
 			if (tabsBlock.hasAttribute('data-tabs-animate')) {
 				return tabsBlock.dataset.tabsAnimate > 0 ? Number(tabsBlock.dataset.tabsAnimate) : 500;
 			}
 		}
-		const tabsBlockAnimate = isTabsAnamate(tabsBlock);
+		const tabsBlockAnimate = isTabsAnimate(tabsBlock);
 		if (tabsContent.length > 0) {
 			const isHash = tabsBlock.hasAttribute('data-tabs-hash');
 			tabsContent = Array.from(tabsContent).filter(item => item.closest('[data-tabs]') === tabsBlock);
@@ -580,8 +588,17 @@ function tabs() {
 		}
 	}
 }
-tabs(); 
+tabs();
 
+document.addEventListener("click", (e) => {
+	if(e.target.closest("a")) {
+		const tabName = e.target.closest("a").getAttribute('href').replace(/^.*#/g, '');
+		if (tabName.startsWith("tab-")) {
+			setHash(tabName);
+			tabs();
+		}
+	}
+})
 // SPOLLERS========================================================================================================================================
 function spollers() {
 	//Проверка на наличие атрибута
