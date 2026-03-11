@@ -411,6 +411,17 @@ function initSliders() {
 			},
 		});
 	}
+
+	if (document.querySelector('.slider-team')) {
+		new Swiper('.slider-team', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			spaceBetween: 30,
+			parallax: true,
+			speed: 800,
+		});
+	}
 }
 
 initSliders();
