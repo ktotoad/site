@@ -29,16 +29,24 @@ if (document.querySelector(".preloader")) {
 }
 //burger=====================================================================================================================================================
 const iconMenu = document.querySelector('.icon-menu');
+const iconMenuClose = document.querySelector('.icon-menu-close');
 const menuBody = document.querySelector('.header__body');
 const body = document.querySelector('body');
 
 if (iconMenu) {
-	iconMenu.addEventListener('click', 
-		function clickButtonBurger(event) {
-			iconMenu.classList.toggle('active');
-			menuBody.classList.toggle('active');
-			body.classList.toggle('lock');
-		});
+	iconMenu.addEventListener('click', function clickButtonBurger(event) {
+		iconMenu.classList.toggle('active');
+		menuBody.classList.toggle('active');
+		body.classList.toggle('lock');
+	});
+}
+
+if (iconMenuClose) {
+	iconMenuClose.addEventListener('click', function clickButtonMenu(event) {
+		iconMenuClose.classList.remove('active');
+		menuBody.classList.remove('active');
+		body.classList.remove('lock');
+	});
 }
 // Dynamic Adapt v.1
 // HTML data-da="where(uniq class name),when(breakpoint),position(digi)"
