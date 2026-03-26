@@ -196,12 +196,14 @@ if (document.querySelector("#dropbutton")){
 	function openMenu() {
 		clearTimeout(closeTimeout);
 		menu.classList.add('active');
+		menu.closest("header").classList.add('bg');
 		menu.removeAttribute('hidden');
 	}
 
 	function closeMenu() {
 	    closeTimeout = setTimeout(() => {
 	    	menu.classList.remove('active');
+			menu.closest("header").classList.remove('bg');
 			setTimeout(() => {
 				if (!menu.classList.contains('active')) {
 					menu.setAttribute('hidden', '');
@@ -209,10 +211,6 @@ if (document.querySelector("#dropbutton")){
 			}, 200); 
 		}, 200);
 	}
-
-	trigger.addEventListener('mouseenter', openMenu);
-
-	trigger.addEventListener('mouseleave', closeMenu);
 
 	trigger.addEventListener('click', (e) => {
 		e.stopPropagation();
@@ -222,12 +220,6 @@ if (document.querySelector("#dropbutton")){
 			openMenu();
 		}
 	});
-
-	menu.addEventListener('mouseenter', () => {
-		clearTimeout(closeTimeout);
-	});
-
-	menu.addEventListener('mouseleave', closeMenu);
 
 	document.addEventListener('click', (e) => {
 		if (!trigger.contains(e.target) && !menu.contains(e.target)) {
