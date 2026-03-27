@@ -490,6 +490,9 @@ function spollers() {
 					spollersBlock.classList.add('spoller-init');
 					initSpollerBody(spollersBlock);
 					spollersBlock.addEventListener("click", setSpollerAction);
+					if(spollersBlock.hasAttribute("data-spollers-hover")) {
+						spollersBlock.addEventListener("mouseover", setSpollerAction);
+					}
 				} else {
 					spollersBlock.classList.remove('spoller-init');
 					initSpollerBody(spollersBlock, false);
@@ -497,6 +500,7 @@ function spollers() {
 				}
 			});
 		}
+
 		//Работа с телом спойлера
 		function initSpollerBody(spollersBlock, hideSpollerBody = true) {
 			const spollerTitles = spollersBlock.querySelectorAll('[data-spoller]');
@@ -514,9 +518,10 @@ function spollers() {
 				});
 			}
 		}
+
 		function setSpollerAction(e) {
 			const el = e.target;
-			if (el.hasAttribute('data-spoller') || el.closest('[data-spoller]')) {
+			if (el.closest('[data-spoller]') || el.hasAttribute('data-spoller')) {
 				const spollerTitle = el.hasAttribute('data-spoller') ? el : el.closest('[data-spoller]');
 				const spollersBlock = spollerTitle.closest('[data-spollers]');
 				const oneSpoller = spollersBlock.hasAttribute('data-one-spoller') ? true : false;
@@ -525,23 +530,32 @@ function spollers() {
 						hideSpollersBody(spollersBlock);
 					}
 					spollerTitle.classList.toggle('spoller-active');
-					_slideToggle(spollerTitle.nextElementSibling, 500);
+					if(el.getAttribute('data-spoller') != "no_animation") {
+						_slideToggle(spollerTitle.nextElementSibling, 500);
+					} else {
+						_slideToggle(spollerTitle.nextElementSibling, 0);
+					}
 				}
 				e.preventDefault();
 			}
 		}
+
 		function hideSpollersBody(spollersBlock) {
 			const spollerActiveTitle = spollersBlock.querySelector('[data-spoller].spoller-active');
 			if (spollerActiveTitle) {
 				spollerActiveTitle.classList.remove('spoller-active');
-				_slideUp(spollerActiveTitle.nextElementSibling, 500);
+				if(spollerActiveTitle.getAttribute('data-spoller') != "no_animation") {
+					_slideUp(spollerActiveTitle.nextElementSibling, 500);
+				} else {
+					_slideUp(spollerActiveTitle.nextElementSibling, 0);
+				}
 			}
 		}
 	}
 }
 
 //Функции открытия/закрытия
-let _slideUp = (target, duration = 500) => {
+let _slideUp = (target, duration) => {
 	if (!target.classList.contains('spoller-slide')) {
 		target.classList.add('spoller-slide');
 		target.style.transitionProperty = "height, margin, padding";
@@ -570,7 +584,7 @@ let _slideUp = (target, duration = 500) => {
 	}
 }
 
-let _slideDown = (target, duration = 500) => {
+let _slideDown = (target, duration) => {
 	if (!target.classList.contains('spoller-slide')) {
 		target.classList.add('spoller-slide');
 		if(target.hidden) {
@@ -601,13 +615,14 @@ let _slideDown = (target, duration = 500) => {
 	}
 }
 
-let _slideToggle = (target, duration = 500) => {
+let _slideToggle = (target, duration) => {
 	if (target.hidden) {
 		return _slideDown(target, duration);
 	} else {
 		return _slideUp(target, duration);
 	}
 }
+
 spollers();
 //Filter=====================================================================================================================================================
 if(document.querySelector('#allfilter')) {
@@ -768,3 +783,38 @@ function tabs() {
 	}
 }
 tabs();
+//SubMenu========================================================================================================================================
+if(document.querySelector('[data-menu]')) {
+	const subMenuButtonArray = document.querySelectorAll('[data-parent]');
+	const subMenuArray = document.querySelectorAll('[data-submenu]');
+
+	subMenuButtonArray.forEach(subMenuButtonItem => {
+		subMenuButtonItem.addEventListener("mouseenter", documentActions);
+	});
+
+	function documentActions(e) {
+		const el = e.target;
+		if (el.closest('[data-parent]') || el.hasAttribute('data-parent')) {
+
+			subMenuButtonArray.forEach(subMenuButtonItem => {
+				subMenuButtonItem.classList.remove("active");
+			});
+
+			const menuTitle = el.hasAttribute('data-parent') ? el : el.closest('[data-parent]');
+			const menuTitleIndex = menuTitle.getAttribute('data-parent');
+
+			subMenuArray.forEach(subMenuItem => {
+				if(subMenuItem.getAttribute('data-submenu') == menuTitleIndex) {
+					subMenuItem.classList.add("active");
+					subMenuItem.querySelector("[data-close-submenu]").addEventListener("click", (e) => {
+						subMenuItem.classList.remove("active");
+					});
+				} else {
+					subMenuItem.classList.remove("active");
+				}
+			});
+
+			menuTitle.classList.add("active");
+		}
+	}
+}
