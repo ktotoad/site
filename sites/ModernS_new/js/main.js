@@ -790,6 +790,7 @@ if(document.querySelector('[data-menu]')) {
 
 	subMenuButtonArray.forEach(subMenuButtonItem => {
 		subMenuButtonItem.addEventListener("mouseenter", documentActions);
+		subMenuButtonItem.addEventListener("click", documentActions);
 	});
 
 	function documentActions(e) {
