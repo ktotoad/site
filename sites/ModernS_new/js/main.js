@@ -381,6 +381,23 @@ function initSliders() {
 			},
 		});
 	}
+
+	if (document.querySelector('.slider-catalog')) {
+		new Swiper('.slider-catalog', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			spaceBetween: 10,
+			parallax: true,
+			watchSlidesProgress: true,
+			autoHeight: true,
+			speed: 800,
+			pagination: {
+				el: ".slider-catalog__pagination",
+				type: "progressbar",
+			},
+		});
+	}
 }
 
 initSliders();
@@ -816,36 +833,6 @@ if(document.querySelector('[data-menu]')) {
 			});
 
 			menuTitle.classList.add("active");
-		}
-	}
-}
-//Resize_scroll==================================================================================================================================================
-if(document.querySelector("[data-gsap-catalog]")) {
-	gsap.registerPlugin(ScrollTrigger);
-
-	if (window.innerWidth <= 768) {
-	    const wrap = document.querySelector("[data-gsap-catalog-body]");
-	    const container = document.querySelector("[data-gsap-catalog]");
-	    const item = document.querySelector("[data-gsap-catalog-item]");
-
-		if (wrap && container && item) {
-		    const getScrollDistance = () => {
-            	return container.scrollWidth - window.innerWidth + item.offsetWidth / 10;
-		    };
-
-			gsap.to(container, {
-		        x: () => -getScrollDistance(),
-		        ease: "none",
-		        scrollTrigger: {
-		            trigger: wrap,
-		            pin: true,
-		            pinSpacing: true,
-		            scrub: 1,
-		            start: "bottom bottom",
-		            end: () => "+=" + getScrollDistance(),
-		            invalidateOnRefresh: true,
-		        }
-		    });
 		}
 	}
 }
