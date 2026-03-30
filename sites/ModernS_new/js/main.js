@@ -198,6 +198,7 @@ da.init();
 //spollerbutton=====================================================================================================================================================
 if (document.querySelector("#dropbutton")){
 	const trigger = document.querySelector('#dropbutton');
+	const mobileTrigger = document.querySelector('[data-close-menu]');
 	const menu = document.querySelector('#dropbody');
 	let closeTimeout = null;
 
@@ -226,6 +227,13 @@ if (document.querySelector("#dropbutton")){
 			closeMenu();
 		} else {
 			openMenu();
+		}
+	});
+
+	mobileTrigger.addEventListener('click', (e) => {
+		e.stopPropagation();
+		if (menu.classList.contains('active')) {
+			closeMenu();
 		}
 	});
 
