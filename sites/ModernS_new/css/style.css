@@ -2702,7 +2702,15 @@ textarea.input {
   }
 }
 .catalog-page__wrap {
+  position: relative;
   margin-top: 3em;
+}
+@media (max-width: 767.98px) {
+  .catalog-page__wrap {
+    height: 40em;
+    width: 100%;
+    overflow: visible;
+  }
 }
 .catalog-page__items {
   display: -ms-grid;
@@ -2722,20 +2730,23 @@ textarea.input {
 }
 @media (max-width: 767.98px) {
   .catalog-page__items {
-    -ms-grid-columns: (1fr)[2];
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 479.98px) {
-  .catalog-page__items {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
     gap: 1rem;
+    padding: 0;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+  }
+}
+@media (max-width: 767.98px) {
+  .catalog-page__item {
+    -ms-flex-negative: 0;
+        flex-shrink: 0;
+    width: 32em;
   }
 }
 @media (min-width: 767.98px) {

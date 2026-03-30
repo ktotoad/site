@@ -819,3 +819,33 @@ if(document.querySelector('[data-menu]')) {
 		}
 	}
 }
+//Resize_scroll==================================================================================================================================================
+if(document.querySelector("[data-gsap-catalog]")) {
+	gsap.registerPlugin(ScrollTrigger);
+
+	if (window.innerWidth <= 768) {
+	    const wrap = document.querySelector("[data-gsap-catalog-body]");
+	    const container = document.querySelector("[data-gsap-catalog]");
+	    const item = document.querySelector("[data-gsap-catalog-item]");
+
+		if (wrap && container && item) {
+		    const getScrollDistance = () => {
+            	return container.scrollWidth - window.innerWidth + item.offsetWidth / 10;
+		    };
+
+			gsap.to(container, {
+		        x: () => -getScrollDistance(),
+		        ease: "none",
+		        scrollTrigger: {
+		            trigger: wrap,
+		            pin: true,
+		            pinSpacing: true,
+		            scrub: 1,
+		            start: "bottom bottom",
+		            end: () => "+=" + getScrollDistance(),
+		            invalidateOnRefresh: true,
+		        }
+		    });
+		}
+	}
+}
