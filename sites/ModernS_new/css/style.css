@@ -11,6 +11,7 @@
   --light-gray: #A7A7A7;
   --light-blue: #D4DFEF;
   --light-blue2: #DFECFF;
+  --light-blue3: #E2EDFF;
   --blue: #275DAE;
   --dark-blue: #9CA3AF;
   --blue-op: #275DAE80;
@@ -4238,6 +4239,11 @@ textarea.input {
 .banner-catalog__steps .item-steps-page {
   border: unset;
 }
+@media (max-width: 767.98px) {
+  .banner-catalog__steps {
+    display: none;
+  }
+}
 
 /*catalog section*/
 .catalog-page-section {
@@ -4636,6 +4642,9 @@ textarea.input {
   margin-bottom: 4em;
 }
 
+.models__table {
+  margin-top: 3em;
+}
 .models__footer {
   margin-top: 3em;
 }
@@ -4655,6 +4664,72 @@ textarea.input {
           flex-direction: row;
   gap: 1rem;
 }
+.table-models__body {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  height: auto;
+}
+.table-models__row {
+  position: relative;
+  padding: 1em 0;
+  background: var(--white);
+  padding-left: calc((100vw - 1695px) / 2);
+  padding-right: calc((100vw - 1695px) / 2);
+}
+.table-models__row::before {
+  content: "";
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background: var(--white);
+}
+.table-models__row:first-child {
+  padding: 2em 0;
+  background: var(--light-blue3);
+}
+.table-models__row:first-child::before {
+  content: "";
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background: var(--light-blue3);
+}
+.table-models__row:nth-child(2n) {
+  background: var(--light);
+}
+.table-models__row:nth-child(2n)::before {
+  content: "";
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background: var(--light);
+}
+.table-models__row th, .table-models__row td {
+  position: relative;
+  z-index: 5;
+  height: 2em;
+  font-weight: 500;
+  font-size: 2.2em;
+  line-height: 120%;
+}
+.table-models__row th {
+  text-align: left;
+  font-size: 2.4em;
+}
+
 /*catalog realization*/
 .page__realization {
   margin-top: 6em;
