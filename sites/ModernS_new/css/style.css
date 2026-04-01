@@ -4310,10 +4310,22 @@ textarea.input {
   overflow: hidden;
   border-radius: 3.5em;
   background: var(--light);
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
 }
 @media (max-width: 767.98px) {
   .item-catalog-page-section {
     border-radius: 2em;
+  }
+}
+@media (any-hover: hover) {
+  .item-catalog-page-section:hover {
+    -webkit-box-shadow: 0 4px 23px 0 rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 23px 0 rgba(0, 0, 0, 0.1);
+  }
+  .item-catalog-page-section:hover .item-catalog-page-section__image img {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
   }
 }
 .item-catalog-page-section__body {
@@ -4326,12 +4338,6 @@ textarea.input {
           flex-direction: column;
   height: 100%;
   gap: 1em;
-}
-@media (any-hover: hover) {
-  .item-catalog-page-section__body:hover .item-catalog-page-section__image img {
-    -webkit-transform: scale(1.05);
-            transform: scale(1.05);
-  }
 }
 .item-catalog-page-section__text-block {
   display: -webkit-box;
@@ -4359,8 +4365,8 @@ textarea.input {
   background: var(--blue);
   font-size: 2em;
   line-height: 120%;
-  padding: 0.25em 0.75em;
-  border-radius: 1em 0 1em 0;
+  padding: 0.125em 0.5em;
+  border-radius: 0.75em 0 0.75em 0;
   font-family: "Bebas Neue Cyrillic";
 }
 .item-catalog-page-section__label.label-cyan {
