@@ -4115,7 +4115,8 @@ textarea.input {
 /*catalog*/
 .catalog-page-main {
   overflow: hidden;
-  padding-bottom: 8em;
+  margin-top: 3em;
+  padding-bottom: 4em;
 }
 
 /*catalog banner*/
@@ -4137,7 +4138,11 @@ textarea.input {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(20.26%, #FFFFFF), color-stop(58.99%, #E6F0FF), color-stop(96.75%, #DFECFF));
   background: linear-gradient(-180deg, #FFFFFF 20.26%, #E6F0FF 58.99%, #DFECFF 96.75%);
   overflow: hidden;
-  border-radius: 0 0 9em 9em;
+}
+@media (min-width: 767.98px) {
+  .banner-catalog::before {
+    border-radius: 0 0 9em 9em;
+  }
 }
 .banner-catalog__bg {
   overflow: hidden;
@@ -4145,7 +4150,11 @@ textarea.input {
   height: 100%;
   top: 0;
   right: -12em;
-  border-radius: 0 0 9em 9em;
+}
+@media (min-width: 767.98px) {
+  .banner-catalog__bg {
+    border-radius: 0 0 9em 9em;
+  }
 }
 .banner-catalog__bg img {
   width: 100%;
@@ -4169,7 +4178,7 @@ textarea.input {
     max-width: 100%;
   }
   .banner-catalog__bg img {
-    width: 125%;
+    width: 150%;
   }
 }
 .banner-catalog__container {
@@ -4387,7 +4396,7 @@ textarea.input {
 }
 @media (max-width: 767.98px) {
   .item-catalog-page-section__title {
-    font-size: 1.8em;
+    font-size: 1.6em;
   }
 }
 .item-catalog-page-section__subtitle {
@@ -4395,6 +4404,11 @@ textarea.input {
   font-weight: 700;
   font-size: 2em;
   line-height: 140%;
+}
+@media (max-width: 767.98px) {
+  .item-catalog-page-section__subtitle {
+    font-size: 1.8em;
+  }
 }
 .item-catalog-page-section__image {
   overflow: hidden;
@@ -4422,7 +4436,7 @@ textarea.input {
 
 /*catalog detail*/
 .page__catalog-detail {
-  margin-top: 2em;
+  margin-top: 3em;
   margin-bottom: 4em;
 }
 
@@ -4538,15 +4552,14 @@ textarea.input {
   .catalog-detail-page__buttons-row {
     border-radius: 0;
     padding: 1em 2em;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-}
-@media (max-width: 479.98px) {
-  .catalog-detail-page__buttons-row {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    position: fixed;
+    z-index: 10;
+    bottom: 0;
+    left: 0;
+    width: 100%;
   }
 }
 .catalog-detail-page__info-block {
@@ -4561,6 +4574,11 @@ textarea.input {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 0.5em;
+}
+@media (max-width: 767.98px) {
+  .catalog-detail-page__info-block {
+    display: none;
+  }
 }
 .catalog-detail-page__desc {
   font-weight: 600;
