@@ -435,6 +435,39 @@ function initSliders() {
 			},
 		});
 	}
+
+	if (document.querySelector('.slider-news-detail')) {
+		new Swiper('.slider-news-detail', {
+  		observer: true,
+			observeParents: true,
+			slidesPerView: 4,
+			spaceBetween: 30,
+			parallax: true,
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 10,
+				},
+				470: {
+					slidesPerView: 2,
+					spaceBetween: 10,
+				},
+				767: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+				992: {
+					slidesPerView: 4,
+					spaceBetween: 30,
+				},
+			},
+			navigation: {
+				nextEl: ".slider-news-detail__next",
+				prevEl: ".slider-news-detail__prev",
+			},
+		});
+	}
 }
 
 initSliders();
