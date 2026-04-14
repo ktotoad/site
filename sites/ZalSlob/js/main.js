@@ -290,3 +290,102 @@ function animateall() {
 		}
 	}
 };
+//BuildSlider======================================================================================================================================================
+function buildSliders() {
+	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
+	if (sliders) {
+		sliders.forEach(slider => {
+			slider.parentElement.classList.add('swiper');
+			slider.classList.add('swiper-wrapper');
+			for(const slide of slider.children) {
+				slide.classList.add('swiper-slide');
+			}
+		});
+	}
+}
+
+//Инициализация_Swiper===============================================================================================================================================
+function initSliders() {
+	buildSliders();
+
+	if (document.querySelector('.slider-main-smi')) {
+		new Swiper('.slider-main-smi', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 3,
+			spaceBetween: 50,
+			parallax: true,
+			autoHeight: true,
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					autoHeight: true,
+				},
+				768: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
+				992: {
+					slidesPerView: 3,
+					spaceBetween: 30,
+				},
+			},
+			navigation: {
+			    nextEl: '.slider-main-smi__next',
+			    prevEl: '.slider-main-smi__prev',
+			}
+		});
+	}
+	if (document.querySelector('.slider-main-gallery')) {
+		new Swiper('.slider-main-gallery', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 3,
+			spaceBetween: 20,
+			parallax: true,
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+				},
+				768: {
+					slidesPerView: 2,
+				},
+				992: {
+					slidesPerView: 3,
+				},
+			},
+			navigation: {
+			    nextEl: '.slider-main-gallery__next',
+			    prevEl: '.slider-main-gallery__prev',
+			}
+		});
+	}
+}
+
+
+initSliders();
+//Image_modal=====================================================================================================================================================
+const options = {
+	contentClick: "toggleCover",
+	Images: {
+		Panzoom: {
+			panMode: "mousemove",
+			mouseMoveFactor: 1.1,
+			mouseMoveFriction: 0.12,
+		},
+	},
+};
+
+if(document.querySelector("#picture-wrap")) {
+	document.querySelectorAll("#picture-wrap").forEach(pictureWrap => {
+		Fancybox.bind(pictureWrap, {options});
+	});
+}
+
+if(document.querySelector("#gallery-wrap")) {
+	document.querySelectorAll("#gallery-wrap").forEach(galleryWrap => {
+		Fancybox.bind(galleryWrap, {options});
+	});
+}
