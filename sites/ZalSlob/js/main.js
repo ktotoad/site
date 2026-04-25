@@ -510,6 +510,142 @@ function initSliders() {
 }
 
 initSliders();
+//RANGE========================================================================================================================================
+if (document.querySelector("[data-range]")) {
+    rangeSliderInit();
+}
+
+function formatNumber(num) {
+    return num.toLocaleString();
+};
+
+function rangeSliderInit() {
+    document.querySelectorAll("[data-range]").forEach((rangeSlider) => {
+        const valuesArray = rangeSlider
+            .getAttribute('data-range')
+            .split(',')
+            .map(value => value.trim())
+            .map(value => (value === '' ? NaN : Number(value)))
+            .filter(value => !isNaN(value)); // убираем нечисловые
+
+        if (valuesArray.length < 2) {
+            console.warn('Not enough values in data-range (min, max required)');
+            return;
+        }
+
+        const minValue = Number(valuesArray[0]);
+        const maxValue = Number(valuesArray[1]);
+
+        // Определяем шаг
+        const step = rangeSlider.hasAttribute('data-range-step')
+            ? Number(rangeSlider.getAttribute('data-range-step'))
+            : 1;
+
+        // Находим элементы
+        const slider = rangeSlider.querySelector("#slider");
+        const inputMin = rangeSlider.querySelector(".input-min");
+        const inputMax = rangeSlider.querySelector(".input-max");
+        const fromPriceInput = rangeSlider.querySelector("#fromprice");
+        const toPriceInput = rangeSlider.querySelector("#toprice");
+
+        // Определяем, сколько бегунков
+        let hasTwoHandles = true;
+        let startValues;
+
+        // Логика определения количества бегунков
+        if (valuesArray.length === 2) {
+            // Только min и max → два бегунка: стартуем с краёв
+            startValues = [minValue, maxValue];
+            hasTwoHandles = true;
+        } else if (valuesArray.length === 3) {
+            const start = valuesArray[2];
+            if (start >= minValue && start <= maxValue) {
+                // Один бегунок: например, "выбрать количество дней"
+                startValues = [start];
+                hasTwoHandles = false;
+            } else {
+                // Некорректное значение → fallback: два бегунка
+                startValues = [minValue, maxValue];
+                hasTwoHandles = true;
+            }
+        } else if (valuesArray.length >= 4) {
+            // Четыре значения: min, max, startMin, startMax → два бегунка
+            startValues = [
+                valuesArray[2],
+                valuesArray[3]
+            ];
+            hasTwoHandles = true;
+        } else {
+            startValues = [minValue, maxValue];
+            hasTwoHandles = true;
+        }
+
+        // Создаём слайдер
+        noUiSlider.create(slider, {
+            start: startValues,
+            connect: true,
+            step: step,
+            range: {
+                min: minValue,
+                max: maxValue
+            },
+            connect: hasTwoHandles ? true : [true, false], // заполнение слева для одного бегунка
+        });
+
+        // Определяем, какие input'ы использовать
+        const inputs = hasTwoHandles
+            ? [inputMin, inputMax]
+            : [null, inputMax || inputMin]; // для одного бегунка — только один input (например, max)
+
+        // Обновление input'ов при движении слайдера
+        slider.noUiSlider.on('update', function (values, handle) {
+            const value = Math.round(+values[handle]);
+
+            if (hasTwoHandles) {
+                if (handle === 0 && inputMin) {
+                    inputMin.value = formatNumber(value);
+                    if (fromPriceInput) fromPriceInput.value = value;
+                }
+                if (handle === 1 && inputMax) {
+                    inputMax.value = formatNumber(value);
+                    if (toPriceInput) toPriceInput.value = value;
+                }
+            } else {
+                // Один бегунок → только max (или основное значение)
+                if (inputMax) {
+                    inputMax.value = formatNumber(value);
+                }
+                if (toPriceInput) {
+                    toPriceInput.value = value; // чистое число
+                }
+                // fromPriceInput можно оставить 0 или не трогать
+                if (fromPriceInput) {
+                    fromPriceInput.value = minValue; // или 0
+                }
+            }
+        });
+
+        // === ВВОД С КЛАВИАТУРЫ ===
+        if (hasTwoHandles) {
+            inputMin?.addEventListener('change', function () {
+                const val = Number(this.value.replace(/\D/g, '')) || minValue;
+                slider.noUiSlider.set([val, null]);
+            });
+            inputMax?.addEventListener('change', function () {
+                const val = Number(this.value.replace(/\D/g, '')) || maxValue;
+                slider.noUiSlider.set([null, val]);
+            });
+        } else {
+            inputMax?.addEventListener('change', function () {
+                const rawValue = this.value.replace(/\D/g, '');
+                const val = Number(rawValue) || minValue;
+                if (val >= minValue && val <= maxValue) {
+                    slider.noUiSlider.set(val);
+                }
+            });
+        }
+    });
+}
 //Image_modal=====================================================================================================================================================
 const options = {
 	contentClick: "toggleCover",
