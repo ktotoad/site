@@ -423,6 +423,20 @@ function buildSliders() {
 function initSliders() {
 	buildSliders();
 
+	if (document.querySelector('.mobile-images-slider')) {
+		new Swiper('.mobile-images-slider', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 20,
+			parallax: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+		});
+	}
 	if (document.querySelector('.slider-main-smi')) {
 		new Swiper('.slider-main-smi', {
 			observer: true,
@@ -1110,3 +1124,25 @@ if(document.querySelector("#creditresult")) {
 	    return Math.round(Math.round(monthlyPayment * 100) / 100);
 	}
 }
+
+//Image_hover=====================================================================================================================================================================
+document.addEventListener('mouseover', (e) => {
+	if(e.target.closest(".main-houses__image")) {
+		document.querySelectorAll(".main-houses__image").forEach((image) => {
+			if(image != e.target.closest(".main-houses__image")) {
+				image.classList.add('nothover');
+			}
+		});
+	}
+});
+document.addEventListener('mouseout', (e) => {
+	if(e.target.closest(".main-houses__image")) {
+		document.querySelectorAll(".main-houses__image").forEach(image => image.classList.remove('nothover'));
+	}
+});
+//mobile_fancy_gallery=====================================================================================================================================================================
+document.querySelector(".mobile-images-slider").querySelectorAll(".main-houses__image").forEach((fancyImage) => {
+	console.log(fancyImage);
+	fancyImage.removeAttribute('id');
+	fancyImage.setAttribute("data-fancybox", "gallery");
+});
