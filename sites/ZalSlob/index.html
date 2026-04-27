@@ -918,18 +918,17 @@
 											<span>калькулятор</span>
 										</span>
 									</h2>
-									<div class="main-calculator__ranges">
+									<div id="creditresult" class="main-calculator__ranges">
 										<div class="main-calculator__range range-main-calculator">
 											<div class="range-main-calculator__header">
 												<div class="range-main-calculator__title">Стоимость недвижимости</div>
 												<div class="range-main-calculator__limit">до 50 000 000 ₽</div>
 											</div>
 											<div class="range-main-calculator__input-body">
-												<div data-range="1,50000000,15000000" data-range-step="10000" class="range-main-calculator__ui-slider ui-slider">
+												<div data-range="10000000,50000000,15000000" data-range-step="10000" class="range-main-calculator__ui-slider ui-slider">
 													<div class="ui-slider__body">
 														<div class="ui-slider__input-body">
-															<input type="number" id="toprice" hidden>
-															<input readonly type="text" class="ui-slider__input input-max js_price">
+															<input readonly type="text" id="fullprice" class="ui-slider__input input-max js_price">
 														</div>
 														<div id="slider"></div>
 													</div>
@@ -945,7 +944,7 @@
 												<div data-range="1,20,10" data-range-step="1" class="range-main-calculator__ui-slider ui-slider">
 													<div class="ui-slider__body">
 														<div class="ui-slider__input-body">
-															<input readonly type="number" id="time" class="ui-slider__input input-max">
+															<input readonly type="number" id="toyear" class="ui-slider__input input-max">
 														</div>
 														<div id="slider"></div>
 													</div>
@@ -990,20 +989,20 @@
 										</nav>
 										<div data-tabs-body class="tabs-main-calculator__content">
 											<div data-tabs-item  class="tabs-main-calculator__body">
-												<div class="tabs-main-calculator__main">
+												<div data-credit-block class="tabs-main-calculator__main">
 													<div class="tabs-main-calculator__info-block info-block-calculator">
-														<div class="info-block-calculator__values">
+														<div data-percent="15,9" class="info-block-calculator__values">
 															<div class="info-block-calculator__block">
 																<div class="info-block-calculator__title text">Ежемесячный платеж</div>
-																<div class="info-block-calculator__main-value"><span class="js_price">155615</span> ₽</div>
+																<div data-mounth-pay class="info-block-calculator__main-value"><span class="js_price"></span> ₽</div>
 															</div>
 															<div class="info-block-calculator__value-row">
 																<div class="info-block-calculator__desc">Кредит</div>
-																<div class="info-block-calculator__value"><span class="js_price">13500000</span> ₽</div>
+																<div data-fullcredit class="info-block-calculator__value"><span class="js_price"></span> ₽</div>
 															</div>
 															<div class="info-block-calculator__value-row">
 																<div class="info-block-calculator__desc">Переплата</div>
-																<div class="info-block-calculator__value"><span class="js_price">10250000</span> ₽</div>
+																<div data-overprice class="info-block-calculator__value"><span class="js_price"></span> ₽</div>
 															</div>
 														</div>
 														<div class="tabs-main-calculator__info-desc info-desc-calculator">
@@ -1049,8 +1048,53 @@
 												</div>
 											</div>
 											<div data-tabs-item  class="tabs-main-calculator__body">
-												<div class="tabs-main-calculator__main">
-
+												<div data-credit-block class="tabs-main-calculator__main">
+													<div class="tabs-main-calculator__info-block info-block-calculator">
+														<div data-percent="6" class="info-block-calculator__values">
+															<div class="info-block-calculator__block">
+																<div class="info-block-calculator__title text">Ежемесячный платеж</div>
+																<div data-mounth-pay class="info-block-calculator__main-value"><span class="js_price"></span> ₽</div>
+															</div>
+															<div class="info-block-calculator__value-row">
+																<div class="info-block-calculator__desc">Кредит</div>
+																<div data-fullcredit class="info-block-calculator__value"><span class="js_price"></span> ₽</div>
+															</div>
+															<div class="info-block-calculator__value-row">
+																<div class="info-block-calculator__desc">Переплата</div>
+																<div data-overprice class="info-block-calculator__value"><span class="js_price"></span> ₽</div>
+															</div>
+														</div>
+														<div class="tabs-main-calculator__info-desc info-desc-calculator">
+															<div class="info-block-calculator__title text">Необходимо</div>
+															<div class="info-desc-calculator__labels">
+																<div class="info-desc-calculator__label">
+																	<div class="info-desc-calculator__icon">
+																		<svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+																			<path d="M0.75 2.40083L2.40083 4.05167L5.70833 0.75" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+																		</svg>
+																	</div>
+																	<div class="info-desc-calculator__text">Быть в возраст от 20 лет</div>
+																</div>
+																<div class="info-desc-calculator__label">
+																	<div class="info-desc-calculator__icon">
+																		<svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+																			<path d="M0.75 2.40083L2.40083 4.05167L5.70833 0.75" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+																		</svg>
+																	</div>
+																	<div class="info-desc-calculator__text">Паспорт гражданина России</div>
+																</div>
+																<div class="info-desc-calculator__label">
+																	<div class="info-desc-calculator__icon">
+																		<svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+																			<path d="M0.75 2.40083L2.40083 4.05167L5.70833 0.75" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+																		</svg>
+																	</div>
+																	<div class="info-desc-calculator__text">Справка о доходах и суммах налога</div>
+																</div>
+															</div>
+															<div class="info-desc-calculator__desc">Этот расчёт не является публичной офертой</div>
+														</div>
+													</div>
 													<a href="popup" class="item-main-sales__button button-icon-black popup-link">
 														<i>
 															<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1063,8 +1107,53 @@
 												</div>
 											</div>
 											<div data-tabs-item  class="tabs-main-calculator__body">
-												<div class="tabs-main-calculator__main">
-
+												<div data-credit-block class="tabs-main-calculator__main">
+													<div class="tabs-main-calculator__info-block info-block-calculator">
+														<div data-percent="6" class="info-block-calculator__values">
+															<div class="info-block-calculator__block">
+																<div class="info-block-calculator__title text">Ежемесячный платеж</div>
+																<div data-mounth-pay class="info-block-calculator__main-value"><span class="js_price"></span> ₽</div>
+															</div>
+															<div class="info-block-calculator__value-row">
+																<div class="info-block-calculator__desc">Кредит</div>
+																<div data-fullcredit class="info-block-calculator__value"><span class="js_price"></span> ₽</div>
+															</div>
+															<div class="info-block-calculator__value-row">
+																<div class="info-block-calculator__desc">Переплата</div>
+																<div data-overprice class="info-block-calculator__value"><span class="js_price"></span> ₽</div>
+															</div>
+														</div>
+														<div class="tabs-main-calculator__info-desc info-desc-calculator">
+															<div class="info-block-calculator__title text">Необходимо</div>
+															<div class="info-desc-calculator__labels">
+																<div class="info-desc-calculator__label">
+																	<div class="info-desc-calculator__icon">
+																		<svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+																			<path d="M0.75 2.40083L2.40083 4.05167L5.70833 0.75" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+																		</svg>
+																	</div>
+																	<div class="info-desc-calculator__text">Быть в возраст от 20 лет</div>
+																</div>
+																<div class="info-desc-calculator__label">
+																	<div class="info-desc-calculator__icon">
+																		<svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+																			<path d="M0.75 2.40083L2.40083 4.05167L5.70833 0.75" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+																		</svg>
+																	</div>
+																	<div class="info-desc-calculator__text">Паспорт гражданина России</div>
+																</div>
+																<div class="info-desc-calculator__label">
+																	<div class="info-desc-calculator__icon">
+																		<svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+																			<path d="M0.75 2.40083L2.40083 4.05167L5.70833 0.75" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+																		</svg>
+																	</div>
+																	<div class="info-desc-calculator__text">Справка о доходах и суммах налога</div>
+																</div>
+															</div>
+															<div class="info-desc-calculator__desc">Этот расчёт не является публичной офертой</div>
+														</div>
+													</div>
 													<a href="popup" class="item-main-sales__button button-icon-black popup-link">
 														<i>
 															<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -250,14 +250,26 @@ function mapInit() {
 
 //price_spaces================================================================================================================================
 if (document.querySelectorAll(".js_price")) {
-  function numberWithSpaces(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "  ");
-  }
+  priceFunction();
+}
+
+function priceFunction() {
   let js_prices = document.querySelectorAll(".js_price");
   js_prices.forEach((js_price) => {
-      let price = Math.round(js_price.textContent);
-      js_price.textContent = numberWithSpaces(price);
+    //let price = Math.round(js_price.textContent);
+    let price = js_price.textContent;
+    js_price.textContent = numberWithSpaces(price);
   })
+}
+
+function numberWithSpaces(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
+//убирем пробелы, делаем из строки число
+function toNumber(number) {
+  let result = parseInt(number.replace(/\s/g, ''), 10);
+  return result;
 }
 //POPUP========================================================================================================================================
 const popupLinks = document.querySelectorAll('.popup-link');
@@ -1035,3 +1047,66 @@ function tabs() {
 	}
 }
 tabs();
+//Credit_calculator=======================================================================================================================================
+if(document.querySelector("#creditresult")) {
+	const creditResultBlock = document.querySelector("#creditresult");
+	const toYear = creditResultBlock.querySelector("#toyear");
+	const toPrice = creditResultBlock.querySelector("#toprice");
+	const fullPrice = creditResultBlock.querySelector("#fullprice");
+
+	//считаем сумму кредита
+	toPrice.closest("[data-range]").querySelector("#slider").noUiSlider.on('update', (e) => {
+		calculateMounthPayment();
+	});
+
+	//считаем общую сумму 
+	fullPrice.closest("[data-range]").querySelector("#slider").noUiSlider.on('update', (e) => {
+		calculateMounthPayment();
+	});
+	
+	//считаем ежемесячную выплату для каждой ставки
+	toYear.closest("[data-range]").querySelector("#slider").noUiSlider.on('update', (e) => {
+		calculateMounthPayment();
+	});
+
+	//выводим ежемесячный платёж
+	function calculateMounthPayment() {
+		document.querySelectorAll("[data-credit-block]").forEach((creditBlock) => {
+			const percent = creditBlock.querySelector("[data-percent]").getAttribute("data-percent");
+			const mounthPay = creditBlock.querySelector("[data-mounth-pay]");
+			const fullCredit = creditBlock.querySelector("[data-fullcredit]");
+			const overPrice = creditBlock.querySelector("[data-overprice]");
+
+			let payment = calculateMortgagePayment(percent, toYear.value);
+
+			mounthPay.querySelector("span").textContent = numberWithSpaces(payment);
+			mounthPay.setAttribute("data-mounth-pay", payment);
+
+			const credit = payment * toYear.value * 12;
+			const overCredit = toNumber(fullPrice.value) - toPrice.value;
+
+			overPrice.querySelector("span").textContent = numberWithSpaces(credit - overCredit);
+			overPrice.setAttribute("data-overprice", credit - overCredit);
+
+			fullCredit.querySelector("span").textContent = numberWithSpaces(overCredit);
+			fullCredit.setAttribute("data-fullcredit", overCredit);
+		});
+	}
+
+	//считаем платёж
+	function calculateMortgagePayment(annualInterestRate, loanTermYears) {
+	    const principal = toNumber(fullPrice.value) - toPrice.value; // сумма кредита
+	    const monthlyRate = parseInt(annualInterestRate) / 100 / 12; // месячная ставка
+	    const numberOfPayments = loanTermYears * 12; // общее количество платежей
+
+	    // Проверка на нулевую ставку (чтобы избежать деления на ноль)
+	    if (monthlyRate === 0) {
+	        return principal / numberOfPayments;
+	    }
+
+	    const x = Math.pow(1 + monthlyRate, numberOfPayments);
+	    const monthlyPayment = principal * (monthlyRate * x) / (x - 1);
+
+	    return Math.round(Math.round(monthlyPayment * 100) / 100);
+	}
+}
