@@ -1140,9 +1140,28 @@ document.addEventListener('mouseout', (e) => {
 		document.querySelectorAll(".main-houses__image").forEach(image => image.classList.remove('nothover'));
 	}
 });
+
 //mobile_fancy_gallery=====================================================================================================================================================================
 document.querySelector(".mobile-images-slider").querySelectorAll(".main-houses__image").forEach((fancyImage) => {
 	console.log(fancyImage);
 	fancyImage.removeAttribute('id');
 	fancyImage.setAttribute("data-fancybox", "gallery");
+});
+
+//hover_items=====================================================================================================================================================================
+document.addEventListener('mouseover', (e) => {
+	if(e.target.closest("[data-hover]")) {
+		const hoverBlockItem = e.target.closest("[data-hover");
+		const hoverBlock = hoverBlockItem.closest("[data-hover-block]");
+		const hoverBlockTextes = hoverBlock.querySelectorAll("[data-hover-item]");
+		let value = hoverBlockItem.getAttribute('data-hover');
+		
+		hoverBlockTextes.forEach((hoverBlockText) => {
+			if(hoverBlockText.getAttribute('data-hover-item') == value) {
+				hoverBlockText.classList.add("active");
+			} else {
+				hoverBlockText.classList.remove("active");
+			}
+		});
+	}
 });
