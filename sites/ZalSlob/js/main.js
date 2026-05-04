@@ -405,6 +405,39 @@ function animateall() {
 		}
 	}
 };
+//Resize_scroll==================================================================================================================================================
+if(document.querySelector("[data-gsap]")) {
+	gsap.registerPlugin(ScrollTrigger);
+
+	let gsapBody = document.querySelector("[data-gsap]");
+	let gsapHeader = gsapBody.querySelector("[data-gsap-header]")
+	let sections = gsap.utils.toArray("[gsap-item]");
+
+	gsap.to(sections, {
+		xPercent: -100 * (sections.length - 1),
+    	paused: true,
+		scrollTrigger: {
+			trigger: gsapBody,
+			pin: true,
+			scrub: true,
+	        start: "start start",
+			end: () => "+=" + gsapBody.querySelector("[data-gsap-body]").offsetWidth
+		}
+	});
+
+	gsap.to(gsapHeader, {
+		y: -100,
+		opacity: 0,
+		duration: 1,
+		scrollTrigger: {
+			trigger: gsapHeader,
+			start: "top top",
+			end: "bottom top",
+			scrub: true,
+		}
+	});
+}
+
 //BuildSlider======================================================================================================================================================
 function buildSliders() {
 	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
