@@ -410,20 +410,23 @@ if(document.querySelector("[data-gsap]")) {
 	gsap.registerPlugin(ScrollTrigger);
 
 	let gsapBody = document.querySelector("[data-gsap]");
-	let gsapHeader = gsapBody.querySelector("[data-gsap-header]")
+	let gsapHeader = gsapBody.querySelector("[data-gsap-header]");
 	let sections = gsap.utils.toArray("[gsap-item]");
 
-	gsap.to(sections, {
-		xPercent: -100 * (sections.length - 1),
-    	paused: true,
-		scrollTrigger: {
-			trigger: gsapBody,
-			pin: true,
-			scrub: true,
-	        start: "start start",
-			end: () => "+=" + gsapBody.querySelector("[data-gsap-body]").offsetWidth
-		}
-	});
+	if (window.innerWidth >= 767) {
+
+		gsap.to(sections, {
+			xPercent: -100 * (sections.length - 1),
+	    	paused: true,
+			scrollTrigger: {
+				trigger: gsapBody,
+				pin: true,
+				scrub: true,
+		        start: "start start",
+				end: () => "+=" + gsapBody.querySelector("[data-gsap-body]").offsetWidth
+			}
+		});
+	}
 
 	gsap.to(gsapHeader, {
 		y: -100,
@@ -456,6 +459,34 @@ function buildSliders() {
 function initSliders() {
 	buildSliders();
 
+	if (document.querySelector('.slider-main-hero')) {
+		new Swiper(".slider-main-hero",{
+			observer: true,
+			observeParents: true,
+			spaceBetween: 60,
+			centeredSlides: false,
+			parallax: true,
+			loop: true,
+			speed: 8000,
+			autoplay: {
+				delay: 0,
+				disableOnInteraction: false,
+			},
+			breakpoints: {
+				320: {
+					spaceBetween: 10,
+				},
+				768: {
+					spaceBetween: 30,
+				},
+				992: {
+					spaceBetween: 60,
+				},
+			},
+	        slidesPerView: "auto",
+	        allowTouchMove: false,
+	    });
+	}
 	if (document.querySelector('.mobile-images-slider')) {
 		new Swiper('.mobile-images-slider', {
 			observer: true,
@@ -1176,7 +1207,6 @@ document.addEventListener('mouseout', (e) => {
 
 //mobile_fancy_gallery=====================================================================================================================================================================
 document.querySelector(".mobile-images-slider").querySelectorAll(".main-houses__image").forEach((fancyImage) => {
-	console.log(fancyImage);
 	fancyImage.removeAttribute('id');
 	fancyImage.setAttribute("data-fancybox", "gallery");
 });
