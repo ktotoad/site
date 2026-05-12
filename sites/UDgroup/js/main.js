@@ -300,6 +300,35 @@ function initSliders() {
 			},
 		});
 	}
+
+	if (document.querySelector('.slider-main-projects')) {
+		new Swiper('.slider-main-projects', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 2,
+			spaceBetween: 20,
+			parallax: true,
+			speed: 800,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			navigation: {
+				nextEl: ".slider-main-projects__next",
+				prevEl: ".slider-main-projects__prev",
+			},
+			breakpoints: {
+				320: {
+					spaceBetween: 10,
+					slidesPerView: 1,
+				},
+				767: {
+					slidesPerView: 2,
+					spaceBetween: 20,
+				},
+			},
+		});
+	}
 }
 
 initSliders();
