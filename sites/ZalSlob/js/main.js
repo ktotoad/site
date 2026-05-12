@@ -416,12 +416,13 @@ if(document.querySelector("[data-gsap]")) {
 	if (window.innerWidth >= 767) {
 
 		gsap.to(sections, {
-			xPercent: -100 * (sections.length - 1),
+			x: -100 * sections.length,
 	    	paused: true,
 			scrollTrigger: {
 				trigger: gsapBody,
 				pin: true,
 				scrub: true,
+    			invalidateOnRefresh: true,
 		        start: "start start",
 				end: () => "+=" + gsapBody.querySelector("[data-gsap-body]").offsetWidth
 			}
