@@ -257,12 +257,16 @@ body.lock {
   line-height: 100%;
 }
 
-.title {
+.title, .title-m {
   font-size: 4.6em;
   line-height: 120%;
 }
 
-.text-big, .text-xl, .text-l {
+.title-m {
+  font-size: 4em;
+}
+
+.text-big, .text-xl, .text-l, .text {
   font-size: 3em;
   line-height: 120%;
 }
@@ -273,6 +277,10 @@ body.lock {
 
 .text-l {
   font-size: 2em;
+}
+
+.text {
+  font-size: 1.6em;
 }
 
 /*social*/
@@ -1549,6 +1557,9 @@ textarea.input {
   margin-top: 4em;
 }
 .slider-main-projects__slide {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   position: relative;
   overflow: hidden;
   clip-path: polygon(0% 50%, 0% 0%, 85% 0%, 100% 25%, 100% 100%, 30% 100%);
@@ -1563,6 +1574,13 @@ textarea.input {
   left: 0;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(40.33%, rgba(4, 1, 54, 0)), color-stop(79.25%, rgba(4, 1, 54, 0.8)));
   background: linear-gradient(180deg, rgba(4, 1, 54, 0) 40.33%, rgba(4, 1, 54, 0.8) 79.25%);
+  -webkit-transition: opacity 0.3s ease 0s;
+  transition: opacity 0.3s ease 0s;
+}
+@media (any-hover: hover) {
+  .slider-main-projects__slide:hover::before {
+    opacity: 0.5;
+  }
 }
 .slider-main-projects__bg {
   overflow: hidden;
@@ -1576,8 +1594,22 @@ textarea.input {
      object-fit: cover;
 }
 .slider-main-projects__body {
-  position: relative;
-  z-index: 5;
+  position: absolute;
+  z-index: 10;
+  position: absolute;
+  max-width: 42em;
+  width: 100%;
+  bottom: 5em;
+  right: 5em;
+}
+.slider-main-projects__title {
+  color: var(--white);
+  font-weight: 500;
+}
+.slider-main-projects__text {
+  color: var(--white);
+  font-weight: 500;
+  opacity: 0.5;
 }
 
 .page__main {
