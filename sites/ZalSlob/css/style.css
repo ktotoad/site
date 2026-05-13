@@ -369,7 +369,7 @@ body.lock {
   height: 2em;
 }
 .social__link svg path {
-  fill: var(--white);
+  fill: var(--black);
 }
 @media (any-hover: hover) {
   .social__link:hover {
@@ -1359,6 +1359,18 @@ input[type=text], input[type=email], input[type=tel], textarea {
   margin: 0 auto;
   padding: 4em 0 1em;
 }
+.header.main-index .header__link-phone {
+  color: var(--white);
+}
+.header.main-index .social__link svg path {
+  fill: var(--white);
+}
+.header.main-index .header__button {
+  color: var(--white);
+}
+.header.main-index .icon-menu span, .header.main-index .icon-menu::before, .header.main-index .icon-menu::after {
+  background: var(--white);
+}
 .header.fixed {
   padding: 1em 0 0.5em;
   background: var(--white);
@@ -1453,7 +1465,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   font-weight: 500;
   font-size: 1.4em;
   line-height: 120%;
-  color: var(--white);
+  color: var(--black);
   background: rgba(255, 255, 255, 0.1019607843);
   backdrop-filter: blur(14px);
   -webkit-transition: color 0.3s ease 0s, background 0.3s ease 0s;
@@ -1468,6 +1480,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .header__link-phone i svg {
   width: 100%;
   height: 100%;
+}
+.header__link-phone i svg path {
+  fill: currentColor;
 }
 @media (any-hover: hover) {
   .header__link-phone:hover {
@@ -1559,7 +1574,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .header__button {
   white-space: nowrap;
-  color: var(--white);
+  color: var(--black);
 }
 @media (max-width: 767.98px) {
   .header__button {
@@ -1769,7 +1784,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   transition: all 0.3s ease 0s;
   width: 2.1em;
   height: 1px;
-  background: var(--white);
+  background: var(--black);
 }
 .icon-menu span {
   width: 3em;
@@ -1951,6 +1966,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
       -ms-flex-direction: row;
           flex-direction: row;
   gap: 1rem;
+}
+.footer__social svg path {
+  fill: var(--white);
 }
 .footer__content {
   display: -webkit-box;
@@ -5256,5 +5274,35 @@ input[type=text], input[type=email], input[type=tel], textarea {
 @media (max-width: 767.98px) {
   .main-partner__text {
     font-size: 1.6em;
+  }
+}
+
+/*catalog*/
+/*main catalog*/
+.catalog-page {
+  padding-top: 4em;
+  margin-top: 16em;
+  padding-bottom: 12em;
+}
+.catalog-page__items {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -ms-grid-columns: 1fr 4em 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4em;
+}
+@media (max-width: 991.98px) {
+  .catalog-page__items {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 2em;
   }
 }
