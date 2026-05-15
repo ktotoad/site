@@ -417,6 +417,16 @@ function initSliders() {
 		});
 	}
 
+	if (document.querySelector('.slider-about-clients')) {
+		new Swiper('.slider-about-clients', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			spaceBetween: 50,
+			speed: 800,
+		});
+	}
+
 	if (document.querySelector('.slider-main-projects')) {
 		new Swiper('.slider-main-projects', {
 			observer: true,
@@ -471,6 +481,39 @@ function initSliders() {
 					},
 				},
 			});
+		});
+	}
+
+	if (document.querySelector('.slider-about-team')) {
+		new Swiper('.slider-about-team', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 4,
+			spaceBetween: 20,
+			parallax: true,
+			speed: 800,
+			navigation: {
+				nextEl: ".slider-about-team__next",
+				prevEl: ".slider-about-team__prev",
+			},
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 10,
+				},
+				480: {
+					slidesPerView: 2,
+					spaceBetween: 10,
+				},
+				767: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+				992: {
+					slidesPerView: 4,
+					spaceBetween: 20,
+				},
+			},
 		});
 	}
 }
