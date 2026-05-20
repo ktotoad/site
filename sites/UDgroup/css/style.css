@@ -976,6 +976,9 @@ textarea.input {
 }
 .header:not(.header-bg).fixed {
   padding-top: 1em;
+}
+.header:not(.header-bg).fixed .header__container {
+  padding: 1em;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(2em);
 }
@@ -1218,23 +1221,19 @@ textarea.input {
   padding-bottom: 4em;
   position: relative;
 }
-.footer .decore-line {
+.footer .decore-line svg {
   position: absolute;
   z-index: 2;
-  width: 100%;
+  width: auto;
   height: 50%;
   top: 0;
   left: 50%;
-}
-.footer .decore-line svg {
-  width: 100%;
-  height: 100%;
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000;
 }
 .footer .decore-line.active svg {
-  -webkit-animation: drawLine 3s ease-in 0s forwards;
-          animation: drawLine 3s ease-in 0s forwards;
+  -webkit-animation: drawLine 3s ease-in 1.5s forwards;
+          animation: drawLine 3s ease-in 1.5s forwards;
 }
 .footer__wrap {
   display: -ms-grid;
@@ -1576,17 +1575,12 @@ textarea.input {
   display: -ms-flexbox;
   display: flex;
 }
-.main-page .decore-line {
+.main-page .decore-line svg {
   position: absolute;
   z-index: 15;
-  width: 100%;
-  height: 60em;
+  max-height: 60em;
   bottom: 0;
   right: 50%;
-}
-.main-page .decore-line svg {
-  width: 100%;
-  height: 100%;
   stroke-dasharray: 3000;
   stroke-dashoffset: 3000;
 }
@@ -1625,7 +1619,7 @@ textarea.input {
   width: 50vw;
   height: 100%;
   top: 0;
-  left: 0;
+  right: 50%;
   opacity: 0.3;
   background: var(--primary);
   clip-path: polygon(0% 0%, 66% 0%, 100% 45%, 100% 100%, 0% 100%);
@@ -1734,10 +1728,12 @@ textarea.input {
   width: 1.5px;
   height: 0;
   top: 0;
-  left: 50vw;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   background: var(--orange);
-  -webkit-transition: height 1.3s ease 0s;
-  transition: height 1.3s ease 0s;
+  -webkit-transition: height 1.3s ease 1.5s;
+  transition: height 1.3s ease 1.5s;
 }
 .main-digits .decore-line.active::after {
   height: 100%;
@@ -1838,17 +1834,13 @@ textarea.input {
   overflow: hidden;
   padding-bottom: 20em;
 }
-.main-about .decore-line {
+.main-about .decore-line svg {
   position: absolute;
   z-index: 2;
-  width: 100vw;
+  width: auto;
   height: 100%;
   top: 0;
   left: 50%;
-}
-.main-about .decore-line svg {
-  width: 100%;
-  height: 100%;
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000;
 }
@@ -3203,17 +3195,12 @@ textarea.input {
   display: -ms-flexbox;
   display: flex;
 }
-.main-request .decore-line {
+.main-request .decore-line svg {
   position: absolute;
   z-index: 15;
-  width: 100%;
-  height: 60em;
+  max-height: 60em;
   bottom: 0;
   right: 50%;
-}
-.main-request .decore-line svg {
-  width: 100%;
-  height: 100%;
   stroke-dasharray: 3000;
   stroke-dashoffset: 3000;
 }
