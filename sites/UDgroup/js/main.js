@@ -405,6 +405,22 @@ function buildSliders() {
 function initSliders() {
 	buildSliders();
 
+	if (document.querySelector('.slider-fade')) {
+		new Swiper('.slider-fade', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			effect: "fade",
+			spaceBetween: 100,
+			loop: true,
+			speed: 800,
+			navigation: {
+				nextEl: ".slider-fade__next",
+				prevEl: ".slider-fade__prev",
+			},
+		});
+	}
+
 	if (document.querySelector('.slider-main-digits')) {
 		new Swiper('.slider-main-digits', {
 			observer: true,
