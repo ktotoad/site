@@ -43,7 +43,7 @@ if (iconMenu) {
 		burgerFunc();
 	});
 	menuBody.addEventListener('click', function clickButtonBurger(event) {
-		if(menuBody.querySelector("a")) {
+		if(event.target.closest("a")) {
 			burgerFunc();
 		}
 	});
@@ -211,6 +211,24 @@ window.addEventListener("scroll", function(){
 	    header.classList.remove('fixed');
 	}
 });
+//spollerbutton=====================================================================================================================================================
+if (document.querySelector("[drop-body]")){
+	const dropBody = document.querySelector("[drop-body]");
+	document.addEventListener("click", (event) => {
+		const withinBoundaries = event.composedPath().includes(dropBody);
+
+		if (!withinBoundaries) {
+			dropBody.classList.remove('active');
+		}
+		else {
+			dropBody.classList.toggle('active');
+		}
+	});
+
+	document.addEventListener("scroll", (event) => {
+		dropBody.classList.remove('active');
+	});
+}
 //InputMask===============================================================================================================================================
 function inputElements() {
 	let inputPhones = document.querySelectorAll("input[data-format]");
@@ -394,7 +412,7 @@ function initSliders() {
 			slidesPerView: "auto",
 			spaceBetween: 100,
 			loop: true,
-			speed: 3000,
+			speed: 6000,
 			autoplay: {
 				delay: 0,
 				disableOnInteraction: false,

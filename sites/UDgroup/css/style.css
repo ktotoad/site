@@ -971,16 +971,22 @@ textarea.input {
     height: 100%;
     top: 0;
     left: 0;
-    background: var(--primary);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2em);
   }
 }
 .header:not(.header-bg).fixed {
   padding-top: 1em;
 }
 .header:not(.header-bg).fixed .header__container {
-  padding: 1em;
+  padding: 1em 1rem;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(2em);
+}
+@media (max-width: 991.98px) {
+  .header:not(.header-bg).fixed {
+    padding-top: 0;
+  }
 }
 .header.header-bg {
   top: 2em;
@@ -1027,7 +1033,7 @@ textarea.input {
 .header__logo {
   display: block;
   position: relative;
-  z-index: 10;
+  z-index: 15;
   width: 19.2em;
   height: 4em;
 }
@@ -1040,8 +1046,6 @@ textarea.input {
 .header__body {
   width: 100%;
   padding: 1em 0;
-  overflow-y: clip;
-  overflow-x: auto;
 }
 @media (max-width: 991.98px) {
   .header__body {
@@ -1097,6 +1101,142 @@ textarea.input {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+  }
+}
+.header__drop-menu {
+  position: relative;
+}
+.header__drop-menu.active .header__drop-body {
+  display: block;
+}
+.header__drop-title {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+}
+.header__drop-title i {
+  width: 2em;
+  height: 0.75em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+.header__drop-title i::before, .header__drop-title i::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: var(--white);
+}
+@media (max-width: 991.98px) {
+  .header__drop-title i::before, .header__drop-title i::after {
+    background: var(--primary);
+  }
+}
+.header__drop-title i::before {
+  top: 0;
+  left: -25%;
+  -webkit-transition: left 0.3s ease 0s;
+  transition: left 0.3s ease 0s;
+}
+.header__drop-title i::after {
+  bottom: 0;
+  right: -25%;
+  -webkit-transition: right 0.3s ease 0s;
+  transition: right 0.3s ease 0s;
+}
+.header__drop-title span {
+  color: var(--white);
+  white-space: nowrap;
+  font-size: 1.6em;
+  line-height: 100%;
+}
+@media (max-width: 991.98px) {
+  .header__drop-title span {
+    color: var(--primary);
+    font-size: 2.2em;
+  }
+}
+@media (any-hover: hover) {
+  .header__drop-title:hover i::before {
+    left: 0;
+  }
+  .header__drop-title:hover i::after {
+    right: 0;
+  }
+}
+.header__drop-body {
+  display: none;
+}
+@media (min-width: 991.98px) {
+  .header__drop-body {
+    position: absolute;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    height: auto;
+    top: 5em;
+    left: 0;
+    padding-right: 3em;
+  }
+  .header__drop-body::before {
+    content: "";
+    position: absolute;
+    width: 3.05em;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: var(--white);
+    clip-path: polygon(0% 0%, 100% 33%, 100% 100%, 0% 100%);
+  }
+}
+.header__drop-list {
+  padding: 2em;
+  background: var(--white);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+}
+.header__drop-list .header__item a {
+  white-space: nowrap;
+  font-size: 1.6em;
+  line-height: 100%;
+}
+@media (max-width: 991.98px) {
+  .header__drop-list .header__item a {
+    color: var(--primary);
+    font-size: 2.2em;
+  }
+}
+@media (max-width: 991.98px) {
+  .header__drop-list {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    gap: 1em;
+    padding: 0;
+    padding-top: 1em;
   }
 }
 .header__link {
