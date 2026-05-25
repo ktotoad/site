@@ -4083,6 +4083,48 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .slider-images__pagination .swiper-pagination-bullet {
   margin: 0 !important;
 }
+.slider-images__prev, .slider-images__next {
+  cursor: pointer;
+  position: absolute;
+  z-index: 5;
+  width: 15%;
+  height: 100%;
+  top: 0;
+  background: rgba(40, 41, 52, 0.4);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.3s ease 0s;
+  transition: opacity 0.3s ease 0s;
+}
+.slider-images__prev svg, .slider-images__next svg {
+  width: 3em;
+  height: 3em;
+}
+.slider-images__prev svg path, .slider-images__next svg path {
+  stroke: var(--white);
+}
+.slider-images__prev.swiper-button-disabled, .slider-images__next.swiper-button-disabled {
+  opacity: 0;
+}
+@media (any-hover: hover) {
+  .slider-images__prev:not(.swiper-button-disabled):hover, .slider-images__next:not(.swiper-button-disabled):hover {
+    opacity: 1;
+  }
+}
+.slider-images__prev {
+  left: 0;
+}
+.slider-images__next {
+  right: 0;
+}
 .slider-images__swiper {
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;

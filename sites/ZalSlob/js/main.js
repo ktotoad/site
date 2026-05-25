@@ -28,9 +28,9 @@ if (document.querySelector(".preloader")) {
 
     animateall();
 } else {
+    animateall();
     window.addEventListener('load', function () {
         wrapper.classList.add('loaded');
-        animateall();
     });
 }
 const body = document.querySelector('body');
@@ -367,7 +367,7 @@ function bodyUnLock() {
 function animateall() {
 	if(document.querySelector('[data-anim-item]')) {
 		const animItems = document.querySelectorAll('[data-anim-item]');
-		if (wrapper.classList.contains('loaded')) {
+		//if (wrapper.classList.contains('loaded')) {
 			if (animItems.length > 0) {
 				window.addEventListener('scroll', animOnScroll);
 				function animOnScroll(params) {
@@ -402,7 +402,7 @@ function animateall() {
 					animOnScroll();
 				}, 300);
 			}
-		}
+		//}
 	}
 };
 //Resize_scroll==================================================================================================================================================
@@ -584,6 +584,8 @@ function initSliders() {
 	if (document.querySelector('.slider-images')) {
 		document.querySelectorAll('.slider-images').forEach((nestedEl) => {
 			const paginationEl = nestedEl.closest('.slider-images-body').querySelector('.slider-images__pagination');
+			const arrowPrev = nestedEl.closest('.slider-images-body').querySelector('.slider-images__prev');
+			const arrowNext = nestedEl.closest('.slider-images-body').querySelector('.slider-images__next');
 			new Swiper(nestedEl, {
 				observer: true,
 				observeParents: true,
@@ -593,6 +595,10 @@ function initSliders() {
 				pagination: {
 					el: paginationEl,
 					clickable: true,
+				},
+				navigation: {
+				    nextEl: arrowNext,
+				    prevEl: arrowPrev,
 				},
 				nested: true,
 			});
