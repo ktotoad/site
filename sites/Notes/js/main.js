@@ -93,6 +93,31 @@ if(document.querySelector("#buttonsFormBody")) {
 		}
 	}
 }
+//Resize_scroll==================================================================================================================================================
+if(document.querySelector("[data-gsap]")) {
+	gsap.registerPlugin(ScrollTrigger);
+
+	let gsapBody = document.querySelector("[data-gsap]");
+	let sections = gsap.utils.toArray("[gsap-item]");
+
+	if (window.innerWidth >= 992) {
+
+		gsap.to(sections, {
+			xPercent: -100 * (sections.length - 2),
+			ease: "none",
+	    	paused: true,
+			scrollTrigger: {
+				trigger: gsapBody,
+				pin: true,
+				scrub: true,
+    			invalidateOnRefresh: true,
+		        start: "start 10%",
+				end: () => "+=" + gsapBody.querySelector("[data-gsap-body]").offsetWidth
+			}
+		});
+	}
+}
+
 //burger=====================================================================================================================================================
 const iconMenu = document.querySelector('.icon-menu');
 const menuBody = document.querySelector('.header__body');
