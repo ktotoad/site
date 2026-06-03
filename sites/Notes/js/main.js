@@ -117,6 +117,67 @@ if(document.querySelector("[data-gsap]")) {
 		});
 	}
 }
+if(document.querySelector("[catalog-gsap]")) {
+	gsap.registerPlugin(ScrollTrigger);
+
+	let gsapBody = document.querySelector("[catalog-gsap]");
+	const panels = gsap.utils.toArray(".item-catalog");
+
+	gsap.to(panels, {
+		yPercent: -100 * (panels.length - 1),
+		ease: "none",
+	    paused: true,
+		scrollTrigger: {
+		    trigger: gsapBody,
+			pin: true,
+			scrub: true,
+			invalidateOnRefresh: true,
+	        start: "start start",
+		    snap: 1 / (panels.length - 1), // привязка к конкретным секциям
+		    end: () => "+=" + gsapBody.offsetWidth // высота анимации
+		}
+	});
+}
+//number_anim=====================================================================================================================================================
+if(document.querySelector("[data-number]")) {
+
+	document.querySelectorAll("[data-number]").forEach((numberelement) => {
+		const data = numberelement.dataset.number.trim();
+		const dataArray = data.split(",");
+		const number = parseInt(dataArray[0].trim());
+		const time = parseInt(dataArray[1].trim());
+		const step = parseInt(dataArray[2].trim());
+
+		window.addEventListener('scroll', checkVisibility);
+
+		function checkVisibility() {
+			const rect = numberelement.getBoundingClientRect();
+			const isVisible = (
+				rect.top >= 0 &&
+				rect.left >= 0 &&
+				rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+				rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+			);
+
+			if (isVisible) {
+				outNum(number, numberelement, time, step);
+				this.removeEventListener('scroll', checkVisibility);
+			}
+		}
+	});
+
+	function outNum(num, elem, time, step) {
+		n = 0;
+		let t = Math.round(time / (num / step));
+		let interval = setInterval(() => {
+			n = n + step;
+			if (n == num) {
+				clearInterval(interval);
+			}
+			elem.innerHTML = n;
+		}, t);
+	}
+}
 
 //burger=====================================================================================================================================================
 const iconMenu = document.querySelector('.icon-menu');
@@ -456,14 +517,14 @@ if (document.querySelector("#map")) {
 function mapInit() {
     // Создаем карту
     var myMap = new ymaps.Map("map",{
-        center: [55.788157, 49.114736],
+        center: [55.773834, 49.117122],
         zoom: 15,
-        controls: ['zoomControl']
+        controls: []
     }), 
     myIcon = ymaps.templateLayoutFactory.createClass("<div>$[properties.iconContent]</div>"),
-    myPlacemark = new ymaps.Placemark([55.788157, 49.114736],
+    myPlacemark = new ymaps.Placemark([55.773834, 49.117122],
     {
-        balloonContent: '<div class="popup-map__body"><p class="text">Моменты — 12 элегантных таунхаусов</p></div>',
+        balloonContent: '<div class="popup-map__body"><p class="text">ЖК Ноты</p></div>',
         balloonContentFooter: '<div class="popup-map__footer"><a href="#catalog" class="popup-map__link"><span>Подробнее</span></a></div>'
     },
     {
@@ -816,38 +877,44 @@ if(document.querySelector('#radiobuttons')) {
     });
 }
 //Filter=====================================================================================================================================================
-const catalogSliderSlides = document.querySelectorAll('.catalog-slider__slide');
-const filterItems = document.querySelectorAll('.filter-catalog-main__item');
+if(document.querySelector('[data-filter]')) {
+	document.querySelectorAll('[data-filter]').forEach((filter) => {
+		const filterButtons = filter.closest("section").querySelectorAll('[data-filter-button]');
 
-if(document.querySelector('.filter-catalog-main')) {
-
-	filterItems.forEach(elem => { if(elem.classList.contains('active')) {
-		let filter = elem.dataset['filter'];
-		catalogSliderSlides.forEach( elem => {
-			elem.classList.remove('hide');
-			if(!elem.classList.contains(filter)) {
-				elem.classList.add('hide');
+		filterButtons.forEach(filterButton => { 
+			if(filterButton.classList.contains('active')) {
+				let property = filterButton.dataset.filterButton;
+				filterItemsFunc(filter,property);
 			}
 		});
+	});
+}	
+
+document.addEventListener('click', function(event) {
+	if (event.target.matches('[data-filter-button]') || event.target.closest('[data-filter-button]')) {
+		let filter = event.target.closest('[data-filter]');
+		let property = event.target.dataset.filterButton;
+		const filterButtons = event.target.closest("section").querySelectorAll('[data-filter-button]');
+		filterButtons.forEach(filterButton => filterButton.classList.remove('active'));
+		event.target.classList.add('active');
+		filterItemsFunc(filter,property);
 	}
 });
 
-document.querySelector('.filter-catalog-main').addEventListener('click', e => {
+function filterItemsFunc(filter,property) {
+	let filterItems = filter.closest("section").querySelectorAll("[data-filter-item]");
 
-	if(e.target.classList.contains('filter-catalog-main__item') || e.target.closest('.filter-catalog-main__item')) {
-		let filterClass = e.target.closest('.filter-catalog-main__item').dataset['filter'];
-		filterItems.forEach(elem => elem.classList.remove('active'));
-		e.target.closest('.filter-catalog-main__item').classList.add('active');
-
-		catalogSliderSlides.forEach( elem => {
-			elem.classList.remove('hide');
-			if(!elem.classList.contains(filterClass)) {
-				elem.classList.add('hide');
+	filterItems.forEach( filterItem => {
+		filterItem.classList.remove('hide');
+		const valuesArray = filterItem.getAttribute('data-filter-item').split(',').map(value => value.trim());
+		let check = 0;
+		for (let i = 0; i < valuesArray.length; i++) {
+			if(valuesArray[i] == property) {
+				check++;
 			}
-		});
-			
-		let mySwiper = document.querySelector('.catalog-slider').swiper;
-		mySwiper.update();
+		}
+		if(check == 0) {
+			filterItem.classList.add('hide');
 		}
 	});
 }
@@ -1039,6 +1106,10 @@ function initSliders() {
 			slidesPerView: "auto",
 			spaceBetween: 30,
 			parallax: true,
+			navigation: {
+				nextEl: ".slider-collection-main__next",
+				prevEl: ".slider-collection-main__prev",
+			},
 		});
 	}
 
