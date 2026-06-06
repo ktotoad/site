@@ -167,11 +167,12 @@ if(document.querySelector("[data-number]")) {
 	});
 
 	function outNum(num, elem, time, step) {
-		n = 0;
-		let t = Math.round(time / (num / step));
-		let interval = setInterval(() => {
+		let n = 0;
+		const t = Math.round(time / (num / step));
+		const interval = setInterval(() => {
 			n = n + step;
-			if (n == num) {
+			if (n >= num) {
+				n = num;
 				clearInterval(interval);
 			}
 			elem.innerHTML = n;
