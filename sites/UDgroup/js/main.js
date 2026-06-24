@@ -406,18 +406,22 @@ function initSliders() {
 	buildSliders();
 
 	if (document.querySelector('.slider-fade')) {
-		new Swiper('.slider-fade', {
-			observer: true,
-			observeParents: true,
-			slidesPerView: 1,
-			effect: "fade",
-			spaceBetween: 100,
-			loop: true,
-			speed: 800,
-			navigation: {
-				nextEl: ".slider-fade__next",
-				prevEl: ".slider-fade__prev",
-			},
+		document.querySelectorAll('.slider-fade').forEach((slider) => {
+			const nextArrow = slider.closest("section").querySelector('.slider-fade__next');
+			const prevArrow = slider.closest("section").querySelector('.slider-fade__prev');
+			new Swiper(slider, {
+				observer: true,
+				observeParents: true,
+				slidesPerView: 1,
+				effect: "fade",
+				spaceBetween: 100,
+				loop: true,
+				speed: 800,
+				navigation: {
+					nextEl: nextArrow,
+					prevEl: prevArrow,
+				},
+			});
 		});
 	}
 

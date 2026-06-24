@@ -834,6 +834,64 @@ textarea.input {
   resize: none;
 }
 
+/*file input*/
+.file-block {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  text-align: left;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  z-index: 1;
+  background: var(--light);
+  padding: 2em;
+}
+.file-block svg {
+  position: absolute;
+  width: 2.4em;
+  height: 2.4em;
+  left: 2em;
+  z-index: 2;
+}
+.file-block__label {
+  color: var(--gray2);
+  font-size: 1.8em;
+  line-height: 120%;
+  margin: 0 auto;
+  padding: 0 3em;
+}
+.file-block__input {
+  cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  color: var(--gray2);
+  font-size: 1.8em;
+  line-height: 120%;
+  margin: 0 auto;
+  padding: 1em 3em;
+}
+.file-block__input::-webkit-file-upload-button {
+  opacity: 0;
+  width: 0;
+}
+.file-block__input::file-selector-button {
+  opacity: 0;
+  width: 0;
+}
+
 /*breadcrumbs*/
 .breadcrumbs {
   margin-top: 14em;
@@ -917,7 +975,7 @@ textarea.input {
   }
 }
 @media (min-width: 767.98px) {
-  .form__row .form__policy {
+  .form__row .form__policy, .form__row .form__policy-block {
     -ms-grid-column-span: 2;
     grid-column: span 2;
   }
@@ -928,8 +986,20 @@ textarea.input {
     grid-column: span 2;
   }
 }
+.form__file-block {
+  width: 100%;
+  height: 7em;
+}
 .form__footer {
   margin-top: 2em;
+}
+.form__policy-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .form__policy {
   color: var(--gray);
@@ -4457,8 +4527,8 @@ textarea.input {
   height: 110%;
   top: 0;
   left: 50%;
-  stroke-dasharray: 2000;
-  stroke-dashoffset: 2000;
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 3000;
 }
 .about-places .decore-line.active svg {
   -webkit-animation: drawLine 2s ease-in 0s forwards;
@@ -4686,6 +4756,37 @@ textarea.input {
 }
 
 /*partnership page*/
+.partnership-places__container {
+  padding-top: 12em;
+  padding-bottom: 12em;
+  position: relative;
+  z-index: 5;
+  background: var(--primary);
+}
+.partnership-places__container::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100vw;
+  top: 0;
+  right: 0;
+  -webkit-transform: translateX(99.9%);
+          transform: translateX(99.9%);
+  background: var(--primary);
+}
+.partnership-places__container::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  aspect-ratio: 1/1;
+  bottom: 0;
+  left: 0;
+  -webkit-transform: translateX(-99.9%);
+          transform: translateX(-99.9%);
+  background: var(--primary);
+  clip-path: polygon(100% 100%, 100% 0%, 0% 0%);
+}
+
 /*partnership page form*/
 .page__form {
   margin-top: 12em;
