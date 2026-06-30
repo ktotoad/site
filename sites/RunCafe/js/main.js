@@ -190,6 +190,20 @@ function inputElements() {
 	});
 }
 inputElements();
+//spollerbutton=====================================================================================================================================================
+if (document.querySelector("#spollerbutton")){
+	const spollerbutton = document.querySelector('#spollerbutton');
+	document.addEventListener("click", (event) => {
+		const withinBoundaries = event.composedPath().includes(spollerbutton);
+
+		if (!withinBoundaries) {
+			spollerbutton.classList.remove('active');
+		}
+		else {
+			spollerbutton.classList.toggle('active');
+		}
+	});
+}
 //Image_modal=====================================================================================================================================================
 const options = {
 	contentClick: "toggleCover",
