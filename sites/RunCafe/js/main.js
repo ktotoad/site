@@ -213,3 +213,14 @@ if(document.querySelector("#gallery-wrap")) {
 		Fancybox.bind(galleryWrap, {options});
 	});
 }
+//toggle======================================================================================================================================================
+if(document.querySelector("[data-toggle-id]")) {
+	document.querySelectorAll("[data-toggle-id]").forEach(function (toggle) {
+		let itemID = toggle.dataset.toggleId;
+
+		toggle.addEventListener("click", function (e) {
+			document.getElementById(itemID).classList.toggle("active");
+        	toggle.classList.toggle("active");
+        });
+    });
+}
