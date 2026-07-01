@@ -22,7 +22,7 @@ if (iconMenu) {
 		burgerFunc();
 	});
 	menuBody.addEventListener('click', function clickButtonBurger(event) {
-		if(menuBody.querySelector("a")) {
+		if(event.target.closest("a")) {
 			burgerFunc();
 		}
 	});
