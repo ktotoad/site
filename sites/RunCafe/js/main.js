@@ -344,6 +344,34 @@ function initSliders() {
 			});
 		});
 	}
+	if (document.querySelector('.slider-merch-page')) {
+		new Swiper(".slider-merch-page",{
+			observer: true,
+			observeParents: true,
+			spaceBetween: 160,
+			centeredSlides: false,
+			parallax: true,
+			loop: true,
+      		speed: 6000,
+  			autoplay: {
+				delay: 0,
+				disableOnInteraction: false,
+			},
+			breakpoints: {
+				320: {
+					spaceBetween: 50,
+				},
+				768: {
+					spaceBetween: 130,
+				},
+				992: {
+					spaceBetween: 160,
+				},
+			},
+	        slidesPerView: "auto",
+	        allowTouchMove: false,
+	    });
+	}
 }
 
 initSliders();
