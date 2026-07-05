@@ -238,3 +238,112 @@ if(document.querySelector("[data-toggle-id]")) {
         });
     });
 }
+//BuildSlider======================================================================================================================================================
+function buildSliders() {
+	let sliders = document.querySelectorAll('[class*="__swiper"]:not(.swiper-wrapper)');
+	if (sliders) {
+		sliders.forEach(slider => {
+			slider.parentElement.classList.add('swiper');
+			slider.classList.add('swiper-wrapper');
+			for(const slide of slider.children) {
+				slide.classList.add('swiper-slide');
+			}
+		});
+	}
+}
+
+//Инициализация_Swiper===============================================================================================================================================
+function initSliders() {
+	buildSliders();
+
+	if (document.querySelector('.slider-team-about')) {
+		new Swiper('.slider-team-about', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 4,
+			spaceBetween: 10,
+			parallax: true,
+			autoHeight: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+			},
+			speed: 800,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+				},
+				768: {
+					slidesPerView: 2,
+				},
+				992: {
+					slidesPerView: 3,
+				},
+				1268: {
+					slidesPerView: 4,
+				}
+			},
+			navigation: {
+			    nextEl: '.slider-team-about__next',
+			    prevEl: '.slider-team-about__prev',
+			},
+		});
+	}
+
+	if (document.querySelector('.slider-bg')) {
+		new Swiper('.slider-bg', {
+  			observer: true,
+			observeParents: true,
+  			effect: "fade",
+			slidesPerView: 1,
+			spaceBetween: 0,
+			parallax: true,
+			speed: 800,
+			navigation: {
+			    nextEl: '.slider-bg__next',
+			    prevEl: '.slider-bg__prev',
+			},
+		});
+	}
+
+	if (document.querySelector('.slider-merch-shop')) {
+		document.querySelectorAll('.slider-merch-shop').forEach((nestedEl) => {
+			const arrowPrev = nestedEl.closest('.merch-shop__slider-block').querySelector('.slider-merch-shop__prev');
+			const arrowNext = nestedEl.closest('.merch-shop__slider-block').querySelector('.slider-merch-shop__next');
+			new Swiper(nestedEl, {
+				observer: true,
+				observeParents: true,
+				slidesPerView: 4,
+				spaceBetween: 10,
+				parallax: true,
+				autoHeight: true,
+				autoplay: {
+					delay: 3000,
+					disableOnInteraction: false,
+				},
+				speed: 800,
+				breakpoints: {
+					320: {
+						slidesPerView: 1,
+					},
+					768: {
+						slidesPerView: 2,
+					},
+					992: {
+						slidesPerView: 3,
+					},
+					1268: {
+						slidesPerView: 4,
+					}
+				},
+				navigation: {
+				    nextEl: arrowNext,
+				    prevEl: arrowPrev,
+				},
+				nested: true,
+			});
+		});
+	}
+}
+
+initSliders();
