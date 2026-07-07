@@ -554,6 +554,52 @@ function initSliders() {
 			},
 		});
 	}
+
+	if (document.querySelector('.slider-directions-maintenance')) {
+		new Swiper('.slider-directions-maintenance', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			spaceBetween: 50,
+			parallax: true,
+			speed: 800,
+			navigation: {
+				nextEl: ".slider-directions-maintenance__next",
+				prevEl: ".slider-directions-maintenance__prev",
+			},
+			breakpoints: {
+				320: {
+					spaceBetween: 10,
+				},
+				767: {
+					spaceBetween: 50,
+				},
+			},
+		});
+	}
+
+	if (document.querySelector('.slider-cases-maintenance')) {
+		new Swiper('.slider-cases-maintenance', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 1,
+			spaceBetween: 50,
+			parallax: true,
+			speed: 800,
+			navigation: {
+				nextEl: ".slider-cases-maintenance__next",
+				prevEl: ".slider-cases-maintenance__prev",
+			},
+			breakpoints: {
+				320: {
+					spaceBetween: 10,
+				},
+				767: {
+					spaceBetween: 50,
+				},
+			},
+		});
+	}
 }
 
 initSliders();
