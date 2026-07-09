@@ -787,3 +787,23 @@ let _slideToggle = (target, duration = 500) => {
 	}
 }
 spollers();
+//hover_items=====================================================================================================================================================================
+document.addEventListener('mouseover', (e) => {
+	if(e.target.closest("[data-hover]")) {
+		const hoverBlockItem = e.target.closest("[data-hover]");
+		const hoverBlock = hoverBlockItem.closest("[data-hover-block]");
+		const hoverBlockTextes = hoverBlock.querySelectorAll("[data-hover-item]");
+		let value = hoverBlockItem.getAttribute('data-hover');
+		
+		hoverBlockTextes.forEach((hoverBlockText) => {
+			if(hoverBlockText.getAttribute('data-hover-item') == value) {
+				hoverBlockText.classList.add("active");
+			} else {
+				hoverBlockText.classList.remove("active");
+			}
+			hoverBlockItem.addEventListener('mouseout', (e) => {
+				hoverBlockText.classList.remove("active");
+			});
+		});
+	}
+});
