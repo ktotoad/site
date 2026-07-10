@@ -402,8 +402,8 @@ function initSliders() {
 
 	if (document.querySelector('.slider-fade')) {
 		document.querySelectorAll('.slider-fade').forEach((slider) => {
-			const nextArrow = slider.closest("section").querySelector('.slider-fade__next');
-			const prevArrow = slider.closest("section").querySelector('.slider-fade__prev');
+			const nextArrow = slider.closest("[slider-fade]").querySelector('.slider-fade__next');
+			const prevArrow = slider.closest("[slider-fade]").querySelector('.slider-fade__prev');
 			new Swiper(slider, {
 				observer: true,
 				observeParents: true,
