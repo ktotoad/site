@@ -798,11 +798,17 @@ document.addEventListener('mouseover', (e) => {
 		hoverBlockTextes.forEach((hoverBlockText) => {
 			if(hoverBlockText.getAttribute('data-hover-item') == value) {
 				hoverBlockText.classList.add("active");
+				if(hoverBlock.querySelector("[data-image]")) {
+					hoverBlock.querySelector("[data-image]").style.opacity = "0";
+				}
 			} else {
 				hoverBlockText.classList.remove("active");
 			}
 			hoverBlockItem.addEventListener('mouseout', (e) => {
-				hoverBlockText.classList.remove("active");
+				hoverBlockText.classList.remove("active");;
+				if(hoverBlock.querySelector("[data-image]")) {
+					hoverBlock.querySelector("[data-image]").style.opacity = "1";
+				}
 			});
 		});
 	}
