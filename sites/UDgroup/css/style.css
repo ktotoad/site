@@ -1955,11 +1955,6 @@ textarea.input {
   padding-top: 10em;
   padding-bottom: 6em;
 }
-.page__information {
-  padding-top: 10em;
-  padding-bottom: 4em;
-  margin-bottom: 4em;
-}
 .page__reasons {
   padding-top: 12em;
   padding-bottom: 8em;
@@ -2906,31 +2901,42 @@ textarea.input {
   position: relative;
   overflow: clip;
 }
-.main-information .decore-line svg {
-  position: absolute;
-  z-index: 2;
-  width: auto;
-  height: 100%;
-  bottom: 0;
-  left: 0;
-  stroke-dasharray: 5000;
-  stroke-dashoffset: 5000;
-  -webkit-transform: translateX(-26.5%);
-          transform: translateX(-26.5%);
-}
-.main-information .decore-line.active svg {
-  -webkit-animation: drawLine 2s ease-in 0s forwards;
-          animation: drawLine 2s ease-in 0s forwards;
-}
-@media (max-width: 767.98px) {
-  .main-information .decore-line {
-    display: none;
-  }
-}
 .main-information__container {
   overflow-y: visible;
   position: relative;
   z-index: 5;
+  padding-top: 10em;
+  padding-bottom: 4em;
+  margin-bottom: 4em;
+}
+.main-information__container .decore-line svg {
+  position: absolute;
+  z-index: 2;
+  width: auto;
+  height: 10%;
+  bottom: 0;
+  left: 33.333%;
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 3000;
+}
+.main-information__container .decore-line:first-child svg {
+  height: 90%;
+  top: 0;
+  left: unset;
+  right: 66.666%;
+}
+.main-information__container .decore-line:first-child.active svg {
+  -webkit-animation: drawLine 2s ease-in 0s forwards;
+          animation: drawLine 2s ease-in 0s forwards;
+}
+.main-information__container .decore-line.active svg {
+  -webkit-animation: drawLine 2s ease-in 1s forwards;
+          animation: drawLine 2s ease-in 1s forwards;
+}
+@media (max-width: 767.98px) {
+  .main-information__container .decore-line {
+    display: none;
+  }
 }
 @media (min-width: 767.98px) {
   .main-information__items {
@@ -2939,9 +2945,9 @@ textarea.input {
     -webkit-box-align: stretch;
         -ms-flex-align: stretch;
             align-items: stretch;
-    -ms-grid-columns: 1fr 4em 1fr 4em 1fr;
+    -ms-grid-columns: 1fr 6em 1fr 6em 1fr;
     grid-template-columns: repeat(3, 1fr);
-    gap: 4em;
+    gap: 6em;
   }
 }
 .main-information__item {
