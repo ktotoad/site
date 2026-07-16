@@ -595,6 +595,35 @@ function initSliders() {
 			},
 		});
 	}
+
+	if (document.querySelector('.slider-digits-career')) {
+		new Swiper('.slider-digits-career', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: 3,
+			spaceBetween: 20,
+			parallax: true,
+			speed: 800,
+			navigation: {
+				nextEl: ".slider-digits-career__next",
+				prevEl: ".slider-digits-career__prev",
+			},
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 10,
+				},
+				480: {
+					slidesPerView: 2,
+					spaceBetween: 10,
+				},
+				767: {
+					slidesPerView: 3,
+					spaceBetween: 20,
+				},
+			},
+		});
+	}
 }
 
 initSliders();
