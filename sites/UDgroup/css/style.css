@@ -8555,6 +8555,122 @@ textarea.input {
 .item-advantages-career__text-block {
   max-width: 75%;
 }
+/*career awards*/
+.page__awards-career {
+  padding-top: 8em;
+  margin-bottom: 6em;
+}
+
+.awards-career {
+  position: relative;
+  overflow: hidden;
+}
+.awards-career .decore-line svg {
+  position: absolute;
+  z-index: 3;
+  height: auto;
+  top: 0;
+  left: calc(57% - 0.125em);
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 3000;
+}
+.awards-career .decore-line.active svg {
+  -webkit-animation: drawLine 2s ease-in 1.5s forwards;
+          animation: drawLine 2s ease-in 1.5s forwards;
+}
+.awards-career__container {
+  position: relative;
+  z-index: 5;
+}
+.awards-career__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 1rem;
+}
+.awards-career__controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.awards-career__wrap {
+  margin-top: 3em;
+}
+.slider-awards-career__swiper {
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+.slider-awards-career__slide {
+  overflow: hidden;
+  position: relative;
+  padding: 2em;
+  background: var(--primary);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+@media (any-hover: hover) {
+  .slider-awards-career__slide:hover .slider-awards-career__image img {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+}
+.slider-awards-career__slide::before {
+  content: "";
+  position: absolute;
+  z-index: 5;
+  width: 15em;
+  height: 15em;
+  bottom: -7.5em;
+  right: -7.5em;
+  border: 3em solid var(--orange);
+  background: var(--white);
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.slider-awards-career__image {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+.slider-awards-career__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-transition: -webkit-transform 0.3s ease 0s;
+  transition: -webkit-transform 0.3s ease 0s;
+  transition: transform 0.3s ease 0s;
+  transition: transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+}
+
 /*career advantages*/
 @-webkit-keyframes drawLine {
   to {
