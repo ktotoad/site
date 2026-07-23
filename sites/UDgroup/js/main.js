@@ -210,20 +210,21 @@ window.addEventListener("scroll", function(){
 });
 //spollerbutton=====================================================================================================================================================
 if (document.querySelector("[drop-body]")){
-	const dropBody = document.querySelector("[drop-body]");
-	document.addEventListener("click", (event) => {
-		const withinBoundaries = event.composedPath().includes(dropBody);
+	document.querySelectorAll("[drop-body]").forEach((dropBody) => {
+		document.addEventListener("click", (event) => {
+			const withinBoundaries = event.composedPath().includes(dropBody);
 
-		if (!withinBoundaries) {
+			if (!withinBoundaries) {
+				dropBody.classList.remove('active');
+			}
+			else {
+				dropBody.classList.toggle('active');
+			}
+		});
+
+		document.addEventListener("scroll", (event) => {
 			dropBody.classList.remove('active');
-		}
-		else {
-			dropBody.classList.toggle('active');
-		}
-	});
-
-	document.addEventListener("scroll", (event) => {
-		dropBody.classList.remove('active');
+		});
 	});
 }
 //InputMask===============================================================================================================================================
@@ -457,6 +458,10 @@ function initSliders() {
 			slidesPerView: "auto",
 			spaceBetween: 50,
 			speed: 800,
+			navigation: {
+				nextEl: ".slider-about-clients__next",
+				prevEl: ".slider-about-clients__prev",
+			},
 		});
 	}
 
