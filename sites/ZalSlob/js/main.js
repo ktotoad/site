@@ -433,11 +433,12 @@ if(document.querySelector("[data-gsap]")) {
 	let gsapBody = document.querySelector("[data-gsap]");
 	let gsapHeader = gsapBody.querySelector("[data-gsap-header]");
 	let sections = gsap.utils.toArray("[gsap-item]");
+	let itemWidth = gsapBody.querySelector("[gsap-item]").getBoundingClientRect().width;
 
 	if (window.innerWidth >= 767) {
 
 		gsap.to(sections, {
-			x: -100 * sections.length,
+			x: -itemWidth * (sections.length - 3.5),
 	    	paused: true,
 			scrollTrigger: {
 				trigger: gsapBody,
