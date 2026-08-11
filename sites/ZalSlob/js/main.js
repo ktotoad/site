@@ -215,6 +215,16 @@ DynamicAdapt.prototype.arraySort = function (arr) {
 };
 const da = new DynamicAdapt("max");
 da.init();
+//fixed_main==================================================================================================================================================================================================================
+let header = document.querySelector("header");
+window.addEventListener("scroll", function(){
+	if(window.scrollY > 100){
+    	header.classList.add('fixed');
+	}
+	else{
+	    header.classList.remove('fixed');
+	}
+});
 //InputMask===============================================================================================================================================
 function inputElements() {
 	let inputPhones = document.querySelectorAll("input[data-format]");
@@ -244,8 +254,74 @@ function mapInit() {
         iconImageSize: [66, 74],
         iconImageOffset: [-33, -74],
     });
+
+    // Создаем массив с данными.
+    dataGroups = [
+        {
+            name: "Магазины",
+            iconHref: "../img/icons/store.png", 
+            iconSize: [30, 30],
+            iconOffset: [-15, -15],
+            items: [
+                { coords: [55.437906, 49.207002], text: 'Пятёрочка', link: 'https://yandex.ru/maps/-/CTW4QI0a' },
+                { coords: [55.437304, 49.207105], text: 'Арыш Мае', link: 'https://yandex.ru/maps/-/CTW4UE6W' },
+            ]
+        },
+        {
+            name: "ПВЗ",
+            iconHref: "../img/icons/pvz.png", 
+            iconSize: [30, 30],
+            iconOffset: [-15, -15],
+            items: [
+                { coords: [55.436637, 49.211499], text: 'Ozon', link: 'https://yandex.ru/maps/-/CTW4QO4y' },
+                { coords: [55.436637, 49.211499], text: 'Wildberries', link: 'https://yandex.ru/maps/-/CTW4QD88' },
+            ]
+        },
+        {
+            name: "Мед пункт",
+            iconHref: "../img/icons/med.png", 
+            iconSize: [30, 30],
+            iconOffset: [-15, -15],
+            items: [
+                { coords: [55.433943, 49.205835], text: 'Тетеевский фельдшерско-акушерский пункт', link: 'https://yandex.ru/maps/-/CTW4UNJv' },
+            ]
+        }
+    ];
+
+    var allCoords = [];
+    allCoords.push([55.443179, 49.194763]);
+
+    dataGroups.forEach(function(group) {
+        var groupCollection = new ymaps.GeoObjectCollection({}, {
+            iconLayout: 'default#image',          // Говорим Яндексу, что будет своя картинка
+            iconImageHref: group.iconHref,        // Берем путь из настроек группы
+            iconImageSize: group.iconSize,        // Берем размеры
+            iconImageOffset: group.iconOffset     // Берем смещение
+        });
+
+        group.items.forEach(function(item) {
+            groupCollection.add(new ymaps.Placemark(item.coords, {
+                balloonContentBody: [
+                    '<address><strong>' + item.text + '</strong><br/><a href=' + item.link + ' target="_blank">Адрес: ' + item.coords + '<a></address>'                        
+                ]
+            }));
+            
+            allCoords.push(item.coords);
+        });
+
+        myMap.geoObjects.add(groupCollection);
+    });
+
     myMap.behaviors.disable('scrollZoom');
     myMap.geoObjects.add(myPlacemark);
+
+    if (allCoords.length > 0) {
+        var mapBounds = ymaps.util.bounds.fromPoints(allCoords);
+        myMap.setBounds(mapBounds, {
+            checkZoomRange: true,
+            zoomMargin: 40
+        });
+    }
 }
 
 //price_spaces================================================================================================================================
@@ -1424,11 +1500,12 @@ document.addEventListener('mouseout', (e) => {
 });
 
 //mobile_fancy_gallery=====================================================================================================================================================================
-document.querySelector(".mobile-images-slider").querySelectorAll(".main-houses__image").forEach((fancyImage) => {
-	fancyImage.removeAttribute('id');
-	fancyImage.setAttribute("data-fancybox", "gallery");
-});
-
+if(document.querySelector(".mobile-images-slider")) {
+	document.querySelector(".mobile-images-slider").querySelectorAll(".main-houses__image").forEach((fancyImage) => {
+		fancyImage.removeAttribute('id');
+		fancyImage.setAttribute("data-fancybox", "gallery");
+	});
+}
 //hover_items=====================================================================================================================================================================
 document.addEventListener('mouseover', (e) => {
 	if(e.target.closest("[data-hover]")) {
