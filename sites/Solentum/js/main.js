@@ -1,17 +1,35 @@
 
-/*Loader================================================================================*/
-if(document.querySelector('.loader')) {
-    window.addEventListener('load', function () {
-        const loader = document.querySelector('.loader');
-        loader.classList.add('hidden');
-    });
-}
-/*Content_download================================================================================*/
+/*Loading================================================================================*/
 let wrapper = document.querySelector('.wrapper');
-window.addEventListener('load', (event) => {
-	wrapper.classList.add('loaded');
-});
 
+if (document.querySelector(".preloader")) {
+    let tl = gsap.timeline(),
+        loader = document.querySelector('.preloader'),
+        body = document.querySelector("body");
+    
+    body.classList.add("lock");
+
+    setTimeout(() => {
+        body.classList.remove("lock");
+    }, 2e3),
+    setTimeout(() => {
+        loader.classList.add("hidden");
+        tl.to(".preloader-body__logo-light", { clipPath: "polygon(0 0, 100% 0%, 100% 100%, 0% 100%)", duration: 0.1, delay: 0 });
+    }, 1e3),
+    (function (body, loader) {
+        let loading = 0,
+        i = setInterval(() => {
+            (document.querySelector(".preloader-body__logo-light").style.width = ++loading + "%"),
+            (document.querySelector(".preloader-body__percents").innerHTML = ++loading + "%"), 100 === loading && clearInterval(i);
+        }, 20);
+    })();
+
+    wrapper.classList.add('loaded');
+
+    animateall();
+} else {
+    animateall();
+}
 //burger=====================================================================================================================================================
 const iconMenu = document.querySelector('.icon-menu');
 const menuBody = document.querySelector('.header__body');
@@ -545,3 +563,44 @@ function MouseParallax(parallax) {
 		coordYprocent = coordY / parallaxHeight * 100;
 	});
 }
+
+/*Animation================================================================================*/
+function animateall() {
+	if(document.querySelector('[anim-item]')) {
+		const animItems = document.querySelectorAll('[anim-item]');
+		if (animItems.length > 0) {
+			window.addEventListener('scroll', animOnScroll);
+			function animOnScroll(params) {
+				for (let index = 0; index < animItems.length; index++) {
+					const animItem = animItems[index];
+					const animItemHeight = animItem.offsetHeight;
+					const animItemOffset = offset(animItem).top;
+					const animStart = 10;
+
+					let animItemPoint = window.innerHeight - animItemHeight /animStart;
+					if (animItemHeight > window.innerHeight) {
+						animItemPoint = window.innerHeight - window.innerHeight / animStart;
+					}
+
+					if ((pageYOffset > animItemOffset - animItemPoint) && pageYOffset < (animItemOffset + animItemHeight)){
+						animItem.classList.add('active');
+					} else {
+						if (animItem.getAttribute('anim-item') != "nohide") {
+							animItem.classList.remove('active');
+						}
+					}
+				}
+			}
+			function offset(el) {
+				const rect = el.getBoundingClientRect(),
+					scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+					scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+				return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+			}
+
+			setTimeout(() => {
+				animOnScroll();
+			}, 300);
+		}
+	}
+};
