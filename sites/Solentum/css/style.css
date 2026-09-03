@@ -186,6 +186,81 @@ body.lock {
   }
 }
 
+/*animation*/
+.text-anim {
+  -webkit-transition: opacity 2s ease-in 0s;
+  transition: opacity 2s ease-in 0s;
+  opacity: 0;
+}
+.text-anim.active {
+  opacity: 1;
+}
+
+.title-anim {
+  overflow: hidden;
+  display: block;
+}
+.title-anim span {
+  display: block;
+  opacity: 0;
+  -webkit-transition: opacity 1s ease-in 0s, -webkit-transform 1s ease-in 0s;
+  transition: opacity 1s ease-in 0s, -webkit-transform 1s ease-in 0s;
+  transition: transform 1s ease-in 0s, opacity 1s ease-in 0s;
+  transition: transform 1s ease-in 0s, opacity 1s ease-in 0s, -webkit-transform 1s ease-in 0s;
+  -webkit-transform: translateY(100%) scale(0.5);
+          transform: translateY(100%) scale(0.5);
+}
+.title-anim.active span {
+  opacity: 1;
+  -webkit-transform: translateY(0) scale(1);
+          transform: translateY(0) scale(1);
+}
+
+.anim-image {
+  -webkit-transition: opacity 2s ease 0s, -webkit-transform 2s ease 0s;
+  transition: opacity 2s ease 0s, -webkit-transform 2s ease 0s;
+  transition: transform 2s ease 0s, opacity 2s ease 0s;
+  transition: transform 2s ease 0s, opacity 2s ease 0s, -webkit-transform 2s ease 0s;
+  opacity: 0;
+  -webkit-transform: translateY(25%) scale(0.75);
+          transform: translateY(25%) scale(0.75);
+}
+.anim-image.active {
+  opacity: 1;
+  -webkit-transform: translateY(0) scale(1);
+          transform: translateY(0) scale(1);
+}
+
+.anim-logo {
+  -webkit-transition: opacity 2s ease 0s, -webkit-transform 2s ease 0s;
+  transition: opacity 2s ease 0s, -webkit-transform 2s ease 0s;
+  transition: transform 2s ease 0s, opacity 2s ease 0s;
+  transition: transform 2s ease 0s, opacity 2s ease 0s, -webkit-transform 2s ease 0s;
+  opacity: 0;
+  -webkit-transform: scale(1.25);
+          transform: scale(1.25);
+}
+.anim-logo.active {
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.anim-clouds {
+  -webkit-transition: opacity 2s ease 0s, -webkit-transform 2s ease 0s;
+  transition: opacity 2s ease 0s, -webkit-transform 2s ease 0s;
+  transition: transform 2s ease 0s, opacity 2s ease 0s;
+  transition: transform 2s ease 0s, opacity 2s ease 0s, -webkit-transform 2s ease 0s;
+  opacity: 0;
+  -webkit-transform: translateY(25%);
+          transform: translateY(25%);
+}
+.anim-clouds.active {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
 /*title text*/
 .title-xl, .title-l, .title-m, .title-s, .title-xs {
   font-family: Cormorant Garamond;
@@ -897,6 +972,16 @@ input[type=text], input[type=email], input[type=tel], textarea {
   grid-template-columns: 1fr -webkit-max-content 1fr;
   grid-template-columns: 1fr max-content 1fr;
   gap: 1rem;
+  -webkit-transition: all 0.8s ease 0s;
+  transition: all 0.8s ease 0s;
+  opacity: 0;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.header__wrap.active {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 .header__logo {
   display: block;
@@ -1938,6 +2023,14 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -o-object-fit: contain;
      object-fit: contain;
 }
+.faq-main__images .images-parallax__item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
 .item-faq-main {
   width: 100%;
   border-radius: 3.2em;
@@ -2637,7 +2730,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -o-object-fit: cover;
      object-fit: cover;
 }
-@media (max-width: 1195px) {
+@media (max-width: 1436.98px) {
   .decidion-main__parallax-container {
     width: 100%;
   }
@@ -2651,6 +2744,13 @@ input[type=text], input[type=email], input[type=tel], textarea {
     -o-object-fit: contain;
        object-fit: contain;
   }
+}
+.decidion-main__images .images-parallax__item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 .decidion-main__container {
   position: relative;
@@ -2800,6 +2900,13 @@ input[type=text], input[type=email], input[type=tel], textarea {
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
+}
+.conectus-main__images .images-parallax__item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 .conectus-main__container {
   position: relative;
@@ -2997,6 +3104,13 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
 }
+.notsimple-main__parallax-container .images-parallax__item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
 .notsimple-main__parallax-container .images-parallax__mount {
   position: absolute;
   width: 100%;
@@ -3011,9 +3125,13 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -o-object-fit: cover;
      object-fit: cover;
 }
-@media (max-width: 767.98px) {
+@media (max-width: 1436.98px) {
   .notsimple-main__parallax-container {
     width: 100%;
+  }
+}
+@media (max-width: 767.98px) {
+  .notsimple-main__parallax-container {
     height: 33%;
   }
 }
@@ -3618,6 +3736,13 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
 }
+.business-service__parallax-container .images-parallax__item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
 .business-service__parallax-container .images-parallax__mount {
   position: absolute;
   width: 100%;
@@ -3632,9 +3757,13 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -o-object-fit: contain;
      object-fit: contain;
 }
-@media (max-width: 767.98px) {
+@media (max-width: 1436.98px) {
   .business-service__parallax-container {
     width: 100%;
+  }
+}
+@media (max-width: 767.98px) {
+  .business-service__parallax-container {
     height: 33%;
   }
 }
@@ -3776,7 +3905,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   width: 100%;
   height: 60vh;
 }
-.strategy-service__images {
+.strategy-service__parallax-container {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -3784,14 +3913,14 @@ input[type=text], input[type=email], input[type=tel], textarea {
   left: 0;
   z-index: 1;
 }
-.strategy-service .images-parallax__item {
+.strategy-service__parallax-container .images-parallax__item {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
 }
-.strategy-service .images-parallax__hill {
+.strategy-service__parallax-container .images-parallax__hill {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -3800,7 +3929,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   z-index: 5;
   overflow: hidden;
 }
-.strategy-service .images-parallax__hill img {
+.strategy-service__parallax-container .images-parallax__hill img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -3808,7 +3937,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -o-object-position: top;
      object-position: top;
 }
-.strategy-service .images-parallax__clouds {
+.strategy-service__parallax-container .images-parallax__clouds {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -3816,7 +3945,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   bottom: -33%;
   z-index: 6;
 }
-.strategy-service .images-parallax__clouds img {
+.strategy-service__parallax-container .images-parallax__clouds img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
