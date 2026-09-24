@@ -919,10 +919,8 @@ body.lock {
 }
 .checkbox__label a {
   text-decoration: underline;
-  -webkit-transition: -webkit-text-decoration 0.3s ease 0s;
-  transition: -webkit-text-decoration 0.3s ease 0s;
+  -webkit-transition: text-decoration 0.3s ease 0s;
   transition: text-decoration 0.3s ease 0s;
-  transition: text-decoration 0.3s ease 0s, -webkit-text-decoration 0.3s ease 0s;
 }
 @media (any-hover: hover) {
   .checkbox__label a:hover {
@@ -1369,6 +1367,118 @@ input[type=text], input[type=email], input[type=tel], textarea {
   color: var(--white);
 }
 
+#fade {
+  display: none;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 1001;
+  -moz-opacity: 0.8;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+
+.popup-video {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 1002;
+  overflow: visible;
+  width: 1280px;
+}
+@media (max-width: 1480px) {
+  .popup-video {
+    width: calc(290px + 990 * (100vw - 320px) / (1160));
+  }
+}
+.popup-video {
+  height: 720px;
+}
+@media (max-width: 1480px) {
+  .popup-video {
+    height: calc(200px + 520 * (100vw - 320px) / (1160));
+  }
+}
+.popup-video video, .popup-video iframe {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.boxclose {
+  display: block;
+  background-color: transparent;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  z-index: 100;
+  opacity: 0.9;
+  width: 125px;
+}
+@media (max-width: 1480px) {
+  .boxclose {
+    width: calc(80px + 45 * (100vw - 320px) / (1160));
+  }
+}
+.boxclose {
+  height: 125px;
+}
+@media (max-width: 1480px) {
+  .boxclose {
+    height: calc(80px + 45 * (100vw - 320px) / (1160));
+  }
+}
+.boxclose {
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+.boxclose::before, .boxclose::after {
+  content: "";
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  right: 0;
+  position: absolute;
+  width: 100%;
+  height: 8px;
+  border-radius: 10px;
+  background: var(--blue);
+}
+.boxclose::before {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  top: calc(50% - 4px);
+}
+.boxclose::after {
+  width: 100%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  bottom: calc(50% - 4px);
+}
+@media (any-hover: hover) {
+  .boxclose:hover::before {
+    -webkit-transform: rotate(-135deg);
+            transform: rotate(-135deg);
+    background: var(--yellow);
+  }
+  .boxclose:hover::after {
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+    background: var(--yellow);
+  }
+}
+
+#fade:hover ~ #boxclose {
+  display: none;
+}
+
 /*header*/
 .header {
   position: absolute;
@@ -1391,8 +1501,10 @@ input[type=text], input[type=email], input[type=tel], textarea {
   background: var(--white);
 }
 .header.fixed {
+  position: fixed;
   padding: 1em 0 0.5em;
-  background: var(--white);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10em);
 }
 .header.fixed .header__container {
   border-bottom: none;
@@ -1403,13 +1515,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
 }
 .header.fixed .header__logo {
   width: 16em;
-}
-@media (max-width: 767.98px) {
-  .header.fixed .header__button {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-  }
 }
 .header__container {
   position: relative;
@@ -1639,6 +1744,11 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .submenu__body.active .submenu__image.active {
   opacity: 1;
   visibility: visible;
+}
+@media (max-width: 767.98px) {
+  .submenu__body {
+    padding-top: 5em;
+  }
 }
 .submenu__nav {
   width: 50%;
@@ -2297,9 +2407,9 @@ input[type=text], input[type=email], input[type=tel], textarea {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: end;
-  -ms-grid-columns: 1fr 6em 1fr;
+  -ms-grid-columns: 1fr 3em 1fr;
   grid-template-columns: repeat(2, 1fr);
-  gap: 6em;
+  gap: 3em;
 }
 @media (max-width: 767.98px) {
   .main-hero__wrap {
@@ -3294,6 +3404,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
   }
 }
 .main-houses__video-block {
+  cursor: pointer;
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
