@@ -984,8 +984,9 @@ if(document.querySelector("#zoomimage")) {
 		const x = event.clientX;
   		const y = event.clientY;
 
-  		housesPopup.querySelector("#housenumber").innerText = "№" + event.target.dataset.number;
-  		housesPopup.querySelector("#houseprice").innerText = numberWithSpaces(event.target.dataset.price) + " ₽";
+  		//housesPopup.querySelector("#housenumber").innerText = "№" + event.target.dataset.number;
+  		housesPopup.querySelector("#housenumber").innerText = "№" + event.target.dataset.id;
+  		//housesPopup.querySelector("#houseprice").innerText = numberWithSpaces(event.target.dataset.price) + " ₽";
   		housesPopup.querySelector("#housearea").innerText = event.target.dataset.area + " м²";
 
   		housesPopup.style.left = x + "px";

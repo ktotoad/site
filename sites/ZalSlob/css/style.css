@@ -3697,8 +3697,8 @@ input[type=text], input[type=email], input[type=tel], textarea {
   overflow: hidden;
   max-width: 164em;
   height: 100%;
-  max-height: 89em;
-  aspect-ratio: 164/89;
+  max-height: 95.5em;
+  aspect-ratio: 1640/955;
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
 }
@@ -3722,7 +3722,7 @@ input[type=text], input[type=email], input[type=tel], textarea {
 .image-main-map__image {
   width: 100%;
   height: 100%;
-  aspect-ratio: 164/89;
+  aspect-ratio: 1640/955;
 }
 .image-main-map__image svg {
   position: absolute;
@@ -3730,9 +3730,64 @@ input[type=text], input[type=email], input[type=tel], textarea {
   top: 0;
   z-index: 15;
 }
+.image-main-map__image svg path[data-status-enable=disabled] {
+  cursor: default;
+}
+.image-main-map__image svg path:not([data-status=AVAILABLE]) {
+  fill: var(--green);
+  stroke: var(--green);
+  opacity: 0.5;
+}
+.image-main-map__image svg path[data-type=A], .image-main-map__image svg path.land-a {
+  stroke: var(--light-red);
+}
+@media (any-hover: hover) {
+  .image-main-map__image svg path[data-type=A]:hover, .image-main-map__image svg path.land-a:hover {
+    fill: var(--light-red);
+    opacity: 0.7;
+  }
+}
+.image-main-map__image svg path[data-type=B], .image-main-map__image svg path.land-b {
+  stroke: var(--light-blue);
+}
+@media (any-hover: hover) {
+  .image-main-map__image svg path[data-type=B]:hover, .image-main-map__image svg path.land-b:hover {
+    fill: var(--light-blue);
+    opacity: 0.7;
+  }
+}
+.image-main-map__image svg path[data-type=C], .image-main-map__image svg path.land-c {
+  stroke: var(--light-lila);
+}
+@media (any-hover: hover) {
+  .image-main-map__image svg path[data-type=C]:hover, .image-main-map__image svg path.land-c:hover {
+    fill: var(--light-lila);
+    opacity: 0.7;
+  }
+}
+.image-main-map__image svg path[data-type=D], .image-main-map__image svg path.land-d {
+  stroke: var(--light-green);
+}
+@media (any-hover: hover) {
+  .image-main-map__image svg path[data-type=D]:hover, .image-main-map__image svg path.land-d:hover {
+    fill: var(--light-green);
+    opacity: 0.7;
+  }
+}
+.image-main-map__image svg path[data-type=E], .image-main-map__image svg path.land-e {
+  stroke: var(--light-haki);
+}
+@media (any-hover: hover) {
+  .image-main-map__image svg path[data-type=E]:hover, .image-main-map__image svg path.land-e:hover {
+    fill: var(--light-haki);
+    opacity: 0.7;
+  }
+}
 .image-main-map__image svg path {
   cursor: pointer;
-  fill: transparent;
+  stroke-width: 2px;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
 }
 .image-main-map__image img, .image-main-map__image svg {
   width: 100%;
@@ -3775,37 +3830,6 @@ input[type=text], input[type=email], input[type=tel], textarea {
     bottom: 2em;
     right: 2em;
   }
-}
-.image-main-map svg path[data-filter=filtered] {
-  fill: var(--light-lila);
-  stroke: var(--white);
-}
-.image-main-map svg path[data-status-enable=disabled] {
-  cursor: default;
-}
-.image-main-map svg path[data-engage=mouseover] {
-  fill: var(--white);
-  stroke: var(--green);
-  opacity: 0.7;
-}
-.image-main-map svg path[data-status=UNAVAILABLE], .image-main-map svg path[data-status=BOOKED], .image-main-map svg path[data-status=SOLD] {
-  fill: var(--white);
-  opacity: 0.5;
-}
-.image-main-map svg path[data-type=A] {
-  stroke: var(--light-red);
-}
-.image-main-map svg path[data-type=B] {
-  stroke: var(--light-blue);
-}
-.image-main-map svg path[data-type=C] {
-  stroke: var(--light-lila);
-}
-.image-main-map svg path[data-type=D] {
-  stroke: var(--light-green);
-}
-.image-main-map svg path[data-type=E] {
-  stroke: var(--light-haki);
 }
 
 /*main architecture*/
