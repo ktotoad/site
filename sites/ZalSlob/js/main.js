@@ -967,7 +967,7 @@ if(document.querySelector("#zoomimage")) {
   		const classesToRemove = Array.from(housesOrder.querySelector("#houseordertype").classList).filter(c => c.startsWith(prefix));
 		housesOrder.querySelector("#houseordertype").classList.remove(...classesToRemove);
   		housesOrder.querySelector("#houseordertype").classList.add("type-" + event.target.dataset.type);
-
+  		housesOrder.querySelector("#houseorderlink").href = "./catalog-detail-" + event.target.dataset.type + ".html";
   		housesOrder.querySelector("#houseorderarea").innerText = event.target.dataset.area + " м²";
   	});
 
