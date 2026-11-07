@@ -92,7 +92,7 @@ document.addEventListener('click', function(event) {
 		currentDropmenu = dropmenu;
 
 		document.addEventListener("scroll", (event) => {
-			spollerbutton.classList.remove('active');
+			currentDropmenu.classList.remove('active');
 		});
 	}
 });
@@ -385,7 +385,7 @@ function initSliders() {
 		new Swiper('.slider-projects', {
 			observer: true,
 			observeParents: true,
-			slidesPerView: "auto",
+			slidesPerView: 2,
 			spaceBetween: 20,
 			parallax: true,
 			speed: 800,
@@ -398,7 +398,7 @@ function initSliders() {
 					slidesPerView: 1,
 				},
 				768: {
-					slidesPerView: "auto",
+					slidesPerView: 2,
 				},
 			},
 		});
@@ -425,8 +425,8 @@ function initSliders() {
 		new Swiper('.slider-principses', {
 			observer: true,
 			observeParents: true,
-			slidesPerView: "auto",
-			spaceBetween: 70,
+			slidesPerView: 2,
+			spaceBetween: 120,
 			parallax: true,
 			speed: 800,
 			navigation: {
@@ -436,9 +436,10 @@ function initSliders() {
 			breakpoints: {
 				320: {
 					slidesPerView: 1,
+					spaceBetween: 30,
 				},
 				768: {
-					slidesPerView: "auto",
+					slidesPerView: 2,
 				},
 			},
 		});
@@ -500,6 +501,22 @@ function initSliders() {
 			},
 		});
 	}
+	
+	if (document.querySelector('.slider-corculture')) {
+		new Swiper('.slider-corculture', {
+			observer: true,
+			observeParents: true,
+			slidesPerView: "auto",
+			spaceBetween: 30,
+			parallax: true,
+			speed: 800,
+			navigation: {
+				nextEl: ".slider-corculture__next",
+				prevEl: ".slider-corculture__prev",
+			},
+		});
+	}
+
 	if (document.querySelector('.catalog-slider')) {
 		new Swiper('.catalog-slider', {
 			observer: true,
@@ -601,38 +618,61 @@ function initSliders() {
 	}
 
 	if (document.querySelector('.slider-reasons')) {
-		var reasonsthumbs = new Swiper('.slider-thumb-reasons', {
-			spaceBetween: 60,
-		    slidesPerView: 5,
-		    centeredSlides: getCenteredSlides(),
-			parallax: true,
-			watchSlidesProgress: true,
-			speed: 800,
-		});
 		var reasonsmain = new Swiper('.slider-reasons', {
 	  		observer: true,
 			observeParents: true,
-	  		effect: "fade",
-			autoHeight: true,
-			spaceBetween: 0,
+			slidesPerView: 3,
+			spaceBetween: 90,
 			speed: 800,
 			parallax: true,
-			thumbs: {
-				swiper: reasonsthumbs,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 40,
+				},
+				767: {
+					slidesPerView: 2,
+					spaceBetween: 60,
+				},
+				992: {
+					slidesPerView: 3,
+					spaceBetween: 90,
+				},
+			},
+			navigation: {
+				nextEl: ".slider-reasons__next",
+				prevEl: ".slider-reasons__prev",
 			},
 		});
+	}
 
-		reasonsmain.controller.control = reasonsthumbs;
-		reasonsthumbs.controller.control = reasonsthumbs;
-
-		reasonsmain.on('slideChange', function () {
-			const index = reasonsmain.realIndex;
-			reasonsthumbs.slideToLoop(index, 300);
+	if (document.querySelector('.slider-benefits')) {
+		var reasonsmain = new Swiper('.slider-benefits', {
+	  		observer: true,
+			observeParents: true,
+			slidesPerView: 3,
+			spaceBetween: 90,
+			speed: 800,
+			parallax: true,
+			breakpoints: {
+				320: {
+					slidesPerView: 1,
+					spaceBetween: 40,
+				},
+				767: {
+					slidesPerView: 2,
+					spaceBetween: 60,
+				},
+				992: {
+					slidesPerView: 3,
+					spaceBetween: 90,
+				},
+			},
+			navigation: {
+				nextEl: ".slider-benefits__next",
+				prevEl: ".slider-benefits__prev",
+			},
 		});
-
-		function getCenteredSlides() {
-			return window.innerWidth < 767;
-		}
 	}
 }
 initSliders();
@@ -641,61 +681,148 @@ if (document.querySelector("[data-range]")) {
     rangeSliderInit();
 }
 
+function formatNumber(num) {
+    return num.toLocaleString();
+};
+
 function rangeSliderInit() {
     document.querySelectorAll("[data-range]").forEach((rangeSlider) => {
-        const valuesArray = rangeSlider.getAttribute('data-range').split(',').map(value => value.trim());
-        var inputMinValue = Number(valuesArray[0]);
-        var inputMaxValue = Number(valuesArray[1]);
-        if (Number(valuesArray[2])) {
-            var inputMinStart = Number(valuesArray[2]);
-        } else {
-            var inputMinStart = inputMinValue;
-        }
-        if (Number(valuesArray[3])) {
-            var inputMaxStart = Number(valuesArray[3]);
-        } else {
-            var inputMaxStart = inputMaxValue;
-        }
-        if (rangeSlider.hasAttribute('data-range-step')) {
-            var valueStep = Number(rangeSlider.getAttribute('data-range-step'));
-        } else {
-            var valueStep = 50;
-        }
-        var slider = rangeSlider.querySelector("#slider");
-        var inputMin = rangeSlider.querySelector(".input-min");
-        var inputMax = rangeSlider.querySelector(".input-max");
+        const valuesArray = rangeSlider
+            .getAttribute('data-range')
+            .split(',')
+            .map(value => value.trim())
+            .map(value => (value === '' ? NaN : Number(value)))
+            .filter(value => !isNaN(value)); // убираем нечисловые
 
-        const inputs = [inputMin, inputMax]; 
+        if (valuesArray.length < 2) {
+            console.warn('Not enough values in data-range (min, max required)');
+            return;
+        }
 
+        const minValue = Number(valuesArray[0]);
+        const maxValue = Number(valuesArray[1]);
+
+        // Определяем шаг
+        const step = rangeSlider.hasAttribute('data-range-step')
+            ? Number(rangeSlider.getAttribute('data-range-step'))
+            : 1;
+
+        // Находим элементы
+        const slider = rangeSlider.querySelector("#slider");
+        const inputMin = rangeSlider.querySelector(".input-min");
+        const inputMax = rangeSlider.querySelector(".input-max");
+        const fromPriceInput = rangeSlider.querySelector("#fromprice");
+        const toPriceInput = rangeSlider.querySelector("#toprice");
+
+        // Определяем, сколько бегунков
+        let hasTwoHandles = true;
+        let startValues;
+
+        // Логика определения количества бегунков
+        if (valuesArray.length === 2) {
+            // Только min и max → два бегунка: стартуем с краёв
+            startValues = [minValue, maxValue];
+            hasTwoHandles = true;
+        } else if (valuesArray.length === 3) {
+            const start = valuesArray[2];
+            if (start >= minValue && start <= maxValue) {
+                // Один бегунок: например, "выбрать количество дней"
+                startValues = [start];
+                hasTwoHandles = false;
+            } else {
+                // Некорректное значение → fallback: два бегунка
+                startValues = [minValue, maxValue];
+                hasTwoHandles = true;
+            }
+        } else if (valuesArray.length >= 4) {
+            // Четыре значения: min, max, startMin, startMax → два бегунка
+            startValues = [
+                valuesArray[2],
+                valuesArray[3]
+            ];
+            hasTwoHandles = true;
+        } else {
+            startValues = [minValue, maxValue];
+            hasTwoHandles = true;
+        }
+
+        // Создаём слайдер
         noUiSlider.create(slider, {
-            start: [inputMinStart, inputMaxStart],
+            start: startValues,
             connect: true,
-            step: valueStep,
+            step: step,
             range: {
-                min: [inputMinValue],
-                max: [inputMaxValue]
+                min: minValue,
+                max: maxValue
+            },
+            connect: hasTwoHandles ? true : [true, false], // заполнение слева для одного бегунка
+        });
+
+        // Определяем, какие input'ы использовать
+        const inputs = hasTwoHandles
+            ? [inputMin, inputMax]
+            : [null, inputMax || inputMin]; // для одного бегунка — только один input (например, max)
+
+        // Обновление input'ов при движении слайдера
+        slider.noUiSlider.on('update', function (values, handle) {
+            const value = Math.round(+values[handle]);
+
+            if (hasTwoHandles) {
+                if (handle === 0 && inputMin) {
+                    inputMin.value = formatNumber(value);
+                    if (fromPriceInput) fromPriceInput.value = value;
+                }
+                if (handle === 1 && inputMax) {
+                    inputMax.value = formatNumber(value);
+                    if (toPriceInput) toPriceInput.value = value;
+                }
+            } else {
+                // Один бегунок → только max (или основное значение)
+                if (inputMax) {
+                    inputMax.value = formatNumber(value);
+                }
+                if (toPriceInput) {
+                    toPriceInput.value = value; // чистое число
+                }
+                // fromPriceInput можно оставить 0 или не трогать
+                if (fromPriceInput) {
+                    fromPriceInput.value = minValue; // или 0
+                }
             }
         });
 
-        slider.noUiSlider.on('update', function (values, handle) {
-            inputs[handle].value = parseInt(values[handle]);
-        });
-
-        inputMin.addEventListener('change', function () {
-            slider.noUiSlider.set([this.value, null]);
-        });
-
-        inputMax.addEventListener('change', function () {
-            slider.noUiSlider.set([null, this.value]);
-        });
+        // === ВВОД С КЛАВИАТУРЫ ===
+        if (hasTwoHandles) {
+            inputMin?.addEventListener('change', function () {
+                const val = Number(this.value.replace(/\D/g, '')) || minValue;
+                slider.noUiSlider.set([val, null]);
+            });
+            inputMax?.addEventListener('change', function () {
+                const val = Number(this.value.replace(/\D/g, '')) || maxValue;
+                slider.noUiSlider.set([null, val]);
+            });
+        } else {
+            inputMax?.addEventListener('change', function () {
+                const rawValue = this.value.replace(/\D/g, '');
+                const val = Number(rawValue) || minValue;
+                if (val >= minValue && val <= maxValue) {
+                    slider.noUiSlider.set(val);
+                }
+            });
+        }
     });
 }
 //toggle======================================================================================================================================================
-document.addEventListener('click', function(event) {
-	if (event.target.matches('[data-toggle]') || event.target.closest("[data-toggle]")) {
-		event.target.closest("[data-toggle]").classList.toggle("active");
-	}
-});
+if(document.querySelector("[data-toggle-id]")) {
+	document.querySelectorAll("[data-toggle-id]").forEach(function (toggle) {
+		let itemID = toggle.dataset.toggleId;
+
+		toggle.addEventListener("click", function (e) {
+			document.getElementById(itemID).classList.toggle("active");
+        	toggle.classList.toggle("active");
+        });
+    });
+}
 //InputMask===============================================================================================================================================
 function inputElements() {
 	let inputPhones = document.querySelectorAll("input[data-format]");
@@ -797,51 +924,63 @@ function bodyUnLock() {
 		unlock = true;
 	}, timeout);
 }
-//poputext====================================================================================================================================
-function popupTextBook() {
-	document.querySelector("#popup").querySelector("#popuptitle span").innerText = 'подтверждение бронирования';
-	document.querySelector("#popup").querySelector("#popuptext").innerHTML = 'Оставьте свои контактные данные <br> и мы свяжемся для уточнения деталей бронирования';
-}
-function popupTextMain() {
-	document.querySelector("#popup").querySelector("#popuptitle span").innerText = 'Остались вопросы?';
-	document.querySelector("#popup").querySelector("#popuptext").innerHTML = 'Оставьте свои контактные данные <br>и мы подробно ответим на все. И расскажем еще больше!';
-}
 
 //price_spaces================================================================================================================================
 if (document.querySelectorAll(".js_price")) {
-  function numberWithSpaces(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "  ");
-  }
+  priceFunction();
+}
+
+function priceFunction() {
   let js_prices = document.querySelectorAll(".js_price");
   js_prices.forEach((js_price) => {
-      //let price = Math.round(js_price.textContent);
-      let price = js_price.textContent;
-      js_price.textContent = numberWithSpaces(price);
+    //let price = Math.round(js_price.textContent);
+    let price = js_price.textContent;
+    js_price.textContent = numberWithSpaces(price);
   })
 }
+
+function numberWithSpaces(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
+//убирем пробелы, делаем из строки число
+function toNumber(number) {
+  let result = parseInt(number.replaceAll(' ', ''));
+  return result;
+}
 //map======================================================================================================================================================================
+let currentMapPopup;
+const logo = './img/icons/map.svg';
+const logoactive = './img/icons/logomap.png';
+
 if (document.querySelector("#map")) {
     ymaps.ready(mapInit);
 }
 
-if (document.querySelector("#mapcontacts")) {
-    ymaps.ready(mapInitCon);
+if (document.querySelector("[data-map]")) {
+    ymaps.ready(mapInitMain);
 }
 
-function mapInitCon() {
-    var myMap = new ymaps.Map("mapcontacts",{
-        center: [55.787705, 49.143407],
+function mapInitMain() {
+    const map = document.querySelector("[data-map]");
+    const name = map.dataset['map'];
+    const data = map.dataset.points.trim();
+    const dataArray = data.split(",");
+    const pointX = dataArray[0].trim();
+    const pointY = dataArray[1].trim();
+    var myMap = new ymaps.Map(map,{
+        center: [pointX, pointY],
         zoom: 13,
         controls: ['zoomControl']
     }),
     myIcon = ymaps.templateLayoutFactory.createClass("<div>$[properties.iconContent]</div>"),
-    myPlacemark = new ymaps.Placemark([55.787705, 49.143407],
+    myPlacemark = new ymaps.Placemark([pointX, pointY],
     {
-        hintContent: 'Авторы',
+        hintContent: name,
     },
     {
         iconLayout: "default#imageWithContent",
-        iconImageHref: "./img/icons/map.svg",
+        iconImageHref: logo,
         iconImageSize: [40, 40],
         iconImageOffset: [-20, -20],
         iconContentOffset: [15, 15],
@@ -856,11 +995,12 @@ function mapInitCon() {
 }
 
 function mapInit() {
-    //модалка карты
-    let popupMap = document.getElementById('popupMap');
+    //Все точки
+    var points = document.querySelectorAll("[data-popupmap]");
+
     // Создаем карту
-    var myMap = new ymaps.Map("map",{
-        center: [55.823583, 49.092338],
+    const myMap = new ymaps.Map("map",{
+        center: [55.817470, 49.098104],
         zoom: 12,
         controls: []
     }),
@@ -908,35 +1048,10 @@ function mapInit() {
         }
     }),
     zoomControl = new ymaps.control.ZoomControl({options: {layout: ZoomLayout}});
-
     myMap.controls.add(zoomControl);
+
     //убираем скрол
     myMap.behaviors.disable('scrollZoom');
-
-    //добавляем точки
-    // Создаем коллекцию.
-    myCollection = new ymaps.GeoObjectCollection(),
-    // Создаем массив с данными.
-    myPoints = {
-        all : [
-            { coords: [55.788143, 49.114728], text: 'Авторы на Астрономической', link: 'https://yandex.ru/maps/-/CHchYS0e' },
-            { coords: [55.783718, 49.130394], text: 'Авторы на Петербургской', link: 'https://yandex.ru/maps/-/CHchaNKr' },
-            { coords: [55.861984, 49.096856], text: 'Авторы на Годовикова', link: 'https://yandex.ru/maps/-/CHchaKoC' },
-            { coords: [55.796461, 49.058097], text: 'Авторы на Большой', link: 'https://yandex.ru/maps/-/CHcha03D' },
-            { coords: [55.872772, 48.875660], text: 'Дом у Озера', link: 'https://yandex.ru/maps/-/CHcheJmI' },
-        ],
-        done : [
-            { coords: [55.872772, 48.875660], text: 'Дом у Озера', link: 'https://yandex.ru/maps/-/CHcheJmI' },
-        ],
-        work : [
-            { coords: [55.783718, 49.130394], text: 'Авторы на Петербургской', link: 'https://yandex.ru/maps/-/CHchaNKr' },
-            { coords: [55.861984, 49.096856], text: 'Авторы на Годовикова', link: 'https://yandex.ru/maps/-/CHchaKoC' },
-            { coords: [55.796461, 49.058097], text: 'Авторы на Большой', link: 'https://yandex.ru/maps/-/CHcha03D' },
-        ],
-        plan : [
-            { coords: [55.788143, 49.114728], text: 'Авторы на Астрономической', link: 'https://yandex.ru/maps/-/CHchYS0e' },
-        ],
-    };        
 
     //фильтр
     if(document.querySelector('#mapfilter')) {
@@ -949,7 +1064,10 @@ function mapInit() {
         });
         document.querySelector('#mapfilter').addEventListener('click', e => {
             //закрываем модалку при нажатии фильтра
-            popupClose(popupMap, true);
+            if (currentMapPopup != null) {
+                popupClose(currentMapPopup, true);
+            }
+
             if(e.target.classList.contains('filter__item') || e.target.closest('.filter__item')) {
                 let filter = e.target.closest('.filter__item').dataset['filter'];
                 tabButtons.forEach(elem => elem.classList.remove('active'));
@@ -960,68 +1078,79 @@ function mapInit() {
     }
 
     function mapSearchPoints(filter) {
-        for (const [key, value] of Object.entries(myPoints)) {
-            if(key == filter) {
-                let result = value;
-                mapAddPoints(result, filter);
-            }
-        }
-    }
-
-    function mapAddPoints(result, filter) {
-        // Удаляем "старую" коллекцию меток на карту.
-        myCollection.removeAll();
-        // Выбираем иконку
-        let logo = './img/icons/map.svg';
-        let logoactive = './img/icons/logomap.png';
-        let myCircle;
-        // Заполняем коллекцию данными.
-        for (var i = 0, l = result.length; i < l; i++) {
-            var point = result[i];
-            myCollection.add(myCircle = new ymaps.Placemark(
-                point.coords, {
-                    hintContent: point.text,
-                }, {
-                    // Необходимо указать данный тип макета.
-                    iconLayout: 'default#image',
-                    // Своё изображение иконки метки.
-                    iconImageHref: logo,
-                    // Размеры метки.
-                    iconImageSize: [44, 44],
-                    // Смещение левого верхнего угла иконки относительно
-                    iconImageOffset: [-22, -22]
-                },
-            ));
-            //модалка карты
-            myCircle.events
-            .add('mouseenter', function (e) {
-                //меняем иконку на активную
-                var target = e.get('target');
-                target.options.set('preset');
-                target.options.set('iconImageHref', logoactive);
-                target.options.set('iconImageSize', [64, 72]);
-                target.options.set('iconImageOffset', [-32, -51]);
-            })
-            .add('mouseleave', function (e) {
-                var target = e.get('target');
-                target.options.unset('preset');
-                target.options.set('iconImageHref', logo);
-                target.options.set('iconImageSize', [44, 44]);
-                target.options.set('iconImageOffset', [-22, -22]);
-            })
-            .add('click', function (e) {
-
-                //вызываем модалку
-                popupOpen(popupMap);
-                bodyUnLock();
+        if (filter != "all") {
+            let pointsArray = [];
+            let filterPoints = document.querySelectorAll("[data-popupmap]");
+            filterPoints.forEach((filterPoint) => { 
+                if(filterPoint.dataset.status == filter) {
+                    pointsArray.push(filterPoint);
+                    if(document.querySelector('#mapfilter').closest(".map-detail")){
+                        console.log("map-detail");
+                        points.forEach((point) => {
+                            point.style.display = 'none';
+                        });
+                    }
+                }
             });
+            showPoints(pointsArray,myMap);
+        } else {
+            showPoints(points,myMap);
         }
-        // Добавляем коллекцию меток на карту.
-        myMap.geoObjects.add(myCollection);
     }
 }
 
+function showPoints(points,myMap) {
+    //Удаляем все старые метки
+    myMap.geoObjects.removeAll();
 
+    //Добавляем новые
+    points.forEach((point) => {
+        const data = point.dataset.popupmap.trim();
+        const dataArray = data.split(",");
+        const pointX = dataArray[0].trim();
+        const pointY = dataArray[1].trim();
+        var myPlacemark = new ymaps.Placemark([pointX, pointY], {
+            hintContent: point.dataset['pointname'] // Подсказка при наведении
+        },
+        {   
+            // Необходимо указать данный тип макета.
+            iconLayout: 'default#image',
+            // Своё изображение иконки метки.
+            iconImageHref: logo,
+            // Размеры метки.
+            iconImageSize: [44, 44],
+            // Смещение левого верхнего угла иконки относительно
+            iconImageOffset: [-22, -22]
+        }); 
+        //модалка карты
+        myPlacemark.events
+        .add('mouseenter', function (e) {
+            //меняем иконку на активную
+            var target = e.get('target');
+            target.options.set('preset');
+            target.options.set('iconImageHref', logoactive);
+            target.options.set('iconImageSize', [64, 72]);
+            target.options.set('iconImageOffset', [-32, -51]);
+        })
+        .add('mouseleave', function (e) {
+            var target = e.get('target');
+            target.options.unset('preset');
+            target.options.set('iconImageHref', logo);
+            target.options.set('iconImageSize', [44, 44]);
+            target.options.set('iconImageOffset', [-22, -22]);
+        })
+        .add('click', function (e) {
+            //вызываем модалку
+            popupOpen(point);
+            currentMapPopup = point;
+            bodyUnLock();
+        });
+        if(document.querySelector('#mapfilter').closest(".map-detail")){
+            point.style.display = 'flex';
+        }
+        myMap.geoObjects.add(myPlacemark); // Добавляем метку на карту
+    });
+}
 //select=====================================================================================================================================================
 let currentSelect = null;
 
@@ -1058,21 +1187,22 @@ document.addEventListener('click', function(event) {
 });
 //Buttons_Form==================================================================================================================================================
 if(document.querySelector("#buttonsForm")) {
-	const buttonsForm = document.querySelector("#buttonsForm");
-	const buttonsFormBody = buttonsForm.closest("section");
+	document.querySelectorAll("#buttonsForm").forEach((buttonsForm) => {
+		const buttonsFormBody = buttonsForm.closest("section");
 
-	document.body.onscroll = (e) => {
-		var bounds = buttonsForm.getBoundingClientRect();
-		const centerTop = buttonsFormBody.offsetTop - (window.innerHeight - buttonsFormBody.clientHeight);
-		const centerBottom = buttonsFormBody.offsetTop - (window.innerHeight - buttonsFormBody.clientHeight) + bounds.height;
+		document.body.onscroll = (e) => {
+			var bounds = buttonsForm.getBoundingClientRect();
+			const centerTop = buttonsFormBody.offsetTop - (window.innerHeight - buttonsFormBody.clientHeight);
+			const centerBottom = buttonsFormBody.offsetTop - (window.innerHeight - buttonsFormBody.clientHeight) + bounds.height;
 
-		if(window.scrollY >= centerTop) {
-			buttonsForm.classList.add("change");
+			if(window.scrollY >= centerTop) {
+				buttonsForm.classList.add("change");
+			}
+			if(window.scrollY <= centerTop) {
+				buttonsForm.classList.remove("change");
+			}
 		}
-		if(window.scrollY <= centerTop) {
-			buttonsForm.classList.remove("change");
-		}
-	}
+	});
 }
 // SPOLLERS========================================================================================================================================
 function spollers() {
@@ -1332,6 +1462,44 @@ if(document.querySelector('.catalog__filter')) {
 }
 
 
+//Filter=====================================================================================================================================================
+if(document.querySelector('.filter')) {
+	document.querySelectorAll('.filter').forEach((filter) => {
+		const filterItems = filter.closest("section").querySelectorAll("[data-filter-item]");
+		const filterButtons = filter.closest("section").querySelectorAll('.filter__button');
+
+		filterButtons.forEach(filterButton => { 
+			if(filterButton.classList.contains('active')) {
+				let filter = filterButton.dataset['filter'];
+				filterItemsFunc(filter);
+			}
+		});
+		filter.addEventListener('click', e => {
+			if(e.target.classList.contains('filter__button') || e.target.closest('.filter__button')) {
+				let filter = e.target.closest('.filter__button').dataset['filter'];
+				filterButtons.forEach(filterButton => filterButton.classList.remove('active'));
+				e.target.closest('.filter__button').classList.add('active');
+				filterItemsFunc(filter);
+			}
+		});
+		function filterItemsFunc(filter) {
+			filterItems.forEach( filterItem => {
+				filterItem.classList.remove('hide');
+				const valuesArray = filterItem.getAttribute('data-filter-item').split(',').map(value => value.trim());
+				let check = 0;
+				for (let i = 0; i < valuesArray.length; i++) {
+					if(valuesArray[i] == filter) {
+						check++;
+					}
+				}
+				if(check == 0) {
+					filterItem.classList.add('hide');
+				}
+			});
+		}
+	});
+}
+
 //TABS==================================================================================================================================================
 // Получение хеша в адресе сайта
 function getHash() {
@@ -1482,11 +1650,405 @@ if(document.querySelector("#video-gallery")) {
 		});
 	});
 }
-//sunway========================================================================================================================================
-if (document.querySelector("#sunway")) {
-	let sunway = document.querySelector("#sunway");
-	let toggle = sunway.querySelector('[data-toggle="sunway"]');
-	toggle.addEventListener('click', (e) => {
-		sunway.classList.toggle('active');
-    });
+//Credit_calculator=======================================================================================================================================
+if(document.querySelector("#creditresult")) {
+	const creditResult = document.querySelector("#creditresult");
+	const mainPrice = document.querySelector("#mainprice");
+	const mainPriceValue  = mainPrice.querySelector("span").textContent;
+	const toYear = document.querySelector("#toyear");
+	const toPrice = document.querySelector("#toprice");
+
+	//считаем сумму кредита
+	toPrice.closest("[data-range]").querySelector("#slider").noUiSlider.on('update', (e) => {
+		creditResult.querySelector("span").textContent = numberWithSpaces(toNumber(mainPriceValue) - toPrice.value);
+		calculateMounthPayment();
+	});
+	
+	//считаем ежемесячную выплату для каждой ставки
+	toYear.closest("[data-range]").querySelector("#slider").noUiSlider.on('update', (e) => {
+		calculateMounthPayment();
+	});
+
+	//выводим ежемесячный платёж
+	function calculateMounthPayment() {
+		document.querySelectorAll("[data-credit-block]").forEach((creditBlock) => {
+			const percent = creditBlock.querySelector("[data-percent]").getAttribute("data-percent");
+			const mounthPay = creditBlock.querySelector("[data-mounth-pay]");
+			let payment = calculateMortgagePayment(percent, toYear.value);
+			mounthPay.querySelector("span").textContent = numberWithSpaces(payment);
+			mounthPay.setAttribute("data-mounth-pay", payment);
+		});
+	}
+
+	//считаем платёж
+	function calculateMortgagePayment(annualInterestRate, loanTermYears) {
+	    const principal = toNumber(mainPriceValue) - toPrice.value; // сумма кредита
+	    const monthlyRate = annualInterestRate / 100 / 12; // месячная ставка
+	    const numberOfPayments = loanTermYears * 12; // общее количество платежей
+
+	    // Проверка на нулевую ставку (чтобы избежать деления на ноль)
+	    if (monthlyRate === 0) {
+	        return principal / numberOfPayments;
+	    }
+
+	    const x = Math.pow(1 + monthlyRate, numberOfPayments);
+	    const monthlyPayment = principal * (monthlyRate * x) / (x - 1);
+
+	    return Math.round(Math.round(monthlyPayment * 100) / 100);
+	}
+}
+
+//SVG_script==========================================================================================================================
+if(document.querySelector("#zoomimagetabs")) {
+	const svgBody = document.querySelector("#zoomimagetabs");
+	let filterBody = document.querySelector("#filterbody");
+	const parkingPopup = document.querySelector("#parkingpopup");
+	const parkingOrder = document.querySelector("#parkingorder");
+	const parkingPopupDis = document.querySelector("#parkingpopupdisable");  
+	const parkingPopupInf = document.querySelector("#parkingpopupinfo"); 
+	let areaPaths = new Array();
+	let familyPaths = new Array();
+
+	filterBody.addEventListener("click", (e) => {
+
+		//радио площади
+		if(e.target.closest("#area")) {
+			//снимаем чекбокс семейного паркинга
+			if(filterBody.querySelector("#family") && filterBody.querySelector("#family").querySelector(".active")) { 
+				filterBody.querySelector("#family").querySelector(".active").querySelector("input").checked = false;
+				filterBody.querySelector("#family").querySelector(".active").classList.toggle('active');
+			}
+			//выбран ли уже фильтр площади
+			if(e.target.closest("#area").querySelector(".active")) {
+				svgBody.querySelectorAll("path").forEach(function (path) {
+					if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
+						path.setAttribute("data-filter", "filtered");
+					} else {
+						path.setAttribute("data-filter", "disabled");
+					}
+				});
+			} else {
+				svgBody.querySelectorAll("path").forEach(function (path) {
+					if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
+						path.setAttribute("data-filter", "filtered");
+					} else {
+						path.setAttribute("data-filter", "disabled");
+					}
+				});
+			}
+		}
+
+		//чекбокс семейного паркинга
+		if (filterBody.querySelector("#family") && e.target.closest("#family") && e.target.closest("#checkboxbody")) {
+			//снимаем фильтр площади
+			if(filterBody.querySelector("#area").querySelector(".active")) { 
+				filterBody.querySelector("#area").querySelector(".active").querySelector("input").checked = false;
+				filterBody.querySelector("#area").querySelector(".active").classList.toggle('active');
+			}
+			//нажат ли уже этот чекбокс
+			if(e.target.closest("#checkbox").classList.contains("active")) {
+				svgBody.querySelectorAll("path").forEach(function (path) {
+					if(path.hasAttribute('data-family') && path.dataset.status == "AVAILABLE") {
+						path.setAttribute("data-filter", "filtered");
+					} else {
+						path.setAttribute("data-filter", "disabled");
+					}
+				});
+			} else {
+				svgBody.querySelectorAll("path").forEach(function (path) {
+					path.removeAttribute("data-filter");
+				});
+			}
+		}
+
+		if(e.target.closest("#clear")){
+			filterBody.querySelectorAll(".active").forEach((active) => {
+				active.classList.remove("active");
+			});
+			svgBody.querySelectorAll("path").forEach(function (path) {
+				path.removeAttribute("data-filter");
+			});
+		}
+
+		function svgBodyFilter() {
+			svgBody.querySelectorAll("path").forEach(function (path) {
+				if(path.dataset.area == e.target.closest('div .active').dataset.area && path.dataset.status == "AVAILABLE") {
+					areaPaths.push(path);
+				}
+			});
+		}
+
+	});
+
+	svgBody.addEventListener("mouseover", (event) => {
+		if(event.target.tagName == "path") {
+			if (event.target.dataset.status == "AVAILABLE") {
+				if (event.target.dataset.filter != "disabled") {
+					const area = event.target.dataset.area;
+					const family = event.target.dataset.family;
+					let size;
+
+					if(event.target.dataset.size) {
+						size = event.target.dataset.size;
+					} else {
+						switch (area) {
+							case "21.6":
+								size = "4,07 м х 5,3 м";
+								break;
+							case "13.25":
+								size = "2,3 м х 5,3 м";
+						}
+					}
+					parkingPopupActive(event, area, size);
+
+					event.target.setAttribute("data-engage", "mouseover");
+
+					event.target.addEventListener("mouseout", (event) => {
+						event.target.removeAttribute("data-engage");
+						parkingPopupNotActive();
+					});
+
+					event.target.addEventListener("mousewheel", (event) => {
+						event.target.removeAttribute("data-engage");
+						parkingPopupNotActive();
+					});
+
+					event.target.addEventListener("click", (event) => {
+						popupOpen(parkingOrder);
+
+						//если несколько домов
+						if(document.querySelector('[data-house]')) {
+							popupShowItem("house");
+						}
+
+						//если несколько этажей
+						if(document.querySelector('[data-stage]')) {
+							popupShowItem("stage");
+						}
+
+				  		parkingOrder.querySelector("#popupumber").innerText = "№" + event.target.dataset.number;
+				  		parkingOrder.querySelector("#popupprice").innerText = numberWithSpaces(event.target.dataset.price) + " ₽";
+				  		parkingOrder.querySelector("#popuparea").innerText = area + " м²";
+				  		parkingOrder.querySelector("#popupsize").innerText = size;
+  						parkingOrder.querySelector("#popupimage img").src = event.target.dataset.photo;
+					});
+				} else {
+					event.target.setAttribute("data-status-enable", "disabled");
+				}
+			} else {
+				if (event.target.dataset.type) {
+					parkingPopupInfo(event);					
+
+					event.target.addEventListener("mouseout", (event) => {
+						parkingPopupInf.classList.remove("active");
+					});
+
+					event.target.addEventListener("mousewheel", (event) => {
+						parkingPopupInf.classList.remove("active");
+					});
+				} else {
+					event.target.setAttribute("data-status-enable", "disabled");
+					parkingPopupDisabled(event);
+
+					event.target.addEventListener("mouseout", (event) => {
+						parkingPopupDis.classList.remove("active");
+					});
+
+					event.target.addEventListener("mousewheel", (event) => {
+						parkingPopupDis.classList.remove("active");
+					});
+				}
+			}
+		}
+	});
+
+	function popupShowItem(string) {
+		let svgTabsTitles = document.querySelectorAll('[data-tabs-title]');
+		svgTabsTitles.forEach(function (item) {
+			if (item.classList.contains("_tab-active")) {
+				parkingOrder.querySelector("#popup" + string).style.display = "block";
+				parkingOrder.querySelector("#popup" + string + " span").innerText = item.dataset[string];
+			}
+		});
+	}
+
+	function parkingPopupInfo(event) {
+		const x = event.clientX;
+  		const y = event.clientY;
+  		parkingPopupInf.querySelector("#popuptextname").innerText = event.target.dataset.name;
+  		if(event.target.dataset.photo) {
+  			parkingPopupInf.querySelector("#picture-wrap").style.display="block";
+  			parkingPopupInf.querySelector("#picture-wrap img").src = event.target.dataset.photo;
+  			parkingPopupInf.querySelector("#picture-wrap").href = event.target.dataset.photo;
+  		} else {
+  			parkingPopupInf.querySelector("#picture-wrap").style.display="none";
+  		}
+
+  		parkingPopupInf.style.left = x - 15 + "px";
+  		parkingPopupInf.style.top = y - 15 + "px";
+		parkingPopupInf.classList.add("active");
+	}
+
+	function parkingPopupDisabled(event) {
+		const x = event.clientX;
+  		const y = event.clientY;
+
+  		parkingPopupDis.style.left = x + "px";
+  		parkingPopupDis.style.top = y + "px";
+		parkingPopupDis.classList.add("active");
+	}
+
+	function parkingPopupActive(event, area, size) {
+		const x = event.clientX;
+  		const y = event.clientY;
+
+  		parkingPopup.querySelector("#popupumber").innerText = "№" + event.target.dataset.number;
+  		parkingPopup.querySelector("#popupprice").innerText = numberWithSpaces(event.target.dataset.price) + " ₽";
+  		parkingPopup.querySelector("#popuparea").innerText = area + " м²";
+  		parkingPopup.querySelector("#popupsize").innerText = size;
+
+  		parkingPopup.style.left = x + "px";
+  		parkingPopup.style.top = y + "px";
+		parkingPopup.classList.add("active");
+	}
+
+	function parkingPopupNotActive() {
+		parkingPopup.classList.remove("active");
+	}
+}
+
+//Zoom_Image============================================================================================================================================
+if(document.querySelector("#zoombody")) {
+	document.querySelectorAll("#zoombody").forEach(function (zoomBody, index) {
+		const zoomImage = zoomBody.querySelector('#zoomimage');
+		const zoomImageBody = zoomImage.closest('#zoomimagebody');
+		const zoomPlus = zoomBody.querySelector('#zoomplus');
+		const zoomMinus = zoomBody.querySelector('#zoomminus');
+		const gestureArea = zoomImage.closest('#gesture-area');
+		var resetTimeout;
+		var scale = 1;
+		let zoomid = 1;
+		
+		zoomBody.setAttribute('data-zoom-index', index);
+		
+		zoomPlus.addEventListener("click", function () {
+			zoomPlusIn();
+        });
+
+	    zoomMinus.addEventListener("click", function () {
+	    	zoomMinusOut();
+        });
+
+
+		zoomBody.addEventListener("mouseover", function () {
+			if(zoomid > 1) {
+				moveListeners();
+			} else {
+				interact(gestureArea).unset();
+			}
+        });
+
+		function moveListeners(event) {
+			interact(gestureArea)
+				.gesturable({
+					listeners: {
+						move (event) {
+					    	var currentScale = event.scale * scale;
+
+					    	zoomImage.style.transform = 'scale(' + currentScale + ')';
+
+					    	dragMoveListener(event);
+					  	},
+					  	end (event) {
+						    scale = scale * event.scale;
+					  	}
+					}
+				})
+				.draggable({
+					listeners: { move: dragMoveListener }
+			});
+		}
+
+		function dragMoveListener (event) {
+			if(zoomid > 1) {
+				var target = event.target;
+				var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+				var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+				target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+
+				target.setAttribute('data-x', x);
+				target.setAttribute('data-y', y);
+			}
+		}
+
+		function removeEvent(event) {
+			const index = evCache.findIndex(
+				(cachedEv) => cachedEv.pointerId === event.pointerId,
+			);
+			evCache.splice(index, 1);
+		}
+
+	    function zoomPlusIn() {
+	    	if(zoomid < 4) {
+	        	zoomid = zoomid + 0.5;
+	        	zoomImage.style.transform = `scale(${zoomid})`;
+	        	zoomImageBody.classList.add('active');
+	        }
+	    }
+
+	    function zoomMinusOut() {
+	    	if(zoomid > 1) {
+	        	zoomid = zoomid - 0.5;
+	        	zoomImage.style.transform = `scale(${zoomid})`;
+	        	if(zoomid == 1) {
+        			zoomImageBody.classList.remove('active');
+        			zoomImage.style.removeProperty('left');
+					zoomImage.style.removeProperty('top');
+	        	}
+        	} 
+        	if(zoomid == 1) {
+        		gestureArea.style.transform = 'translate(' + 0 + 'px, ' + 0 + 'px)';
+        	}
+	    }
+	});
+}
+//Mobile_Zoom=============================================================================================================================================================================================================================
+if(document.querySelector("#zoombody")) {
+	document.querySelectorAll("#zoombody").forEach(function (zoomBody, index) {
+		const scaleElement = zoomBody.querySelector('#zoomimage');
+		const gestureArea = scaleElement.closest('#gesture-area');
+		var scale = 1;
+		var resetTimeout;
+
+		interact(gestureArea)
+			.gesturable({
+				listeners: {
+					move (event) {
+				    	var currentScale = event.scale * scale;
+
+				    	scaleElement.style.transform = 'scale(' + currentScale + ')';
+
+				    	dragMoveListener(event);
+				  	},
+				  	end (event) {
+					    scale = scale * event.scale;
+				  	}
+				}
+			})
+			.draggable({
+				listeners: { move: dragMoveListener }
+		});
+
+		function dragMoveListener (event) {
+			var target = event.target;
+			var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+			var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+			target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+
+			target.setAttribute('data-x', x);
+			target.setAttribute('data-y', y);
+		}
+	});
 }
